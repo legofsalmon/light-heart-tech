@@ -196,36 +196,47 @@ function extractProse(
 ): string[] {
   if (!fullText) return [];
 
-  // Build a set of "fingerprints" from structured data
-  const structuredFingerprints = new Set<string>();
+  // Collect exact cell/item values for matching (case-insensitive)
+  const exact = new Set<string>();
 
-  // Add table cell content (trimmed, first 30 chars for fuzzy match)
-  (tables || []).flat(2).forEach(cell => {
-    const t = cell.trim();
-    if (t.length > 2) structuredFingerprints.add(t.substring(0, 30));
+  (tables || []).forEach(table => {
+    table.forEach(row => {
+      // Each individual cell
+      row.forEach(cell => {
+        const t = cell.trim().toLowerCase();
+        if (t) exact.add(t);
+      });
+      // Full row joined (handles fullText lines that concat multiple cells)
+      const joined = row.map(c => c.trim()).filter(Boolean).join('\t').toLowerCase();
+      if (joined) exact.add(joined);
+      const joinedSpace = row.map(c => c.trim()).filter(Boolean).join(' ').toLowerCase();
+      if (joinedSpace) exact.add(joinedSpace);
+    });
   });
 
-  // Add list items (first 20 chars for fuzzy match)
   (listItems || []).forEach(item => {
-    const t = item.trim();
-    if (t.length > 2) structuredFingerprints.add(t.substring(0, 20));
+    const t = item.trim().toLowerCase();
+    if (t) exact.add(t);
   });
 
-  if (structuredFingerprints.size === 0) {
-    // No structured data — all text is prose
+  if (exact.size === 0) {
     return fullText.split('\n').filter(p => p.trim());
   }
 
-  // Filter: keep lines that don't match any structured data fingerprint
   return fullText
     .split('\n')
     .filter(line => {
       const t = line.trim();
       if (!t) return false;
-      // Check if this line's beginning matches any structured fingerprint
-      for (const fp of structuredFingerprints) {
-        if (t.startsWith(fp) || fp.startsWith(t.substring(0, 20))) return false;
-      }
+      const lower = t.toLowerCase();
+
+      // Exact match — line IS a cell or list item
+      if (exact.has(lower)) return false;
+
+      // Tab-separated — line is a row of cells joined by tabs
+      const tabs = lower.split('\t').map(s => s.trim()).filter(Boolean);
+      if (tabs.length > 1 && tabs.every(seg => exact.has(seg))) return false;
+
       return true;
     });
 }
