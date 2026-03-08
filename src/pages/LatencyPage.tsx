@@ -27,8 +27,8 @@ export default function LatencyPage({ isDarkMode }: LatencyPageProps) {
         ease: 'expo.out',
         scrollTrigger: {
           trigger: page,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
+          start: 'top 90%',
+          toggleActions: 'play none none none',
         },
       });
     }, page);

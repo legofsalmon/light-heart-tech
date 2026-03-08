@@ -31,7 +31,7 @@ export default function ServerPage({ isDarkMode }: ServerPageProps) {
         scrollTrigger: {
           trigger: page,
           start: 'top 70%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     }, page);

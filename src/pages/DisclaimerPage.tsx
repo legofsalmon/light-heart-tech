@@ -27,7 +27,7 @@ export default function DisclaimerPage({ isDarkMode }: DisclaimerPageProps) {
         scrollTrigger: {
           trigger: page,
           start: 'top 70%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     }, page);

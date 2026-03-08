@@ -12,7 +12,7 @@ export default function SyncBanner({ isDarkMode }: SyncBannerProps) {
   const [hiding, setHiding] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => dismiss(), 8000);
+    const timer = setTimeout(() => dismiss(), 30000);
     return () => clearTimeout(timer);
   }, []);
 

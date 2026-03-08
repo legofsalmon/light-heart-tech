@@ -2,7 +2,7 @@ import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-d
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import FloatingDocLink from './components/FloatingDocLink';
+
 import SyncBanner from './components/SyncBanner';
 import PasswordGate from './components/PasswordGate';
 import HomePage from './pages/HomePage';
@@ -91,7 +91,7 @@ function App() {
           </Routes>
         </main>
         <Footer isDarkMode={isDarkMode} />
-        <FloatingDocLink isDarkMode={isDarkMode} />
+        
       </div>
     </HashRouter>
   );

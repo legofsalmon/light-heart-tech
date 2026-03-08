@@ -28,7 +28,7 @@ export default function HVACPage({ isDarkMode }: HVACPageProps) {
         scrollTrigger: {
           trigger: page,
           start: 'top 70%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     }, page);
