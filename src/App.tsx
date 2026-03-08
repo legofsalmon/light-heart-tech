@@ -55,7 +55,7 @@ function App() {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#060608] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
+      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#050505] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
         <Header isDarkMode={isDarkMode} onThemeToggle={toggleTheme} />
         <main className="pt-14">
           <Routes>

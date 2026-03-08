@@ -32,6 +32,7 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --cyan: 186 100% 50%;
   }
 
   .dark {
@@ -71,136 +72,254 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #050505;
   }
 }
 
-/* Custom Scrollbar */
+/* ═══════════════════════════════════════════════
+   SCROLLBAR - thick, visible cyan
+   ═══════════════════════════════════════════════ */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(0, 240, 255, 0.03);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 212, 255, 0.2);
-  border-radius: 3px;
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 240, 255, 0.1);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 212, 255, 0.4);
+  background: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
 }
 
-/* Selection */
+/* ═══════════════════════════════════════════════
+   SELECTION - strong cyan
+   ═══════════════════════════════════════════════ */
 ::selection {
-  background: rgba(0, 212, 255, 0.25);
-  color: inherit;
+  background: rgba(0, 240, 255, 0.3);
+  color: #ffffff;
 }
 
-/* Focus ring */
-:focus-visible {
-  outline: 2px solid rgba(0, 212, 255, 0.5);
-  outline-offset: 2px;
+/* ═══════════════════════════════════════════════
+   GRID BACKGROUND - visible like Kimi reference
+   ═══════════════════════════════════════════════ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-/* Page enter animation */
-@keyframes pageEnter {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.page-enter {
-  animation: pageEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+/* ═══════════════════════════════════════════════
+   HUD CARD - glass card with corner brackets
+   ═══════════════════════════════════════════════ */
+.hud-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: visible;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Glow pulse */
+.hud-card:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.08),
+              0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Corner brackets */
+.hud-corners::before,
+.hud-corners::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+.hud-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid rgba(0, 240, 255, 0.5);
+  border-left: 2px solid rgba(0, 240, 255, 0.5);
+  border-radius: 8px 0 0 0;
+}
+.hud-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid rgba(0, 240, 255, 0.5);
+  border-right: 2px solid rgba(0, 240, 255, 0.5);
+  border-radius: 0 0 8px 0;
+}
+
+/* Extra corners (use a wrapper div with these) */
+.hud-corners-extra::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 16px;
+  height: 16px;
+  border-top: 2px solid rgba(0, 240, 255, 0.3);
+  border-right: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: 0 8px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.hud-corners-extra::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 2px solid rgba(0, 240, 255, 0.3);
+  border-left: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: 0 0 0 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOW EFFECTS - visible cyan glows
+   ═══════════════════════════════════════════════ */
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.08); }
-  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.15); }
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.1), 0 0 60px rgba(0, 240, 255, 0.05); }
+  50% { box-shadow: 0 0 25px rgba(0, 240, 255, 0.2), 0 0 80px rgba(0, 240, 255, 0.08); }
 }
 .glow-pulse {
-  animation: glowPulse 4s ease-in-out infinite;
+  animation: glowPulse 3s ease-in-out infinite;
 }
 
-/* Card hover lift */
-.card-hover {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s ease;
-}
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 212, 255, 0.1);
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15),
+              0 0 40px rgba(0, 240, 255, 0.05);
 }
 
-/* Hero mesh gradient */
-@keyframes meshShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.hero-mesh {
-  background: linear-gradient(135deg,
-    rgba(0, 212, 255, 0.05) 0%, transparent 25%,
-    rgba(0, 100, 200, 0.03) 50%, transparent 75%,
-    rgba(0, 212, 255, 0.05) 100%);
-  background-size: 400% 400%;
-  animation: meshShift 15s ease-in-out infinite;
+/* ═══════════════════════════════════════════════
+   GRADIENT LINE - horizontal divider
+   ═══════════════════════════════════════════════ */
+.gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.5), transparent);
 }
 
-/* Noise texture overlay */
-.noise-overlay { position: relative; }
-.noise-overlay::before {
+.gradient-line-vertical {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTON STYLES
+   ═══════════════════════════════════════════════ */
+.btn-cyan {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-cyan:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3),
+              0 0 60px rgba(0, 240, 255, 0.1);
+  transform: translateY(-1px);
+}
+.btn-cyan:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-cyan::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  pointer-events: none;
+}
+
+.btn-outline-cyan {
+  transition: all 0.3s ease;
+}
+.btn-outline-cyan:hover {
+  background: rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+  transform: translateY(-1px);
+}
+.btn-outline-cyan:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ═══════════════════════════════════════════════
+   PAGE ENTER
+   ═══════════════════════════════════════════════ */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO BACKGROUND - visible radial glow
+   ═══════════════════════════════════════════════ */
+.hero-glow {
+  position: relative;
+}
+.hero-glow::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 70%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 240, 255, 0.08) 0%,
+    rgba(0, 140, 200, 0.04) 30%,
+    transparent 70%
+  );
   pointer-events: none;
   z-index: 0;
 }
 
-/* Stat number styling */
+/* ═══════════════════════════════════════════════
+   STATUS BADGE
+   ═══════════════════════════════════════════════ */
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00f0ff;
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   STAT NUMBER
+   ═══════════════════════════════════════════════ */
 .stat-number {
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
 }
 
-/* Animated border gradient */
-@keyframes borderGlow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
-}
-.border-glow {
-  position: relative;
-}
-.border-glow::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), transparent, rgba(0, 212, 255, 0.3));
-  z-index: -1;
-  animation: borderGlow 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-/* Grid pattern for backgrounds */
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Smooth accordion transitions */
+/* ═══════════════════════════════════════════════
+   ACCORDION - smooth open
+   ═══════════════════════════════════════════════ */
 [data-state="open"] > [role="region"] {
   animation: accordionOpen 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 @keyframes accordionOpen {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* Button press effect */
-.btn-press:active {
-  transform: scale(0.97);
 }

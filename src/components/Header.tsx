@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
@@ -27,7 +27,6 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -39,76 +38,96 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
-  const borderColor = isDarkMode ? 'border-[#1a1a22]' : 'border-[#e0e0e0]';
-
   return (
     <header
-      ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${borderColor}`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        backgroundColor: isDarkMode
-          ? isScrolled ? 'rgba(6, 6, 8, 0.95)' : 'rgba(6, 6, 8, 0.8)'
-          : isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'rgba(245, 245, 240, 0.8)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        backgroundColor: isScrolled ? 'rgba(5, 5, 5, 0.95)' : 'rgba(5, 5, 5, 0.7)',
+        backdropFilter: `blur(${isScrolled ? 16 : 8}px)`,
+        WebkitBackdropFilter: `blur(${isScrolled ? 16 : 8}px)`,
+        borderBottom: isScrolled
+          ? '1px solid rgba(0, 240, 255, 0.08)'
+          : '1px solid rgba(255, 255, 255, 0.04)',
       }}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 shrink-0">
-            <span className={`font-display text-base md:text-lg font-bold tracking-tight ${isDarkMode ? 'text-[#e0e0e0]' : 'text-[#1a1a1a]'}`}>
+            <span className="text-base md:text-lg font-bold tracking-tight text-white">
               LIGHTHEART
             </span>
-            <span className={`hidden sm:inline text-[10px] ${isDarkMode ? 'text-[#333]' : 'text-[#ccc]'}`}>|</span>
-            <span className={`hidden sm:inline text-[10px] uppercase tracking-[0.15em] ${isDarkMode ? 'text-[#444]' : 'text-[#999]'}`}>
-              Tech Spec
+            <span className="hidden sm:inline text-[10px] text-[#333]">|</span>
+            <span className="hidden sm:inline text-[10px] tracking-[0.15em] text-[#555] font-mono uppercase">
+              Tech Docs v1.0
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center space-x-0.5">
+          <nav className="hidden xl:flex items-center">
             {navItems.map((item) => {
               const isActive = location.pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="relative px-2 py-1.5 text-[10px] uppercase tracking-wider transition-colors duration-200"
+                  className="relative px-2.5 py-1.5 text-[10px] uppercase tracking-wider transition-all duration-200 font-mono"
                   style={{
-                    color: isActive
-                      ? (isDarkMode ? '#00d4ff' : '#0066cc')
-                      : (isDarkMode ? '#555' : '#999'),
+                    color: isActive ? '#00F0FF' : '#555',
+                    backgroundColor: isActive ? 'rgba(0, 240, 255, 0.08)' : 'transparent',
+                    borderRadius: '4px',
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      e.currentTarget.style.color = isDarkMode ? '#aaa' : '#444';
+                      e.currentTarget.style.color = '#ccc';
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.03)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) {
-                      e.currentTarget.style.color = isDarkMode ? '#555' : '#999';
+                      e.currentTarget.style.color = '#555';
+                      e.currentTarget.style.backgroundColor = 'transparent';
                     }
                   }}
                 >
                   {item.label}
                   {isActive && (
                     <span
-                      className="absolute bottom-0 left-2 right-2 h-px"
-                      style={{ backgroundColor: isDarkMode ? '#00d4ff' : '#0066cc' }}
+                      className="absolute -bottom-0.5 left-2 right-2 h-[2px] rounded-full"
+                      style={{
+                        backgroundColor: '#00F0FF',
+                        boxShadow: '0 0 6px rgba(0, 240, 255, 0.4)',
+                      }}
                     />
                   )}
                 </Link>
               );
             })}
+
+            {/* LIVE indicator */}
+            <div className="ml-3 flex items-center gap-1.5 px-2">
+              <span className="status-dot" style={{ width: 5, height: 5 }} />
+              <span className="text-[10px] font-mono tracking-wider text-[#555]">LIVE</span>
+            </div>
           </nav>
 
           {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center space-x-2">
             <button
               onClick={onThemeToggle}
-              className={`p-2 border ${borderColor} transition-all duration-200 hover:border-[${isDarkMode ? '#333' : '#bbb'}]`}
-              style={{ color: isDarkMode ? '#555' : '#999' }}
+              className="p-2 rounded-md transition-all duration-200"
+              style={{
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                color: '#555',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.3)';
+                e.currentTarget.style.color = '#00F0FF';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.color = '#555';
+              }}
               aria-label="Toggle theme"
             >
               {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
@@ -116,8 +135,11 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`xl:hidden p-2 border ${borderColor} transition-all duration-200`}
-              style={{ color: isDarkMode ? '#555' : '#999' }}
+              className="xl:hidden p-2 rounded-md transition-all duration-200"
+              style={{
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                color: '#555',
+              }}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={14} /> : <Menu size={14} />}
@@ -129,9 +151,10 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div
-          className={`xl:hidden border-t ${borderColor}`}
+          className="xl:hidden"
           style={{
-            backgroundColor: isDarkMode ? 'rgba(6, 6, 8, 0.98)' : 'rgba(245, 245, 240, 0.98)',
+            backgroundColor: 'rgba(5, 5, 5, 0.98)',
+            borderTop: '1px solid rgba(0, 240, 255, 0.08)',
           }}
         >
           <nav className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-2 gap-1">
@@ -141,11 +164,11 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`px-3 py-2.5 text-[11px] uppercase tracking-wider transition-colors duration-200 ${
-                    isActive
-                      ? (isDarkMode ? 'text-[#00d4ff] bg-[#00d4ff]/5' : 'text-[#0066cc] bg-[#0066cc]/5')
-                      : (isDarkMode ? 'text-[#555] hover:text-[#aaa]' : 'text-[#999] hover:text-[#444]')
-                  }`}
+                  className="px-3 py-2.5 text-[11px] uppercase tracking-wider font-mono transition-colors duration-200 rounded"
+                  style={{
+                    color: isActive ? '#00F0FF' : '#555',
+                    backgroundColor: isActive ? 'rgba(0, 240, 255, 0.08)' : 'transparent',
+                  }}
                 >
                   {item.label}
                 </Link>
