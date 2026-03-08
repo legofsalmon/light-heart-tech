@@ -9,6 +9,15 @@ import DocSectionRenderer from '@/components/ui/DocSectionRenderer';
 import { AccordionItem } from '@/components/ui/Accordion';
 import styles from './page.module.scss';
 
+/** Map slugs to top-level summary data fields */
+const SLUG_SUMMARY: Record<string, string> = {
+  'projection': 'projectionSystems',
+  'audio': 'audioSystem',
+  'network': 'networkInfrastructure',
+  'server': 'serverRoom',
+  'hvac': 'heatLoad',
+};
+
 export default function SectionPage() {
   const params = useParams();
   const slug = params.section as string;
@@ -53,11 +62,21 @@ export default function SectionPage() {
   const sections = data.sections.slice(range.startIndex, range.endIndex + 1);
   // First section is the "Section N: Title" header — the rest is content
   const contentSections = sections.length > 1 ? sections.slice(1) : sections;
-  // Get description from the header section's subsections or fullText
+  // Get description from the header section's fullText
+  // Header sections follow: "What This Section Is About" → actual description → ...
   const headerSec = sections[0];
+  const headerLines = (headerSec?.fullText || '').split('\n').filter((l: string) => l.trim());
   const description = headerSec?.subsections?.[0]?.text
-    || headerSec?.fullText?.split('\n')[0]
+    || headerLines.find((l: string) => l !== 'What This Section Is About' && l !== 'Why It Matters' && l.length > 20)
     || '';
+
+  // Get summary stats for this section (if available)
+  const summaryField = SLUG_SUMMARY[slug];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const summaryData = summaryField ? (data as any)[summaryField] : null;
+  const summaryPairs: [string, string][] = summaryData && typeof summaryData === 'object' && !Array.isArray(summaryData)
+    ? Object.entries(summaryData) as [string, string][]
+    : [];
 
   return (
     <div ref={pageRef} className={`page-enter ${styles.page}`}>
@@ -71,6 +90,18 @@ export default function SectionPage() {
           <h1 className={styles.title}>{range.title}</h1>
           {description && <p className={styles.description}>{description}</p>}
         </div>
+
+        {/* Summary stats bar */}
+        {summaryPairs.length > 0 && (
+          <div className={`spec-card ${styles.summaryBar}`}>
+            {summaryPairs.slice(0, 4).map(([key, value], i) => (
+              <div key={i} className={styles.summaryCard}>
+                <div className={styles.summaryValue}>{value}</div>
+                <div className={styles.summaryLabel}>{key}</div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Content sections as accordions */}
         {contentSections.map((section, i) => {

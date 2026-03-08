@@ -242,6 +242,20 @@
   }
 }
 
+/* ── Caption labels (table sub-headings) ── */
+.captionLabel {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $neon-cyan;
+  margin: $space-md 0 $space-xs;
+  padding-bottom: $space-xs;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+  :global(.light-mode) & { color: #0077aa; border-bottom-color: rgba(0, 100, 150, 0.15); }
+}
+
 /* ── Subsections ───────────────── */
 .subsection {
   margin-top: $space-md;

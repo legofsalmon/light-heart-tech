@@ -30,3 +30,45 @@
   line-height: 1.6;
   @include sm { font-size: 1rem; }
 }
+
+/* ── Summary stats bar ─────────── */
+.summaryBar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  overflow: hidden;
+  margin-bottom: $space-lg;
+
+  @include sm { grid-template-columns: repeat(4, 1fr); }
+  :global(.light-mode) & { background: rgba(0, 100, 150, 0.03); border-color: $light-border; }
+}
+
+.summaryCard {
+  padding: $space-md;
+  background: $dark-bg;
+  text-align: center;
+
+  :global(.light-mode) & { background: $light-bg; }
+}
+
+.summaryValue {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $neon-cyan;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+  @include sm { font-size: 0.8125rem; }
+  :global(.light-mode) & { color: #0077aa; }
+}
+
+.summaryLabel {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  color: $soft-gray;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

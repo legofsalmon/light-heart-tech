@@ -268,11 +268,14 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
       {/* Prose copy from the doc */}
       {proseLines.length > 0 && !titleIsCallout && (
         <div className={styles.text}>
-          {proseLines.map((para, i) =>
-            WARN_RE.test(para)
-              ? <Callout key={i} text={para} />
-              : <p key={i}>{para}</p>
-          )}
+          {proseLines.map((para, i) => {
+            if (WARN_RE.test(para)) return <Callout key={i} text={para} />;
+            // Short lines without ending punctuation → sub-heading / caption
+            const isCaption = para.length < 60 && !/[.!?]$/.test(para.trim()) && /^[A-Z]/.test(para);
+            return isCaption
+              ? <h5 key={i} className={styles.captionLabel}>{para}</h5>
+              : <p key={i}>{para}</p>;
+          })}
         </div>
       )}
 
