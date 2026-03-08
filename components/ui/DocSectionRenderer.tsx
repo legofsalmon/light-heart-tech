@@ -196,6 +196,21 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
 
   const titleIsCallout = section.title && WARN_RE.test(section.title);
 
+  // Deduplication: check if fullText is just a plain-text dump of table/list data
+  const hasStructuredData =
+    (section.tables && section.tables.length > 0) ||
+    (section.listItems && section.listItems.length > 0);
+  
+  let fullTextIsDuplicate = false;
+  if (hasStructuredData && section.fullText) {
+    const ft = section.fullText;
+    const firstTableCell = section.tables?.[0]?.[0]?.[0] || '';
+    const firstListItem = (section.listItems?.[0] || '').substring(0, 15);
+    fullTextIsDuplicate =
+      (firstTableCell.length > 2 && ft.includes(firstTableCell)) ||
+      (firstListItem.length > 2 && ft.includes(firstListItem));
+  }
+
   return (
     <div className={`${styles.section} ${className || ''}`}>
       {showTitle && section.title && (
@@ -204,7 +219,7 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
           : <h3 className={styles.title}>{section.title}</h3>
       )}
 
-      {section.fullText && !titleIsCallout && (
+      {section.fullText && !titleIsCallout && !fullTextIsDuplicate && (
         <div className={styles.text}>
           {section.fullText.split('\n').filter(p => p.trim()).map((para, i) =>
             WARN_RE.test(para)
@@ -225,23 +240,32 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
         <SmartList items={section.listItems} />
       )}
 
-      {section.subsections?.map((sub, i) => (
-        <div key={'s' + i} className={styles.subsection}>
-          {sub.title && <h4 className={styles.subTitle}>{sub.title}</h4>}
-          {sub.text && (
-            <div className={styles.text}>
-              {sub.text.split('\n').filter(p => p.trim()).map((para, j) => <p key={j}>{para}</p>)}
-            </div>
-          )}
-          {sub.tables?.map((table, ti) => {
-            const shape = classifyTable(table);
-            if (shape === 'kv') return <KVCards key={'st' + ti} rows={table} />;
-            if (shape === 'stats') return <StatCards key={'st' + ti} rows={table} />;
-            return <DataTable key={'st' + ti} rows={table} />;
-          })}
-          {sub.lists && sub.lists.length > 0 && <SmartList items={sub.lists} />}
-        </div>
-      ))}
+      {section.subsections?.map((sub, i) => {
+        const subHasStructured = (sub.tables && sub.tables.length > 0) || (sub.lists && sub.lists.length > 0);
+        let subTextIsDup = false;
+        if (subHasStructured && sub.text) {
+          const fc = sub.tables?.[0]?.[0]?.[0] || '';
+          const fl = (sub.lists?.[0] || '').substring(0, 15);
+          subTextIsDup = (fc.length > 2 && sub.text.includes(fc)) || (fl.length > 2 && sub.text.includes(fl));
+        }
+        return (
+          <div key={'s' + i} className={styles.subsection}>
+            {sub.title && <h4 className={styles.subTitle}>{sub.title}</h4>}
+            {sub.text && !subTextIsDup && (
+              <div className={styles.text}>
+                {sub.text.split('\n').filter(p => p.trim()).map((para, j) => <p key={j}>{para}</p>)}
+              </div>
+            )}
+            {sub.tables?.map((table, ti) => {
+              const shape = classifyTable(table);
+              if (shape === 'kv') return <KVCards key={'st' + ti} rows={table} />;
+              if (shape === 'stats') return <StatCards key={'st' + ti} rows={table} />;
+              return <DataTable key={'st' + ti} rows={table} />;
+            })}
+            {sub.lists && sub.lists.length > 0 && <SmartList items={sub.lists} />}
+          </div>
+        );
+      })}
     </div>
   );
 }
