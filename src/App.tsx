@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -17,6 +17,14 @@ import HVACPage from './pages/HVACPage';
 import VendorPage from './pages/VendorPage';
 import VisualizationPage from './pages/VisualizationPage';
 import DisclaimerPage from './pages/DisclaimerPage';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -46,9 +54,10 @@ function App() {
 
   return (
     <HashRouter>
-      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0a0a] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
+      <ScrollToTop />
+      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#060608] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
         <Header isDarkMode={isDarkMode} onThemeToggle={toggleTheme} />
-        <main className="pt-20">
+        <main className="pt-14">
           <Routes>
             <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
             <Route path="/technical-direction" element={<TechnicalDirectionPage isDarkMode={isDarkMode} />} />

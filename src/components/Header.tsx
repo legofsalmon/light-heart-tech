@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
@@ -25,63 +25,102 @@ const navItems = [
 
 export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const headerRef = useRef<HTMLElement>(null);
 
-  const bgColor = isDarkMode ? 'bg-[#0a0a0a]/95' : 'bg-[#f5f5f0]/95';
-  const borderColor = isDarkMode ? 'border-[#333]' : 'border-[#ddd]';
-  const textColor = isDarkMode ? 'text-[#e0e0e0]' : 'text-[#1a1a1a]';
-  const accentColor = isDarkMode ? 'text-[#00d4ff]' : 'text-[#0066cc]';
-  const mutedColor = isDarkMode ? 'text-[#666]' : 'text-[#999]';
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  const borderColor = isDarkMode ? 'border-[#1a1a22]' : 'border-[#e0e0e0]';
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 ${bgColor} backdrop-blur-sm border-b ${borderColor}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${borderColor}`}
+      style={{
+        backgroundColor: isDarkMode
+          ? isScrolled ? 'rgba(6, 6, 8, 0.95)' : 'rgba(6, 6, 8, 0.8)'
+          : isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'rgba(245, 245, 240, 0.8)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+      }}
+    >
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <span className={`font-display text-lg md:text-xl font-bold tracking-tight ${textColor}`}>
+          <Link to="/" className="flex items-center space-x-3 shrink-0">
+            <span className={`font-display text-base md:text-lg font-bold tracking-tight ${isDarkMode ? 'text-[#e0e0e0]' : 'text-[#1a1a1a]'}`}>
               LIGHTHEART
             </span>
-            <span className={`hidden sm:inline text-xs ${mutedColor}`}>|</span>
-            <span className={`hidden sm:inline text-xs uppercase tracking-wider ${mutedColor}`}>
+            <span className={`hidden sm:inline text-[10px] ${isDarkMode ? 'text-[#333]' : 'text-[#ccc]'}`}>|</span>
+            <span className={`hidden sm:inline text-[10px] uppercase tracking-[0.15em] ${isDarkMode ? 'text-[#444]' : 'text-[#999]'}`}>
               Tech Spec
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden xl:flex items-center space-x-0.5">
             {navItems.map((item) => {
               const isActive = location.pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`px-2 py-1 text-[10px] uppercase tracking-wider transition-colors ${
-                    isActive ? accentColor : mutedColor + ' hover:' + textColor
-                  }`}
+                  className="relative px-2 py-1.5 text-[10px] uppercase tracking-wider transition-colors duration-200"
+                  style={{
+                    color: isActive
+                      ? (isDarkMode ? '#00d4ff' : '#0066cc')
+                      : (isDarkMode ? '#555' : '#999'),
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = isDarkMode ? '#aaa' : '#444';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = isDarkMode ? '#555' : '#999';
+                    }
+                  }}
                 >
                   {item.label}
+                  {isActive && (
+                    <span
+                      className="absolute bottom-0 left-2 right-2 h-px"
+                      style={{ backgroundColor: isDarkMode ? '#00d4ff' : '#0066cc' }}
+                    />
+                  )}
                 </Link>
               );
             })}
           </nav>
 
           {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
             <button
               onClick={onThemeToggle}
-              className={`p-2 border ${borderColor} ${mutedColor} hover:${textColor} transition-colors`}
+              className={`p-2 border ${borderColor} transition-all duration-200 hover:border-[${isDarkMode ? '#333' : '#bbb'}]`}
+              style={{ color: isDarkMode ? '#555' : '#999' }}
               aria-label="Toggle theme"
             >
-              {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
+              {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
             </button>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden p-2 border ${borderColor} ${mutedColor} hover:${textColor} transition-colors`}
+              className={`xl:hidden p-2 border ${borderColor} transition-all duration-200`}
+              style={{ color: isDarkMode ? '#555' : '#999' }}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+              {isMenuOpen ? <X size={14} /> : <Menu size={14} />}
             </button>
           </div>
         </div>
@@ -89,19 +128,23 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className={`lg:hidden border-t ${borderColor} ${isDarkMode ? 'bg-[#0a0a0a]' : 'bg-[#f5f5f0]'}`}>
-          <nav className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-2 gap-2">
+        <div
+          className={`xl:hidden border-t ${borderColor}`}
+          style={{
+            backgroundColor: isDarkMode ? 'rgba(6, 6, 8, 0.98)' : 'rgba(245, 245, 240, 0.98)',
+          }}
+        >
+          <nav className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-2 gap-1">
             {navItems.map((item) => {
               const isActive = location.pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`px-3 py-2 text-xs uppercase tracking-wider transition-colors ${
-                    isActive 
-                      ? (isDarkMode ? 'bg-[#00d4ff]/20 text-[#00d4ff]' : 'bg-[#0066cc]/20 text-[#0066cc]')
-                      : mutedColor + ' hover:' + textColor
+                  className={`px-3 py-2.5 text-[11px] uppercase tracking-wider transition-colors duration-200 ${
+                    isActive
+                      ? (isDarkMode ? 'text-[#00d4ff] bg-[#00d4ff]/5' : 'text-[#0066cc] bg-[#0066cc]/5')
+                      : (isDarkMode ? 'text-[#555] hover:text-[#aaa]' : 'text-[#999] hover:text-[#444]')
                   }`}
                 >
                   {item.label}
