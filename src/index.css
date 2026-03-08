@@ -233,3 +233,30 @@ button[class*="border"][class*="flex items-center gap"]:hover {
 .copy-toast {
   animation: toastPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* ── Range slider thumb ────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00F0FF;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  border: none;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00F0FF;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  border: none;
+}

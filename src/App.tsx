@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SyncBanner from './components/SyncBanner';
 import HudBackground from './components/HudBackground';
+import HudSettings, { DEFAULT_PARAMS } from './components/HudSettings';
+import type { HudParams } from './components/HudSettings';
 import PasswordGate from './components/PasswordGate';
 import HomePage from './pages/HomePage';
 import TechnicalDirectionPage from './pages/TechnicalDirectionPage';
@@ -32,6 +34,7 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showSyncBanner, setShowSyncBanner] = useState(false);
+  const [hudParams, setHudParams] = useState<HudParams>(DEFAULT_PARAMS);
 
   useEffect(() => {
     const auth = sessionStorage.getItem('lightheart_auth');
@@ -69,7 +72,7 @@ function App() {
     <HashRouter>
       <ScrollToTop />
       <div className={`min-h-screen flex flex-col transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0a0a] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
-        <HudBackground isDarkMode={isDarkMode} />
+        <HudBackground isDarkMode={isDarkMode} params={hudParams} />
         <Header isDarkMode={isDarkMode} onThemeToggle={toggleTheme} />
         {showSyncBanner && <SyncBanner isDarkMode={isDarkMode} />}
         <main className="pt-20 flex-1 relative z-[1]">
@@ -92,6 +95,7 @@ function App() {
           </Routes>
         </main>
         <Footer isDarkMode={isDarkMode} />
+        <HudSettings params={hudParams} onChange={setHudParams} isDarkMode={isDarkMode} />
       </div>
     </HashRouter>
   );
