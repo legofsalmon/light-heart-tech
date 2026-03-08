@@ -1,6 +1,6 @@
 'use client';
 
-import { Download, AlertTriangle, Info, CheckCircle2 } from 'lucide-react';
+import { Download, AlertTriangle, Info, Table2, List, Hash, FileText, ChevronRight } from 'lucide-react';
 import type { DocSection } from '@/data/types';
 import styles from './DocSectionRenderer.module.scss';
 
@@ -51,34 +51,59 @@ function downloadCSV(rows: string[][], name: string) {
   a.click();
 }
 
+/* ═══ Content type badge ═════════════════════════ */
+
+function ContentBadge({ type, count }: { type: 'table' | 'stats' | 'kv' | 'list'; count?: number }) {
+  const config = {
+    table:  { icon: Table2, label: 'DATA TABLE', color: 'rgba(0, 240, 255, 0.12)' },
+    stats:  { icon: Hash,   label: 'METRICS',    color: 'rgba(0, 255, 136, 0.10)' },
+    kv:     { icon: FileText, label: 'SPECS',    color: 'rgba(180, 130, 255, 0.10)' },
+    list:   { icon: List,   label: 'ITEMS',      color: 'rgba(255, 140, 0, 0.10)' },
+  };
+  const { icon: Icon, label, color } = config[type];
+  return (
+    <div className={styles.contentBadge} style={{ background: color }}>
+      <Icon size={10} />
+      <span>{label}</span>
+      {count !== undefined && count > 1 && <span className={styles.badgeCount}>{count}</span>}
+    </div>
+  );
+}
+
 /* ═══ Sub-renderers ═══════════════════════════════ */
 
 function KVCards({ rows }: { rows: string[][] }) {
   return (
-    <div className={styles.kvGrid}>
-      {rows.map((r, i) => (
-        <div key={i} className={styles.kvCard}>
-          <div className={styles.kvLabel}>{r[0]}</div>
-          <div className={styles.kvValue}>{r[1]}</div>
-        </div>
-      ))}
+    <div className={styles.kvSection}>
+      <ContentBadge type="kv" count={rows.length} />
+      <div className={styles.kvGrid}>
+        {rows.map((r, i) => (
+          <div key={i} className={styles.kvCard}>
+            <div className={styles.kvLabel}>{r[0]}</div>
+            <div className={styles.kvValue}>{r[1]}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 function StatCards({ rows }: { rows: string[][] }) {
   return (
-    <div className={styles.statGrid}>
-      {rows.map((r, i) => {
-        const ex = extractNum(r[1]);
-        return (
-          <div key={i} className={styles.statCard}>
-            <div className={styles.statValue}>{ex ? ex.n : r[1]}</div>
-            {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
-            <div className={styles.statLabel}>{r[0]}</div>
-          </div>
-        );
-      })}
+    <div className={styles.statsSection}>
+      <ContentBadge type="stats" count={rows.length} />
+      <div className={styles.statGrid}>
+        {rows.map((r, i) => {
+          const ex = extractNum(r[1]);
+          return (
+            <div key={i} className={styles.statCard}>
+              <div className={styles.statValue}>{ex ? ex.n : r[1]}</div>
+              {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
+              <div className={styles.statLabel}>{r[0]}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -87,35 +112,43 @@ function DataTable({ rows, title }: { rows: string[][]; title?: string }) {
   if (rows.length === 0) return null;
   const [header, ...body] = rows;
   return (
-    <div className={styles.tableWrap}>
-      <div className={styles.tableHeader}>
-        {title && <span className={styles.tableCaption}>{title}</span>}
-        {rows.length > 2 && (
-          <button className={styles.csvBtn} onClick={() => downloadCSV(rows, title || 'data')}>
-            <Download size={12} /> DOWNLOAD CSV
-          </button>
-        )}
-      </div>
-      <div className={styles.tableScroll}>
-        <table className={styles.table}>
-          <thead><tr>{header.map((c, i) => <th key={i} className={styles.th}>{c}</th>)}</tr></thead>
-          <tbody>
-            {body.map((row, ri) => (
-              <tr key={ri} className={styles.tr}>
-                {row.map((cell, ci) => (
-                  <td key={ci} className={styles.td} style={{
-                    color: isStat(cell) ? statColor(cell) : isCurr(cell) ? '#00F0FF' : undefined,
-                    fontWeight: isCurr(cell) ? 600 : undefined,
-                  }}>
-                    {isStat(cell) ? (
-                      <span className={styles.statusBadge} style={{ color: statColor(cell), borderColor: statColor(cell) + '40' }}>{cell}</span>
-                    ) : cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className={styles.tableSection}>
+      <div className={styles.tableWrap}>
+        <div className={styles.tableHeader}>
+          <div className={styles.tableHeaderLeft}>
+            <ContentBadge type="table" />
+            {title && <span className={styles.tableCaption}>{title}</span>}
+          </div>
+          {rows.length > 2 && (
+            <button className={styles.csvBtn} onClick={() => downloadCSV(rows, title || 'data')}>
+              <Download size={12} /> DOWNLOAD CSV
+            </button>
+          )}
+        </div>
+        <div className={styles.tableScroll}>
+          <table className={styles.table}>
+            <thead><tr>{header.map((c, i) => <th key={i} className={styles.th}>{c}</th>)}</tr></thead>
+            <tbody>
+              {body.map((row, ri) => (
+                <tr key={ri} className={styles.tr}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} className={styles.td} style={{
+                      color: isStat(cell) ? statColor(cell) : isCurr(cell) ? '#00F0FF' : undefined,
+                      fontWeight: isCurr(cell) ? 600 : undefined,
+                    }}>
+                      {isStat(cell) ? (
+                        <span className={styles.statusBadge} style={{ color: statColor(cell), borderColor: statColor(cell) + '40' }}>{cell}</span>
+                      ) : cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className={styles.tableFooter}>
+          <span>{body.length} row{body.length !== 1 ? 's' : ''} &middot; {header.length} column{header.length !== 1 ? 's' : ''}</span>
+        </div>
       </div>
     </div>
   );
@@ -137,34 +170,43 @@ function SmartList({ items }: { items: string[] }) {
     <>
       {parsed.length > 0 && (
         isStatLike ? (
-          <div className={styles.statGrid}>
-            {parsed.map((kv, i) => {
-              const ex = extractNum(kv.value);
-              const numMatch = kv.value.match(/(\d[\d,.]*)/);
-              return (
-                <div key={i} className={styles.statCard}>
-                  <div className={styles.statValue}>{ex ? ex.n : numMatch ? numMatch[1] : kv.value.substring(0, 20)}</div>
-                  {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
-                  <div className={styles.statLabel}>{kv.key}</div>
-                </div>
-              );
-            })}
+          <div className={styles.statsSection}>
+            <ContentBadge type="stats" count={parsed.length} />
+            <div className={styles.statGrid}>
+              {parsed.map((kv, i) => {
+                const ex = extractNum(kv.value);
+                const numMatch = kv.value.match(/(\d[\d,.]*)/);
+                return (
+                  <div key={i} className={styles.statCard}>
+                    <div className={styles.statValue}>{ex ? ex.n : numMatch ? numMatch[1] : kv.value.substring(0, 20)}</div>
+                    {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
+                    <div className={styles.statLabel}>{kv.key}</div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ) : (
-          <div className={styles.kvGrid}>
-            {parsed.map((kv, i) => (
-              <div key={i} className={styles.kvCard}>
-                <div className={styles.kvLabel}>{kv.key}</div>
-                <div className={styles.kvValue}>{kv.value}</div>
-              </div>
-            ))}
+          <div className={styles.kvSection}>
+            <ContentBadge type="kv" count={parsed.length} />
+            <div className={styles.kvGrid}>
+              {parsed.map((kv, i) => (
+                <div key={i} className={styles.kvCard}>
+                  <div className={styles.kvLabel}>{kv.key}</div>
+                  <div className={styles.kvValue}>{kv.value}</div>
+                </div>
+              ))}
+            </div>
           </div>
         )
       )}
       {plainItems.length > 0 && (
-        <ul className={styles.list}>
-          {plainItems.map((item, i) => <li key={i}>{item}</li>)}
-        </ul>
+        <div className={styles.listSection}>
+          <ContentBadge type="list" count={plainItems.length} />
+          <ul className={styles.list}>
+            {plainItems.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </div>
       )}
     </>
   );
@@ -183,11 +225,7 @@ function Callout({ text }: { text: string }) {
   );
 }
 
-/* ═══ Prose extraction ═════════════════════════════
- * fullText contains ALL text, including table cells and list items
- * rendered as plain text. We extract only the actual prose (copy)
- * by removing lines that exist in the structured data.
- * ═════════════════════════════════════════════════ */
+/* ═══ Prose extraction ═════════════════════════════ */
 
 function extractProse(
   fullText: string,
@@ -195,18 +233,11 @@ function extractProse(
   listItems: string[] | undefined,
 ): string[] {
   if (!fullText) return [];
-
-  // Collect exact cell/item values for matching (case-insensitive)
   const exact = new Set<string>();
 
   (tables || []).forEach(table => {
     table.forEach(row => {
-      // Each individual cell
-      row.forEach(cell => {
-        const t = cell.trim().toLowerCase();
-        if (t) exact.add(t);
-      });
-      // Full row joined (handles fullText lines that concat multiple cells)
+      row.forEach(cell => { const t = cell.trim().toLowerCase(); if (t) exact.add(t); });
       const joined = row.map(c => c.trim()).filter(Boolean).join('\t').toLowerCase();
       if (joined) exact.add(joined);
       const joinedSpace = row.map(c => c.trim()).filter(Boolean).join(' ').toLowerCase();
@@ -214,31 +245,19 @@ function extractProse(
     });
   });
 
-  (listItems || []).forEach(item => {
-    const t = item.trim().toLowerCase();
-    if (t) exact.add(t);
+  (listItems || []).forEach(item => { const t = item.trim().toLowerCase(); if (t) exact.add(t); });
+
+  if (exact.size === 0) return fullText.split('\n').filter(p => p.trim());
+
+  return fullText.split('\n').filter(line => {
+    const t = line.trim();
+    if (!t) return false;
+    const lower = t.toLowerCase();
+    if (exact.has(lower)) return false;
+    const tabs = lower.split('\t').map(s => s.trim()).filter(Boolean);
+    if (tabs.length > 1 && tabs.every(seg => exact.has(seg))) return false;
+    return true;
   });
-
-  if (exact.size === 0) {
-    return fullText.split('\n').filter(p => p.trim());
-  }
-
-  return fullText
-    .split('\n')
-    .filter(line => {
-      const t = line.trim();
-      if (!t) return false;
-      const lower = t.toLowerCase();
-
-      // Exact match — line IS a cell or list item
-      if (exact.has(lower)) return false;
-
-      // Tab-separated — line is a row of cells joined by tabs
-      const tabs = lower.split('\t').map(s => s.trim()).filter(Boolean);
-      if (tabs.length > 1 && tabs.every(seg => exact.has(seg))) return false;
-
-      return true;
-    });
 }
 
 /* ═══ Main Smart Renderer ═════════════════════════ */
@@ -253,16 +272,29 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
   if (!section) return null;
 
   const titleIsCallout = section.title && WARN_RE.test(section.title);
-
-  // Extract only the prose (copy) from fullText, excluding table/list data
   const proseLines = extractProse(section.fullText, section.tables, section.listItems);
+
+  // Count content types for summary badge
+  const tableCount = section.tables?.length || 0;
+  const listCount = section.listItems?.length || 0;
+  const subCount = section.subsections?.length || 0;
 
   return (
     <div className={`${styles.section} ${className || ''}`}>
       {showTitle && section.title && (
         titleIsCallout
           ? <Callout text={section.fullText || section.title} />
-          : <h3 className={styles.title}>{section.title}</h3>
+          : (
+            <div className={styles.titleBar}>
+              <h3 className={styles.title}>{section.title}</h3>
+              {/* Content type indicators */}
+              <div className={styles.titleMeta}>
+                {tableCount > 0 && <span className={styles.metaChip}><Table2 size={10} /> {tableCount}</span>}
+                {listCount > 0 && <span className={styles.metaChip}><List size={10} /> {listCount}</span>}
+                {subCount > 0 && <span className={styles.metaChip}><ChevronRight size={10} /> {subCount}</span>}
+              </div>
+            </div>
+          )
       )}
 
       {/* Prose copy from the doc */}
@@ -270,7 +302,6 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
         <div className={styles.text}>
           {proseLines.map((para, i) => {
             if (WARN_RE.test(para)) return <Callout key={i} text={para} />;
-            // Short lines without ending punctuation → sub-heading / caption
             const isCaption = para.length < 60 && !/[.!?]$/.test(para.trim()) && /^[A-Z]/.test(para);
             return isCaption
               ? <h5 key={i} className={styles.captionLabel}>{para}</h5>

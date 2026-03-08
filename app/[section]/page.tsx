@@ -3,6 +3,10 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import gsap from 'gsap';
+import {
+  Projector, Speaker, Cpu, Thermometer, FileText, Compass,
+  Radio, Wifi, Clock, Server, Users, ShieldAlert, MonitorPlay, Layers,
+} from 'lucide-react';
 import { useLiveDoc } from '@/data/LiveDocProvider';
 import { getSectionRange } from '@/data/sectionMap';
 import DocSectionRenderer from '@/components/ui/DocSectionRenderer';
@@ -16,6 +20,24 @@ const SLUG_SUMMARY: Record<string, string> = {
   'network': 'networkInfrastructure',
   'server': 'serverRoom',
   'hvac': 'heatLoad',
+};
+
+/** Section icon for each section */
+const SLUG_ICON: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  'brief': FileText,
+  'technical-direction': Compass,
+  'projection': Projector,
+  'signal': Radio,
+  'surface': Layers,
+  'sensors': Cpu,
+  'network': Wifi,
+  'audio-bridging': MonitorPlay,
+  'audio': Speaker,
+  'latency': Clock,
+  'server': Server,
+  'hvac': Thermometer,
+  'vendors': Users,
+  'disclaimer': ShieldAlert,
 };
 
 export default function SectionPage() {
@@ -60,17 +82,13 @@ export default function SectionPage() {
   }
 
   const sections = data.sections.slice(range.startIndex, range.endIndex + 1);
-  // First section is the "Section N: Title" header — the rest is content
   const contentSections = sections.length > 1 ? sections.slice(1) : sections;
-  // Get description from the header section's fullText
-  // Header sections follow: "What This Section Is About" → actual description → ...
   const headerSec = sections[0];
   const headerLines = (headerSec?.fullText || '').split('\n').filter((l: string) => l.trim());
   const description = headerSec?.subsections?.[0]?.text
     || headerLines.find((l: string) => l !== 'What This Section Is About' && l !== 'Why It Matters' && l.length > 20)
     || '';
 
-  // Get summary stats for this section (if available)
   const summaryField = SLUG_SUMMARY[slug];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const summaryData = summaryField ? (data as any)[summaryField] : null;
@@ -78,16 +96,25 @@ export default function SectionPage() {
     ? Object.entries(summaryData) as [string, string][]
     : [];
 
+  const IconComponent = SLUG_ICON[slug];
+
   return (
     <div ref={pageRef} className={`page-enter ${styles.page}`}>
       <div className={styles.container}>
-        {/* Page header */}
+        {/* Page header with section icon */}
         <div className={styles.header}>
           <div className={styles.headerMeta}>
             <span className="status-led cyan" />
             <span className="mono text-soft-gray">SECTION {range.sectionNumber}</span>
           </div>
-          <h1 className={styles.title}>{range.title}</h1>
+          <div className={styles.titleRow}>
+            {IconComponent && (
+              <div className={styles.sectionIcon}>
+                <IconComponent size={28} />
+              </div>
+            )}
+            <h1 className={styles.title}>{range.title}</h1>
+          </div>
           {description && <p className={styles.description}>{description}</p>}
         </div>
 
@@ -113,7 +140,6 @@ export default function SectionPage() {
 
           if (!hasContent && !section.title) return null;
 
-          // Sections with title + content → accordion
           if (section.title && hasContent) {
             return (
               <div key={i} className="spec-card">
@@ -124,7 +150,6 @@ export default function SectionPage() {
             );
           }
 
-          // Untitled content blocks → flat render
           if (hasContent) {
             return (
               <div key={i} className="spec-card glass-panel" style={{ padding: '1.5rem', marginBottom: '1rem' }}>

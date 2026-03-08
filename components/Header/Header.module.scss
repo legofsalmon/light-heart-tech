@@ -62,12 +62,12 @@
   @include sm { display: inline; }
 }
 
-/* ── Desktop nav ───────────────── */
+/* ── Desktop nav (horizontally scrollable) ─── */
 
 .desktopNav {
   display: none;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.125rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;          /* Firefox */
@@ -75,9 +75,12 @@
   padding: 0 0.25rem;
   flex: 1;
   min-width: 0;
-  margin: 0 $space-sm;
+  margin: 0 $space-xs;
+  /* Fade out the edges to indicate scrollability */
+  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
 
-  @include lg { display: flex; }
+  @include md { display: flex; }
 }
 
 .navLink {
@@ -129,7 +132,7 @@
   composes: iconBtn;
   display: flex;
 
-  @include lg { display: none; }
+  @include md { display: none; }
 }
 
 /* ── Mobile menu ───────────────── */
@@ -137,7 +140,7 @@
 .mobileMenu {
   border-top: 1px solid;
 
-  @include lg { display: none; }
+  @include md { display: none; }
 }
 
 .mobileNav {

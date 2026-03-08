@@ -12,7 +12,7 @@ interface CopyEmailProps {
 export default function CopyEmail({ email }: CopyEmailProps) {
   const [copied, setCopied] = useState(false);
   const { isDarkMode } = useTheme();
-  const accent = isDarkMode ? '#00F0FF' : '#0066CC';
+  const accent = isDarkMode ? '#00F0FF' : '#004d80';
 
   const handleCopy = async () => {
     try {

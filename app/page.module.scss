@@ -198,6 +198,21 @@
   letter-spacing: 0.05em;
 }
 
+/* ── Diagram section ──────────── */
+.diagramSection {
+  border-top: 1px solid rgba(0, 240, 255, 0.06);
+  padding: $space-2xl $space-md;
+
+  :global(.light-mode) & { border-top-color: rgba(0, 0, 0, 0.06); }
+
+  @include sm { padding: $space-2xl $space-lg; }
+}
+
+.diagramInner {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
 /* ── Info bar ──────────────────── */
 .infoBar {
   border-top: 1px solid;

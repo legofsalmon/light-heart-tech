@@ -27,7 +27,7 @@ export default function SyncBanner() {
 
   if (!visible) return null;
 
-  const accent = isDarkMode ? '#00F0FF' : '#0066CC';
+  const accent = isDarkMode ? '#00F0FF' : '#004d80';
   const text = isDarkMode ? '#ccc' : '#444';
   const muted = isDarkMode ? '#888' : '#777';
 

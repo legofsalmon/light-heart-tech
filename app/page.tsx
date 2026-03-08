@@ -5,6 +5,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import SystemDiagram from '@/components/SystemDiagram/SystemDiagram';
 import styles from './page.module.scss';
 
 function AnimatedCounter({ target, duration = 2 }: { target: number; duration?: number }) {
@@ -55,9 +56,9 @@ export default function HomePage() {
     if (ctaRef.current) tl.from(ctaRef.current, { opacity: 0, y: 15, duration: 0.5 }, 0.8);
   }, []);
 
-  const accent = isDarkMode ? '#00F0FF' : '#0066CC';
-  const muted = isDarkMode ? '#A0A0A0' : '#666666';
-  const border = isDarkMode ? '#1F1F1F' : '#E5E5E5';
+  const accent = isDarkMode ? '#00F0FF' : '#004466';
+  const muted = isDarkMode ? '#B0B0B0' : '#333333';
+  const border = isDarkMode ? '#1F1F1F' : '#D5D5D0';
   const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.08)' : `1px solid ${border}`;
 
   return (
@@ -81,7 +82,7 @@ export default function HomePage() {
 
           {/* Title */}
           <div ref={titleRef} className={styles.titleBlock}>
-            <h1 className={styles.title} style={{ color: isDarkMode ? '#FFF' : '#000' }}>
+            <h1 className={styles.title} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
               LIGHTHEART
             </h1>
             <div className={styles.subtitle} style={{ color: accent }}>
@@ -149,6 +150,13 @@ export default function HomePage() {
               <div className={styles.statLabel} style={{ color: muted }}>{stat.label}</div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* System Architecture Diagram */}
+      <div className={styles.diagramSection}>
+        <div className={styles.diagramInner}>
+          <SystemDiagram />
         </div>
       </div>
 

@@ -44,7 +44,7 @@ export default function PasswordGate() {
     }
   };
 
-  const accent = isDarkMode ? '#00d4ff' : '#0066cc';
+  const accent = isDarkMode ? '#00d4ff' : '#004d80';
   const muted = isDarkMode ? '#888' : '#666';
   const border = isDarkMode ? '#1a1a22' : '#ddd';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';

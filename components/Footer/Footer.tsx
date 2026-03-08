@@ -9,7 +9,7 @@ const DOC_URL =
 
 export default function Footer() {
   const { isDarkMode } = useTheme();
-  const accent = isDarkMode ? '#00F0FF' : '#0066CC';
+  const accent = isDarkMode ? '#00F0FF' : '#004d80';
   const muted = isDarkMode ? '#666' : '#999';
   const border = isDarkMode ? '#1F1F1F' : '#ddd';
 

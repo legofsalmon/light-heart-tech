@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { NAV_ITEMS } from '@/data/sectionMap';
+import SearchButton from '@/components/Search/Search';
 import styles from './Header.module.scss';
 
 const navItems = NAV_ITEMS.map(item => ({
@@ -29,10 +30,10 @@ export default function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  const accent = isDarkMode ? '#00d4ff' : '#0066cc';
-  const muted = isDarkMode ? '#666' : '#999';
+  const accent = isDarkMode ? '#00d4ff' : '#004d80';
+  const muted = isDarkMode ? '#777' : '#555';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';
-  const border = isDarkMode ? '#333' : '#ddd';
+  const border = isDarkMode ? '#333' : '#ccc';
 
   return (
     <header
@@ -83,6 +84,7 @@ export default function Header() {
 
           {/* Right actions */}
           <div className={styles.actions}>
+            <SearchButton />
             <button
               onClick={toggleTheme}
               className={styles.iconBtn}
