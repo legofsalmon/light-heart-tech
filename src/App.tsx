@@ -2,6 +2,7 @@ import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-d
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import FloatingDocLink from './components/FloatingDocLink';
 import PasswordGate from './components/PasswordGate';
 import HomePage from './pages/HomePage';
 import TechnicalDirectionPage from './pages/TechnicalDirectionPage';
@@ -55,9 +56,9 @@ function App() {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#050505] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
+      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0a0a] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
         <Header isDarkMode={isDarkMode} onThemeToggle={toggleTheme} />
-        <main className="pt-14">
+        <main className="pt-20">
           <Routes>
             <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
             <Route path="/technical-direction" element={<TechnicalDirectionPage isDarkMode={isDarkMode} />} />
@@ -77,6 +78,7 @@ function App() {
           </Routes>
         </main>
         <Footer isDarkMode={isDarkMode} />
+        <FloatingDocLink isDarkMode={isDarkMode} />
       </div>
     </HashRouter>
   );
