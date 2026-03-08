@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CheckCircle2, Clock, Zap, Download, ChevronDown } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface LatencyPageProps {
   isDarkMode: boolean;
@@ -20,16 +17,12 @@ export default function LatencyPage({ isDarkMode }: LatencyPageProps) {
 
     const ctx = gsap.context(() => {
       gsap.from('.latency-bar', {
-        scaleX: 0,
+        y: 20,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
+        duration: 0.5,
+        stagger: 0.1,
         ease: 'expo.out',
-        scrollTrigger: {
-          trigger: page,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-        },
+        delay: 0.3,
       });
     }, page);
 
