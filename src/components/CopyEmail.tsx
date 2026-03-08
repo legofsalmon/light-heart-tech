@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
+import { useSounds } from './SoundEngine';
 
 interface CopyEmailProps {
   email: string;
@@ -8,12 +9,11 @@ interface CopyEmailProps {
 
 export default function CopyEmail({ email, isDarkMode }: CopyEmailProps) {
   const [copied, setCopied] = useState(false);
+  const { play } = useSounds();
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     } catch (_err) {
       const textarea = document.createElement('textarea');
       textarea.value = email;
@@ -21,9 +21,10 @@ export default function CopyEmail({ email, isDarkMode }: CopyEmailProps) {
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     }
+    play('copy');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const accent = isDarkMode ? '#00F0FF' : '#0066CC';
