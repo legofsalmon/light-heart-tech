@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * sync-doc.mjs
- * Fetches the published Google Doc and extracts structured data
- * into src/data/specData.json for use by the website.
+ * sync-doc.mjs v2
+ * Fetches the published Google Doc and extracts:
+ * - Full verbatim text per section (preserving exact wording)
+ * - All tables as structured data
+ * - Section metadata
  *
  * Usage: node scripts/sync-doc.mjs
  * Or:    npm run sync
@@ -18,11 +20,11 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = join(__dirname, '..', 'src', 'data', 'specData.json');
 
-// ─── HTML helpers ──────────────────────────────────────
 function stripTags(html) {
   return html
     .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/?(p|div|li|h[1-6])[^>]*>/gi, '\n')
+    .replace(/<\/?(p|div|li)[^>]*>/gi, '\n')
+    .replace(/<\/?(h[1-6])[^>]*>/gi, '\n')
     .replace(/<[^>]+>/g, '')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
@@ -39,75 +41,40 @@ function stripTags(html) {
 function extractTables(html) {
   const tables = [];
   const tableRegex = /<table[^>]*>([\s\S]*?)<\/table>/gi;
-  let tableMatch;
-
-  while ((tableMatch = tableRegex.exec(html)) !== null) {
-    const tableHtml = tableMatch[1];
+  let m;
+  while ((m = tableRegex.exec(html)) !== null) {
     const rows = [];
     const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
-    let rowMatch;
-
-    while ((rowMatch = rowRegex.exec(tableHtml)) !== null) {
+    let rm;
+    while ((rm = rowRegex.exec(m[1])) !== null) {
       const cells = [];
       const cellRegex = /<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi;
-      let cellMatch;
-
-      while ((cellMatch = cellRegex.exec(rowMatch[1])) !== null) {
-        cells.push(stripTags(cellMatch[1]).trim());
+      let cm;
+      while ((cm = cellRegex.exec(rm[1])) !== null) {
+        cells.push(stripTags(cm[1]).trim());
       }
-      if (cells.length > 0) {
-        rows.push(cells);
-      }
+      if (cells.length > 0) rows.push(cells);
     }
-    if (rows.length > 0) {
-      tables.push(rows);
-    }
+    if (rows.length > 0) tables.push(rows);
   }
   return tables;
 }
 
-function extractSections(html) {
-  const sections = [];
-  // Split by h2 headings (section markers in Google Docs published HTML)
-  const parts = html.split(/<h2[^>]*>/i);
-
-  for (let i = 1; i < parts.length; i++) {
-    const endIdx = parts[i].indexOf('</h2>');
-    if (endIdx === -1) continue;
-
-    const title = stripTags(parts[i].substring(0, endIdx)).trim();
-    const content = parts[i].substring(endIdx + 5);
-    const tables = extractTables(content);
-
-    // Extract h3 subsections
-    const subsections = [];
-    const h3Parts = content.split(/<h3[^>]*>/i);
-    for (let j = 1; j < h3Parts.length; j++) {
-      const h3End = h3Parts[j].indexOf('</h3>');
-      if (h3End === -1) continue;
-      const subTitle = stripTags(h3Parts[j].substring(0, h3End)).trim();
-      const subContent = h3Parts[j].substring(h3End + 5);
-      const subTables = extractTables(subContent);
-      const subText = stripTags(subContent).substring(0, 2000);
-      subsections.push({ title: subTitle, text: subText, tables: subTables });
-    }
-
-    sections.push({
-      title,
-      tables,
-      subsections,
-      textPreview: stripTags(content).substring(0, 500),
-    });
+function extractListItems(html) {
+  const items = [];
+  const liRegex = /<li[^>]*>([\s\S]*?)<\/li>/gi;
+  let m;
+  while ((m = liRegex.exec(html)) !== null) {
+    const text = stripTags(m[1]).trim();
+    if (text) items.push(text);
   }
-  return sections;
+  return items;
 }
 
 function tableToKeyValue(table) {
   const result = {};
   for (const row of table) {
-    if (row.length >= 2 && row[0]) {
-      result[row[0]] = row[1];
-    }
+    if (row.length >= 2 && row[0]) result[row[0]] = row[1];
   }
   return result;
 }
@@ -117,51 +84,95 @@ function tableToObjects(table) {
   const headers = table[0];
   return table.slice(1).map(row => {
     const obj = {};
-    headers.forEach((header, idx) => {
-      obj[header] = row[idx] || '';
-    });
+    headers.forEach((h, i) => { obj[h] = row[i] || ''; });
     return obj;
   });
 }
 
-// ─── Main ──────────────────────────────────────────────
 async function main() {
   console.log('Fetching Google Doc...');
   const response = await fetch(DOC_URL);
-
-  if (!response.ok) {
-    console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
-    process.exit(1);
-  }
-
+  if (!response.ok) { console.error(`Failed: ${response.status}`); process.exit(1); }
   const html = await response.text();
   console.log(`Fetched ${html.length} bytes`);
 
-  const allTables = extractTables(html);
-  const sections = extractSections(html);
+  // ── Split by H1/H2 section headers ──
+  // Google Docs published HTML uses <h1> for top-level headings with emoji prefixes
+  const sectionSplits = html.split(/<h[12][^>]*>/i);
+  const sections = [];
 
-  console.log(`Found ${allTables.length} tables, ${sections.length} sections`);
+  for (let i = 1; i < sectionSplits.length; i++) {
+    const endTag = sectionSplits[i].match(/<\/h[12]>/i);
+    if (!endTag) continue;
+    const endIdx = sectionSplits[i].indexOf(endTag[0]);
+    const rawTitle = stripTags(sectionSplits[i].substring(0, endIdx)).trim();
+    const content = sectionSplits[i].substring(endIdx + endTag[0].length);
 
-  // ─── Build structured data ───────────────────────────
+    // Clean the title (remove emoji prefixes)
+    const title = rawTitle.replace(/^[📑📄💼🎯📽️🔗🖌️👁️⚙️🔊🖇️⏱️💻❄️📩🕶️]\s*/u, '').trim();
+
+    const tables = extractTables(content);
+    const listItems = extractListItems(content);
+    const fullText = stripTags(content);
+
+    // Extract H3 subsections with their full verbatim text
+    const subsections = [];
+    const h3Parts = content.split(/<h3[^>]*>/i);
+    for (let j = 1; j < h3Parts.length; j++) {
+      const h3End = h3Parts[j].indexOf('</h3>');
+      if (h3End === -1) continue;
+      const subTitle = stripTags(h3Parts[j].substring(0, h3End)).trim();
+      const subContent = h3Parts[j].substring(h3End + 5);
+      const subTables = extractTables(subContent);
+      const subText = stripTags(subContent);
+      const subLists = extractListItems(subContent);
+      subsections.push({ title: subTitle, text: subText, tables: subTables, lists: subLists });
+    }
+
+    // Extract H4 subsections too
+    const h4Subsections = [];
+    const h4Parts = content.split(/<h4[^>]*>/i);
+    for (let j = 1; j < h4Parts.length; j++) {
+      const h4End = h4Parts[j].indexOf('</h4>');
+      if (h4End === -1) continue;
+      const subTitle = stripTags(h4Parts[j].substring(0, h4End)).trim();
+      const subContent = h4Parts[j].substring(h4End + 5);
+      const subText = stripTags(subContent);
+      h4Subsections.push({ title: subTitle, text: subText });
+    }
+
+    sections.push({
+      title,
+      fullText,
+      tables,
+      listItems,
+      subsections,
+      h4Subsections,
+    });
+  }
+
+  console.log(`Parsed ${sections.length} sections`);
+
+  // ── Build named data structures ──
+  const allTables = [];
+  for (const s of sections) {
+    allTables.push(...s.tables);
+    for (const sub of s.subsections) allTables.push(...sub.tables);
+  }
+
   const specData = {
     _meta: {
       source: DOC_URL,
       syncedAt: new Date().toISOString(),
-      tableCount: allTables.length,
       sectionCount: sections.length,
+      tableCount: allTables.length,
+      version: 2,
     },
-    sections: sections.map(s => ({
-      title: s.title,
-      textPreview: s.textPreview,
-      subsections: s.subsections.map(sub => ({
-        title: sub.title,
-        text: sub.text,
-      })),
-    })),
-    tables: {
-      raw: allTables,
-    },
-    // ─── Parsed named data (keyed for easy page access) ──
+
+    // Full sections with verbatim text
+    sections,
+
+    // Named parsed data for quick access
     projectAtAGlance: {},
     projectionSystems: {},
     mediaServers: {},
@@ -175,75 +186,42 @@ async function main() {
     projectorTotals: {},
   };
 
-  // Try to match tables to known structures by header content
+  // Match tables to named structures
   for (const table of allTables) {
     if (table.length < 2) continue;
-    const firstCell = (table[0]?.[0] || '').toLowerCase();
-    const secondCell = (table[0]?.[1] || '').toLowerCase();
-    const allFirstCells = table.map(r => (r[0] || '').toLowerCase()).join(' ');
+    const allFirst = table.map(r => (r[0] || '').toLowerCase()).join(' ');
 
-    // Project at a Glance
-    if (allFirstCells.includes('location') && allFirstCells.includes('venue type') && allFirstCells.includes('target opening')) {
-      specData.projectAtAGlance = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('location') && allFirst.includes('venue type') && allFirst.includes('target opening')) {
+      specData.projectAtAGlance = tableToKeyValue(table); continue;
     }
-
-    // Projection Systems
-    if (allFirstCells.includes('room 1') && allFirstCells.includes('floor projection') && allFirstCells.includes('lensing')) {
-      specData.projectionSystems = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('room 1') && allFirst.includes('floor projection') && allFirst.includes('lensing')) {
+      specData.projectionSystems = tableToKeyValue(table); continue;
     }
-
-    // Media Servers
-    if (allFirstCells.includes('primary servers') && allFirstCells.includes('gui control')) {
-      specData.mediaServers = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('primary servers') && allFirst.includes('gui control')) {
+      specData.mediaServers = tableToKeyValue(table); continue;
     }
-
-    // Audio System
-    if (allFirstCells.includes('platform') && allFirstCells.includes('room 1 speakers')) {
-      specData.audioSystem = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('platform') && allFirst.includes('room 1 speakers')) {
+      specData.audioSystem = tableToKeyValue(table); continue;
     }
-
-    // Network Infrastructure
-    if (allFirstCells.includes('core switches') && allFirstCells.includes('edge switches')) {
-      specData.networkInfrastructure = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('core switches') && allFirst.includes('edge switches')) {
+      specData.networkInfrastructure = tableToKeyValue(table); continue;
     }
-
-    // Server Room
-    if (allFirstCells.includes('racks') && allFirstCells.includes('ups')) {
-      specData.serverRoom = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('racks') && allFirst.includes('ups') && allFirst.includes('power draw')) {
+      specData.serverRoom = tableToKeyValue(table); continue;
     }
-
-    // Heat Load
-    if (allFirstCells.includes('heat load server room') && allFirstCells.includes('heat load projectors')) {
-      specData.heatLoad = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('heat load server room') && allFirst.includes('heat load projectors')) {
+      specData.heatLoad = tableToKeyValue(table); continue;
     }
-
-    // Budget Summary
-    if (firstCell === 'category' && secondCell === 'amount') {
-      specData.budgetSummary = tableToObjects(table);
-      continue;
+    if (table[0]?.[0]?.toLowerCase() === 'category' && table[0]?.[1]?.toLowerCase() === 'amount') {
+      specData.budgetSummary = tableToObjects(table); continue;
     }
-
-    // Vendor Status
-    if (allFirstCells.includes('audio') && allFirstCells.includes('projection') && allFirstCells.includes('media servers') && allFirstCells.includes('signal transport')) {
-      specData.vendorStatus = tableToKeyValue(table);
-      continue;
+    if (allFirst.includes('audio') && allFirst.includes('projection') && allFirst.includes('media servers') && allFirst.includes('network')) {
+      specData.vendorStatus = tableToKeyValue(table); continue;
     }
-
-    // Signal Transport Comparison
-    if (allFirstCells.includes('specification') && allFirstCells.includes('technology') && allFirstCells.includes('bandwidth')) {
-      specData.signalTransport = table;
-      continue;
+    if (allFirst.includes('specification') && allFirst.includes('technology') && allFirst.includes('bandwidth')) {
+      specData.signalTransport = table; continue;
     }
-
-    // Projector Totals
-    if (firstCell === 'metric' && secondCell === 'value') {
+    if (table[0]?.[0]?.toLowerCase() === 'metric' && table[0]?.[1]?.toLowerCase() === 'value') {
       specData.projectorTotals = tableToKeyValue(
         table.slice(1).map(row => [row[0], row[1] + (row[2] ? ` (${row[2]})` : '')])
       );
@@ -251,27 +229,22 @@ async function main() {
     }
   }
 
-  // ─── Write output ────────────────────────────────────
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
   writeFileSync(OUTPUT_PATH, JSON.stringify(specData, null, 2), 'utf-8');
 
   console.log(`\nWritten to: ${OUTPUT_PATH}`);
-  console.log('\nParsed data summary:');
-  console.log(`  Project at a Glance: ${Object.keys(specData.projectAtAGlance).length} fields`);
-  console.log(`  Projection Systems: ${Object.keys(specData.projectionSystems).length} fields`);
-  console.log(`  Media Servers: ${Object.keys(specData.mediaServers).length} fields`);
-  console.log(`  Audio System: ${Object.keys(specData.audioSystem).length} fields`);
-  console.log(`  Network Infra: ${Object.keys(specData.networkInfrastructure).length} fields`);
-  console.log(`  Server Room: ${Object.keys(specData.serverRoom).length} fields`);
-  console.log(`  Heat Load: ${Object.keys(specData.heatLoad).length} fields`);
-  console.log(`  Budget Summary: ${specData.budgetSummary.length} items`);
-  console.log(`  Vendor Status: ${Object.keys(specData.vendorStatus).length} vendors`);
-  console.log(`  Signal Transport: ${specData.signalTransport.length} rows`);
-  console.log(`  Projector Totals: ${Object.keys(specData.projectorTotals).length} fields`);
-  console.log('\nDone! Run "npm run build" to deploy with updated data.');
+  console.log(`\nSection titles:`);
+  sections.forEach((s, i) => {
+    const textLen = s.fullText.length;
+    const tableCount = s.tables.length;
+    const subCount = s.subsections.length;
+    console.log(`  ${i + 1}. "${s.title}" (${textLen} chars, ${tableCount} tables, ${subCount} subsections)`);
+  });
+  console.log(`\nNamed data:`);
+  console.log(`  projectAtAGlance: ${Object.keys(specData.projectAtAGlance).length} fields`);
+  console.log(`  budgetSummary: ${specData.budgetSummary.length} items`);
+  console.log(`  vendorStatus: ${Object.keys(specData.vendorStatus).length} vendors`);
+  console.log(`  projectorTotals: ${Object.keys(specData.projectorTotals).length} fields`);
 }
 
-main().catch(err => {
-  console.error('Sync failed:', err);
-  process.exit(1);
-});
+main().catch(err => { console.error('Sync failed:', err); process.exit(1); });

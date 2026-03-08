@@ -9,6 +9,8 @@ import type { HudParams } from './components/HudSettings';
 import { SoundProvider } from './components/SoundEngine';
 import { useGlobalSoundEffects } from './hooks/useSoundEffects';
 import PasswordGate from './components/PasswordGate';
+import OriginalBriefPage from './pages/OriginalBriefPage';
+import AudioBridgingPage from './pages/AudioBridgingPage';
 import HomePage from './pages/HomePage';
 import TechnicalDirectionPage from './pages/TechnicalDirectionPage';
 import ProjectionPage from './pages/ProjectionPage';
@@ -54,6 +56,7 @@ function AppContent({ isDarkMode, hudParams, showSyncBanner, toggleTheme }: {
         <main className="pt-20 flex-1 relative z-[1]">
           <Routes>
             <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
+            <Route path="/brief" element={<OriginalBriefPage isDarkMode={isDarkMode} />} />
             <Route path="/technical-direction" element={<TechnicalDirectionPage isDarkMode={isDarkMode} />} />
             <Route path="/projection" element={<ProjectionPage isDarkMode={isDarkMode} />} />
             <Route path="/signal" element={<SignalPage isDarkMode={isDarkMode} />} />
@@ -61,6 +64,7 @@ function AppContent({ isDarkMode, hudParams, showSyncBanner, toggleTheme }: {
             <Route path="/sensors" element={<SensorsPage isDarkMode={isDarkMode} />} />
             <Route path="/network" element={<NetworkPage isDarkMode={isDarkMode} />} />
             <Route path="/audio" element={<AudioPage isDarkMode={isDarkMode} />} />
+            <Route path="/audio-bridging" element={<AudioBridgingPage isDarkMode={isDarkMode} />} />
             <Route path="/latency" element={<LatencyPage isDarkMode={isDarkMode} />} />
             <Route path="/server" element={<ServerPage isDarkMode={isDarkMode} />} />
             <Route path="/hvac" element={<HVACPage isDarkMode={isDarkMode} />} />

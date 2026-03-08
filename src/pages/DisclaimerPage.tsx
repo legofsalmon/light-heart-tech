@@ -250,6 +250,7 @@ export default function DisclaimerPage({ isDarkMode }: DisclaimerPageProps) {
                 <span style={{ color: accentColor }}>idirnet</span>
                 <span>|</span>
                 <CopyEmail email="kris@idirnet.com" isDarkMode={isDarkMode} />
+                <div className="text-sm mt-1" style={{ color: isDarkMode ? '#A0A0A0' : '#666' }}>Phone: +353 872275422</div>
               </div>
             </div>
           </div>

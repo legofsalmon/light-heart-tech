@@ -1,26 +1,25 @@
-/**
- * useSpecData.ts
- *
- * Typed access to the synced Google Doc data.
- *
- * Usage in any page:
- *   import { specData } from '@/data/useSpecData';
- *   const location = specData.projectAtAGlance['Location'];
- */
-
 import rawData from './specData.json';
 
-export interface SpecDataMeta {
+export interface SyncMeta {
   source: string;
   syncedAt: string;
-  tableCount: number;
   sectionCount: number;
+  tableCount: number;
+  version: number;
 }
 
-export interface SpecSection {
+export interface DocSection {
   title: string;
-  textPreview: string;
+  fullText: string;
+  tables: string[][][];
+  listItems: string[];
   subsections: Array<{
+    title: string;
+    text: string;
+    tables: string[][][];
+    lists: string[];
+  }>;
+  h4Subsections: Array<{
     title: string;
     text: string;
   }>;
@@ -33,9 +32,8 @@ export interface BudgetItem {
 }
 
 export interface SpecData {
-  _meta: SpecDataMeta;
-  sections: SpecSection[];
-  tables: { raw: string[][][] };
+  _meta: SyncMeta;
+  sections: DocSection[];
   projectAtAGlance: Record<string, string>;
   projectionSystems: Record<string, string>;
   mediaServers: Record<string, string>;
@@ -51,12 +49,15 @@ export interface SpecData {
 
 export const specData: SpecData = rawData as unknown as SpecData;
 
-/**
- * Helper to get a value with a fallback.
- * Useful when the doc hasn't been synced yet.
- */
+/** Find a section by partial title match (case-insensitive). */
+export function findSection(titleFragment: string): DocSection | undefined {
+  const lower = titleFragment.toLowerCase();
+  return specData.sections.find(s => s.title.toLowerCase().includes(lower));
+}
+
+/** Get a named key-value field with fallback. */
 export function getSpec(
-  section: keyof Omit<SpecData, '_meta' | 'sections' | 'tables'>,
+  section: keyof Omit<SpecData, '_meta' | 'sections'>,
   key: string,
   fallback: string = ''
 ): string {
@@ -67,9 +68,14 @@ export function getSpec(
   return fallback;
 }
 
-/**
- * Check if data has been synced (vs placeholder).
- */
+/** Check if data has been synced. */
 export function isSynced(): boolean {
   return specData._meta.syncedAt !== 'not yet synced';
+}
+
+/** Get sync timestamp as readable string. */
+export function getSyncDate(): string {
+  if (!isSynced()) return 'Not synced';
+  const d = new Date(specData._meta.syncedAt);
+  return d.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' });
 }

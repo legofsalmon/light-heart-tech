@@ -8,6 +8,7 @@ interface HeaderProps {
 }
 
 const navItems = [
+  { label: 'BRIEF', href: '/brief' },
   { label: 'TECHNICAL DIRECTION', href: '/technical-direction' },
   { label: 'PROJECTION', href: '/projection' },
   { label: 'SIGNAL', href: '/signal' },
@@ -15,6 +16,7 @@ const navItems = [
   { label: 'SENSORS', href: '/sensors' },
   { label: 'NETWORK', href: '/network' },
   { label: 'AUDIO', href: '/audio' },
+  { label: 'AUDIO BRIDGE', href: '/audio-bridging' },
   { label: 'LATENCY', href: '/latency' },
   { label: 'SERVER', href: '/server' },
   { label: 'HVAC', href: '/hvac' },
