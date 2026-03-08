@@ -1,0 +1,4366 @@
+{
+  "_meta": {
+    "source": "https://docs.google.com/document/d/e/2PACX-1vSJ8rnmkn1zCp507nFc3UPsdmSSrHNW4vzEv1AQnuyF73XIIx9vU3vRShav2kqxNhbdsMky_7s035VO/pub",
+    "syncedAt": "2026-03-08T15:36:40.262Z",
+    "tableCount": 103,
+    "sectionCount": 146
+  },
+  "sections": [
+    {
+      "title": "LIGHTHEART IMMERSIVE EXPERIENCE",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Welcome to This Technical Specification",
+      "textPreview": "This document is your complete guide to the audiovisual and technical systems being designed for Lightheart, Dublin's new immersive art space. Whether you're a project stakeholder, facilities manager, vendor, or technical contractor, this guide will help you understand what we're building, why we've made specific choices, and what happens next.",
+      "subsections": []
+    },
+    {
+      "title": "What This Document Contains",
+      "textPreview": "This specification covers every aspect of the two-room immersive installation, from the projectors that will fill the walls with light to the servers that will power the experience. We've organized it into logical sections that build upon each other–starting with the big picture and progressively diving deeper into technical details.",
+      "subsections": []
+    },
+    {
+      "title": "How to Use This Document",
+      "textPreview": "For decision-makers: Start with the Technical Direction Overview and Budget Summary to understand the scope and investment\n\nFor technical contractors: Focus on the specific sections relevant to your trade (Projectors, Audio, Network, HVAC)\n\nFor vendors: Review the Contractors/Vendors section and your relevant technical specifications\n\nFor facilities teams: Pay special attention to the Server Room and HVAC sections for ongoing operations",
+      "subsections": []
+    },
+    {
+      "title": "Document Status",
+      "textPreview": "The IDIRNET team developed this specification between 11 February and 4 March 2026. Some costs and technical details are confirmed, while others remain pending vendor quotes. Items marked \"TBC\" (To Be Confirmed) require final validation before procurement.\n\nColly, Kev + Kris.\n\n📄 Table of Contents",
+      "subsections": []
+    },
+    {
+      "title": "Table of Contents",
+      "textPreview": "Section\n\nWhat You'll Find There\n\n1. Original Brief\n\nThe foundation of this project–our scope, objectives, and the three-phase approach we followed to get here\n\n2. Technical Direction Overview\n\nThe \"at-a-glance\" summary of the entire system–projectors, audio, servers, and network in one view\n\n3. Projectors\n\nComplete specifications for all 37 projectors, including why we chose Barco and how the wall and floor projection systems work\n\n4. Signal Transport\n\nHow video signals travel from servers to pr",
+      "subsections": []
+    },
+    {
+      "title": "",
+      "textPreview": "💼 Original Brief",
+      "subsections": []
+    },
+    {
+      "title": "Section 1: Original Brief",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Idirnet Project Brief: \nImmersive Rooms AV Pre-Production and System Design Scope",
+      "textPreview": "Client: Lightheart Ltd\nCRM: Kev",
+      "subsections": []
+    },
+    {
+      "title": "Project Overview",
+      "textPreview": "Technical Design, Specification, Costing Liaison, and Budget Ring-Fencing for a Permanent Two-Room Installation.",
+      "subsections": []
+    },
+    {
+      "title": "Engagement Type & Duration",
+      "textPreview": "Type: Short-term fixed-term consultancy engagement (pre-production and system design).\n\nCommencement Date: 11 February 2026\n\nProgramme Period: 11 February 2026 to 4 March 2026",
+      "subsections": []
+    },
+    {
+      "title": "Project Summary",
+      "textPreview": "This project defines, designs, and costs a robust audiovisual and systems solution for two immersive rooms through a focused, high-impact pre-production package. The work includes an options-based projection and playback design, a power and electrical load review, an assessment of the weight load on the roof, and a clear systems architecture. The structure supports confident, short-timeline decision-making, vendor pricing, technical coordination, and the long-term operability of a permanent inst",
+      "subsections": []
+    },
+    {
+      "title": "Core Objectives",
+      "textPreview": "Deliver a complete AV and systems specification with clear performance tiers and trade-offs.\n\nConfirm technical feasibility through coordinated design intent for mounts, rigging requirements, and building services inputs.\n\nProduce a practical server, playback, and network architecture that is supportable and scalable.\n\nProvide a power and electrical load review to support M&E planning and reduce late-stage rework.\n\nSupport vendor engagement and comparable pricing to ring-fence a realistic budget",
+      "subsections": []
+    },
+    {
+      "title": "Approach & Deliverables",
+      "textPreview": "The project is structured in three phases, moving from definition to buildable technical design, and finally to vendor-ready costing and budget allocation.\n\nPhase\n\nPurpose\n\nKey Deliverables\n\nPhase 1: Definition and Technical Discovery\n\nTranslate the current scope into a clearly defined technical challenge with quantifiable requirements and aligned constraints.\n\n*   Scope confirmation pack (room details, audience movement, maintenance needs, etc.)\n\n *   Projection strategy options (Wall-only/Wall",
+      "subsections": []
+    },
+    {
+      "title": "Section 2: Technical Direction Overview",
+      "textPreview": "What This Section Is About\n\nThis is your executive summary–the single page that captures the entire technical vision. If you read nothing else, read this. It presents the complete system architecture at a glance: 37 projectors, 71 speakers, 5 media servers, and the network infrastructure that ties everything together.\n\nWhy It Matters\n\nLarge technical projects can feel overwhelming. This section provides the map that helps you navigate the detail that follows. It shows how each system relates to ",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "This is your executive summary–the single page that captures the entire technical vision. If you read nothing else, read this. It presents the complete system architecture at a glance: 37 projectors, 71 speakers, 5 media servers, and the network infrastructure that ties everything together."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Large technical projects can feel overwhelming. This section provides the map that helps you navigate the detail that follows. It shows how each system relates to the others and establishes the performance standards we're targeting."
+        }
+      ]
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Project at a Glance",
+      "textPreview": "Lightheart is Dublin's dedicated immersive art space, providing a focused platform for contemporary art where technology and creativity converge. The venue features two projection-based immersive rooms with integrated spatial audio, designed to support internationally recognised immersive works.\n\nLocation\n\nDublin, Ireland\n\nVenue Type\n\nTwo-room immersive art space\n\nTarget Opening\n\nSeptember 2026\n\nRental Duration\n\n12-18 months (initial phase)\n\nTotal Exhibition Space\n\n~280 sq. m.\n\nTechnical Lead\n\nK",
+      "subsections": []
+    },
+    {
+      "title": "Technical Architecture",
+      "textPreview": "Projection Systems\n\nRoom 1 (Main Gallery)\n\n14x Barco I600-4K10 (10,000 lm, 4K) + Floor projection\n\nRoom 2\n\n8x Barco I600-4K8 (8,000 lm, 4K)\n\nFloor Projection\n\n15x Barco G50-W8 (8,000 lm, 2K)\n\nLensing\n\nILD 0.37 UST (ultra-short throw) + 0.65-0.75:1 short-throw\n\nSignal Transport\n\n4:4:4 @ 60Hz, 16:10 aspect ratio\n\nMedia Servers\n\nPrimary Servers\n\n5x Pixera PX2 Octo (2U each)\n\nGUI Control\n\nDedicated GUI card on one server\n\nOutputs\n\n~14 x 4K + 12 x 2K (Room 1), configurable for Room 2\n\nSync\n\nMeinberg ",
+      "subsections": [
+        {
+          "title": "Projection Systems",
+          "text": "Room 1 (Main Gallery)\n\n14x Barco I600-4K10 (10,000 lm, 4K) + Floor projection\n\nRoom 2\n\n8x Barco I600-4K8 (8,000 lm, 4K)\n\nFloor Projection\n\n15x Barco G50-W8 (8,000 lm, 2K)\n\nLensing\n\nILD 0.37 UST (ultra-short throw) + 0.65-0.75:1 short-throw\n\nSignal Transport\n\n4:4:4 @ 60Hz, 16:10 aspect ratio"
+        },
+        {
+          "title": "Media Servers",
+          "text": "Primary Servers\n\n5x Pixera PX2 Octo (2U each)\n\nGUI Control\n\nDedicated GUI card on one server\n\nOutputs\n\n~14 x 4K + 12 x 2K (Room 1), configurable for Room 2\n\nSync\n\nMeinberg Microsync Broadcast (PTP + Tri-level genlock)"
+        },
+        {
+          "title": "Audio System",
+          "text": "Platform\n\nL-Acoustics L-ISA Immersive Audio\n\nRoom 1 Speakers\n\n20x X8i (surround) + 20x X6i (height) + 8x SYVA SUB\n\nRoom 2 Speakers\n\n14x X8i (surround) + 17x X6i (height) + 8x SYVA SUB\n\nAmplification\n\n6x LA7.16i CE (16-channel, 1300W @ 8Ω)\n\nProcessing\n\nL-ISA Processor II (64 outputs)\n\nNetwork\n\nMilan-AVB (not Dante native)\n\nSync Generator\n\nMeinberg Microsync Broadcast (TBC)"
+        },
+        {
+          "title": "",
+          "text": ""
+        },
+        {
+          "title": "Network Infrastructure",
+          "text": "Core Switches\n\n2x Netgear M4500-32C (100G QSFP28)\n\nEdge Switches\n\n2x Netgear XSM4344C (44x 10Gb PoE+ with 100G uplink)\n\nTransceivers\n\n64x QSFP-100G-CWDM4-S compatible\n\nFiber Cabling\n\n50x OS2 4-core LC to LC (50m runs)\n\nCopper Cabling\n\n75x Cat6a S/FTP LSZH (50m runs)"
+        },
+        {
+          "title": "Server Room Infrastructure",
+          "text": "Racks\n\n2x APC NetShelter SX 48U\n\nRack Utilization\n\n53U allocated / 96U total (55% fill)\n\nUPS\n\n2x APC Smart-UPS SRT 10000VA RM (or 15-20VA for full redundancy)\n\nPower Draw\n\n~10400W (~45A @ 230V) estimated including audio\n\nHeat Load (Visual)\n\n21,161 BTU/h"
+        },
+        {
+          "title": "Total heat",
+          "text": "Heat Load Server Room (Visual)\n\n~21,161 BTU/h\n\nHeat Load Server Room Audio ( Est.)\n\n~14,450 BTU/h pending final spec from vendors\n\nHeat Load Projectors in Galleries 1 + 2\n\n~82880 BTU/h"
+        }
+      ]
+    },
+    {
+      "title": "Key Technical Decisions",
+      "textPreview": "Signal Transport Strategy\n\nThe project requires 4:4:4 @ 60Hz 16:10 signal transport for both 4K and 2K systems. Options under evaluation include:\n\n• DVIGear DVI-7380 DP to DP 4K over OS2 Fiber (22x sets)\n\n• HDBaseT for shorter runs (cost-effective alternative)\n\n• ST2110/IPMX [Professional media over IP standards for broadcast] for future-proofing (under consideration)\n\nAudio-Visual Integration\n\nImportant: L-Acoustics L-ISA uses Milan-AVB protocol, not Dante. Pixera does not support AVB natively.",
+      "subsections": [
+        {
+          "title": "Signal Transport Strategy",
+          "text": "The project requires 4:4:4 @ 60Hz 16:10 signal transport for both 4K and 2K systems. Options under evaluation include:\n\n• DVIGear DVI-7380 DP to DP 4K over OS2 Fiber (22x sets)\n\n• HDBaseT for shorter runs (cost-effective alternative)\n\n• ST2110/IPMX [Professional media over IP standards for broadcast] for future-proofing (under consideration)"
+        },
+        {
+          "title": "Audio-Visual Integration",
+          "text": "Important: L-Acoustics L-ISA uses Milan-AVB protocol, not Dante. Pixera does not support AVB natively. Integration requires either a hardware converter or sync-based separation with Meinberg sync generator."
+        }
+      ]
+    },
+    {
+      "title": "Budget Summary",
+      "textPreview": "Category\n\nAmount\n\nStatus\n\nProjection Equipment (Barco)\n\n€TBC\n\nQuoting\n\nMedia Servers (Pixera)\n\n€275,000\n\nConfirmed\n\nAudio System (L-Acoustics)\n\n€386,145\n\nQuoted\n\nServer Room Infrastructure\n\n€443,103\n\nConfirmed\n\nSignal Transport\n\n€TBC\n\nEvaluating\n\nInstallation & Labour\n\n€TBC\n\nPending",
+      "subsections": []
+    },
+    {
+      "title": "Vendor Engagement Status",
+      "textPreview": "Audio\n\nAudiotek (L-Acoustics) - Quote received, awaiting BTU data\n\nProjection\n\nBarco - Primary spec; Panasonic/Epson alternatives under review\n\nMedia Servers\n\nPixera (AV Stumpfl) - Pricing confirmed at £39,100/unit\n\nSignal Transport\n\nDVIGear - Under evaluation\n\nSync Generator\n\nMeinberg - Quote pending (TBC)\n\nNetwork\n\nNetgear - Spec confirmed",
+      "subsections": []
+    },
+    {
+      "title": "Next Phase Actions",
+      "textPreview": "• Get costings for projectors (rental vs purchase)\n\n• Confirm audio equipment BTU ratings with Audiotek for HVAC sizing\n\n• Obtain Meinberg sync generator quote\n\n• Resolve sensor bandwidth architecture (edge processing vs. aggregator nodes)\n\n• Finalize signal transport solution (fiber vs. HDBaseT vs. ST2110)\n\n📽️ Projectors",
+      "subsections": []
+    },
+    {
+      "title": "Section 3: Projectors",
+      "textPreview": "What This Section Is About\n\nProjectors are the most visible element of this installation–they literally create what visitors see. This section details every projector in the system: the high-end 4K wall projectors, the floor projection units, the special ultra-short-throw lenses, and why we selected Barco over alternatives from Panasonic and Epson.\n\nWhy It Matters\n\nProjection quality defines the visitor experience. Poor brightness, visible pixels, or misaligned images break immersion. We've spec",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "Projectors are the most visible element of this installation–they literally create what visitors see. This section details every projector in the system: the high-end 4K wall projectors, the floor projection units, the special ultra-short-throw lenses, and why we selected Barco over alternatives from Panasonic and Epson."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Projection quality defines the visitor experience. Poor brightness, visible pixels, or misaligned images break immersion. We've specified professional-grade equipment capable of edge-blending seamlessly across multiple surfaces while delivering the brightness needed for an art space environment."
+        }
+      ]
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Resolution Architecture",
+      "textPreview": "All 4K projectors specified utilize WQUXGA (3840×2400) resolution at 16:10 aspect ratio. This is achieved via Barco SuperShift™ technology: a 4-way pixel-shifting optical actuator on a 0.8\" WUXGA DMD (Digital Micromirror Device - chip with microscopic mirrors for projection) that renders 9.2 million discrete pixels (vs. Epson's 2-way 4K Enhancement yielding 4.6 million pixels).\n\nBandwidth Requirement: 15.9 Gbps per channel ( uncompressed 4:4:4 @ 60Hz)–11.1% higher data density than standard 4K U",
+      "subsections": []
+    },
+    {
+      "title": "Room 1 Walls (Primary Gallery)",
+      "textPreview": "14× Barco I600‑4K10 (10,000 ISO lm, WQUXGA) with ILD 0.37 UST lenses\n\nOptical System: Fixed 0.37:1 ultra-short-throw periscope lens (6.2kg optical assembly)\n\nRigging Weight: 29.8 kg per unit (23.6 kg body + 6.2 kg lens assembly) (14× = 417.2 kg)\n\nPower: 860W per unit (14× = 12,040W / 55A total)\n\nThermal: 2,900 BTU/h per unit (14× = 40,600 BTU/h)\n\nAcoustic: 40 dB (normal operation)\n\nCost: €490,000 (equipment) + €14,700 (signal transport) = €504,700\n\nTechnical Notes: Most compact 10K-lumen DLP cha",
+      "subsections": []
+    },
+    {
+      "title": "Room 1 Floor",
+      "textPreview": "10× Barco G50-W8 (7,500 ANSI / 8,900 ISO lm, WUXGA) with G-Lens 0.65–0.75:1 zoom\n\nRigging Weight: 14.2 kg per unit (10× = 142 kg)\n\nPower: 500W per unit (10× = 5,000W / ~23A)\n\nThermal: 1,672 BTU/h per unit (10× = 16,720 BTU/h)\n\nAcoustic: 38 dB (normal) / 34 dB (eco)\n\nCost: €90,000 + €10,000 (2K signal transport) = €100,000\n\nTechnical Notes: Lightweight entry-level option. 0.65–0.75:1 zoom provides mounting flexibility for floor projection. Single-chip DLP with standard phosphor wheel (REC 709 col",
+      "subsections": []
+    },
+    {
+      "title": "Room 2 Walls (Scaled Configuration)",
+      "textPreview": "8× Barco I600‑4K8 (8,000 ISO lm, WQUXGA) with ILD 0.37 UST lenses\n\nRigging Weight: 27.7 kg per unit (8× = 221.6 kg)\n\nPower: 640W per unit (8× = 5120W / 32A)\n\nThermal: 2,150 BTU/h per unit (8× = 17,200 BTU/h)\n\nAcoustic: 40 dB\n\nCost: €280,000 + €8,400 (signal transport) = €288,400\n\nTechnical Notes: Throttled laser engine (640W vs 860W) reduces thermal output by 26% compared to 4K10, maintaining identical chassis and lens compatibility for architectural consistency with Room 1.",
+      "subsections": []
+    },
+    {
+      "title": "Room 2 Floor",
+      "textPreview": "5× Barco G50-W8 (8,000lm, WUXGA) with G-Lens\n\nRigging Weight: 14.2 kg per unit (5× = 71 kg)\n\nPower: 490W per unit (5× = 2,450W / 12A)\n\nThermal: 1,672 BTU/h per unit (5× = 8,360 BTU/h)\n\nCost: €45,000 + €5,000 (transport) = €50,000",
+      "subsections": []
+    },
+    {
+      "title": "Projector Totals",
+      "textPreview": "Metric\n\nValue\n\nNotes\n\nTotal Cost\n\n€943,100\n\n81.6% attributable to 4K Projector & UST Lens category\n\nTotal Rigging Weight\n\n851.80 kg\n\nIncludes lenses, with mounts, we estimate around 1000 kg total max.\n\nTotal Power Draw\n\n24,510W\n\n~121A @ 230V (excluding audio)\n\nTotal Heat Load\n\n82,880 BTU/h\n\nHVAC is critical for an enclosed museum environment\n\nAcoustic Impact\n\n40 dB peak\n\nI600 series; G50-W8 operates at 38 dB",
+      "subsections": []
+    },
+    {
+      "title": "Alternative Configurations (Evaluated & Rejected)",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Tier 1 (10K Lumen 4K UST):",
+      "textPreview": "Panasonic PT-REQ10 + ET-C1U100: 1.07× optical zoom (0.308–0.330:1) offers mounting flexibility, but total rigging weight 31.7kg (+2kg vs Barco) and lacks native 16:10 WQUXGA support without scaling.\n\nEpson EB-PU2010B + ELPLX01S: 20.3kg total weight (lightest option) and 35 dB quiet operation, but 2-way pixel shift (4.6M pixels) insufficient for sharp generative text/data viz. Native contrast inferior to DLP.\n\nTier 2 (8K Lumen WUXGA):\n\nPanasonic: PT-REZ80 Projector + ET-C1W300 Short-Throw Zoom Le",
+      "subsections": [
+        {
+          "title": "Tier 2 (8K Lumen WUXGA):",
+          "text": "Panasonic: PT-REZ80 Projector + ET-C1W300 Short-Throw Zoom Lens.\n\nMatch Note: This lens provides a 0.55–0.69:1 throw ratio. It comfortably reaches the Barco's 0.65 minimum requirement while offering room to go wider if needed.\n\nEpson: EB-PQ2008B Projector + ELPLU04 Short-Throw Zoom Lens.\n\nMatch Note: The Epson lens provides an approximate 0.64–0.77:1 WUXGA-equivalent throw ratio on this chassis, serving as a nearly perfect 1:1 match for the Barco G-lens.\n\nSelection Rationale: Barco specified for true 4-way pixel shift resolution (critical for CAD/engineering viz), native 16:10 aspect ratio (matching room geometry), and SuperShift optical stability. Accepted trade-offs: 40 dB acoustic footprint (mitigated by immersive audio masking) and 6.2kg UST lens weight (requires reinforced rigging)."
+        }
+      ]
+    },
+    {
+      "title": "Why Barco over Panasonic/Epson (detailed):",
+      "textPreview": "While Panasonic and Epson are exceptional in their respective classes, Barco projectors are often specified for the highest-end professional environments (like dark rides, advanced simulation, and massive live events) due to a specific set of architectural, software, and support advantages.\n\nHere is a breakdown of Barco’s unique selling points and where they hold superiority over their Panasonic and Epson counterparts:\n\n1. The Barco Pulse Ecosystem & Single Step Processing (SSP)\n\nThe most signif",
+      "subsections": []
+    },
+    {
+      "title": "Section 4: Signal Transport",
+      "textPreview": "What This Section Is About\n\nGetting video from servers to projectors sounds simple, but when you're pushing uncompressed 4K signals over 50-meter distances, it becomes a significant engineering challenge. This section explains how video signals travel through the system and why we selected fiber optic transport.\n\nWhy It Matters\n\nSignal quality directly impacts image quality. Compressed or degraded signals result in banding, color inaccuracy, and soft details. Our specification requires uncompres",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "Getting video from servers to projectors sounds simple, but when you're pushing uncompressed 4K signals over 50-meter distances, it becomes a significant engineering challenge. This section explains how video signals travel through the system and why we selected fiber optic transport."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Signal quality directly impacts image quality. Compressed or degraded signals result in banding, color inaccuracy, and soft details. Our specification requires uncompressed 4:4:4 signals at 60Hz–this demands serious bandwidth that standard HDMI or HDBaseT cannot reliably provide over the distances involved."
+        }
+      ]
+    },
+    {
+      "title": "Signal Transport Architecture",
+      "textPreview": "Critical Requirement: The 4:4:4 chroma specification for generative digital art (vs. 4:2:0/4:2:2 video) requires 15.9 Gbps per channel uncompressed bandwidth. This eliminates HDBaseT 2.0 (10.2 Gbps) and forces HDMI 2.0 to its absolute ceiling (18 Gbps with 20% encoding overhead), risking \"sparklies\" and EDID instability over 50–70m runs.\n\nSpecification\n\n1: HDMI Fiber\n\n2: DP Fiber\n\n3: HDBaseT 3.0\n\nTechnology\n\nHDMI 2.0 → SM Fiber\n\nDisplayPort 1.4 → SM Fiber\n\nDP→HDMI→HDBaseT 3.0\n\nHardware\n\nKramer 6",
+      "subsections": []
+    },
+    {
+      "title": "Selected Solution for 4K Walls",
+      "textPreview": "DVIGear DVI-7380 DisplayPort 1.4 fiber extenders (Option 2) specified for Room 1 & 2 Wall projectors (22 channels):\n\nNative Protocol: DP 1.4a (Pixera) → OS2 fiber → DP 1.4 (Barco I600)\n\nBandwidth: 32.4 Gbps capacity (15.9 Gbps utilized–headroom for 120Hz/HDR upgrades)\n\nReliability: Zero active adapters (eliminates 22 points of failure vs. HDMI solution)\n\nImmunity: Single-mode fiber provides absolute galvanic isolation and EMI immunity",
+      "subsections": []
+    },
+    {
+      "title": "Floor Projector Flexibility",
+      "textPreview": "Room 1 & 2 Floor projectors (15× G50-W8) utilize the installed Cat6A infrastructure for standard transport (€1,000/channel), with option to deploy HDBaseT 3.0 or fiber extenders depending on specific show requirements and rental inventory availability.",
+      "subsections": []
+    },
+    {
+      "title": "Infrastructure Specification",
+      "textPreview": "To All Locations: OS2 Single-Mode 4-core LC fiber + Cat6A S/FTP copper (redundant installation)\n\nFiber: Used for 4K Wall transport (DVIGear), ST2110 migration path, and 100G sensor aggregation\n\nCopper: Reserved for floor projector alternatives, control signals, PoE devices, and rental equipment compatibility\n\nRationale: \"Install both fiber/copper to each location, then price up and offer 2 solutions... at least the hard labour is done in 1 go with future proofed options\" (Krisjanis, 25/02/26)\n\n\ud83d",
+      "subsections": []
+    },
+    {
+      "title": "Section 5: Surface Treatment",
+      "textPreview": "What This Section Is About\n\nEven the best projectors need appropriate surfaces to shine on. This section covers the special paint systems being specified for walls and floors–why standard white paint won't work, and how the right surface treatment prevents \"hot-spotting\" (bright spots where projector beams overlap).\n\nWhy It Matters\n\nProjection surfaces are often overlooked, but they're critical to image quality. The wrong surface creates uneven brightness, visible seams between projectors, and c",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "Even the best projectors need appropriate surfaces to shine on. This section covers the special paint systems being specified for walls and floors–why standard white paint won't work, and how the right surface treatment prevents \"hot-spotting\" (bright spots where projector beams overlap)."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Projection surfaces are often overlooked, but they're critical to image quality. The wrong surface creates uneven brightness, visible seams between projectors, and colors that shift across the room. We've specified low-gain grey formulations optimized for multi-projector blending."
+        }
+      ]
+    },
+    {
+      "title": "Strategic Approach",
+      "textPreview": "Dual-vendor specification with validated quoting:\n\nOption A: Smarter Surfaces – Originally specified (SKU-based procurement, EUR pricing)\n\nOption B: Goo Systems – Quoted alternative (QU-0932, 4 Mar 2026, GBP pricing, 30% trade discount)\n\nBoth systems require solvent-free surface preparation and low-gain grey formulations to prevent hot-spotting in edge-blended projection arrays. Final selection pending confirmation of Goo quote acceptance before 3 Apr 2026 expiry.",
+      "subsections": []
+    },
+    {
+      "title": "Wall Treatment",
+      "textPreview": "Option A: Smarter Surfaces\n\nProduct: Smart Ultra High Contrast Projector Screen Paint (SKU: SSK-PROGAMERULTRA25)\n\nCoverage: 17× 25m² units = 425m² total\n\nGain: Unspecified (formulated for high contrast)\n\nFinish Standard: US 5 / EU Q4 gypsum Surface Finish Quality (smooth, seamless)\n\nApplication: 2-coat system (base + top) via mohair or lint-free short-pile roller\n\nPreparation: Smart White Primer (SSC-PRIMER24W) mandatory on bare surfaces; lightly sand between coats\n\nDrying: 2–4 hours between coa",
+      "subsections": [
+        {
+          "title": "Option B: Goo Systems",
+          "text": "Product: Goo V2 Max Contrast (Gain 0.7, medium grey)\n\nCoverage: 424m² validated (19× 3.78Lt units @ 6m² per unit with 5% water)\n\nPrimer: Goo Acrylic Premier Primer (15× 3.78Lt @ 7.5m² per unit)\n\nTechnical Advantage:\n\nGain 0.7 optimized for multi-projector blending (prevents hot-spotting vs. high-gain screens)\n\nNo PVA in primer (prevents yellowing/color shift over time)\n\nNo ALR particles (eliminates sparkles critical for blending)\n\nApplication: HVLP spray (Graco TurboForce 9.5) or mohair roller; 2-coat system\n\nCost: £8,473.50 (Walls) / ~€10,170"
+        }
+      ]
+    },
+    {
+      "title": "Floor Treatment",
+      "textPreview": "Option A: Smarter Surfaces\n\nProduct: Smart Floor Projector Screen Paint (SKU: SSK-PROFLOOR25)\n\nCoverage: 12× 25m² units = 300m² total\n\nApplication: 2-coat system over acid-etched concrete or existing floor paint; aggregate can be added for anti-slip properties\n\nDrying: 10 hours between coats; 24 hours to usable state\n\nLimitations: Standard floor paint durability; no integrated wear-layer specified for heavy foot traffic (requires separate protective overcoat)\n\nCost: €10,668\n\nOption B: Goo System",
+      "subsections": [
+        {
+          "title": "Option A: Smarter Surfaces",
+          "text": "Product: Smart Floor Projector Screen Paint (SKU: SSK-PROFLOOR25)\n\nCoverage: 12× 25m² units = 300m² total\n\nApplication: 2-coat system over acid-etched concrete or existing floor paint; aggregate can be added for anti-slip properties\n\nDrying: 10 hours between coats; 24 hours to usable state\n\nLimitations: Standard floor paint durability; no integrated wear-layer specified for heavy foot traffic (requires separate protective overcoat)\n\nCost: €10,668"
+        },
+        {
+          "title": "Option B: Goo Systems",
+          "text": "System: Three-layer protection\n\nPrimer: Goo Acrylic Premier Primer (10× 3.78Lt)\n\nScreen: Goo V2 Max Contrast 0.7 gain (12× 3.78Lt @ 6m² per unit)\n\nProtection: Goo Rear Projection (23× 2Lt @ 5m² per unit) – hard-cure protective shell\n\nCoverage: 279m² validated\n\nTechnical Advantage:\n\nRear Projection topcoat provides walkable resilience for immersive floor traffic (essential for participant-accessible surfaces)\n\nSlight reflection reduction vs. walls, but mandatory for longevity in high-traffic areas\n\nPreparation: Acid-etch concrete or sand existing floor paint; solvent-free repair compounds only\n\nCost: £10,892.00 (Floor) / ~€13,070"
+        }
+      ]
+    },
+    {
+      "title": "Surface Preparation & Priming",
+      "textPreview": "Critical Requirements (Both Systems):\n\nCaulking: Solvent-free compounds mandatory (solvents leach through latex/acrylic paints over time, appearing as irremovable blue/green lines that destroy projection quality)\n\nSanding: All surfaces must be clean, dry, and free from loose materials; gloss surfaces lightly sanded to provide mechanical key\n\nRepair: Holes/cracks repaired with concrete repair compound (solvent-free)\n\nSmarter Surfaces Primer:\n\nProduct: Smart White Primer (SKU: SSC-PRIMER24W)\n\nCove",
+      "subsections": []
+    },
+    {
+      "title": "Application Methodology",
+      "textPreview": "Method\n\nSpecification\n\nBest For\n\nHVLP Spray\n\nGraco TurboForce 9.5 or equivalent (not airless); gravity-feed for floors\n\nWalls requiring seamless finish for close-projection pixel mapping\n\nRoller\n\nMohair/short-pile lint-free roller\n\nCeilings, secondary surfaces, or budget-driven installations\n\nAir-Assisted Airless\n\nAcceptable only with competent sprayer\n\nLarge surface areas where HVLP coverage speed insufficient",
+      "subsections": []
+    },
+    {
+      "title": "Coverage Validation:",
+      "textPreview": "Smarter Surfaces: 25m² per unit (2-coat system)\n\nGoo Primer: 7.5m² per 3.78Lt (2 coats)\n\nGoo Max Contrast: 6m² per 3.78Lt (2 coats with 5% water dilution)\n\nGoo Rear Projection: 5m² per 2Lt (2 thin sprayed coats)\n\nCurrent Paint Procurement Totals\n\nSmarter Surfaces\n\nCategory\n\nProduct\n\nQuantity\n\nCost\n\nWalls\n\nSmart Ultra High Contrast\n\n17× 25m²\n\n€16,473\n\nFloor\n\nSmart Floor Projector Screen\n\n12× 25m²\n\n€10,668\n\nPriming\n\nSmart White Primer\n\n28× 25m²\n\n€2,212\n\nTOTAL\n\n€29,353\n\nGoo Systems \n\nSpecification\n",
+      "subsections": [
+        {
+          "title": "Current Paint Procurement Totals\n\nSmarter Surfaces",
+          "text": "Category\n\nProduct\n\nQuantity\n\nCost\n\nWalls\n\nSmart Ultra High Contrast\n\n17× 25m²\n\n€16,473\n\nFloor\n\nSmart Floor Projector Screen\n\n12× 25m²\n\n€10,668\n\nPriming\n\nSmart White Primer\n\n28× 25m²\n\n€2,212\n\nTOTAL\n\n€29,353"
+        },
+        {
+          "title": "Goo Systems",
+          "text": "Specification\n\nSmarter Surfaces\n\nGoo Systems (QU-0932)\n\nWalls\n\n€16,473\n\n£8,473.50 (~€10,170)\n\nFloor\n\n€10,668\n\n£10,892.00 (~€13,070)\n\nPrimer\n\n€2,212\n\nIncluded in above\n\nProtection\n\nN/A (not specified)\n\nIncluded (Rear Projection topcoat)\n\nSubtotal\n\n€29,353\n\n£19,365.50 (~€23,240)\n\nSavings\n\nBase reference\n\n~€6,100 savings\n\nStatus\n\nSpecified\n\nQuoted (Expires 3 Apr 2026)"
+        }
+      ]
+    },
+    {
+      "title": "Import & Procurement Terms (Goo Systems):",
+      "textPreview": "Quote Reference: QU-0932, NexNix Ltd, 4 Mar 2026\n\nHS Codes: 3213.10.00.00 (primer), 3209.10.00.20 (paints)\n\nEORI: GB587647968000\n\nOrigin: Canada (non-hazardous water-based acrylic)\n\nVAT: Zero-rated on export to Ireland (reverse charge mechanism)\n\nDiscount: 30% professional trade discount applied",
+      "subsections": []
+    },
+    {
+      "title": "Action Required:",
+      "textPreview": "Confirm Goo Systems order before 3 Apr 2026 expiry to secure 30% pricing and validated coverage rates (424m² walls / 279m² floor vs. 425m²/300m² Smarter Surfaces specification).\n\n👁️ Sensors",
+      "subsections": []
+    },
+    {
+      "title": "Section 6: Sensors",
+      "textPreview": "What This Section Is About\n\nImmersive art often responds to visitors. This section covers the camera system that enables this interactivity–44 depth-sensing cameras that can track movement, detect presence, and trigger responsive content.\n\nWhy It Matters\n\nThese cameras are the venue's \"eyes\"–they enable artworks to react to visitors, creating dynamic experiences that change based on who is present and what they do. However, 44 cameras generating high-bandwidth video creates significant technical",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "Immersive art often responds to visitors. This section covers the camera system that enables this interactivity–44 depth-sensing cameras that can track movement, detect presence, and trigger responsive content."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "These cameras are the venue's \"eyes\"–they enable artworks to react to visitors, creating dynamic experiences that change based on who is present and what they do. However, 44 cameras generating high-bandwidth video creates significant technical challenges."
+        }
+      ]
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Hardware Specification",
+      "textPreview": "Model: Luxonis OAK 4 D Pro Wide (FF) – Fixed Focus variant\n\nOptics: 120° Horizontal FOV (3.4m coverage width at 1m standoff distance)\n\nImaging: Onboard depth map generation and neural inference (reduces network bandwidth to tracking metadata)\n\nInterface: PoE+ (IEEE 802.3at), 2.5GbE Ethernet port\n\nPhysical: 0.3 kg per unit (compact enclosure for discreet mounting)",
+      "subsections": []
+    },
+    {
+      "title": "Quantity & Configuration",
+      "textPreview": "Room 1 (Specified): 28 units @ €1,147/unit = €32,116\n\nRoom 2 (Pending): Additional units TBC per scaled gallery configuration (referencing 25/02/26 layout revisions)\n\nArchitectural Maximum: 44 units discussed for future expansion (bandwidth-constrained to 50 Gbps server ingress)",
+      "subsections": []
+    },
+    {
+      "title": "Placement Strategy (Room 1)",
+      "textPreview": "6× per side wall (height-angled for optimal coverage)\n\n6× overhead along each wall (ceiling-mounted truss positions)\n\n2× per end wall (entrance/exit monitoring)\n\nMetric\n\nPer Unit\n\nTotal (28× Room 1)\n\nProcurement Cost\n\n€1,147\n\n€32,116\n\nRigging Weight\n\n0.3 kg\n\n8.4 kg\n\nPower Draw\n\n25W (PoE+)\n\n700W (3.1A @ 230V)\n\nThermal Output\n\n85.3 BTU/h\n\n2,388 BTU/h generated at camera locations, not server room\n\nNetwork Bandwidth\n\n2.5 Gbps\n\n70 Gbps theoretical aggregate",
+      "subsections": []
+    },
+    {
+      "title": "Network Architecture Integration",
+      "textPreview": "Aggregation: 2× Netgear XSM4344C (44-port 10Gb PoE+) with 100G uplinks\n\nBandwidth Constraint: 28× cameras @ 2.5 Gbps = 70 Gbps theoretical maximum vs. 5× Pixera servers @ 10 Gbps = 50 Gbps aggregate ingress capacity\n\nMitigation Strategy: Cameras utilize onboard video processing (depth maps/tracking metadata only) per Colly technical confirmation (04/03/26); raw 2.5 Gbps video streams not transmitted to servers continuously\n\nCabling: Home-run Cat6a to server room PoE switches (part of 75× Cat6a i",
+      "subsections": []
+    },
+    {
+      "title": "HVAC Implications",
+      "textPreview": "Heat dissipation (2,388 BTU/h) occurs at gallery level via camera enclosures, not in server room. Contributes to general gallery thermal load but requires no dedicated server room cooling capacity.",
+      "subsections": []
+    },
+    {
+      "title": "Status",
+      "textPreview": "Procurement Phase: 28 units specified for Room 1 installation\n\nRoom 2 Decision: Pending final spatial configuration (scaledown under review per 25/02/26)\n\nIntegration Risk: Verified–onboard processing confirmed sufficient to prevent 70 Gbps+ network saturation of Pixera ingress ports\n\n⚙️ Network",
+      "subsections": []
+    },
+    {
+      "title": "Section 7: Network",
+      "textPreview": "What This Section Is About\n\nThis venue contains multiple complex systems that all need to communicate–video, audio, sensors, control, and file sharing. This section explains how we've designed five separate networks to keep these systems running smoothly without interfering with each other.\n\nWhy It Matters\n\nNetwork problems manifest as audio dropouts, video glitches, or unresponsive sensors. By segregating traffic into separate physical and logical networks, we prevent problems in one system fro",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "This venue contains multiple complex systems that all need to communicate–video, audio, sensors, control, and file sharing. This section explains how we've designed five separate networks to keep these systems running smoothly without interfering with each other."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Network problems manifest as audio dropouts, video glitches, or unresponsive sensors. By segregating traffic into separate physical and logical networks, we prevent problems in one system from affecting others. The audio network, for example, has guaranteed bandwidth that can't be disrupted by someone uploading large files."
+        }
+      ]
+    },
+    {
+      "title": "Physical Infrastructure",
+      "textPreview": "Fiber Backbone: 50× OS2 Single-Mode 4-core LC (redundant pairs), 50m runs to all projection locations\n\nCopper Distribution: 75× Cat6a S/FTP LSZH, 50m runs for control and management networks\n\nOptical Transceivers: 64× QSFP-100G-CWDM4-S modules (€14,080 total) for 100G spine interconnectivity",
+      "subsections": []
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Network Segregation Strategy",
+      "textPreview": "Five distinct physical/logical networks to prevent clock jitter, packet collision, and protocol interference:\n\nNetwork\n\nLayer\n\nHardware\n\nProtocol\n\nFunction\n\nVideo Transport\n\nPhysical (Point-to-Point)\n\nDVIGear DVI-7380 over OS2 fiber\n\nDisplayPort 1.4 baseband\n\n22× 4K uncompressed streams (15.9 Gbps each)\n\nSensor Aggregation\n\nLayer 3 (IP)\n\n2× Netgear XSM4344C (44× 10Gb PoE+ with 100G uplinks)\n\nTCP/IP\n\nLuxonis camera array (2.5Gbps per unit)\n\nAudio Control\n\nLayer 2 (AVB)\n\n4× L-Acoustics LS10 UK (10",
+      "subsections": []
+    },
+    {
+      "title": "Video Transport Network",
+      "textPreview": "Current Specification: Point-to-point DisplayPort 1.4 over fiber (DVIGear DVI-7380)\n\nFuture Research: ST2110-20 (uncompressed IP video) and IPMX (open AVoIP) identified for Phase 2 investigation only; requires separate feasibility study per 04/03 technical review\n\nRejected Alternative: HDBaseT 3.0 (€109,000 cost premium, copper susceptibility to interference, proprietary Barco card dependency)",
+      "subsections": []
+    },
+    {
+      "title": "Sensor Network Architecture",
+      "textPreview": "Edge Aggregation: 2× Netgear XSM4344C provide 88× 10Gb PoE+ ports total (100G uplink capacity per switch)\n\nBandwidth Constraint:\n\nProcured Quantity: 28× cameras × 2.5Gbps = 70 Gbps theoretical maximum\n\nFuture Capacity: 44× cameras × 2.5Gbps = 110 Gbps theoretical\n\nServer Ingress Capacity: 5× Pixera × 10Gbps = 50 Gbps aggregate\n\nArchitectural Solution: Direct raw streaming from 44 cameras exceeds server port capacity. Requires onboard camera processing (metadata/tracking data only) or intermediat",
+      "subsections": []
+    },
+    {
+      "title": "Audio Network Architecture",
+      "textPreview": "Protocol: AVB/Milan (IEEE 802.1AS) exclusively. L-Acoustics L-ISA Processor II does not support Dante natively.\n\nHardware:\n\n4× L-Acoustics LS10 UK (€1,620/unit, €6,480 total)\n\nRoom 1: 2× switches (Primary/Secondary redundancy)\n\nRoom 2: 2× switches (Primary/Secondary redundancy)\n\n10-port AVB-certified, etherCON connect",
+      "subsections": []
+    },
+    {
+      "title": "Audio-Visual Bridging Options",
+      "textPreview": "Three architectures evaluated for Pixera (Dante-capable) to L-ISA (AVB-only) integration:\n\nTable\n\nArchitecture\n\nHardware\n\nLatency\n\nSample Rate\n\nStatus\n\nA: Hardware Bridge\n\nDirectOut PRODIGY.MP + DANTE.MILAN.SRC.IO\n\n~1ms (HD SRC)\n\n96kHz/32ch per module\n\nHigh redundancy, high cost\n\nB: Native AVB\n\nRME HDSPe AoX-M PCIe (in Pixera)\n\n<0.15ms\n\n96kHz/64ch\n\nPreferred - eliminates Dante layer entirely\n\nC: MADI Bridge\n\nRME HDSPe MADI → L-Acoustics LC16D\n\nLow\n\n96kHz/32ch\n\nLegacy compatibility, no sample rat",
+      "subsections": []
+    },
+    {
+      "title": "Clocking & Synchronization",
+      "textPreview": "Milan Domain: gPTP (IEEE 802.1AS) via L-Acoustics LS10 switches\n\nDante Domain (if bridging): PTPv1/v2 via standard QoS-managed switches\n\nVideo Sync: Tri-level burst from Meinberg Microsync (BNC)\n\nGrandmaster Hierarchy: Meinberg Microsync Broadcast designated as master clock source; distributes PTP to Dante subnets (if present) and gPTP to Milan subnets via appropriate bridging hardware or direct connection",
+      "subsections": []
+    },
+    {
+      "title": "Critical Segregation Rules",
+      "textPreview": "AVB Isolation: Milan traffic (Layer 2 MAC-based) must not traverse standard IP routers; requires certified AVB switches (LS10) with Stream Reservation Protocol (SRP)\n\nDante/AVB Separation: If Dante bridging implemented (Architecture A only), physically separate switch fabrics or strictly isolated VLANs required; Dante utilizes DSCP QoS prioritization while AVB requires hardware-level bandwidth reservation\n\nPixera Internal: Server cluster multicast traffic (5GB/s+ internal file distribution) isol",
+      "subsections": []
+    },
+    {
+      "title": "Network Totals",
+      "textPreview": "Metric\n\nValue\n\nFiber Infrastructure\n\n50× OS2 4-core LC runs (200 fiber strands total)\n\nCopper Infrastructure\n\n75× Cat6a S/FTP runs\n\nSwitch Ports\n\n88× 10Gb PoE+, 64× 100G QSFP28\n\nAVB Switches\n\n4× L-Acoustics LS10 (Primary/Secondary pairs)\n\nProtocols\n\nDP 1.4 (video), Milan-AVB (audio), TCP/IP (sensors/control)\n\n🔊 Audio System / L-ISA",
+      "subsections": []
+    },
+    {
+      "title": "Section 8: Audio System / L-ISA",
+      "textPreview": "What This Section Is About\n\nSound is half the immersive experience. This section details the L-Acoustics L-ISA spatial audio system–71 speakers positioned around and above visitors to create three-dimensional soundscapes that move and breathe with the content.\n\nWhy It Matters\n\nTraditional stereo or surround sound places audio in fixed positions. L-ISA is \"object-based\"–sounds exist as points in 3D space that can move freely around, above, and through the listening area. This creates the sense of",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "Sound is half the immersive experience. This section details the L-Acoustics L-ISA spatial audio system–71 speakers positioned around and above visitors to create three-dimensional soundscapes that move and breathe with the content."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Traditional stereo or surround sound places audio in fixed positions. L-ISA is \"object-based\"–sounds exist as points in 3D space that can move freely around, above, and through the listening area. This creates the sense of being \"inside\" the sound rather than just hearing it from speakers."
+        }
+      ]
+    },
+    {
+      "title": "AUDIO SYSTEM SPECIFICATION",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "System Overview",
+      "textPreview": "The Lightheart Immersive Experience features a comprehensive L-Acoustics L-ISA immersive audio system deployed across two main gallery spaces. The system utilizes object-based spatial audio processing with Milan-AVB networking protocol for reliable, low-latency audio distribution.",
+      "subsections": []
+    },
+    {
+      "title": "Room 1 (Main Gallery) Configuration",
+      "textPreview": "Speaker Configuration\n\nQty\n\nModel\n\nRole\n\nCoverage\n\nMax SPL\n\n20\n\nL-Acoustics X8i\n\nSurround speakers\n\n90° axisymmetric\n\n129 dB\n\n20\n\nL-Acoustics X6i\n\nHeight/overhead speakers\n\n90° axisymmetric\n\n123 dB\n\n8\n\nL-Acoustics SYVA SUB\n\nSubwoofers\n\nOmni (stacked)\n\n128 dB\n\nElectronics & Processing\n\nQty\n\nModel\n\nDescription\n\nPhysical\n\n3\n\nLA7.16i CE\n\n16-channel amplified controller (16 x 1300W @ 8Ω)\n\n14.5 kg, 2U\n\n1\n\nL-ISA Processor II\n\nSpatial audio processor (upgraded to 64 outputs)\n\n11 kg, 3U\n\n2\n\nLS10\n\nAVB/Mil",
+      "subsections": [
+        {
+          "title": "Speaker Configuration",
+          "text": "Qty\n\nModel\n\nRole\n\nCoverage\n\nMax SPL\n\n20\n\nL-Acoustics X8i\n\nSurround speakers\n\n90° axisymmetric\n\n129 dB\n\n20\n\nL-Acoustics X6i\n\nHeight/overhead speakers\n\n90° axisymmetric\n\n123 dB\n\n8\n\nL-Acoustics SYVA SUB\n\nSubwoofers\n\nOmni (stacked)\n\n128 dB"
+        },
+        {
+          "title": "Electronics & Processing",
+          "text": "Qty\n\nModel\n\nDescription\n\nPhysical\n\n3\n\nLA7.16i CE\n\n16-channel amplified controller (16 x 1300W @ 8Ω)\n\n14.5 kg, 2U\n\n1\n\nL-ISA Processor II\n\nSpatial audio processor (upgraded to 64 outputs)\n\n11 kg, 3U\n\n2\n\nLS10\n\nAVB/Milan network switch (10-port)\n\n1.5 kg, 0.5U\n\n1\n\nRME MADIface USB\n\nUSB audio interface\n\nN/A"
+        },
+        {
+          "title": "Room 1 Cost Summary",
+          "text": "Equipment (discounted)\n\n€178,417.75\n\nVAT (23%)\n\n€41,036.08\n\nFire Safe Cable\n\n€7,000.00\n\nInstallation Materials\n\nTOTAL\n\n€226453.83"
+        }
+      ]
+    },
+    {
+      "title": "Room 2 Configuration",
+      "textPreview": "Speaker Configuration\n\nQty\n\nModel\n\nRole\n\nCoverage\n\nMax SPL\n\n14\n\nL-Acoustics X8i\n\nSurround speakers\n\n90° axisymmetric\n\n129 dB\n\n17\n\nL-Acoustics X6i\n\nHeight/overhead speakers\n\n90° axisymmetric\n\n123 dB\n\n8\n\nL-Acoustics SYVA SUB\n\nSubwoofers\n\nOmni (stacked)\n\n128 dB\n\nElectronics & Processing\n\nQty\n\nModel\n\nDescription\n\nPhysical\n\n3\n\nLA7.16i CE\n\n16-channel amplified controller (16 x 1300W @ 8Ω)\n\n14.5 kg, 2U\n\n1\n\nL-ISA Processor II\n\nSpatial audio processor (shared license)\n\n11 kg, 3U\n\n2\n\nLS10\n\nAVB/Milan netwo",
+      "subsections": [
+        {
+          "title": "Speaker Configuration",
+          "text": "Qty\n\nModel\n\nRole\n\nCoverage\n\nMax SPL\n\n14\n\nL-Acoustics X8i\n\nSurround speakers\n\n90° axisymmetric\n\n129 dB\n\n17\n\nL-Acoustics X6i\n\nHeight/overhead speakers\n\n90° axisymmetric\n\n123 dB\n\n8\n\nL-Acoustics SYVA SUB\n\nSubwoofers\n\nOmni (stacked)\n\n128 dB"
+        },
+        {
+          "title": "Electronics & Processing",
+          "text": "Qty\n\nModel\n\nDescription\n\nPhysical\n\n3\n\nLA7.16i CE\n\n16-channel amplified controller (16 x 1300W @ 8Ω)\n\n14.5 kg, 2U\n\n1\n\nL-ISA Processor II\n\nSpatial audio processor (shared license)\n\n11 kg, 3U\n\n2\n\nLS10\n\nAVB/Milan network switch (10-port)\n\n1.5 kg, 0.5U\n\n1\n\nQ-Sys Core 8 Flex\n\nSystem processing (shared with Room 1)\n\nN/A\n\n1\n\nQ-Sys 5\" Touchscreen\n\nControl interface (shared with Room 1)\n\nN/A\n\n1\n\nRME MADIface USB\n\nUSB audio interface\n\nN/A"
+        },
+        {
+          "title": "Room 2 Cost Summary",
+          "text": "Equipment (discounted)\n\n€137,604.00\n\nVAT (23%)\n\n€31,027.93\n\nFire Safe Cable\n\n€6,500.00\n\nInstallation Materials\n\nIncluded\n\nTOTAL\n\n€175,131.93"
+        }
+      ]
+    },
+    {
+      "title": "Detailed Technical Specifications",
+      "textPreview": "X8i Speaker Specifications\n\nType\n\n2-way passive coaxial enclosure\n\nLF Transducer\n\n8\" cone driver\n\nHF Transducer\n\n1.5\" neodymium compression driver\n\nNominal Directivity\n\n90° axisymmetric\n\nUsable Bandwidth\n\n67 Hz - 20 kHz (-10 dB) / 43 Hz - 20 kHz (Preset 2)\n\nMaximum SPL\n\n129 dB (Preset 1) / 123 dB (Preset 2)\n\nNominal Impedance\n\n8 Ω\n\nRMS Power Handling\n\n197 W\n\nDimensions (W×H×D)\n\n240 × 490 × 217 mm\n\nWeight\n\n11 kg / 24 lb\n\nIP Rating\n\nIP55\n\nFinish Options\n\nPantone 426C (dark grey), RAL 9010 (white),",
+      "subsections": [
+        {
+          "title": "X8i Speaker Specifications",
+          "text": "Type\n\n2-way passive coaxial enclosure\n\nLF Transducer\n\n8\" cone driver\n\nHF Transducer\n\n1.5\" neodymium compression driver\n\nNominal Directivity\n\n90° axisymmetric\n\nUsable Bandwidth\n\n67 Hz - 20 kHz (-10 dB) / 43 Hz - 20 kHz (Preset 2)\n\nMaximum SPL\n\n129 dB (Preset 1) / 123 dB (Preset 2)\n\nNominal Impedance\n\n8 Ω\n\nRMS Power Handling\n\n197 W\n\nDimensions (W×H×D)\n\n240 × 490 × 217 mm\n\nWeight\n\n11 kg / 24 lb\n\nIP Rating\n\nIP55\n\nFinish Options\n\nPantone 426C (dark grey), RAL 9010 (white), custom RAL"
+        },
+        {
+          "title": "X6i Speaker Specifications",
+          "text": "Type\n\n2-way passive coaxial enclosure\n\nLF Transducer\n\n6.5\" cone driver\n\nHF Transducer\n\n1.5\" neodymium compression driver\n\nNominal Directivity\n\n90° axisymmetric\n\nUsable Bandwidth\n\n69 Hz - 20 kHz (-10 dB) / 54 Hz - 20 kHz (Preset 2)\n\nMaximum SPL\n\n123 dB (Preset 1) / 117 dB (Preset 2)\n\nNominal Impedance\n\n8 Ω\n\nRMS Power Handling\n\n83 W\n\nDimensions (W×H×D)\n\n187 × 362 × 170 mm\n\nWeight\n\n6.3 kg / 14 lb\n\nIP Rating\n\nIP55\n\nFinish Options\n\nPantone 426C (dark grey), RAL 9010 (white), custom RAL"
+        },
+        {
+          "title": "SYVA SUB Specifications",
+          "text": "Type\n\nPassive subwoofer\n\nLF Transducer\n\n1 × 12\" high-excursion cone driver\n\nUsable Bandwidth\n\n27 Hz - 120 Hz (-10 dB)\n\nMaximum SPL\n\n128 dB peak @ 1m\n\nNominal Impedance\n\n8 Ω\n\nRMS Power Handling\n\n250 W\n\nDimensions (W×H×D)\n\n849 × 334 × 350 mm\n\nWeight\n\n27 kg / 60 lb\n\nIP Rating\n\nIP55\n\nConnectors\n\n4-point speakON + proprietary connector"
+        }
+      ]
+    },
+    {
+      "title": "Amplification & Processing",
+      "textPreview": "LA7.16i Amplified Controller\n\nOutput Power\n\n16 × 1300 W @ 8Ω / 16 × 1100 W @ 4Ω\n\nAmplification Class\n\nHigh-efficiency Class D\n\nDSP\n\nGen. 5 Dual SHARC 32-bit floating-point, 96 kHz\n\nRouting Matrix\n\n16 × 16 flexible routing and summation\n\nAVB Input\n\n128 channels (48/96 kHz), Milan-certified, AES67 compatible\n\nLatency\n\n3.84 ms (standard) / 1.18 ms (low latency mode)\n\nMains Rating\n\n100-240 V AC ± 10%, 50-60 Hz, 16A max\n\nCooling\n\n5 integrated DSP-controlled fans\n\nOperating Temperature\n\n-5°C to +50°C\n",
+      "subsections": [
+        {
+          "title": "LA7.16i Amplified Controller",
+          "text": "Output Power\n\n16 × 1300 W @ 8Ω / 16 × 1100 W @ 4Ω\n\nAmplification Class\n\nHigh-efficiency Class D\n\nDSP\n\nGen. 5 Dual SHARC 32-bit floating-point, 96 kHz\n\nRouting Matrix\n\n16 × 16 flexible routing and summation\n\nAVB Input\n\n128 channels (48/96 kHz), Milan-certified, AES67 compatible\n\nLatency\n\n3.84 ms (standard) / 1.18 ms (low latency mode)\n\nMains Rating\n\n100-240 V AC ± 10%, 50-60 Hz, 16A max\n\nCooling\n\n5 integrated DSP-controlled fans\n\nOperating Temperature\n\n-5°C to +50°C\n\nDimensions\n\n483 × 88 × 434 mm (19\" × 2U × 17.1\")\n\nWeight\n\n14.5 kg / 32 lb\n\nRack Mounting\n\n2U"
+        },
+        {
+          "title": "L-ISA Processor II",
+          "text": "Processing\n\nReal-time spatial audio at 96 kHz\n\nObjects\n\nUp to 96 objects with spatial processing\n\nInputs\n\n128 hardware inputs (AVB/MADI/AES)\n\nOutputs\n\nUp to 128 outputs (license-dependent)\n\nAVB Channels\n\n64 input / 128 output channels\n\nMADI Channels\n\n192 @ 48 kHz / 96 @ 96 kHz\n\nLatency\n\n3.2 ms (input to outputs)\n\nBoot Time\n\n31 seconds to AVB pass-through\n\nPower Supply\n\nDual redundant SMPS, 2 × 150 W typical\n\nMains Rating\n\n2 × 100-240 V AC ± 10%, 50-60 Hz\n\nOperating Temperature\n\n-5°C to +50°C\n\nDimensions\n\n483 × 133 × 458 mm (19\" × 3U × 18\")\n\nWeight\n\n11 kg / 24.3 lb\n\nRack Mounting\n\n3U"
+        },
+        {
+          "title": "",
+          "text": ""
+        },
+        {
+          "title": "LS10 AVB Switch",
+          "text": "AVB Ports\n\n10 ports @ 1 Gbit/s\n\nCertification\n\nAvnu-certified, Milan protocol compliant\n\nSupported Streams\n\n150 streams\n\nStartup Time\n\n5 seconds (AVB pass-through after power failure)\n\nConnectors\n\n8 × EtherCon (5 front, 3 rear), 2 × SFP cages\n\nManagement\n\ngPTP Grandmaster capable, RSTP\n\nPower Consumption\n\n10 W (20 W with redundant supply)\n\nMains Rating\n\n100-240 V AC, 50-60 Hz\n\nOperating Temperature\n\n-5°C to +50°C\n\nDimensions\n\n216 × 42 × 133 mm\n\nWeight\n\n1.5 kg\n\nRack Mounting\n\n1U (half-width, 2 units fit in 1U with shelf)"
+        }
+      ]
+    },
+    {
+      "title": "Network Architecture & Protocols",
+      "textPreview": "Audio Network Protocol\n\nPrimary Protocol: Milan-AVB (Audio Video Bridging)\n\nThe system uses AVB/Milan as the native network audio protocol. This provides:\n\nGuaranteed bandwidth and deterministic latency for time-sensitive audio\n\nSeamless network redundancy with automatic failover\n\nPlug-and-play interoperability with Milan-certified devices\n\nRemote routing control without physical patching",
+      "subsections": [
+        {
+          "title": "Audio Network Protocol",
+          "text": "Primary Protocol: Milan-AVB (Audio Video Bridging)\n\nThe system uses AVB/Milan as the native network audio protocol. This provides:\n\nGuaranteed bandwidth and deterministic latency for time-sensitive audio\n\nSeamless network redundancy with automatic failover\n\nPlug-and-play interoperability with Milan-certified devices\n\nRemote routing control without physical patching"
+        }
+      ]
+    },
+    {
+      "title": "Important Protocol Notes",
+      "textPreview": "WARNING: L-ISA Processor II does NOT support Dante natively. The system is AVB/Milan only. Integration with Dante networks requires a converter device.",
+      "subsections": []
+    },
+    {
+      "title": "Synchronization Requirements",
+      "textPreview": "A Meinberg sync generator is required for timecode alignment with video servers. This ensures sample-accurate synchronization between audio and video playback.\n\nNOTE: Sync generator quote is currently TBC (to be confirmed).",
+      "subsections": []
+    },
+    {
+      "title": "Training & Calibration",
+      "textPreview": "Training Programs\n\nCourse\n\nDescription\n\nCost\n\nL-Acoustics SEMINARSession\n\nImmersive Venue Technician course (up to 8 seats)\n\n€4,160.00\n\nL-Acoustics SEMINAR1seat\n\nImmersive Mixing Engineer course\n\n€1,560.00\n\nL-Acoustics Training1Seat\n\nSystem & Workflow fundamentals\n\n€1,368.00\n\nCalibration\n\nSystem calibration and validation is priced at €1,350 per day per room. Both rooms require calibration, totaling €2,700.",
+      "subsections": [
+        {
+          "title": "Training Programs",
+          "text": "Course\n\nDescription\n\nCost\n\nL-Acoustics SEMINARSession\n\nImmersive Venue Technician course (up to 8 seats)\n\n€4,160.00\n\nL-Acoustics SEMINAR1seat\n\nImmersive Mixing Engineer course\n\n€1,560.00\n\nL-Acoustics Training1Seat\n\nSystem & Workflow fundamentals\n\n€1,368.00"
+        },
+        {
+          "title": "Calibration",
+          "text": "System calibration and validation is priced at €1,350 per day per room. Both rooms require calibration, totaling €2,700."
+        }
+      ]
+    },
+    {
+      "title": "Rack Space & Installation Requirements",
+      "textPreview": "Server Room Rack Space\n\nApproximately 24U of rack space is required for audio equipment in the server room.\n\nEquipment Rack Contents\n\nEquipment Rack\n\n1 × Equipment rack with power distribution (included in quote)\n\nLA7.16i Amplifiers\n\n3 units × 2U = 6U (Room 1) / 3 units × 2U = 6U (Room 2)\n\nL-ISA Processor II\n\n1 unit × 3U = 3U (shared)\n\nLS10 Switches\n\n2 units × 0.5U = 1U per room\n\nQ-Sys Equipment\n\nCore 8 Flex + Touchscreen (shared)\n\nRME MADIface\n\nUSB interface per room\n\nInstallation Notes\n\n1st Fi",
+      "subsections": [
+        {
+          "title": "Server Room Rack Space",
+          "text": "Approximately 24U of rack space is required for audio equipment in the server room."
+        },
+        {
+          "title": "Equipment Rack Contents",
+          "text": "Equipment Rack\n\n1 × Equipment rack with power distribution (included in quote)\n\nLA7.16i Amplifiers\n\n3 units × 2U = 6U (Room 1) / 3 units × 2U = 6U (Room 2)\n\nL-ISA Processor II\n\n1 unit × 3U = 3U (shared)\n\nLS10 Switches\n\n2 units × 0.5U = 1U per room\n\nQ-Sys Equipment\n\nCore 8 Flex + Touchscreen (shared)\n\nRME MADIface\n\nUSB interface per room"
+        },
+        {
+          "title": "Installation Notes",
+          "text": "1st Fix cable installation by electrical contractor using Audiotek-supplied cable\n\n2nd Fix installation, programming, and commissioning by Audiotek\n\nFire-safe cable included: €7,000 (Room 1), €6,500 (Room 2)\n\nEquipment rack and power distribution included"
+        },
+        {
+          "title": "Rigging Accessories",
+          "text": "VBAR\n\nRigging accessory for vertically-oriented loudspeakers\n\nTILT\n\nAdjustable tilt accessory (0° to 40°)\n\nHBAR\n\nRigging accessory for horizontally-oriented X6i\n\nLS10 RAKSHELF\n\n1U rack shelf for two LS10 switches"
+        }
+      ]
+    },
+    {
+      "title": "Open Items & Clarifications",
+      "textPreview": "Items Awaiting Confirmation\n\nSync Generator: Quote pending from supplier. Required for timecode alignment with video servers.\n\nPixera AVB Support: Awaiting confirmation from Pixera on native AVB support. If not supported, a converter will be required between audio and media servers.\n\nHVAC Requirements\n\nAudio equipment heat output data is required for HVAC sizing calculations. The following information is needed from the contractor:\n\nHeat output (BTU/hr) per LA7.16i amplifier\n\nHeat output (BTU/hr",
+      "subsections": [
+        {
+          "title": "Items Awaiting Confirmation",
+          "text": "Sync Generator: Quote pending from supplier. Required for timecode alignment with video servers.\n\nPixera AVB Support: Awaiting confirmation from Pixera on native AVB support. If not supported, a converter will be required between audio and media servers."
+        },
+        {
+          "title": "HVAC Requirements",
+          "text": "Audio equipment heat output data is required for HVAC sizing calculations. The following information is needed from the contractor:\n\nHeat output (BTU/hr) per LA7.16i amplifier\n\nHeat output (BTU/hr) per L-ISA Processor II\n\nHeat output (BTU/hr) per LS10 switch\n\nMinimum and maximum operating temperatures for all equipment\n\nAirflow requirements (CFM) per rack"
+        },
+        {
+          "title": "Network Handover",
+          "text": "The physical handover point between the AVB network and building core network infrastructure needs to be defined. Clarification required on:\n\nRack location for network termination\n\nConnection type (fiber/Cat6a) for uplink to building switches\n\nWhether LS10 switches uplink to building switches or operate as isolated network"
+        }
+      ]
+    },
+    {
+      "title": "Quote References",
+      "textPreview": "Room 1 Quote\n\nQU-20070 dated 25 Feb 2026 (expires 27 Mar 2026)\n\nRoom 2 Quote\n\nQU-20071 dated 25 Feb 2026 (expires 27 Mar 2026)\n\nSupplier\n\nAudiotek Ltd, Swords Business Park, Ireland\n\nContact\n\nTom Macklin (tom.macklin@l-acoustics.com)\n\n🖇️ Audio Bridging Architectures",
+      "subsections": []
+    },
+    {
+      "title": "Section 9: Audio Bridging Architectures",
+      "textPreview": "What This Section Is About\n\nThe chosen audio system uses Milan-AVB protocol. The media servers don't natively support it. This section explains the bridging architectures we're evaluating to connect these systems, and the trade-offs involved in each approach.\n\nWhy It Matters\n\nAudio and video must stay synchronized. If the media server and audio system can't communicate directly, we need a bridge–and different bridge options introduce different amounts of delay, cost, and complexity. Getting this",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "The chosen audio system uses Milan-AVB protocol. The media servers don't natively support it. This section explains the bridging architectures we're evaluating to connect these systems, and the trade-offs involved in each approach."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Audio and video must stay synchronized. If the media server and audio system can't communicate directly, we need a bridge–and different bridge options introduce different amounts of delay, cost, and complexity. Getting this wrong means lip-sync problems where sound doesn't match what's on screen."
+        }
+      ]
+    },
+    {
+      "title": "Executive Summary",
+      "textPreview": "The Lightheart Immersive Experience audio system is built on Milan-AVB (Audio Video Bridging) as its native network audio protocol. This document outlines the bridging architecture, protocol compatibility considerations, and integration points with other building systems.\n\nCRITICAL NOTE: L-ISA Processor II does NOT support Dante natively. The system is AVB/Milan only. This creates a protocol boundary that requires careful consideration when integrating with building systems or media servers.",
+      "subsections": []
+    },
+    {
+      "title": "Protocol Overview",
+      "textPreview": "Milan-AVB (Primary Protocol)\n\nMilan is a certification program built on the IEEE AVB standards, ensuring interoperability between certified devices. The L-Acoustics system uses Milan-AVB for all audio transport.\n\nStandard\n\nIEEE 802.1BA-2011 + Avnu ProAV 1.1\n\nBandwidth\n\n1 Gbit/s per link\n\nLatency\n\n2 ms maximum (guaranteed)\n\nRedundancy\n\nSeamless failover (primary/secondary networks)\n\nChannels per Stream\n\nUp to 8 channels\n\nMax Streams (LS10)\n\n150 streams\n\nClocking\n\ngPTP (IEEE 802.1AS) - precision t",
+      "subsections": [
+        {
+          "title": "Milan-AVB (Primary Protocol)",
+          "text": "Milan is a certification program built on the IEEE AVB standards, ensuring interoperability between certified devices. The L-Acoustics system uses Milan-AVB for all audio transport.\n\nStandard\n\nIEEE 802.1BA-2011 + Avnu ProAV 1.1\n\nBandwidth\n\n1 Gbit/s per link\n\nLatency\n\n2 ms maximum (guaranteed)\n\nRedundancy\n\nSeamless failover (primary/secondary networks)\n\nChannels per Stream\n\nUp to 8 channels\n\nMax Streams (LS10)\n\n150 streams\n\nClocking\n\ngPTP (IEEE 802.1AS) - precision time protocol"
+        },
+        {
+          "title": "Key AVB/Milan Advantages",
+          "text": "Guaranteed bandwidth allocation prevents audio dropouts\n\nDeterministic latency ensures consistent timing\n\nAutomatic device discovery and configuration\n\nSeamless redundancy with sub-second failover\n\nNo manual network QoS configuration required"
+        }
+      ]
+    },
+    {
+      "title": "Protocol Boundaries & Integration Points",
+      "textPreview": "Dante Compatibility\n\nDante is a widely-used audio networking protocol from Audinate. The L-Acoustics system does not support Dante natively. This creates integration challenges:\n\nFeature\n\nAVB/Milan\n\nDante\n\nStandard\n\nIEEE 802.1 (open)\n\nAudinate proprietary\n\nLatency\n\nGuaranteed <2ms\n\nTypically 1-4ms\n\nRedundancy\n\nSeamless failover\n\nSeamless failover\n\nL-ISA Support\n\nNative\n\nNot supported\n\nDevice Discovery\n\nAutomatic\n\nAutomatic\n\nNetwork QoS\n\nBuilt-in\n\nRequires configuration",
+      "subsections": [
+        {
+          "title": "Dante Compatibility",
+          "text": "Dante is a widely-used audio networking protocol from Audinate. The L-Acoustics system does not support Dante natively. This creates integration challenges:\n\nFeature\n\nAVB/Milan\n\nDante\n\nStandard\n\nIEEE 802.1 (open)\n\nAudinate proprietary\n\nLatency\n\nGuaranteed <2ms\n\nTypically 1-4ms\n\nRedundancy\n\nSeamless failover\n\nSeamless failover\n\nL-ISA Support\n\nNative\n\nNot supported\n\nDevice Discovery\n\nAutomatic\n\nAutomatic\n\nNetwork QoS\n\nBuilt-in\n\nRequires configuration"
+        }
+      ]
+    },
+    {
+      "title": "Integration Options",
+      "textPreview": "Option 1: AVB-to-Dante Bridge/Converter\n\nA hardware converter device can bridge between AVB and Dante networks. This is the recommended approach if Dante integration is required.\n\nPros: Maintains audio quality, supports full channel count\n\nCons: Additional cost, potential latency increase, single point of failure\n\nOption 2: MADI Interface\n\nL-ISA Processor II supports MADI (Multichannel Audio Digital Interface) via BNC connectors. MADI can be used to connect to non-AVB equipment.\n\nPros: Low laten",
+      "subsections": [
+        {
+          "title": "Option 1: AVB-to-Dante Bridge/Converter",
+          "text": "A hardware converter device can bridge between AVB and Dante networks. This is the recommended approach if Dante integration is required.\n\nPros: Maintains audio quality, supports full channel count\n\nCons: Additional cost, potential latency increase, single point of failure"
+        },
+        {
+          "title": "Option 2: MADI Interface",
+          "text": "L-ISA Processor II supports MADI (Multichannel Audio Digital Interface) via BNC connectors. MADI can be used to connect to non-AVB equipment.\n\nPros: Low latency, high channel count (64 channels @ 48kHz)\n\nCons: Requires MADI-equipped devices, point-to-point only"
+        },
+        {
+          "title": "Option 3: AES/EBU Digital Audio",
+          "text": "L-ISA Processor II and LA7.16i amplifiers support AES/EBU (AES3) digital audio via XLR connectors for limited channel counts.\n\nPros: Universal compatibility, simple wiring\n\nCons: Limited to 2 channels per connection, requires multiple cables"
+        }
+      ]
+    },
+    {
+      "title": "Pixera Media Server Integration",
+      "textPreview": "The media server integration is a critical integration point. \n\nPixera Does NOT Support AVB natively\n\nWe have looked at potential integration paths and there are good options but they will have to be looked at during the next phase.",
+      "subsections": []
+    },
+    {
+      "title": "Network Architecture",
+      "textPreview": "Physical Network Topology\n\nThe audio network uses a redundant star topology with the following components:\n\nLS10 Switches\n\n2 per room (primary + secondary redundancy)\n\nL-ISA Processor II\n\nDual EtherCon ports for redundant connection\n\nLA7.16i Amplifiers\n\nDual RJ45/EtherCon for redundant AVB input\n\nCabling\n\nCat6A or better, shielded recommended",
+      "subsections": [
+        {
+          "title": "Physical Network Topology",
+          "text": "The audio network uses a redundant star topology with the following components:\n\nLS10 Switches\n\n2 per room (primary + secondary redundancy)\n\nL-ISA Processor II\n\nDual EtherCon ports for redundant connection\n\nLA7.16i Amplifiers\n\nDual RJ45/EtherCon for redundant AVB input\n\nCabling\n\nCat6A or better, shielded recommended"
+        }
+      ]
+    },
+    {
+      "title": "Network Segmentation",
+      "textPreview": "The AVB network should be segmented from the building's general IT network:\n\nAVB network operates as isolated audio network\n\nLS10 switches may uplink to building core via SFP fiber ports\n\nManagement VLAN can be shared with building network\n\nAudio streams remain isolated for reliability",
+      "subsections": []
+    },
+    {
+      "title": "Handover Point Requirements",
+      "textPreview": "TO BE CONFIRMED WITH CONTRACTOR:\n\nPhysical rack location for network handover\n\nFiber or copper uplink connection type\n\nNetwork switch specifications for building side\n\nVLAN configuration requirements",
+      "subsections": []
+    },
+    {
+      "title": "Synchronization Architecture",
+      "textPreview": "Clock Distribution\n\nAVB networks use gPTP (IEEE 802.1AS) for precision time synchronization. The L-ISA Processor II can act as Grandmaster clock or slave to an external reference.\n\nInternal Clock\n\nL-ISA Processor II as Grandmaster\n\nExternal Clock\n\nMeinberg sync generator (TBC)\n\nWord Clock\n\nBNC I/O on L-ISA Processor II\n\nMADI Clock\n\nEmbedded in MADI stream",
+      "subsections": [
+        {
+          "title": "Clock Distribution",
+          "text": "AVB networks use gPTP (IEEE 802.1AS) for precision time synchronization. The L-ISA Processor II can act as Grandmaster clock or slave to an external reference.\n\nInternal Clock\n\nL-ISA Processor II as Grandmaster\n\nExternal Clock\n\nMeinberg sync generator (TBC)\n\nWord Clock\n\nBNC I/O on L-ISA Processor II\n\nMADI Clock\n\nEmbedded in MADI stream"
+        }
+      ]
+    },
+    {
+      "title": "Video Synchronization Requirements",
+      "textPreview": "For lip-sync accuracy with video playback, timecode alignment is required:\n\nMeinberg sync generator provides house sync/TC\n\nL-ISA Processor II receives word clock or TC\n\nPixera/media servers must also receive same sync\n\nTarget: <1 frame audio-video offset\n\nNOTE: Sync generator quote is TBC. This is required for proper A/V synchronization.\n\nCabling Requirements\n\nNetwork Cabling\n\nAVB Primary\n\nCat6A STP (shielded twisted pair), black jacket\n\nAVB Secondary\n\nCat6A STP, red jacket (for redundancy iden",
+      "subsections": [
+        {
+          "title": "Cabling Requirements",
+          "text": "Network Cabling\n\nAVB Primary\n\nCat6A STP (shielded twisted pair), black jacket\n\nAVB Secondary\n\nCat6A STP, red jacket (for redundancy identification)\n\nMaximum Length\n\n100m per segment (Cat6A)\n\nConnectors\n\nNeutrik EtherCON (ruggedized RJ45)\n\nL-Acoustics Cable\n\nDOE2/DOE45/DOE100 (dual AVB cable with color coding)"
+        }
+      ]
+    },
+    {
+      "title": "Speaker Cabling",
+      "textPreview": "X8i/X6i\n\n2.5mm² recommended, terminal block connection\n\nSYVA SUB\n\n2.5mm² minimum, speakON NL4 or terminal block\n\nMaximum Length\n\n30m @ 8Ω with 2.5mm²\n\nL-Acoustics Cable\n\nSC32-BE (32-conductor for LA7.16i installations)",
+      "subsections": []
+    },
+    {
+      "title": "Troubleshooting & Diagnostics",
+      "textPreview": "Common Issues\n\nNo Audio\n\nCheck AVB stream subscription, verify primary/secondary links\n\nAudio Dropouts\n\nCheck for network loops, verify cable quality\n\nSync Issues\n\nVerify Grandmaster clock, check gPTP status\n\nHigh Latency\n\nCheck for non-AVB switches in path, verify cable lengths\n\nDiagnostic Tools\n\nLA Network Manager (L-Acoustics) - amplifier monitoring\n\nL-ISA Controller - processor configuration and monitoring\n\nAVB Protocol Analyzer (if available) - network diagnostics\n\nSwitch web interface - po",
+      "subsections": []
+    },
+    {
+      "title": "Section 10: Latency Budgeting",
+      "textPreview": "What This Section Is About\n\nWhen sound and video travel through complex systems, delays add up. This section calculates the total time from when a signal enters the system to when it emerges from speakers–and confirms we stay within acceptable limits for synchronized playback.\n\nWhy It Matters\n\nHumans notice when audio and video don't match. In film, the standard is ±20ms–beyond that, viewers perceive lip-sync errors. Our immersive content needs tight synchronization so that visual events and the",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "When sound and video travel through complex systems, delays add up. This section calculates the total time from when a signal enters the system to when it emerges from speakers–and confirms we stay within acceptable limits for synchronized playback."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Humans notice when audio and video don't match. In film, the standard is ±20ms–beyond that, viewers perceive lip-sync errors. Our immersive content needs tight synchronization so that visual events and their accompanying sounds occur simultaneously."
+        }
+      ]
+    },
+    {
+      "title": "Executive Summary",
+      "textPreview": "This document provides a comprehensive latency budget for the Lightheart Immersive Experience audio system. The analysis covers all processing stages from audio source to speaker output, ensuring lip-sync accuracy with video content.\n\nTARGET: Total end-to-end latency should not exceed 40ms to maintain perceptual synchronization with video. The L-Acoustics system is well within this budget.",
+      "subsections": []
+    },
+    {
+      "title": "Latency Fundamentals",
+      "textPreview": "Perceptual Thresholds\n\n< 10 ms\n\nImperceptible - professional live sound standard\n\n10-20 ms\n\nBarely perceptible - acceptable for most applications\n\n20-40 ms\n\nSlightly perceptible - acceptable for video sync\n\n> 40 ms\n\nNoticeable delay - lip-sync issues may occur\n\n> 100 ms\n\nUnacceptable - clear echo/delay effect",
+      "subsections": []
+    },
+    {
+      "title": "Video Sync Requirements",
+      "textPreview": "For immersive video+audio experiences, the audio must maintain tight synchronization with video playback:\n\nFilm/TV standard: +/- 20ms (audio ahead or behind video)\n\nLive performance: < 10ms preferred\n\nInteractive systems: < 20ms for responsive feel",
+      "subsections": []
+    },
+    {
+      "title": "Component Latency Analysis",
+      "textPreview": "L-ISA Processor II Latency\n\nInput to Output\n\n3.2 ms (measured, all processing active)\n\nSpatial Processing\n\nIncluded in 3.2 ms\n\nRoom Engine\n\nIncluded in 3.2 ms\n\nAVB Latency\n\n2 ms maximum (network transport)\n\nLA7.16i Amplifier Latency\n\nStandard Mode\n\n3.84 ms (DSP + A/D + D/A)\n\nLow Latency Mode\n\n1.18 ms (reduced processing)\n\nAVB Input Latency\n\n2 ms maximum\n\nOutput Delay\n\n0-1000 ms (configurable, default 0)\n\nSpeaker Acoustic Latency\n\nX8i/X6i\n\nNegligible (< 0.1 ms) - passive speakers\n\nSYVA SUB\n\nNegli",
+      "subsections": [
+        {
+          "title": "L-ISA Processor II Latency",
+          "text": "Input to Output\n\n3.2 ms (measured, all processing active)\n\nSpatial Processing\n\nIncluded in 3.2 ms\n\nRoom Engine\n\nIncluded in 3.2 ms\n\nAVB Latency\n\n2 ms maximum (network transport)"
+        },
+        {
+          "title": "LA7.16i Amplifier Latency",
+          "text": "Standard Mode\n\n3.84 ms (DSP + A/D + D/A)\n\nLow Latency Mode\n\n1.18 ms (reduced processing)\n\nAVB Input Latency\n\n2 ms maximum\n\nOutput Delay\n\n0-1000 ms (configurable, default 0)"
+        },
+        {
+          "title": "Speaker Acoustic Latency",
+          "text": "X8i/X6i\n\nNegligible (< 0.1 ms) - passive speakers\n\nSYVA SUB\n\nNegligible (< 0.1 ms) - passive subwoofer\n\nPhysical Distance\n\n2.9 ms per meter (speed of sound)"
+        }
+      ]
+    },
+    {
+      "title": "End-to-End Latency Budget",
+      "textPreview": "Typical Signal Path (Room 1)\n\nStage\n\nComponent\n\nLatency\n\nRunning Total\n\nNotes\n\n1\n\nMedia Server Output\n\n~2 ms\n\n2 ms\n\nPixera (estimated)\n\n2\n\nAVB Network\n\n2 ms\n\n4 ms\n\nMaximum guaranteed\n\n3\n\nL-ISA Processor\n\n3.2 ms\n\n7.2 ms\n\nSpatial processing\n\n4\n\nAVB to Amplifier\n\n2 ms\n\n9.2 ms\n\nNetwork transport\n\n5\n\nLA7.16i Amplifier\n\n3.84 ms\n\n~13 ms\n\nStandard mode\n\n6\n\nSpeaker Output\n\n<0.1 ms\n\n~13 ms\n\nNegligible\n\nBudget Analysis\n\nThe calculated end-to-end latency of ~13 ms is well within acceptable limits:\n\n13 ms is",
+      "subsections": [
+        {
+          "title": "Typical Signal Path (Room 1)",
+          "text": "Stage\n\nComponent\n\nLatency\n\nRunning Total\n\nNotes\n\n1\n\nMedia Server Output\n\n~2 ms\n\n2 ms\n\nPixera (estimated)\n\n2\n\nAVB Network\n\n2 ms\n\n4 ms\n\nMaximum guaranteed\n\n3\n\nL-ISA Processor\n\n3.2 ms\n\n7.2 ms\n\nSpatial processing\n\n4\n\nAVB to Amplifier\n\n2 ms\n\n9.2 ms\n\nNetwork transport\n\n5\n\nLA7.16i Amplifier\n\n3.84 ms\n\n~13 ms\n\nStandard mode\n\n6\n\nSpeaker Output\n\n<0.1 ms\n\n~13 ms\n\nNegligible"
+        },
+        {
+          "title": "Budget Analysis",
+          "text": "The calculated end-to-end latency of ~13 ms is well within acceptable limits:\n\n13 ms is imperceptible to most listeners\n\nSignificant headroom below 40ms video sync threshold\n\nLow latency mode available if further reduction needed\n\nSTATUS: PASS - Latency budget meets all requirements with margin."
+        }
+      ]
+    },
+    {
+      "title": "Variable Latency Factors",
+      "textPreview": "Network-Induced Variation\n\nAVB/Milan guarantees maximum latency, but actual latency may vary:\n\nMinimum\n\n~1 ms (ideal conditions, short cables)\n\nTypical\n\n1.5-2 ms (normal operation)\n\nMaximum\n\n2 ms (guaranteed by AVB standard)\n\nJitter\n\n< 1 ms (phase-locked to gPTP)\n\nDistance-Related Latency\n\nPhysical distance between speakers and listeners adds acoustic latency:\n\n2 meters\n\n5.8 ms\n\n5 meters\n\n14.5 ms\n\n10 meters\n\n29 ms\n\n20 meters\n\n58 ms\n\nNOTE: Listener position affects perceived timing. Front vs. rea",
+      "subsections": [
+        {
+          "title": "Network-Induced Variation",
+          "text": "AVB/Milan guarantees maximum latency, but actual latency may vary:\n\nMinimum\n\n~1 ms (ideal conditions, short cables)\n\nTypical\n\n1.5-2 ms (normal operation)\n\nMaximum\n\n2 ms (guaranteed by AVB standard)\n\nJitter\n\n< 1 ms (phase-locked to gPTP)"
+        },
+        {
+          "title": "Distance-Related Latency",
+          "text": "Physical distance between speakers and listeners adds acoustic latency:\n\n2 meters\n\n5.8 ms\n\n5 meters\n\n14.5 ms\n\n10 meters\n\n29 ms\n\n20 meters\n\n58 ms\n\nNOTE: Listener position affects perceived timing. Front vs. rear speakers may have different effective latencies based on listener distance."
+        }
+      ]
+    },
+    {
+      "title": "Audio-Video Synchronization",
+      "textPreview": "Synchronization Chain\n\nFor sample-accurate A/V sync, all systems must share a common clock reference:\n\n1. Sync Generator\n\nMeinberg (TBC) provides house sync/TC\n\n2. L-ISA Processor\n\nReceives word clock or timecode\n\n3. Media Server\n\nPixera receives same sync reference\n\n4. Video Displays\n\nLocked to house sync\n\nLatency Compensation\n\nIf video processing introduces latency, audio can be delayed to match:\n\nLA7.16i output delay: 0-1000 ms configurable\n\nL-ISA Processor delay: Available per output\n\nTypica",
+      "subsections": [
+        {
+          "title": "Synchronization Chain",
+          "text": "For sample-accurate A/V sync, all systems must share a common clock reference:\n\n1. Sync Generator\n\nMeinberg (TBC) provides house sync/TC\n\n2. L-ISA Processor\n\nReceives word clock or timecode\n\n3. Media Server\n\nPixera receives same sync reference\n\n4. Video Displays\n\nLocked to house sync"
+        },
+        {
+          "title": "Latency Compensation",
+          "text": "If video processing introduces latency, audio can be delayed to match:\n\nLA7.16i output delay: 0-1000 ms configurable\n\nL-ISA Processor delay: Available per output\n\nTypical video latency: 1-3 frames (16-50ms @ 60Hz)\n\nACTION REQUIRED: Measure actual video latency from media server to display to determine if audio delay compensation is needed."
+        },
+        {
+          "title": "Latency Measurement",
+          "text": "Measurement Methods\n\nMethod 1\n\nImpulse response measurement (swept sine)\n\nMethod 2\n\nLoopback test with reference microphone\n\nMethod 3\n\nDedicated latency analyzer (e.g., Smaart)\n\nMethod 4\n\nOscilloscope with test tone generator"
+        },
+        {
+          "title": "Recommended Test Procedure",
+          "text": "1. System Setup\nConfigure system for normal operation with all processing enabled.\n\n2. Reference Measurement\nMeasure latency at reference position (center of listening area).\n\n3. Multi-Point Measurement\nMeasure at multiple positions to verify consistency.\n\n4. Document Results\nRecord measurements for future reference and troubleshooting."
+        }
+      ]
+    },
+    {
+      "title": "Latency Budget Summary",
+      "textPreview": "Total System Latency\n\n~13 ms (typical)\n\nMaximum Expected\n\n~15 ms (worst case)\n\nVideo Sync Threshold\n\n40 ms\n\nHeadroom\n\n25-29 ms (62-72%)",
+      "subsections": []
+    },
+    {
+      "title": "Recommendations",
+      "textPreview": "1. Use Standard Latency Mode\nThe 3.84ms amplifier latency provides optimal audio quality. Low latency mode (1.18ms) is not necessary given the comfortable headroom.\n\n2. Implement Sync Generator\nEnsure the Meinberg sync generator is installed and configured for sample-accurate A/V synchronization.\n\n3. Measure Video Latency\nDetermine actual video latency to calculate if audio delay compensation is required.\n\n4. Document Configuration\nRecord all latency-related settings for future reference and mai",
+      "subsections": []
+    },
+    {
+      "title": "Section 11: Server Room",
+      "textPreview": "What This Section Is About\n\nBehind every immersive experience is a room full of equipment that makes it possible. This section details the server room infrastructure–the racks, power protection, media servers, network hardware, and cabling that form the technical backbone of the venue.\n\nWhy It Matters\n\nThis equipment runs continuously during operating hours. It must be reliable, supportable, and adequately protected. A server room failure means the venue can't operate. We've specified enterprise",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "Behind every immersive experience is a room full of equipment that makes it possible. This section details the server room infrastructure–the racks, power protection, media servers, network hardware, and cabling that form the technical backbone of the venue."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "This equipment runs continuously during operating hours. It must be reliable, supportable, and adequately protected. A server room failure means the venue can't operate. We've specified enterprise-grade equipment with redundancy for critical systems."
+        },
+        {
+          "title": "",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "title": "Executive Summary",
+      "textPreview": "The server room infrastructure supports the Lightheart Immersive Experience with a robust architecture designed for high-performance media processing, network connectivity, and power protection. The system is built around 5× Pixera PX2 Octo media servers with 100G network backbone capability.\n\nTotal Equipment Cost\n\n€443,103\n\nRack Capacity\n\n53U allocated / 96U total (55% fill)\n\nPower Draw\n\n6,202W (~27A @ 230V) visual & networking only\n\n~10,400W estimated total including audio\n\nHeat Load\n\n21,161 B",
+      "subsections": []
+    },
+    {
+      "title": "Physical Infrastructure",
+      "textPreview": "Server Racks\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1001\n\nAPC NetShelter SX 48U\n\nServer Rack\n\n2\n\n0\n\n€3,900\n\nRack Specifications:\n\nAPC NetShelter SX 48U is an industry-standard server enclosure with:\n\n48U vertical mounting space\n\n600mm x 1070mm footprint\n\nFront and rear perforated doors for airflow\n\nVertical cable management\n\nLoad capacity: 1,500 kg static\n\nRack Utilization Plan (visual + network only)\n\nEquipment\n\nU-Height\n\nQuantity\n\nTotal U\n\nMedia Servers (Pixera PX2 Octo)\n\n2U\n\n5\n\n10U\n\nUPS Sys",
+      "subsections": [
+        {
+          "title": "Server Racks",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1001\n\nAPC NetShelter SX 48U\n\nServer Rack\n\n2\n\n0\n\n€3,900"
+        },
+        {
+          "title": "Rack Specifications:",
+          "text": "APC NetShelter SX 48U is an industry-standard server enclosure with:\n\n48U vertical mounting space\n\n600mm x 1070mm footprint\n\nFront and rear perforated doors for airflow\n\nVertical cable management\n\nLoad capacity: 1,500 kg static"
+        },
+        {
+          "title": "Rack Utilization Plan (visual + network only)",
+          "text": "Equipment\n\nU-Height\n\nQuantity\n\nTotal U\n\nMedia Servers (Pixera PX2 Octo)\n\n2U\n\n5\n\n10U\n\nUPS Systems (APC SRT 10kVA)\n\n6U\n\n2\n\n12U\n\nCore/Edge Switches\n\n1U\n\n4\n\n4U\n\nSync Generator (Meinberg)\n\n1U\n\n1\n\n1U\n\nReserved for Expansion\n\n-\n\n-\n\n2U\n\nTOTAL ALLOCATED (visual only)\n\n29U\n\nTOTAL AVAILABLE (2 racks)\n\n96U\n\nREMAINING CAPACITY\n\n67U"
+        }
+      ]
+    },
+    {
+      "title": "Power Protection",
+      "textPreview": "UPS Systems\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1006\n\nAPC Smart-UPS SRT 10000VA RM\n\nUPS\n\n2\n\n6U each\n\n€10,000\n\nUPS Specifications: The APC Smart-UPS SRT 10000VA RM provides:\n\nCapacity\n\n10,000 VA / 10,000 W (excluding audio)\n\nForm Factor\n\nRack-mount 6U\n\nInput\n\n230V single-phase\n\nOutput\n\n230V pure sine wave\n\nRuntime\n\n~15 min at full load (batteries internal)\n\nManagement\n\nNetwork management card included\n\nRedundancy\n\nN+1 configuration with two units\n\nNOTE: UPS provides backup power for graceful",
+      "subsections": [
+        {
+          "title": "UPS Systems",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1006\n\nAPC Smart-UPS SRT 10000VA RM\n\nUPS\n\n2\n\n6U each\n\n€10,000\n\nUPS Specifications: The APC Smart-UPS SRT 10000VA RM provides:\n\nCapacity\n\n10,000 VA / 10,000 W (excluding audio)\n\nForm Factor\n\nRack-mount 6U\n\nInput\n\n230V single-phase\n\nOutput\n\n230V pure sine wave\n\nRuntime\n\n~15 min at full load (batteries internal)\n\nManagement\n\nNetwork management card included\n\nRedundancy\n\nN+1 configuration with two units\n\nNOTE: UPS provides backup power for graceful shutdown. Generator backup should be considered for extended outages."
+        }
+      ]
+    },
+    {
+      "title": "Media Servers & Processing",
+      "textPreview": "Primary Servers\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1002\n\nPixera PX2 Octo + GUI Card\n\nMedia Server\n\n5\n\n2U each\n\n€55,000",
+      "subsections": [
+        {
+          "title": "Primary Servers",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1002\n\nPixera PX2 Octo + GUI Card\n\nMedia Server\n\n5\n\n2U each\n\n€55,000"
+        }
+      ]
+    },
+    {
+      "title": "Pixera PX2 Octo Specifications:",
+      "textPreview": "Form Factor\n\n2U rack-mount\n\nProcessing\n\nHigh-performance media processing engine\n\nNetwork\n\n10GBase-T ports\n\nPower Draw\n\n800W per unit\n\nTotal Power\n\n4,000W (5 units)\n\nHeat Output\n\n13,648 BTU/h total\n\nGUI Card\n\nIncluded for control interface on the “Director” server",
+      "subsections": []
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Synchronization",
+      "textPreview": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1013\n\nMeinberg Microsync Broadcast\n\nSync Generator\n\n1\n\n1U\n\n€25,000 (estimated - quote pending)\n\nMeinberg Microsync Broadcast Functions:\n\nPTP Grandmaster for audio network (Milan-AVB)\n\nTri-level burst genlock for video synchronization\n\nSample-accurate A/V sync across all systems\n\nPower Draw\n\n100W\n\nHeat Output\n\n341 BTU/h",
+      "subsections": [
+        {
+          "title": "Meinberg Microsync Broadcast Functions:",
+          "text": "PTP Grandmaster for audio network (Milan-AVB)\n\nTri-level burst genlock for video synchronization\n\nSample-accurate A/V sync across all systems\n\nPower Draw\n\n100W\n\nHeat Output\n\n341 BTU/h"
+        }
+      ]
+    },
+    {
+      "title": "Network Hardware",
+      "textPreview": "Core Switches (100G Spine)\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1004\n\nNetgear M4500-32C (CSM4532)\n\n100G Core Switch\n\n2\n\n1U each\n\n€24,500\n\nNetgear M4500-32C Specifications:\n\nPorts\n\n32 × 100G QSFP28\n\nChipset\n\nCSM4532\n\nFunction\n\nST2110/IPMX backbone; server interconnect\n\nPower Draw\n\n426W per unit\n\nTotal Power\n\n852W (2 units)\n\nHeat Output\n\n2,907 BTU/h\n\nEdge/PoE Switches\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1005\n\nNetgear XSM4344C\n\nPoE+ Edge Switch\n\n2\n\n1U each\n\n€15,000\n\nNetgear XSM4344C Specif",
+      "subsections": [
+        {
+          "title": "Core Switches (100G Spine)",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1004\n\nNetgear M4500-32C (CSM4532)\n\n100G Core Switch\n\n2\n\n1U each\n\n€24,500"
+        },
+        {
+          "title": "Netgear M4500-32C Specifications:",
+          "text": "Ports\n\n32 × 100G QSFP28\n\nChipset\n\nCSM4532\n\nFunction\n\nST2110/IPMX backbone; server interconnect\n\nPower Draw\n\n426W per unit\n\nTotal Power\n\n852W (2 units)\n\nHeat Output\n\n2,907 BTU/h"
+        },
+        {
+          "title": "Edge/PoE Switches",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1005\n\nNetgear XSM4344C\n\nPoE+ Edge Switch\n\n2\n\n1U each\n\n€15,000"
+        },
+        {
+          "title": "Netgear XSM4344C Specifications:",
+          "text": "Ports\n\n44 × 10Gb PoE+ with 100G uplink\n\nFunction\n\nSensor aggregation (Luxonis camera array)\n\nPower Draw\n\n413W per unit\n\nTotal Power\n\n826W (2 units)\n\nHeat Output\n\n2,818 BTU/h"
+        }
+      ]
+    },
+    {
+      "title": "Optical Transceivers",
+      "textPreview": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1009\n\nCisco QSFP-100G-CWDM4-S Compatible\n\n100G Transceiver\n\n64\n\nN/A\n\n€220\n\nTransceiver Specifications:\n\nType\n\n100GBASE-CWDM4 QSFP28\n\nWavelength\n\n1310nm\n\nRange\n\n2km\n\nConnector\n\nDuplex LC/UPC SMF\n\nPower Draw\n\n3.5W per unit\n\nTotal Power\n\n224W (64 units)\n\nHeat Output\n\n764 BTU/h",
+      "subsections": []
+    },
+    {
+      "title": "Cabling Infrastructure",
+      "textPreview": "Fiber Optic Cabling\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1007\n\nOS2 4-core LC (50m)\n\nSingle-mode Fiber\n\n50\n\nN/A\n\n€150\n\nFiber Specifications:\n\nType\n\nOS2 single-mode\n\nCore Count\n\n4-core\n\nConnector\n\nLC duplex\n\nLength\n\n50m runs\n\nPurpose\n\nHigh-speed backbone with redundant cores\n\nFuture Capacity\n\nSupports 100G sensor aggregation\n\nCopper Cabling\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1008\n\nCat6a S/FTP LSZH (50m)\n\nShielded Ethernet\n\n75\n\nN/A\n\n€75\n\nCopper Cable Specifications:\n\nCategory\n\nCat6a\n\nShie",
+      "subsections": [
+        {
+          "title": "Fiber Optic Cabling",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1007\n\nOS2 4-core LC (50m)\n\nSingle-mode Fiber\n\n50\n\nN/A\n\n€150\n\nFiber Specifications:\n\nType\n\nOS2 single-mode\n\nCore Count\n\n4-core\n\nConnector\n\nLC duplex\n\nLength\n\n50m runs\n\nPurpose\n\nHigh-speed backbone with redundant cores\n\nFuture Capacity\n\nSupports 100G sensor aggregation"
+        },
+        {
+          "title": "Copper Cabling",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1008\n\nCat6a S/FTP LSZH (50m)\n\nShielded Ethernet\n\n75\n\nN/A\n\n€75\n\nCopper Cable Specifications:\n\nCategory\n\nCat6a\n\nShielding\n\nS/FTP (screened foiled twisted pair)\n\nJacket\n\nLSZH (low smoke zero halogen)\n\nLength\n\n50m runs\n\nPurpose\n\nManagement network and control signals"
+        }
+      ]
+    },
+    {
+      "title": "Workstation & Peripherals",
+      "textPreview": "Monitors\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1010\n\nASUS ROG Swift OLED PG27UCDM\n\n27\" OLED Monitor\n\n2\n\nN/A\n\n€949\n\nMonitor Specifications:\n\nDisplay\n\n27\" OLED\n\nResolution\n\n4K UHD\n\nRefresh Rate\n\n240Hz\n\nPower Draw\n\n100W each\n\nTotal Power\n\n200W (2 units)\n\nHeat Output\n\n682 BTU/h\n\nPeripherals\n\nID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1012\n\nLogitech MX Keys S\n\nWireless Keyboard\n\n2\n\nN/A\n\n€100\n\nSRV1011\n\nMisc Cabling & Peripherals\n\nVarious\n\n1\n\nN/A\n\n€2,000",
+      "subsections": [
+        {
+          "title": "Monitor Specifications:",
+          "text": "Display\n\n27\" OLED\n\nResolution\n\n4K UHD\n\nRefresh Rate\n\n240Hz\n\nPower Draw\n\n100W each\n\nTotal Power\n\n200W (2 units)\n\nHeat Output\n\n682 BTU/h"
+        },
+        {
+          "title": "Peripherals",
+          "text": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1012\n\nLogitech MX Keys S\n\nWireless Keyboard\n\n2\n\nN/A\n\n€100\n\nSRV1011\n\nMisc Cabling & Peripherals\n\nVarious\n\n1\n\nN/A\n\n€2,000"
+        }
+      ]
+    },
+    {
+      "title": "Labor & Installation",
+      "textPreview": "ID\n\nProduct\n\nType\n\nQty\n\nRack\n\nPrice\n\nSRV1014\n\nLabor - Termination/Config\n\nTechnical Labor\n\nTBC\n\nN/A\n\nTBC\n\nLabor Scope:\n\nFiber termination and testing\n\nNetwork switch configuration\n\nSync generator calibration\n\nSystem integration and commissioning",
+      "subsections": [
+        {
+          "title": "Labor Scope:",
+          "text": "Fiber termination and testing\n\nNetwork switch configuration\n\nSync generator calibration\n\nSystem integration and commissioning"
+        }
+      ]
+    },
+    {
+      "title": "Summary & Totals",
+      "textPreview": "Cost Summary\n\nPhysical Infrastructure (Racks)\n\n€7,800\n\nPower Protection (UPS)\n\n€20,000\n\nMedia Servers (Pixera)\n\n€275,000\n\nSynchronization (Meinberg)\n\n€25,000\n\nNetwork Hardware (Switches)\n\n€79,000\n\nOptical Transceivers\n\n€14,080\n\nCabling Infrastructure\n\n€13,125\n\nWorkstation & Peripherals\n\n€4,098\n\nLabor & Installation\n\n€5,000\n\nTOTAL SERVER ROOM\n\n€443,103\n\nPower & Thermal Summary\n\nTotal Power Draw\n\n6,202W\n\nCurrent @ 230V\n\n~27A\n\nUPS Capacity\n\n2 × 10kVA = 20kVA total\n\nUPS Headroom\n\n~69% (comfortable m",
+      "subsections": [
+        {
+          "title": "Cost Summary",
+          "text": "Physical Infrastructure (Racks)\n\n€7,800\n\nPower Protection (UPS)\n\n€20,000\n\nMedia Servers (Pixera)\n\n€275,000\n\nSynchronization (Meinberg)\n\n€25,000\n\nNetwork Hardware (Switches)\n\n€79,000\n\nOptical Transceivers\n\n€14,080\n\nCabling Infrastructure\n\n€13,125\n\nWorkstation & Peripherals\n\n€4,098\n\nLabor & Installation\n\n€5,000\n\nTOTAL SERVER ROOM\n\n€443,103"
+        },
+        {
+          "title": "Power & Thermal Summary",
+          "text": "Total Power Draw\n\n6,202W\n\nCurrent @ 230V\n\n~27A\n\nUPS Capacity\n\n2 × 10kVA = 20kVA total\n\nUPS Headroom\n\n~69% (comfortable margin)\n\nHeat Load (Visual)\n\n21,161 BTU/h\n\nHeat & Power Load (Audio)\n\nTBC - pending contractor data\n\nNOTE: Audio equipment adds significant additional heat load. See Server Room HVAC document for complete thermal analysis."
+        }
+      ]
+    },
+    {
+      "title": "Future Options (Not Procured)",
+      "textPreview": "Aja IP25-R\n\nST2110 to HDMI gateway for broadcast integration\n\nAVB Audio Interface\n\nNative Milan audio bridging (see Audio section)\n\nThese items are identified for potential future expansion but are not included in current procurement.\n\n❄️ HVAC",
+      "subsections": []
+    },
+    {
+      "title": "Section 12: Server Room & General HVAC",
+      "textPreview": "Executive Summary\n\nThis section details the thermal load and cooling requirements for the Lightheart Immersive Experience. Because electronics and heat degrade performance and lifespan, the HVAC system must handle peak loads during hot weather while maintaining headroom for future expansion.\n\nCritical Gap: Heat output values for L-Acoustics audio equipment are currently unavailable. The HVAC contractor must obtain this data directly from Audiotek/L-Acoustics to finalize sizing.\n\nRecommendation: ",
+      "subsections": [
+        {
+          "title": "Executive Summary",
+          "text": "This section details the thermal load and cooling requirements for the Lightheart Immersive Experience. Because electronics and heat degrade performance and lifespan, the HVAC system must handle peak loads during hot weather while maintaining headroom for future expansion.\n\nCritical Gap: Heat output values for L-Acoustics audio equipment are currently unavailable. The HVAC contractor must obtain this data directly from Audiotek/L-Acoustics to finalize sizing.\n\nRecommendation: Size Server Room HVAC for ~45,000 to 50,000 BTU/h. Gallery HVAC must separately account for ~83,000 BTU/h of projector heat. Note that while projectors are in the gallery spaces, they contribute heavily to the building's overall thermal load."
+        },
+        {
+          "title": "",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "1. Total Heat Load Summary",
+      "textPreview": "System Type\n\nPower (W)\n\nHeat Load (BTU/h)\n\nStatus\n\nVisual Equipment (Servers, Network)\n\n6,202 W\n\n21,161\n\nConfirmed\n\nProjection Equipment (Gallery Spaces)\n\n24,510 W\n\n82,880\n\nConfirmed\n\nAudio Equipment (Amps, Processors)\n\n~4,200 W\n\n14,450\n\nEstimated (Pending Data)\n\nESTIMATED TOTAL\n\n~34,912 W\n\n118,491\n\nMixed",
+      "subsections": []
+    },
+    {
+      "title": "2. Detailed Equipment Breakdown",
+      "textPreview": "A. Visual Equipment (Confirmed)\n\nEquipment\n\nQty\n\nPower (W)\n\nBTU/h (Each)\n\nTotal BTU/h\n\nPixera PX2 Octo (Media Servers)\n\n5\n\n800 W\n\n2,730\n\n13,648\n\nNetgear M4500-32C (Core Switch)\n\n2\n\n426 W\n\n1,454\n\n2,907\n\nNetgear XSM4344C (Edge Switch)\n\n2\n\n413 W\n\n1,409\n\n2,818\n\nQSFP Transceivers\n\n64\n\n3.5 W\n\n12\n\n764\n\nASUS OLED Monitors\n\n2\n\n100 W\n\n341\n\n682\n\nMeinberg Microsync\n\n1\n\n100 W\n\n341\n\n341\n\nVisual Subtotal\n\n21,161\n\nB. Projection Equipment (Confirmed - Note: Located in Gallery Spaces)\n\nComponent\n\nQty\n\nPower (W)\n\n",
+      "subsections": [
+        {
+          "title": "A. Visual Equipment (Confirmed)",
+          "text": "Equipment\n\nQty\n\nPower (W)\n\nBTU/h (Each)\n\nTotal BTU/h\n\nPixera PX2 Octo (Media Servers)\n\n5\n\n800 W\n\n2,730\n\n13,648\n\nNetgear M4500-32C (Core Switch)\n\n2\n\n426 W\n\n1,454\n\n2,907\n\nNetgear XSM4344C (Edge Switch)\n\n2\n\n413 W\n\n1,409\n\n2,818\n\nQSFP Transceivers\n\n64\n\n3.5 W\n\n12\n\n764\n\nASUS OLED Monitors\n\n2\n\n100 W\n\n341\n\n682\n\nMeinberg Microsync\n\n1\n\n100 W\n\n341\n\n341\n\nVisual Subtotal\n\n21,161"
+        },
+        {
+          "title": "B. Projection Equipment (Confirmed - Note: Located in Gallery Spaces)",
+          "text": "Component\n\nQty\n\nPower (W)\n\nBTU/h (Each)\n\nTotal BTU/h\n\nRoom 1 Walls (I600-4K10)\n\n14\n\n860 W\n\n2,900\n\n40,600\n\nRoom 2 Walls (I600-4K8)\n\n8\n\n640 W\n\n2,150\n\n17,200\n\nRoom 1 Floor (G50-W8)\n\n10\n\n490 W\n\n1,672\n\n16,720\n\nRoom 2 Floor (G50-W8)\n\n5\n\n490 W\n\n1,672\n\n8,360\n\nProjection Subtotal\n\n37\n\n82,880"
+        },
+        {
+          "title": "C. Audio Equipment (Estimated - Requires Contractor Action)",
+          "text": "Equipment\n\nQty\n\nEst. Power (W)\n\nTotal BTU/h\n\nStatus\n\nLA7.16i CE Amplifiers\n\n6\n\n~300-500 W (typical)*\n\nTBC\n\nRequires Data\n\nL-ISA Processor II\n\n1\n\n300 W\n\nTBC\n\nRequires Data\n\nLS10 AVB Switch\n\n4\n\n80 W\n\nTBC\n\nRequires Data\n\nQ-Sys Core 8 Flex\n\n1\n\nTBC\n\nTBC\n\nRequires Data\n\nRME MADIface USB\n\n2\n\nBus powered\n\nMinimal\n\nConfirmed\n\n*LA7.16i Power Note: Maximum power is 3,840W per unit (~23kW total). Typical operating load is 15-20% of max (~3-5kW total). With Class D 90% efficiency, the heat output is roughly 10% of the output."
+        }
+      ]
+    },
+    {
+      "title": "3. Final HVAC Sizing & Environmental Requirements",
+      "textPreview": "Environmental & Operating Specs\n\nTarget Room Temp: 18-24°C (64-75°F) for maximum longevity. (Maximum allowable is 27°C / 80°F).\n\nHumidity: 40-60% (non-condensing).\n\nAir Changes: Minimum 15-20 ACH recommended.\n\nAcoustics: The HVAC must utilize low-velocity ductwork and sound attenuators to hit a target rating of NC-35 or better in adjacent gallery spaces.\n\nAirflow & Racking\n\nLA7.16i amplifiers require front-to-rear forced-air cooling via 5 DSP-controlled fans.\n\nAll amplifiers must be front-facing",
+      "subsections": [
+        {
+          "title": "Environmental & Operating Specs",
+          "text": "Target Room Temp: 18-24°C (64-75°F) for maximum longevity. (Maximum allowable is 27°C / 80°F).\n\nHumidity: 40-60% (non-condensing).\n\nAir Changes: Minimum 15-20 ACH recommended.\n\nAcoustics: The HVAC must utilize low-velocity ductwork and sound attenuators to hit a target rating of NC-35 or better in adjacent gallery spaces."
+        },
+        {
+          "title": "Airflow & Racking",
+          "text": "LA7.16i amplifiers require front-to-rear forced-air cooling via 5 DSP-controlled fans.\n\nAll amplifiers must be front-facing.\n\nRacks require a minimum of 100mm clearance on both the front and rear."
+        }
+      ]
+    },
+    {
+      "title": "4. Next Steps & Action Items",
+      "textPreview": "Building Contractor to action the following:\n\nContact Audiotek/L-Acoustics: Procure exact BTU/h outputs for the LA7.16i (at both 15-20% load and maximum load), the L-ISA Processor II, and the LS10 switches.\n\nVerify Specs: Confirm minimum CFM airflow required per LA7.16i and the max allowable ambient temperature.\n\nFinalize HVAC: Recalculate final capacity once audio data is confirmed, ensuring a 20-30% expansion buffer.\n\nDesign Layout: Coordinate rack layouts to accommodate front-to-rear airflow ",
+      "subsections": []
+    },
+    {
+      "title": "Section 13: Contractors / Vendors",
+      "textPreview": "What This Section Is About\n\nThis project involves multiple suppliers providing different systems. This section provides a comprehensive directory–who supplies what, current pricing status, contact information, and what remains to be confirmed.\n\nWhy It Matters\n\nClear vendor relationships prevent confusion and delays. Knowing who to contact for each system, when quotes expire, and what decisions remain helps keep the project moving forward efficiently.",
+      "subsections": [
+        {
+          "title": "What This Section Is About",
+          "text": "This project involves multiple suppliers providing different systems. This section provides a comprehensive directory–who supplies what, current pricing status, contact information, and what remains to be confirmed."
+        },
+        {
+          "title": "Why It Matters",
+          "text": "Clear vendor relationships prevent confusion and delays. Knowing who to contact for each system, when quotes expire, and what decisions remain helps keep the project moving forward efficiently."
+        }
+      ]
+    },
+    {
+      "title": "Executive Summary",
+      "textPreview": "This document provides a comprehensive directory of all vendors and contractors engaged for the Lightheart Immersive Experience project. It includes contact information, procurement status, and alternative suppliers under consideration.\n\nProject Location\n\nDublin, Ireland\n\nTarget Opening\n\nSeptember 2026\n\nRental Duration\n\n12-18 months (initial phase)\n\nTechnical Lead\n\nKrisjanis (Kris) Berzins, IdirNet\n\nCreative Director\n\nKev Freeney\n\nClient\n\nLightheart Ltd / Brendan Dillon",
+      "subsections": []
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Projection Equipment Vendors",
+      "textPreview": "Primary Specification: Barco\n\nBarco has been specified as the primary projection vendor. The following models are under consideration:\n\nBarco I600-4K10\n\n10,000 lm, 4K\n\n14\n\nRoom 1 walls\n\nPrimary spec\n\nBarco I600-4K8\n\n8,000 lm, 4K\n\n8\n\nRoom 2 walls\n\nPrimary spec\n\nBarco G50-W8\n\n8,000 lm, 2K\n\n15\n\nFloor projection\n\nPrimary spec\n\nILD 0.37 UST Lens\n\nUltra-short throw\n\n22\n\nWall projectors\n\nWith I600 series\n\n0.65-0.75:1 G-Lens\n\nShort-throw\n\n15\n\nFloor projectors\n\nWith G50 series\n\nSignal Transport Requireme",
+      "subsections": [
+        {
+          "title": "Primary Specification: Barco",
+          "text": "Barco has been specified as the primary projection vendor. The following models are under consideration:\n\nBarco I600-4K10\n\n10,000 lm, 4K\n\n14\n\nRoom 1 walls\n\nPrimary spec\n\nBarco I600-4K8\n\n8,000 lm, 4K\n\n8\n\nRoom 2 walls\n\nPrimary spec\n\nBarco G50-W8\n\n8,000 lm, 2K\n\n15\n\nFloor projection\n\nPrimary spec\n\nILD 0.37 UST Lens\n\nUltra-short throw\n\n22\n\nWall projectors\n\nWith I600 series\n\n0.65-0.75:1 G-Lens\n\nShort-throw\n\n15\n\nFloor projectors\n\nWith G50 series\n\nSignal Transport Requirement: 4:4:4 @ 60Hz, 16:10 aspect ratio for both 4K and 2K systems"
+        }
+      ]
+    },
+    {
+      "title": "Signal Transport Vendors",
+      "textPreview": "DVIGear\n\nDVI-7380 DP to DP 4K\n\n22x sets\n\n4:4:4 @ 60Hz over OS2 Fiber\n\nUnder evaluation\n\nLightware\n\nFiber extenders\n\nTBC\n\n4K 4:4:4 12-bit @ 60Hz\n\nUnder evaluation\n\nCrestron\n\nDM NVX / DMPS\n\nTBC\n\nAV-over-IP solutions\n\nAlternative option\n\nBarco\n\nIO Gateway (IPMX)\n\nTBC\n\nST2110/IPMX compatible\n\nFuture-proofing option",
+      "subsections": []
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Alternative Vendors (Under Review)",
+      "textPreview": "The following alternatives have been identified for comparative pricing and availability:\n\nPanasonic Alternatives\n\nPT-REQ10\n\n10,000 lm, 4K\n\nAlternative to I600-4K10\n\nET-C1U100 UST Lens (0.308-0.330:1)\n\nPT-REQ80\n\n8,000 lm, 4K\n\nAlternative to I600-4K8\n\nET-C1U100 UST Lens (0.308-0.330:1)\n\nPT-MZ880\n\n8,000 lm, WUXGA\n\nAlternative to G50-W8\n\nET-ELW22 (0.78-0.98:1) - longer throw\n\nEpson Alternatives\n\nEB-PU2010B\n\n10,000 lm, 4K\n\nAlternative to I600-4K10\n\nELPLX01S Fixed UST (0.35:1)\n\nEB-PU1008W\n\n8,500 lm, ",
+      "subsections": [
+        {
+          "title": "Panasonic Alternatives",
+          "text": "PT-REQ10\n\n10,000 lm, 4K\n\nAlternative to I600-4K10\n\nET-C1U100 UST Lens (0.308-0.330:1)\n\nPT-REQ80\n\n8,000 lm, 4K\n\nAlternative to I600-4K8\n\nET-C1U100 UST Lens (0.308-0.330:1)\n\nPT-MZ880\n\n8,000 lm, WUXGA\n\nAlternative to G50-W8\n\nET-ELW22 (0.78-0.98:1) - longer throw"
+        },
+        {
+          "title": "Epson Alternatives",
+          "text": "EB-PU2010B\n\n10,000 lm, 4K\n\nAlternative to I600-4K10\n\nELPLX01S Fixed UST (0.35:1)\n\nEB-PU1008W\n\n8,500 lm, 4K-Enhanced\n\nAlternative to I600-4K8 & G50-W8\n\nELPLX01S Fixed UST (0.35:1)\n\nEB-PU1008W\n\n8,500 lm, 4K-Enhanced\n\nAlternative to G50-W8\n\nELPLU03S Short-Throw (0.65-0.78:1)\n\nNote: Rental stock availability and lead times may influence final equipment selection. The team is pushing for the highest-end setup achievable within budget constraints."
+        }
+      ]
+    },
+    {
+      "title": "Media Server Vendors",
+      "textPreview": "Primary: Pixera (AV Stumpfl)\n\nProduct\n\nPixera PX2 Octo + GUI Card\n\nQuantity\n\n5 units\n\nUnit Price\n\n£39,100 (ex VAT) / ~€55,000\n\nTotal Cost\n\n~€275,000\n\nForm Factor\n\n2U rack-mount\n\nNetwork\n\n10GBase-T ports\n\nStatus\n\nPricing confirmed\n\nAVB Support: Pixera does NOT support AVB natively. Confirmed by vendor. Integration with L-Acoustics audio system requires hardware converter or sync-based separation.\n\nAlternative Media Servers (Considered)\n\nPicturall\n\nPro series\n\nPremium playback\n\nUsed at Outernet\n\nL",
+      "subsections": [
+        {
+          "title": "Primary: Pixera (AV Stumpfl)",
+          "text": "Product\n\nPixera PX2 Octo + GUI Card\n\nQuantity\n\n5 units\n\nUnit Price\n\n£39,100 (ex VAT) / ~€55,000\n\nTotal Cost\n\n~€275,000\n\nForm Factor\n\n2U rack-mount\n\nNetwork\n\n10GBase-T ports\n\nStatus\n\nPricing confirmed\n\nAVB Support: Pixera does NOT support AVB natively. Confirmed by vendor. Integration with L-Acoustics audio system requires hardware converter or sync-based separation."
+        },
+        {
+          "title": "Alternative Media Servers (Considered)",
+          "text": "Picturall\n\nPro series\n\nPremium playback\n\nUsed at Outernet\n\nLimited operators in Ireland\n\nHive\n\nBlade servers\n\nCost-conscious option\n\n100G ports available\n\nUnder evaluation\n\nCustom Build\n\nDell/similar + Pixera dongle\n\nAlternative approach\n\nFully supported hardware\n\nTo be priced\n\nKey Considerations:\n\nPixera offers native Notch blocks and TouchEngine integration\n\nPicturall is excellent for pure playback but lacks interactive/real-time support\n\nCustom builds can license VIOSO for automated mapping calibration\n\nHive blades offer 100G ports for high-bandwidth applications"
+        }
+      ]
+    },
+    {
+      "title": "Audio System Vendors",
+      "textPreview": "Primary: L-Acoustics (via Audiotek)\n\nSupplier\n\nAudiotek Ltd, Swords Business Park, Ireland\n\nContact\n\nTom Macklin (tom.macklin@l-acoustics.com)\n\nQuote Ref\n\nQU-20070 (Room 1), QU-20071 (Room 2)\n\nQuote Date\n\n25 Feb 2026 (expires 27 Mar 2026)\n\nRoom 1 Cost\n\n€226,453.83\n\nRoom 2 Cost\n\n€175,131.93\n\nTotal Audio\n\n€401,585.76\n\nEquipment List\n\nX8i\n\nSurround speaker\n\n34 total\n\n90° axisymmetric, 129 dB\n\nRoom 1 & 2\n\nX6i\n\nHeight speaker\n\n37 total\n\n90° axisymmetric, 123 dB\n\nRoom 1 & 2\n\nSYVA SUB\n\nSubwoofer\n\n16 to",
+      "subsections": [
+        {
+          "title": "Primary: L-Acoustics (via Audiotek)",
+          "text": "Supplier\n\nAudiotek Ltd, Swords Business Park, Ireland\n\nContact\n\nTom Macklin (tom.macklin@l-acoustics.com)\n\nQuote Ref\n\nQU-20070 (Room 1), QU-20071 (Room 2)\n\nQuote Date\n\n25 Feb 2026 (expires 27 Mar 2026)\n\nRoom 1 Cost\n\n€226,453.83\n\nRoom 2 Cost\n\n€175,131.93\n\nTotal Audio\n\n€401,585.76"
+        },
+        {
+          "title": "Equipment List",
+          "text": "X8i\n\nSurround speaker\n\n34 total\n\n90° axisymmetric, 129 dB\n\nRoom 1 & 2\n\nX6i\n\nHeight speaker\n\n37 total\n\n90° axisymmetric, 123 dB\n\nRoom 1 & 2\n\nSYVA SUB\n\nSubwoofer\n\n16 total\n\n128 dB peak\n\nRoom 1 & 2\n\nLA7.16i CE\n\nAmplified controller\n\n6\n\n16 x 1300W @ 8Ω\n\nServer room\n\nL-ISA Processor II\n\nSpatial audio processor\n\n1\n\n64 outputs (upgraded)\n\nServer room\n\nLS10\n\nAVB switch\n\n4\n\n10-port Milan-certified\n\nServer room"
+        },
+        {
+          "title": "Training & Calibration",
+          "text": "L-Acoustics SEMINARSession\n\n€4,160 (up to 8 seats)\n\nL-Acoustics SEMINARSeat\n\n€1,560 (Immersive Mixing Engineer)\n\nL-Acoustics TrainingSeat\n\n€1,368 (System & Workflow)\n\nCalibration\n\n€1,350/day per room (€2,700 total)"
+        }
+      ]
+    },
+    {
+      "title": "Network Infrastructure Vendors",
+      "textPreview": "Netgear\n\nM4500-32C\n\n100G Core Switch\n\n2\n\n32x 100G QSFP28, CSM4532 chipset\n\n€24,500/unit\n\nXSM4344C\n\nPoE+ Edge Switch\n\n2\n\n44x 10Gb PoE+ with 100G uplink\n\n€15,000/unit\n\nOptical Transceivers\n\nPotential to save on subbing with 100G DAC modules instead, where possible. We will narrow this down at a later stage.\n\nCisco Compatible\n\nQSFP-100G-CWDM4-S\n\n64\n\n100GBASE-CWDM4, 1310nm, 2km\n\n€220/unit\n\nCabling\n\nOS2 Fiber\n\n4-core LC, 50m\n\n50\n\nSingle-mode with redundant cores\n\n€150/unit\n\nCat6a\n\nS/FTP LSZH, 50m\n\n75",
+      "subsections": [
+        {
+          "title": "Netgear",
+          "text": "M4500-32C\n\n100G Core Switch\n\n2\n\n32x 100G QSFP28, CSM4532 chipset\n\n€24,500/unit\n\nXSM4344C\n\nPoE+ Edge Switch\n\n2\n\n44x 10Gb PoE+ with 100G uplink\n\n€15,000/unit"
+        },
+        {
+          "title": "Optical Transceivers",
+          "text": "Potential to save on subbing with 100G DAC modules instead, where possible. We will narrow this down at a later stage.\n\nCisco Compatible\n\nQSFP-100G-CWDM4-S\n\n64\n\n100GBASE-CWDM4, 1310nm, 2km\n\n€220/unit"
+        },
+        {
+          "title": "Cabling",
+          "text": "OS2 Fiber\n\n4-core LC, 50m\n\n50\n\nSingle-mode with redundant cores\n\n€150/unit\n\nCat6a\n\nS/FTP LSZH, 50m\n\n75\n\nShielded twisted pair\n\n€75/unit"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Server Room Infrastructure Vendors",
+      "textPreview": "APC by Schneider Electric\n\nNetShelter SX 48U\n\nServer rack\n\n2\n\n48U, 600x1070mm footprint\n\n€3,900/unit\n\nSmart-UPS SRT 10000VA RM\n\nUPS system\n\n2\n\n10kVA rack-mount\n\n€10,000/unit\n\nMeinberg\n\nProduct\n\nMicrosync Broadcast\n\nFunction\n\nSync generator for PTP and Tri-level burst\n\nQuantity\n\n1\n\nCost\n\n€25,000 (estimated)\n\nStatus\n\nQuote pending (TBC)\n\nPower\n\n100W\n\nHeat Output\n\n341 BTU/h\n\nStatus: Meinberg sync generator quote is pending. This is required for A/V synchronization between Pixera and L-ISA systems.",
+      "subsections": [
+        {
+          "title": "APC by Schneider Electric",
+          "text": "NetShelter SX 48U\n\nServer rack\n\n2\n\n48U, 600x1070mm footprint\n\n€3,900/unit\n\nSmart-UPS SRT 10000VA RM\n\nUPS system\n\n2\n\n10kVA rack-mount\n\n€10,000/unit"
+        },
+        {
+          "title": "Meinberg",
+          "text": "Product\n\nMicrosync Broadcast\n\nFunction\n\nSync generator for PTP and Tri-level burst\n\nQuantity\n\n1\n\nCost\n\n€25,000 (estimated)\n\nStatus\n\nQuote pending (TBC)\n\nPower\n\n100W\n\nHeat Output\n\n341 BTU/h\n\nStatus: Meinberg sync generator quote is pending. This is required for A/V synchronization between Pixera and L-ISA systems."
+        }
+      ]
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Workstation Equipment",
+      "textPreview": "ASUS\n\nROG Swift OLED PG27UCDM\n\n2\n\n27\" 4K OLED monitor\n\n€949/unit\n\nLogitech\n\nMX Keys S\n\n2\n\nWireless keyboard\n\n€100/unit",
+      "subsections": []
+    },
+    {
+      "title": "Sensor & Tracking Vendors",
+      "textPreview": "Luxonis\n\nProduct\n\nOAK 4 D Pro\n\nQuantity\n\n44 units (planned)\n\nPer-Camera Bandwidth\n\n2.5 Gbps\n\nTheoretical Aggregate\n\n~110 Gbps\n\nFunction\n\nMotion detection, depth sensing, tracking",
+      "subsections": [
+        {
+          "title": "Luxonis",
+          "text": "Product\n\nOAK 4 D Pro\n\nQuantity\n\n44 units (planned)\n\nPer-Camera Bandwidth\n\n2.5 Gbps\n\nTheoretical Aggregate\n\n~110 Gbps\n\nFunction\n\nMotion detection, depth sensing, tracking"
+        }
+      ]
+    },
+    {
+      "title": "Labour & Installation",
+      "textPreview": "Fiber Termination\n\nIncluded in labor estimate\n\nSwitch Configuration\n\nIncluded in labor estimate\n\nSync Calibration\n\nIncluded in labor estimate\n\nGeneral Labor\n\nTBC",
+      "subsections": []
+    },
+    {
+      "title": "",
+      "textPreview": "",
+      "subsections": []
+    },
+    {
+      "title": "Vendor Contact Summary",
+      "textPreview": "Vendor\n\nContact\n\nProduct/Service\n\nStatus\n\nAudiotek\n\nTom Macklin\n\nL-Acoustics Audio\n\nQuoted\n\nBarco\n\nWIP\n\nProjection\n\nPrimary spec\n\nPanasonic\n\nTBC\n\nProjection (alt)\n\nUnder review\n\nEpson\n\nTBC\n\nProjection (alt)\n\nUnder review\n\nAV Stumpfl\n\nTBC\n\nPixera Servers\n\nPricing confirmed\n\nNetgear\n\nTBC\n\nNetwork switches\n\nSpec confirmed\n\nMeinberg\n\nTBC\n\nSync generator\n\nQuote pending\n\nAPC\n\nTBC\n\nRacks & UPS\n\nSpec confirmed\n\nLuxonis\n\nTBC\n\nCameras/sensors\n\nUnder evaluation\n\nDVIGear\n\nTBC\n\nSignal transport\n\nUnder evalua",
+      "subsections": []
+    },
+    {
+      "title": "Procurement Status Overview",
+      "textPreview": "Category\n\nStatus\n\nCost\n\nNotes\n\nProjection Equipment\n\nQuoting\n\n€TBC\n\nBarco primary, alternatives under review\n\nMedia Servers\n\nConfirmed\n\n€275,000\n\nPixera PX2 Octo pricing confirmed\n\nAudio System\n\nQuoted\n\n€386,145\n\nAudiotek quote expires 27 Mar\n\nNetwork Infrastructure\n\nConfirmed\n\n€93,080\n\nNetgear switches + transceivers\n\nServer Room\n\nConfirmed\n\n€443,103\n\nRacks, UPS, cabling included\n\nSignal Transport\n\nEvaluating\n\n€TBC\n\nFiber vs HDBaseT vs ST2110\n\nSync Generator\n\nPending\n\n€25,000 (est)\n\nMeinberg qu",
+      "subsections": []
+    },
+    {
+      "title": "Next Actions",
+      "textPreview": "Confirm formal quotes from Barco or alternative projection vendors\n\nConfirm Meinberg sync generator pricing and availability\n\nObtain BTU/hr ratings from Audiotek for HVAC sizing\n\nFinalize signal transport solution (fiber vs. HDBaseT vs. ST2110)\n\nResolve sensor bandwidth architecture\n\nConfirm Pixera delivery timeline and support structure\n\nEvaluate custom server build options with local suppliers\n\n🕶️ 3D Viz",
+      "subsections": []
+    },
+    {
+      "title": "Section 14: 3D Viz",
+      "textPreview": "Use password: lightheart\n\nRoom 1: (without the 3 central floor projectors - for seating / subs) \n\nhttps://editor.mappingmatter.com/viewer/699369c8b09455001aef7c8a/HeXPCRkW0iOTVWJNGcLKNW6WXrOK6uPQNczAfh3W   \n\nRoom 2: (lens calcs are all accurate just not the projector body itself (down pointing) which needs manual mesh attachment. \n\nhttps://editor.mappingmatter.com/viewer/69a0b8f815149f001a5b64b8/jXiQSpeeZHu9qw6UomCvQul9rMfqnSU8yYE6eAcQ     password(s): lightheart  navigatioin is left click - orb",
+      "subsections": []
+    },
+    {
+      "title": "IMPORTANT NOTICE",
+      "textPreview": "This document contains technical specifications and cost estimates based on\n\ninformation available as of 4 March 2026. The following items are subject to\n\nChange:\n\nEquipment pricing: Valid until quote expiration dates noted\n\nSpecifications: Subject to manufacturer updates\n\nAvailability: Subject to vendor stock and lead times\n\nPerformance figures: Based on manufacturer datasheets under standard conditions\n\nItems marked \"TBC\" (To Be Confirmed) or \"Estimated\" require final vendor\n\nconfirmation befo",
+      "subsections": []
+    }
+  ],
+  "tables": {
+    "raw": [
+      [
+        [
+          "Section",
+          "What You'll Find There"
+        ],
+        [
+          "1. Original Brief",
+          "The foundation of this project–our scope, objectives, and the three-phase approach we followed to get here"
+        ],
+        [
+          "2. Technical Direction Overview",
+          "The \"at-a-glance\" summary of the entire system–projectors, audio, servers, and network in one view"
+        ],
+        [
+          "3. Projectors",
+          "Complete specifications for all 37 projectors, including why we chose Barco and how the wall and floor projection systems work"
+        ],
+        [
+          "4. Signal Transport",
+          "How video signals travel from servers to projectors–why we chose fiber over other options"
+        ],
+        [
+          "5. Surface Treatment",
+          "The special paint and preparation needed on walls and floors so projections look their best"
+        ],
+        [
+          "6. Sensors",
+          "The camera system that will track visitor movement and enable interactive experiences"
+        ],
+        [
+          "7. Network",
+          "The \"nervous system\" of the venue–how all equipment communicates, with separate networks for video, audio, sensors, and control"
+        ],
+        [
+          "8. Audio System / L-ISA",
+          "The immersive spatial audio system–71 speakers across two rooms, creating three-dimensional sound"
+        ],
+        [
+          "9. Audio Bridging Architectures",
+          "How the audio system connects to other equipment, and why this requires special consideration"
+        ],
+        [
+          "10. Latency Budgeting",
+          "Ensuring sound and video stay perfectly synchronized–critical for immersive experiences"
+        ],
+        [
+          "11. Server Room",
+          "The \"brain\" of the operation–media servers, network switches, power protection, and physical infrastructure"
+        ],
+        [
+          "12. HVAC",
+          "Cooling requirements - equipment generates significant heat that must be managed"
+        ],
+        [
+          "13. Contractors / Vendors",
+          "Who supplies what, current pricing status, and who to contact for each system"
+        ],
+        [
+          "14. 3D Visualization",
+          "Interactive 3D models showing projector placement and coverage in both rooms"
+        ],
+        [
+          "15. Disclaimer",
+          "Important notes about pricing, specifications, and quote expiration dates"
+        ]
+      ],
+      [
+        [
+          "Phase",
+          "Purpose",
+          "Key Deliverables"
+        ],
+        [
+          "Phase 1: Definition and Technical Discovery",
+          "Translate the current scope into a clearly defined technical challenge with quantifiable requirements and aligned constraints.",
+          "*   Scope confirmation pack (room details, audience movement, maintenance needs, etc.)\n\n *   Projection strategy options (Wall-only/Wall plus floor, redundancy, lensing)\n\n *   Assumptions and risk register"
+        ],
+        [
+          "Phase 2: System Design and Engineering Coordination",
+          "Create a detailed technical design that can be accurately priced by vendors and efficiently supported by Lightheart and building services teams.",
+          "*   Projection system study and specification by room (tiers, brightness, resolution, mounting, mapping workflow)\n\n*   Basic previz output\n\n *   Mounting and rigging design intent package with Motion detection and sensing options (if required)\n\n *   Server and playback architecture (synchronisation, redundancy, GPU/CPU, networking)\n\n *   Systems architecture overview (Network, control layers, audio integration, IT requirements)\n\n *   Power and electrical load review (Energy use, heat/ventilation inputs, circuiting approach)"
+        ],
+        [
+          "Phase 3: Vendor Coordination, Costing, and Budget Allocation",
+          "Convert the design into costed and comparable solutions, supported by a clear budget structure for decision-making and procurement planning.",
+          "*   Vendor engagement pack (Scope, drawings, pricing template)\n\n *   Vendor communication and technical Q&A\n\n *   Costed options comparison (Room-by-room across performance tiers)\n\n *   Budget allocation summary (Recommended envelope, contingency, long-lead items)\n\n *   Handover package for the next stage (Consolidated drawings, specs, vendor feedback)"
+        ]
+      ],
+      [
+        [
+          "Location",
+          "Dublin, Ireland"
+        ],
+        [
+          "Venue Type",
+          "Two-room immersive art space"
+        ],
+        [
+          "Target Opening",
+          "September 2026"
+        ],
+        [
+          "Rental Duration",
+          "12-18 months (initial phase)"
+        ],
+        [
+          "Total Exhibition Space",
+          "~280 sq. m."
+        ],
+        [
+          "Technical Lead",
+          "Krisjanis (Kris) Berzins, IdirNet"
+        ]
+      ],
+      [
+        [
+          "Room 1 (Main Gallery)",
+          "14x Barco I600-4K10 (10,000 lm, 4K) + Floor projection"
+        ],
+        [
+          "Room 2",
+          "8x Barco I600-4K8 (8,000 lm, 4K)"
+        ],
+        [
+          "Floor Projection",
+          "15x Barco G50-W8 (8,000 lm, 2K)"
+        ],
+        [
+          "Lensing",
+          "ILD 0.37 UST (ultra-short throw) + 0.65-0.75:1 short-throw"
+        ],
+        [
+          "Signal Transport",
+          "4:4:4 @ 60Hz, 16:10 aspect ratio"
+        ]
+      ],
+      [
+        [
+          "Primary Servers",
+          "5x Pixera PX2 Octo (2U each)"
+        ],
+        [
+          "GUI Control",
+          "Dedicated GUI card on one server"
+        ],
+        [
+          "Outputs",
+          "~14 x 4K + 12 x 2K (Room 1), configurable for Room 2"
+        ],
+        [
+          "Sync",
+          "Meinberg Microsync Broadcast (PTP + Tri-level genlock)"
+        ]
+      ],
+      [
+        [
+          "Platform",
+          "L-Acoustics L-ISA Immersive Audio"
+        ],
+        [
+          "Room 1 Speakers",
+          "20x X8i (surround) + 20x X6i (height) + 8x SYVA SUB"
+        ],
+        [
+          "Room 2 Speakers",
+          "14x X8i (surround) + 17x X6i (height) + 8x SYVA SUB"
+        ],
+        [
+          "Amplification",
+          "6x LA7.16i CE (16-channel, 1300W @ 8Ω)"
+        ],
+        [
+          "Processing",
+          "L-ISA Processor II (64 outputs)"
+        ],
+        [
+          "Network",
+          "Milan-AVB (not Dante native)"
+        ],
+        [
+          "Sync Generator",
+          "Meinberg Microsync Broadcast (TBC)"
+        ]
+      ],
+      [
+        [
+          "Core Switches",
+          "2x Netgear M4500-32C (100G QSFP28)"
+        ],
+        [
+          "Edge Switches",
+          "2x Netgear XSM4344C (44x 10Gb PoE+ with 100G uplink)"
+        ],
+        [
+          "Transceivers",
+          "64x QSFP-100G-CWDM4-S compatible"
+        ],
+        [
+          "Fiber Cabling",
+          "50x OS2 4-core LC to LC (50m runs)"
+        ],
+        [
+          "Copper Cabling",
+          "75x Cat6a S/FTP LSZH (50m runs)"
+        ]
+      ],
+      [
+        [
+          "Racks",
+          "2x APC NetShelter SX 48U"
+        ],
+        [
+          "Rack Utilization",
+          "53U allocated / 96U total (55% fill)"
+        ],
+        [
+          "UPS",
+          "2x APC Smart-UPS SRT 10000VA RM (or 15-20VA for full redundancy)"
+        ],
+        [
+          "Power Draw",
+          "~10400W (~45A @ 230V) estimated including audio"
+        ],
+        [
+          "Heat Load (Visual)",
+          "21,161 BTU/h"
+        ]
+      ],
+      [
+        [
+          "Heat Load Server Room (Visual)",
+          "~21,161 BTU/h"
+        ],
+        [
+          "Heat Load Server Room Audio ( Est.)",
+          "~14,450 BTU/h pending final spec from vendors"
+        ],
+        [
+          "Heat Load Projectors in Galleries 1 + 2",
+          "~82880 BTU/h"
+        ]
+      ],
+      [
+        [
+          "Category",
+          "Amount",
+          "Status"
+        ],
+        [
+          "Projection Equipment (Barco)",
+          "€TBC",
+          "Quoting"
+        ],
+        [
+          "Media Servers (Pixera)",
+          "€275,000",
+          "Confirmed"
+        ],
+        [
+          "Audio System (L-Acoustics)",
+          "€386,145",
+          "Quoted"
+        ],
+        [
+          "Server Room Infrastructure",
+          "€443,103",
+          "Confirmed"
+        ],
+        [
+          "Signal Transport",
+          "€TBC",
+          "Evaluating"
+        ],
+        [
+          "Installation & Labour",
+          "€TBC",
+          "Pending"
+        ]
+      ],
+      [
+        [
+          "Audio",
+          "Audiotek (L-Acoustics) - Quote received, awaiting BTU data"
+        ],
+        [
+          "Projection",
+          "Barco - Primary spec; Panasonic/Epson alternatives under review"
+        ],
+        [
+          "Media Servers",
+          "Pixera (AV Stumpfl) - Pricing confirmed at £39,100/unit"
+        ],
+        [
+          "Signal Transport",
+          "DVIGear - Under evaluation"
+        ],
+        [
+          "Sync Generator",
+          "Meinberg - Quote pending (TBC)"
+        ],
+        [
+          "Network",
+          "Netgear - Spec confirmed"
+        ]
+      ],
+      [
+        [
+          "Metric",
+          "Value",
+          "Notes"
+        ],
+        [
+          "Total Cost",
+          "€943,100",
+          "81.6% attributable to 4K Projector & UST Lens category"
+        ],
+        [
+          "Total Rigging Weight",
+          "851.80 kg",
+          "Includes lenses, with mounts, we estimate around 1000 kg total max."
+        ],
+        [
+          "Total Power Draw",
+          "24,510W",
+          "~121A @ 230V (excluding audio)"
+        ],
+        [
+          "Total Heat Load",
+          "82,880 BTU/h",
+          "HVAC is critical for an enclosed museum environment"
+        ],
+        [
+          "Acoustic Impact",
+          "40 dB peak",
+          "I600 series; G50-W8 operates at 38 dB"
+        ]
+      ],
+      [
+        [
+          "Specification",
+          "1: HDMI Fiber",
+          "2: DP Fiber",
+          "3: HDBaseT 3.0"
+        ],
+        [
+          "Technology",
+          "HDMI 2.0 → SM Fiber",
+          "DisplayPort 1.4 → SM Fiber",
+          "DP→HDMI→HDBaseT 3.0"
+        ],
+        [
+          "Hardware",
+          "Kramer 675R/T + DP→HDMI",
+          "DVIGear DVI-7380 (OS2 LC)",
+          "Barco R9803120 cards + transmitters"
+        ],
+        [
+          "4K Channels",
+          "22",
+          "22",
+          "22"
+        ],
+        [
+          "Cost per 4K Ch.",
+          "€1,423",
+          "€1,048",
+          "€3,364"
+        ],
+        [
+          "4K Transport Subtotal",
+          "€31,306",
+          "€23,056",
+          "€74,008"
+        ],
+        [
+          "Import/Duty/VAT (~27%)",
+          "~€8,000",
+          "~€6,458",
+          "~€20,000"
+        ],
+        [
+          "Delivered 4K Cost",
+          "~€39,306",
+          "€29,514",
+          "~€94,000"
+        ],
+        [
+          "2K Transport (Floor)",
+          "€15,000",
+          "€15,000",
+          "€15,000"
+        ],
+        [
+          "TOTAL",
+          "~€54,300",
+          "€44,514",
+          "~€109,000"
+        ],
+        [
+          "Bandwidth",
+          "18 Gbps (at ceiling)",
+          "32.4 Gbps (headroom)",
+          "18 Gbps"
+        ],
+        [
+          "Points of Failure",
+          "22 active adapters",
+          "0 (native end-to-end)",
+          "22 proprietary cards"
+        ],
+        [
+          "Status",
+          "❌ Rejected",
+          "✅ Specified",
+          "⚠️ Rejected for 4K Walls**"
+        ]
+      ],
+      [
+        [
+          "Method",
+          "Specification",
+          "Best For"
+        ],
+        [
+          "HVLP Spray",
+          "Graco TurboForce 9.5 or equivalent (not airless); gravity-feed for floors",
+          "Walls requiring seamless finish for close-projection pixel mapping"
+        ],
+        [
+          "Roller",
+          "Mohair/short-pile lint-free roller",
+          "Ceilings, secondary surfaces, or budget-driven installations"
+        ],
+        [
+          "Air-Assisted Airless",
+          "Acceptable only with competent sprayer",
+          "Large surface areas where HVLP coverage speed insufficient"
+        ]
+      ],
+      [
+        [
+          "Category",
+          "Product",
+          "Quantity",
+          "Cost"
+        ],
+        [
+          "Walls",
+          "Smart Ultra High Contrast",
+          "17× 25m²",
+          "€16,473"
+        ],
+        [
+          "Floor",
+          "Smart Floor Projector Screen",
+          "12× 25m²",
+          "€10,668"
+        ],
+        [
+          "Priming",
+          "Smart White Primer",
+          "28× 25m²",
+          "€2,212"
+        ],
+        [
+          "TOTAL",
+          "",
+          "",
+          "€29,353"
+        ]
+      ],
+      [
+        [
+          "Specification",
+          "Smarter Surfaces",
+          "Goo Systems (QU-0932)"
+        ],
+        [
+          "Walls",
+          "€16,473",
+          "£8,473.50 (~€10,170)"
+        ],
+        [
+          "Floor",
+          "€10,668",
+          "£10,892.00 (~€13,070)"
+        ],
+        [
+          "Primer",
+          "€2,212",
+          "Included in above"
+        ],
+        [
+          "Protection",
+          "N/A (not specified)",
+          "Included (Rear Projection topcoat)"
+        ],
+        [
+          "Subtotal",
+          "€29,353",
+          "£19,365.50 (~€23,240)"
+        ],
+        [
+          "Savings",
+          "Base reference",
+          "~€6,100 savings"
+        ],
+        [
+          "Status",
+          "Specified",
+          "Quoted (Expires 3 Apr 2026)"
+        ]
+      ],
+      [
+        [
+          "Metric",
+          "Per Unit",
+          "Total (28× Room 1)"
+        ],
+        [
+          "Procurement Cost",
+          "€1,147",
+          "€32,116"
+        ],
+        [
+          "Rigging Weight",
+          "0.3 kg",
+          "8.4 kg"
+        ],
+        [
+          "Power Draw",
+          "25W (PoE+)",
+          "700W (3.1A @ 230V)"
+        ],
+        [
+          "Thermal Output",
+          "85.3 BTU/h",
+          "2,388 BTU/h generated at camera locations, not server room"
+        ],
+        [
+          "Network Bandwidth",
+          "2.5 Gbps",
+          "70 Gbps theoretical aggregate"
+        ]
+      ],
+      [
+        [
+          "Network",
+          "Layer",
+          "Hardware",
+          "Protocol",
+          "Function"
+        ],
+        [
+          "Video Transport",
+          "Physical (Point-to-Point)",
+          "DVIGear DVI-7380 over OS2 fiber",
+          "DisplayPort 1.4 baseband",
+          "22× 4K uncompressed streams (15.9 Gbps each)"
+        ],
+        [
+          "Sensor Aggregation",
+          "Layer 3 (IP)",
+          "2× Netgear XSM4344C (44× 10Gb PoE+ with 100G uplinks)",
+          "TCP/IP",
+          "Luxonis camera array (2.5Gbps per unit)"
+        ],
+        [
+          "Audio Control",
+          "Layer 2 (AVB)",
+          "4× L-Acoustics LS10 UK (10-port AVB switches)",
+          "Milan-AVB (IEEE 802.1)",
+          "L-ISA object-based audio (96kHz/64ch)"
+        ],
+        [
+          "Server Interconnect",
+          "Layer 3 (Multicast)",
+          "2× Netgear M4500-32C (100G spine)",
+          "IGMP Snooping",
+          "Pixera cluster sync, file distribution"
+        ],
+        [
+          "Management",
+          "Layer 3 (IP)",
+          "Isolated VLAN",
+          "OSC, PTP, TCP/IP",
+          "QLab, control systems, monitoring"
+        ]
+      ],
+      [
+        [
+          "Architecture",
+          "Hardware",
+          "Latency",
+          "Sample Rate",
+          "Status"
+        ],
+        [
+          "A: Hardware Bridge",
+          "DirectOut PRODIGY.MP + DANTE.MILAN.SRC.IO",
+          "~1ms (HD SRC)",
+          "96kHz/32ch per module",
+          "High redundancy, high cost"
+        ],
+        [
+          "B: Native AVB",
+          "RME HDSPe AoX-M PCIe (in Pixera)",
+          "<0.15ms",
+          "96kHz/64ch",
+          "Preferred - eliminates Dante layer entirely"
+        ],
+        [
+          "C: MADI Bridge",
+          "RME HDSPe MADI → L-Acoustics LC16D",
+          "Low",
+          "96kHz/32ch",
+          "Legacy compatibility, no sample rate conversion"
+        ]
+      ],
+      [
+        [
+          "Metric",
+          "Value"
+        ],
+        [
+          "Fiber Infrastructure",
+          "50× OS2 4-core LC runs (200 fiber strands total)"
+        ],
+        [
+          "Copper Infrastructure",
+          "75× Cat6a S/FTP runs"
+        ],
+        [
+          "Switch Ports",
+          "88× 10Gb PoE+, 64× 100G QSFP28"
+        ],
+        [
+          "AVB Switches",
+          "4× L-Acoustics LS10 (Primary/Secondary pairs)"
+        ],
+        [
+          "Protocols",
+          "DP 1.4 (video), Milan-AVB (audio), TCP/IP (sensors/control)"
+        ]
+      ],
+      [
+        [
+          "Qty",
+          "Model",
+          "Role",
+          "Coverage",
+          "Max SPL"
+        ],
+        [
+          "20",
+          "L-Acoustics X8i",
+          "Surround speakers",
+          "90° axisymmetric",
+          "129 dB"
+        ],
+        [
+          "20",
+          "L-Acoustics X6i",
+          "Height/overhead speakers",
+          "90° axisymmetric",
+          "123 dB"
+        ],
+        [
+          "8",
+          "L-Acoustics SYVA SUB",
+          "Subwoofers",
+          "Omni (stacked)",
+          "128 dB"
+        ]
+      ],
+      [
+        [
+          "Qty",
+          "Model",
+          "Description",
+          "Physical"
+        ],
+        [
+          "3",
+          "LA7.16i CE",
+          "16-channel amplified controller (16 x 1300W @ 8Ω)",
+          "14.5 kg, 2U"
+        ],
+        [
+          "1",
+          "L-ISA Processor II",
+          "Spatial audio processor (upgraded to 64 outputs)",
+          "11 kg, 3U"
+        ],
+        [
+          "2",
+          "LS10",
+          "AVB/Milan network switch (10-port)",
+          "1.5 kg, 0.5U"
+        ],
+        [
+          "1",
+          "RME MADIface USB",
+          "USB audio interface",
+          "N/A"
+        ]
+      ],
+      [
+        [
+          "Equipment (discounted)",
+          "€178,417.75"
+        ],
+        [
+          "VAT (23%)",
+          "€41,036.08"
+        ],
+        [
+          "Fire Safe Cable",
+          "€7,000.00"
+        ],
+        [
+          "Installation Materials",
+          ""
+        ],
+        [
+          "TOTAL",
+          "€226453.83"
+        ]
+      ],
+      [
+        [
+          "Qty",
+          "Model",
+          "Role",
+          "Coverage",
+          "Max SPL"
+        ],
+        [
+          "14",
+          "L-Acoustics X8i",
+          "Surround speakers",
+          "90° axisymmetric",
+          "129 dB"
+        ],
+        [
+          "17",
+          "L-Acoustics X6i",
+          "Height/overhead speakers",
+          "90° axisymmetric",
+          "123 dB"
+        ],
+        [
+          "8",
+          "L-Acoustics SYVA SUB",
+          "Subwoofers",
+          "Omni (stacked)",
+          "128 dB"
+        ]
+      ],
+      [
+        [
+          "Qty",
+          "Model",
+          "Description",
+          "Physical"
+        ],
+        [
+          "3",
+          "LA7.16i CE",
+          "16-channel amplified controller (16 x 1300W @ 8Ω)",
+          "14.5 kg, 2U"
+        ],
+        [
+          "1",
+          "L-ISA Processor II",
+          "Spatial audio processor (shared license)",
+          "11 kg, 3U"
+        ],
+        [
+          "2",
+          "LS10",
+          "AVB/Milan network switch (10-port)",
+          "1.5 kg, 0.5U"
+        ],
+        [
+          "1",
+          "Q-Sys Core 8 Flex",
+          "System processing (shared with Room 1)",
+          "N/A"
+        ],
+        [
+          "1",
+          "Q-Sys 5\" Touchscreen",
+          "Control interface (shared with Room 1)",
+          "N/A"
+        ],
+        [
+          "1",
+          "RME MADIface USB",
+          "USB audio interface",
+          "N/A"
+        ]
+      ],
+      [
+        [
+          "Equipment (discounted)",
+          "€137,604.00"
+        ],
+        [
+          "VAT (23%)",
+          "€31,027.93"
+        ],
+        [
+          "Fire Safe Cable",
+          "€6,500.00"
+        ],
+        [
+          "Installation Materials",
+          "Included"
+        ],
+        [
+          "TOTAL",
+          "€175,131.93"
+        ]
+      ],
+      [
+        [
+          "Type",
+          "2-way passive coaxial enclosure"
+        ],
+        [
+          "LF Transducer",
+          "8\" cone driver"
+        ],
+        [
+          "HF Transducer",
+          "1.5\" neodymium compression driver"
+        ],
+        [
+          "Nominal Directivity",
+          "90° axisymmetric"
+        ],
+        [
+          "Usable Bandwidth",
+          "67 Hz - 20 kHz (-10 dB) / 43 Hz - 20 kHz (Preset 2)"
+        ],
+        [
+          "Maximum SPL",
+          "129 dB (Preset 1) / 123 dB (Preset 2)"
+        ],
+        [
+          "Nominal Impedance",
+          "8 Ω"
+        ],
+        [
+          "RMS Power Handling",
+          "197 W"
+        ],
+        [
+          "Dimensions (W×H×D)",
+          "240 × 490 × 217 mm"
+        ],
+        [
+          "Weight",
+          "11 kg / 24 lb"
+        ],
+        [
+          "IP Rating",
+          "IP55"
+        ],
+        [
+          "Finish Options",
+          "Pantone 426C (dark grey), RAL 9010 (white), custom RAL"
+        ]
+      ],
+      [
+        [
+          "Type",
+          "2-way passive coaxial enclosure"
+        ],
+        [
+          "LF Transducer",
+          "6.5\" cone driver"
+        ],
+        [
+          "HF Transducer",
+          "1.5\" neodymium compression driver"
+        ],
+        [
+          "Nominal Directivity",
+          "90° axisymmetric"
+        ],
+        [
+          "Usable Bandwidth",
+          "69 Hz - 20 kHz (-10 dB) / 54 Hz - 20 kHz (Preset 2)"
+        ],
+        [
+          "Maximum SPL",
+          "123 dB (Preset 1) / 117 dB (Preset 2)"
+        ],
+        [
+          "Nominal Impedance",
+          "8 Ω"
+        ],
+        [
+          "RMS Power Handling",
+          "83 W"
+        ],
+        [
+          "Dimensions (W×H×D)",
+          "187 × 362 × 170 mm"
+        ],
+        [
+          "Weight",
+          "6.3 kg / 14 lb"
+        ],
+        [
+          "IP Rating",
+          "IP55"
+        ],
+        [
+          "Finish Options",
+          "Pantone 426C (dark grey), RAL 9010 (white), custom RAL"
+        ]
+      ],
+      [
+        [
+          "Type",
+          "Passive subwoofer"
+        ],
+        [
+          "LF Transducer",
+          "1 × 12\" high-excursion cone driver"
+        ],
+        [
+          "Usable Bandwidth",
+          "27 Hz - 120 Hz (-10 dB)"
+        ],
+        [
+          "Maximum SPL",
+          "128 dB peak @ 1m"
+        ],
+        [
+          "Nominal Impedance",
+          "8 Ω"
+        ],
+        [
+          "RMS Power Handling",
+          "250 W"
+        ],
+        [
+          "Dimensions (W×H×D)",
+          "849 × 334 × 350 mm"
+        ],
+        [
+          "Weight",
+          "27 kg / 60 lb"
+        ],
+        [
+          "IP Rating",
+          "IP55"
+        ],
+        [
+          "Connectors",
+          "4-point speakON + proprietary connector"
+        ]
+      ],
+      [
+        [
+          "Output Power",
+          "16 × 1300 W @ 8Ω / 16 × 1100 W @ 4Ω"
+        ],
+        [
+          "Amplification Class",
+          "High-efficiency Class D"
+        ],
+        [
+          "DSP",
+          "Gen. 5 Dual SHARC 32-bit floating-point, 96 kHz"
+        ],
+        [
+          "Routing Matrix",
+          "16 × 16 flexible routing and summation"
+        ],
+        [
+          "AVB Input",
+          "128 channels (48/96 kHz), Milan-certified, AES67 compatible"
+        ],
+        [
+          "Latency",
+          "3.84 ms (standard) / 1.18 ms (low latency mode)"
+        ],
+        [
+          "Mains Rating",
+          "100-240 V AC ± 10%, 50-60 Hz, 16A max"
+        ],
+        [
+          "Cooling",
+          "5 integrated DSP-controlled fans"
+        ],
+        [
+          "Operating Temperature",
+          "-5°C to +50°C"
+        ],
+        [
+          "Dimensions",
+          "483 × 88 × 434 mm (19\" × 2U × 17.1\")"
+        ],
+        [
+          "Weight",
+          "14.5 kg / 32 lb"
+        ],
+        [
+          "Rack Mounting",
+          "2U"
+        ]
+      ],
+      [
+        [
+          "Processing",
+          "Real-time spatial audio at 96 kHz"
+        ],
+        [
+          "Objects",
+          "Up to 96 objects with spatial processing"
+        ],
+        [
+          "Inputs",
+          "128 hardware inputs (AVB/MADI/AES)"
+        ],
+        [
+          "Outputs",
+          "Up to 128 outputs (license-dependent)"
+        ],
+        [
+          "AVB Channels",
+          "64 input / 128 output channels"
+        ],
+        [
+          "MADI Channels",
+          "192 @ 48 kHz / 96 @ 96 kHz"
+        ],
+        [
+          "Latency",
+          "3.2 ms (input to outputs)"
+        ],
+        [
+          "Boot Time",
+          "31 seconds to AVB pass-through"
+        ],
+        [
+          "Power Supply",
+          "Dual redundant SMPS, 2 × 150 W typical"
+        ],
+        [
+          "Mains Rating",
+          "2 × 100-240 V AC ± 10%, 50-60 Hz"
+        ],
+        [
+          "Operating Temperature",
+          "-5°C to +50°C"
+        ],
+        [
+          "Dimensions",
+          "483 × 133 × 458 mm (19\" × 3U × 18\")"
+        ],
+        [
+          "Weight",
+          "11 kg / 24.3 lb"
+        ],
+        [
+          "Rack Mounting",
+          "3U"
+        ]
+      ],
+      [
+        [
+          "AVB Ports",
+          "10 ports @ 1 Gbit/s"
+        ],
+        [
+          "Certification",
+          "Avnu-certified, Milan protocol compliant"
+        ],
+        [
+          "Supported Streams",
+          "150 streams"
+        ],
+        [
+          "Startup Time",
+          "5 seconds (AVB pass-through after power failure)"
+        ],
+        [
+          "Connectors",
+          "8 × EtherCon (5 front, 3 rear), 2 × SFP cages"
+        ],
+        [
+          "Management",
+          "gPTP Grandmaster capable, RSTP"
+        ],
+        [
+          "Power Consumption",
+          "10 W (20 W with redundant supply)"
+        ],
+        [
+          "Mains Rating",
+          "100-240 V AC, 50-60 Hz"
+        ],
+        [
+          "Operating Temperature",
+          "-5°C to +50°C"
+        ],
+        [
+          "Dimensions",
+          "216 × 42 × 133 mm"
+        ],
+        [
+          "Weight",
+          "1.5 kg"
+        ],
+        [
+          "Rack Mounting",
+          "1U (half-width, 2 units fit in 1U with shelf)"
+        ]
+      ],
+      [
+        [
+          "Course",
+          "Description",
+          "Cost"
+        ],
+        [
+          "L-Acoustics SEMINARSession",
+          "Immersive Venue Technician course (up to 8 seats)",
+          "€4,160.00"
+        ],
+        [
+          "L-Acoustics SEMINAR1seat",
+          "Immersive Mixing Engineer course",
+          "€1,560.00"
+        ],
+        [
+          "L-Acoustics Training1Seat",
+          "System & Workflow fundamentals",
+          "€1,368.00"
+        ]
+      ],
+      [
+        [
+          "Equipment Rack",
+          "1 × Equipment rack with power distribution (included in quote)"
+        ],
+        [
+          "LA7.16i Amplifiers",
+          "3 units × 2U = 6U (Room 1) / 3 units × 2U = 6U (Room 2)"
+        ],
+        [
+          "L-ISA Processor II",
+          "1 unit × 3U = 3U (shared)"
+        ],
+        [
+          "LS10 Switches",
+          "2 units × 0.5U = 1U per room"
+        ],
+        [
+          "Q-Sys Equipment",
+          "Core 8 Flex + Touchscreen (shared)"
+        ],
+        [
+          "RME MADIface",
+          "USB interface per room"
+        ]
+      ],
+      [
+        [
+          "VBAR",
+          "Rigging accessory for vertically-oriented loudspeakers"
+        ],
+        [
+          "TILT",
+          "Adjustable tilt accessory (0° to 40°)"
+        ],
+        [
+          "HBAR",
+          "Rigging accessory for horizontally-oriented X6i"
+        ],
+        [
+          "LS10 RAKSHELF",
+          "1U rack shelf for two LS10 switches"
+        ]
+      ],
+      [
+        [
+          "Room 1 Quote",
+          "QU-20070 dated 25 Feb 2026 (expires 27 Mar 2026)"
+        ],
+        [
+          "Room 2 Quote",
+          "QU-20071 dated 25 Feb 2026 (expires 27 Mar 2026)"
+        ],
+        [
+          "Supplier",
+          "Audiotek Ltd, Swords Business Park, Ireland"
+        ],
+        [
+          "Contact",
+          "Tom Macklin (tom.macklin@l-acoustics.com)"
+        ]
+      ],
+      [
+        [
+          "Standard",
+          "IEEE 802.1BA-2011 + Avnu ProAV 1.1"
+        ],
+        [
+          "Bandwidth",
+          "1 Gbit/s per link"
+        ],
+        [
+          "Latency",
+          "2 ms maximum (guaranteed)"
+        ],
+        [
+          "Redundancy",
+          "Seamless failover (primary/secondary networks)"
+        ],
+        [
+          "Channels per Stream",
+          "Up to 8 channels"
+        ],
+        [
+          "Max Streams (LS10)",
+          "150 streams"
+        ],
+        [
+          "Clocking",
+          "gPTP (IEEE 802.1AS) - precision time protocol"
+        ]
+      ],
+      [
+        [
+          "Feature",
+          "AVB/Milan",
+          "Dante"
+        ],
+        [
+          "Standard",
+          "IEEE 802.1 (open)",
+          "Audinate proprietary"
+        ],
+        [
+          "Latency",
+          "Guaranteed <2ms",
+          "Typically 1-4ms"
+        ],
+        [
+          "Redundancy",
+          "Seamless failover",
+          "Seamless failover"
+        ],
+        [
+          "L-ISA Support",
+          "Native",
+          "Not supported"
+        ],
+        [
+          "Device Discovery",
+          "Automatic",
+          "Automatic"
+        ],
+        [
+          "Network QoS",
+          "Built-in",
+          "Requires configuration"
+        ]
+      ],
+      [
+        [
+          "LS10 Switches",
+          "2 per room (primary + secondary redundancy)"
+        ],
+        [
+          "L-ISA Processor II",
+          "Dual EtherCon ports for redundant connection"
+        ],
+        [
+          "LA7.16i Amplifiers",
+          "Dual RJ45/EtherCon for redundant AVB input"
+        ],
+        [
+          "Cabling",
+          "Cat6A or better, shielded recommended"
+        ]
+      ],
+      [
+        [
+          "Internal Clock",
+          "L-ISA Processor II as Grandmaster"
+        ],
+        [
+          "External Clock",
+          "Meinberg sync generator (TBC)"
+        ],
+        [
+          "Word Clock",
+          "BNC I/O on L-ISA Processor II"
+        ],
+        [
+          "MADI Clock",
+          "Embedded in MADI stream"
+        ]
+      ],
+      [
+        [
+          "AVB Primary",
+          "Cat6A STP (shielded twisted pair), black jacket"
+        ],
+        [
+          "AVB Secondary",
+          "Cat6A STP, red jacket (for redundancy identification)"
+        ],
+        [
+          "Maximum Length",
+          "100m per segment (Cat6A)"
+        ],
+        [
+          "Connectors",
+          "Neutrik EtherCON (ruggedized RJ45)"
+        ],
+        [
+          "L-Acoustics Cable",
+          "DOE2/DOE45/DOE100 (dual AVB cable with color coding)"
+        ]
+      ],
+      [
+        [
+          "X8i/X6i",
+          "2.5mm² recommended, terminal block connection"
+        ],
+        [
+          "SYVA SUB",
+          "2.5mm² minimum, speakON NL4 or terminal block"
+        ],
+        [
+          "Maximum Length",
+          "30m @ 8Ω with 2.5mm²"
+        ],
+        [
+          "L-Acoustics Cable",
+          "SC32-BE (32-conductor for LA7.16i installations)"
+        ]
+      ],
+      [
+        [
+          "No Audio",
+          "Check AVB stream subscription, verify primary/secondary links"
+        ],
+        [
+          "Audio Dropouts",
+          "Check for network loops, verify cable quality"
+        ],
+        [
+          "Sync Issues",
+          "Verify Grandmaster clock, check gPTP status"
+        ],
+        [
+          "High Latency",
+          "Check for non-AVB switches in path, verify cable lengths"
+        ]
+      ],
+      [
+        [
+          "< 10 ms",
+          "Imperceptible - professional live sound standard"
+        ],
+        [
+          "10-20 ms",
+          "Barely perceptible - acceptable for most applications"
+        ],
+        [
+          "20-40 ms",
+          "Slightly perceptible - acceptable for video sync"
+        ],
+        [
+          "> 40 ms",
+          "Noticeable delay - lip-sync issues may occur"
+        ],
+        [
+          "> 100 ms",
+          "Unacceptable - clear echo/delay effect"
+        ]
+      ],
+      [
+        [
+          "Input to Output",
+          "3.2 ms (measured, all processing active)"
+        ],
+        [
+          "Spatial Processing",
+          "Included in 3.2 ms"
+        ],
+        [
+          "Room Engine",
+          "Included in 3.2 ms"
+        ],
+        [
+          "AVB Latency",
+          "2 ms maximum (network transport)"
+        ]
+      ],
+      [
+        [
+          "Standard Mode",
+          "3.84 ms (DSP + A/D + D/A)"
+        ],
+        [
+          "Low Latency Mode",
+          "1.18 ms (reduced processing)"
+        ],
+        [
+          "AVB Input Latency",
+          "2 ms maximum"
+        ],
+        [
+          "Output Delay",
+          "0-1000 ms (configurable, default 0)"
+        ]
+      ],
+      [
+        [
+          "X8i/X6i",
+          "Negligible (< 0.1 ms) - passive speakers"
+        ],
+        [
+          "SYVA SUB",
+          "Negligible (< 0.1 ms) - passive subwoofer"
+        ],
+        [
+          "Physical Distance",
+          "2.9 ms per meter (speed of sound)"
+        ]
+      ],
+      [
+        [
+          "Stage",
+          "Component",
+          "Latency",
+          "Running Total",
+          "Notes"
+        ],
+        [
+          "1",
+          "Media Server Output",
+          "~2 ms",
+          "2 ms",
+          "Pixera (estimated)"
+        ],
+        [
+          "2",
+          "AVB Network",
+          "2 ms",
+          "4 ms",
+          "Maximum guaranteed"
+        ],
+        [
+          "3",
+          "L-ISA Processor",
+          "3.2 ms",
+          "7.2 ms",
+          "Spatial processing"
+        ],
+        [
+          "4",
+          "AVB to Amplifier",
+          "2 ms",
+          "9.2 ms",
+          "Network transport"
+        ],
+        [
+          "5",
+          "LA7.16i Amplifier",
+          "3.84 ms",
+          "~13 ms",
+          "Standard mode"
+        ],
+        [
+          "6",
+          "Speaker Output",
+          "<0.1 ms",
+          "~13 ms",
+          "Negligible"
+        ]
+      ],
+      [
+        [
+          "Minimum",
+          "~1 ms (ideal conditions, short cables)"
+        ],
+        [
+          "Typical",
+          "1.5-2 ms (normal operation)"
+        ],
+        [
+          "Maximum",
+          "2 ms (guaranteed by AVB standard)"
+        ],
+        [
+          "Jitter",
+          "< 1 ms (phase-locked to gPTP)"
+        ]
+      ],
+      [
+        [
+          "2 meters",
+          "5.8 ms"
+        ],
+        [
+          "5 meters",
+          "14.5 ms"
+        ],
+        [
+          "10 meters",
+          "29 ms"
+        ],
+        [
+          "20 meters",
+          "58 ms"
+        ]
+      ],
+      [
+        [
+          "1. Sync Generator",
+          "Meinberg (TBC) provides house sync/TC"
+        ],
+        [
+          "2. L-ISA Processor",
+          "Receives word clock or timecode"
+        ],
+        [
+          "3. Media Server",
+          "Pixera receives same sync reference"
+        ],
+        [
+          "4. Video Displays",
+          "Locked to house sync"
+        ]
+      ],
+      [
+        [
+          "Method 1",
+          "Impulse response measurement (swept sine)"
+        ],
+        [
+          "Method 2",
+          "Loopback test with reference microphone"
+        ],
+        [
+          "Method 3",
+          "Dedicated latency analyzer (e.g., Smaart)"
+        ],
+        [
+          "Method 4",
+          "Oscilloscope with test tone generator"
+        ]
+      ],
+      [
+        [
+          "Total System Latency",
+          "~13 ms (typical)"
+        ],
+        [
+          "Maximum Expected",
+          "~15 ms (worst case)"
+        ],
+        [
+          "Video Sync Threshold",
+          "40 ms"
+        ],
+        [
+          "Headroom",
+          "25-29 ms (62-72%)"
+        ]
+      ],
+      [
+        [
+          "Total Equipment Cost",
+          "€443,103"
+        ],
+        [
+          "Rack Capacity",
+          "53U allocated / 96U total (55% fill)"
+        ],
+        [
+          "Power Draw",
+          "6,202W (~27A @ 230V) visual & networking only\n\n~10,400W estimated total including audio"
+        ],
+        [
+          "Heat Load",
+          "21,161 BTU/h (visual equipment only)"
+        ],
+        [
+          "UPS Protection",
+          "2× 10kVA APC Smart-UPS SRT (currently priced)\n\n2 x 15kVA or 20kVA recommended including potential future expansion and headroom"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1001",
+          "APC NetShelter SX 48U",
+          "Server Rack",
+          "2",
+          "0",
+          "€3,900"
+        ]
+      ],
+      [
+        [
+          "Equipment",
+          "U-Height",
+          "Quantity",
+          "Total U"
+        ],
+        [
+          "Media Servers (Pixera PX2 Octo)",
+          "2U",
+          "5",
+          "10U"
+        ],
+        [
+          "UPS Systems (APC SRT 10kVA)",
+          "6U",
+          "2",
+          "12U"
+        ],
+        [
+          "Core/Edge Switches",
+          "1U",
+          "4",
+          "4U"
+        ],
+        [
+          "Sync Generator (Meinberg)",
+          "1U",
+          "1",
+          "1U"
+        ],
+        [
+          "Reserved for Expansion",
+          "-",
+          "-",
+          "2U"
+        ],
+        [
+          "TOTAL ALLOCATED (visual only)",
+          "",
+          "",
+          "29U"
+        ],
+        [
+          "TOTAL AVAILABLE (2 racks)",
+          "",
+          "",
+          "96U"
+        ],
+        [
+          "REMAINING CAPACITY",
+          "",
+          "",
+          "67U"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1006",
+          "APC Smart-UPS SRT 10000VA RM",
+          "UPS",
+          "2",
+          "6U each",
+          "€10,000"
+        ]
+      ],
+      [
+        [
+          "Capacity",
+          "10,000 VA / 10,000 W (excluding audio)"
+        ],
+        [
+          "Form Factor",
+          "Rack-mount 6U"
+        ],
+        [
+          "Input",
+          "230V single-phase"
+        ],
+        [
+          "Output",
+          "230V pure sine wave"
+        ],
+        [
+          "Runtime",
+          "~15 min at full load (batteries internal)"
+        ],
+        [
+          "Management",
+          "Network management card included"
+        ],
+        [
+          "Redundancy",
+          "N+1 configuration with two units"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1002",
+          "Pixera PX2 Octo + GUI Card",
+          "Media Server",
+          "5",
+          "2U each",
+          "€55,000"
+        ]
+      ],
+      [
+        [
+          "Form Factor",
+          "2U rack-mount"
+        ],
+        [
+          "Processing",
+          "High-performance media processing engine"
+        ],
+        [
+          "Network",
+          "10GBase-T ports"
+        ],
+        [
+          "Power Draw",
+          "800W per unit"
+        ],
+        [
+          "Total Power",
+          "4,000W (5 units)"
+        ],
+        [
+          "Heat Output",
+          "13,648 BTU/h total"
+        ],
+        [
+          "GUI Card",
+          "Included for control interface on the “Director” server"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1013",
+          "Meinberg Microsync Broadcast",
+          "Sync Generator",
+          "1",
+          "1U",
+          "€25,000 (estimated - quote pending)"
+        ]
+      ],
+      [
+        [
+          "Power Draw",
+          "100W"
+        ],
+        [
+          "Heat Output",
+          "341 BTU/h"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1004",
+          "Netgear M4500-32C (CSM4532)",
+          "100G Core Switch",
+          "2",
+          "1U each",
+          "€24,500"
+        ]
+      ],
+      [
+        [
+          "Ports",
+          "32 × 100G QSFP28"
+        ],
+        [
+          "Chipset",
+          "CSM4532"
+        ],
+        [
+          "Function",
+          "ST2110/IPMX backbone; server interconnect"
+        ],
+        [
+          "Power Draw",
+          "426W per unit"
+        ],
+        [
+          "Total Power",
+          "852W (2 units)"
+        ],
+        [
+          "Heat Output",
+          "2,907 BTU/h"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1005",
+          "Netgear XSM4344C",
+          "PoE+ Edge Switch",
+          "2",
+          "1U each",
+          "€15,000"
+        ]
+      ],
+      [
+        [
+          "Ports",
+          "44 × 10Gb PoE+ with 100G uplink"
+        ],
+        [
+          "Function",
+          "Sensor aggregation (Luxonis camera array)"
+        ],
+        [
+          "Power Draw",
+          "413W per unit"
+        ],
+        [
+          "Total Power",
+          "826W (2 units)"
+        ],
+        [
+          "Heat Output",
+          "2,818 BTU/h"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1009",
+          "Cisco QSFP-100G-CWDM4-S Compatible",
+          "100G Transceiver",
+          "64",
+          "N/A",
+          "€220"
+        ]
+      ],
+      [
+        [
+          "Type",
+          "100GBASE-CWDM4 QSFP28"
+        ],
+        [
+          "Wavelength",
+          "1310nm"
+        ],
+        [
+          "Range",
+          "2km"
+        ],
+        [
+          "Connector",
+          "Duplex LC/UPC SMF"
+        ],
+        [
+          "Power Draw",
+          "3.5W per unit"
+        ],
+        [
+          "Total Power",
+          "224W (64 units)"
+        ],
+        [
+          "Heat Output",
+          "764 BTU/h"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1007",
+          "OS2 4-core LC (50m)",
+          "Single-mode Fiber",
+          "50",
+          "N/A",
+          "€150"
+        ]
+      ],
+      [
+        [
+          "Type",
+          "OS2 single-mode"
+        ],
+        [
+          "Core Count",
+          "4-core"
+        ],
+        [
+          "Connector",
+          "LC duplex"
+        ],
+        [
+          "Length",
+          "50m runs"
+        ],
+        [
+          "Purpose",
+          "High-speed backbone with redundant cores"
+        ],
+        [
+          "Future Capacity",
+          "Supports 100G sensor aggregation"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1008",
+          "Cat6a S/FTP LSZH (50m)",
+          "Shielded Ethernet",
+          "75",
+          "N/A",
+          "€75"
+        ]
+      ],
+      [
+        [
+          "Category",
+          "Cat6a"
+        ],
+        [
+          "Shielding",
+          "S/FTP (screened foiled twisted pair)"
+        ],
+        [
+          "Jacket",
+          "LSZH (low smoke zero halogen)"
+        ],
+        [
+          "Length",
+          "50m runs"
+        ],
+        [
+          "Purpose",
+          "Management network and control signals"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1010",
+          "ASUS ROG Swift OLED PG27UCDM",
+          "27\" OLED Monitor",
+          "2",
+          "N/A",
+          "€949"
+        ]
+      ],
+      [
+        [
+          "Display",
+          "27\" OLED"
+        ],
+        [
+          "Resolution",
+          "4K UHD"
+        ],
+        [
+          "Refresh Rate",
+          "240Hz"
+        ],
+        [
+          "Power Draw",
+          "100W each"
+        ],
+        [
+          "Total Power",
+          "200W (2 units)"
+        ],
+        [
+          "Heat Output",
+          "682 BTU/h"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1012",
+          "Logitech MX Keys S",
+          "Wireless Keyboard",
+          "2",
+          "N/A",
+          "€100"
+        ],
+        [
+          "SRV1011",
+          "Misc Cabling & Peripherals",
+          "Various",
+          "1",
+          "N/A",
+          "€2,000"
+        ]
+      ],
+      [
+        [
+          "ID",
+          "Product",
+          "Type",
+          "Qty",
+          "Rack",
+          "Price"
+        ],
+        [
+          "SRV1014",
+          "Labor - Termination/Config",
+          "Technical Labor",
+          "TBC",
+          "N/A",
+          "TBC"
+        ]
+      ],
+      [
+        [
+          "Physical Infrastructure (Racks)",
+          "€7,800"
+        ],
+        [
+          "Power Protection (UPS)",
+          "€20,000"
+        ],
+        [
+          "Media Servers (Pixera)",
+          "€275,000"
+        ],
+        [
+          "Synchronization (Meinberg)",
+          "€25,000"
+        ],
+        [
+          "Network Hardware (Switches)",
+          "€79,000"
+        ],
+        [
+          "Optical Transceivers",
+          "€14,080"
+        ],
+        [
+          "Cabling Infrastructure",
+          "€13,125"
+        ],
+        [
+          "Workstation & Peripherals",
+          "€4,098"
+        ],
+        [
+          "Labor & Installation",
+          "€5,000"
+        ],
+        [
+          "TOTAL SERVER ROOM",
+          "€443,103"
+        ]
+      ],
+      [
+        [
+          "Total Power Draw",
+          "6,202W"
+        ],
+        [
+          "Current @ 230V",
+          "~27A"
+        ],
+        [
+          "UPS Capacity",
+          "2 × 10kVA = 20kVA total"
+        ],
+        [
+          "UPS Headroom",
+          "~69% (comfortable margin)"
+        ],
+        [
+          "Heat Load (Visual)",
+          "21,161 BTU/h"
+        ],
+        [
+          "Heat & Power Load (Audio)",
+          "TBC - pending contractor data"
+        ]
+      ],
+      [
+        [
+          "Aja IP25-R",
+          "ST2110 to HDMI gateway for broadcast integration"
+        ],
+        [
+          "AVB Audio Interface",
+          "Native Milan audio bridging (see Audio section)"
+        ]
+      ],
+      [
+        [
+          "System Type",
+          "Power (W)",
+          "Heat Load (BTU/h)",
+          "Status"
+        ],
+        [
+          "Visual Equipment (Servers, Network)",
+          "6,202 W",
+          "21,161",
+          "Confirmed"
+        ],
+        [
+          "Projection Equipment (Gallery Spaces)",
+          "24,510 W",
+          "82,880",
+          "Confirmed"
+        ],
+        [
+          "Audio Equipment (Amps, Processors)",
+          "~4,200 W",
+          "14,450",
+          "Estimated (Pending Data)"
+        ],
+        [
+          "ESTIMATED TOTAL",
+          "~34,912 W",
+          "118,491",
+          "Mixed"
+        ]
+      ],
+      [
+        [
+          "Equipment",
+          "Qty",
+          "Power (W)",
+          "BTU/h (Each)",
+          "Total BTU/h"
+        ],
+        [
+          "Pixera PX2 Octo (Media Servers)",
+          "5",
+          "800 W",
+          "2,730",
+          "13,648"
+        ],
+        [
+          "Netgear M4500-32C (Core Switch)",
+          "2",
+          "426 W",
+          "1,454",
+          "2,907"
+        ],
+        [
+          "Netgear XSM4344C (Edge Switch)",
+          "2",
+          "413 W",
+          "1,409",
+          "2,818"
+        ],
+        [
+          "QSFP Transceivers",
+          "64",
+          "3.5 W",
+          "12",
+          "764"
+        ],
+        [
+          "ASUS OLED Monitors",
+          "2",
+          "100 W",
+          "341",
+          "682"
+        ],
+        [
+          "Meinberg Microsync",
+          "1",
+          "100 W",
+          "341",
+          "341"
+        ],
+        [
+          "Visual Subtotal",
+          "",
+          "",
+          "",
+          "21,161"
+        ]
+      ],
+      [
+        [
+          "Component",
+          "Qty",
+          "Power (W)",
+          "BTU/h (Each)",
+          "Total BTU/h"
+        ],
+        [
+          "Room 1 Walls (I600-4K10)",
+          "14",
+          "860 W",
+          "2,900",
+          "40,600"
+        ],
+        [
+          "Room 2 Walls (I600-4K8)",
+          "8",
+          "640 W",
+          "2,150",
+          "17,200"
+        ],
+        [
+          "Room 1 Floor (G50-W8)",
+          "10",
+          "490 W",
+          "1,672",
+          "16,720"
+        ],
+        [
+          "Room 2 Floor (G50-W8)",
+          "5",
+          "490 W",
+          "1,672",
+          "8,360"
+        ],
+        [
+          "Projection Subtotal",
+          "37",
+          "",
+          "",
+          "82,880"
+        ]
+      ],
+      [
+        [
+          "Equipment",
+          "Qty",
+          "Est. Power (W)",
+          "Total BTU/h",
+          "Status"
+        ],
+        [
+          "LA7.16i CE Amplifiers",
+          "6",
+          "~300-500 W (typical)*",
+          "TBC",
+          "Requires Data"
+        ],
+        [
+          "L-ISA Processor II",
+          "1",
+          "300 W",
+          "TBC",
+          "Requires Data"
+        ],
+        [
+          "LS10 AVB Switch",
+          "4",
+          "80 W",
+          "TBC",
+          "Requires Data"
+        ],
+        [
+          "Q-Sys Core 8 Flex",
+          "1",
+          "TBC",
+          "TBC",
+          "Requires Data"
+        ],
+        [
+          "RME MADIface USB",
+          "2",
+          "Bus powered",
+          "Minimal",
+          "Confirmed"
+        ]
+      ],
+      [
+        [
+          "Project Location",
+          "Dublin, Ireland"
+        ],
+        [
+          "Target Opening",
+          "September 2026"
+        ],
+        [
+          "Rental Duration",
+          "12-18 months (initial phase)"
+        ],
+        [
+          "Technical Lead",
+          "Krisjanis (Kris) Berzins, IdirNet"
+        ],
+        [
+          "Creative Director",
+          "Kev Freeney"
+        ],
+        [
+          "Client",
+          "Lightheart Ltd / Brendan Dillon"
+        ]
+      ],
+      [
+        [
+          "Barco I600-4K10",
+          "10,000 lm, 4K",
+          "14",
+          "Room 1 walls",
+          "Primary spec"
+        ],
+        [
+          "Barco I600-4K8",
+          "8,000 lm, 4K",
+          "8",
+          "Room 2 walls",
+          "Primary spec"
+        ],
+        [
+          "Barco G50-W8",
+          "8,000 lm, 2K",
+          "15",
+          "Floor projection",
+          "Primary spec"
+        ],
+        [
+          "ILD 0.37 UST Lens",
+          "Ultra-short throw",
+          "22",
+          "Wall projectors",
+          "With I600 series"
+        ],
+        [
+          "0.65-0.75:1 G-Lens",
+          "Short-throw",
+          "15",
+          "Floor projectors",
+          "With G50 series"
+        ]
+      ],
+      [
+        [
+          "DVIGear",
+          "DVI-7380 DP to DP 4K",
+          "22x sets",
+          "4:4:4 @ 60Hz over OS2 Fiber",
+          "Under evaluation"
+        ],
+        [
+          "Lightware",
+          "Fiber extenders",
+          "TBC",
+          "4K 4:4:4 12-bit @ 60Hz",
+          "Under evaluation"
+        ],
+        [
+          "Crestron",
+          "DM NVX / DMPS",
+          "TBC",
+          "AV-over-IP solutions",
+          "Alternative option"
+        ],
+        [
+          "Barco",
+          "IO Gateway (IPMX)",
+          "TBC",
+          "ST2110/IPMX compatible",
+          "Future-proofing option"
+        ]
+      ],
+      [
+        [
+          "PT-REQ10",
+          "10,000 lm, 4K",
+          "Alternative to I600-4K10",
+          "ET-C1U100 UST Lens (0.308-0.330:1)"
+        ],
+        [
+          "PT-REQ80",
+          "8,000 lm, 4K",
+          "Alternative to I600-4K8",
+          "ET-C1U100 UST Lens (0.308-0.330:1)"
+        ],
+        [
+          "PT-MZ880",
+          "8,000 lm, WUXGA",
+          "Alternative to G50-W8",
+          "ET-ELW22 (0.78-0.98:1) - longer throw"
+        ]
+      ],
+      [
+        [
+          "EB-PU2010B",
+          "10,000 lm, 4K",
+          "Alternative to I600-4K10",
+          "ELPLX01S Fixed UST (0.35:1)"
+        ],
+        [
+          "EB-PU1008W",
+          "8,500 lm, 4K-Enhanced",
+          "Alternative to I600-4K8 & G50-W8",
+          "ELPLX01S Fixed UST (0.35:1)"
+        ],
+        [
+          "EB-PU1008W",
+          "8,500 lm, 4K-Enhanced",
+          "Alternative to G50-W8",
+          "ELPLU03S Short-Throw (0.65-0.78:1)"
+        ]
+      ],
+      [
+        [
+          "Product",
+          "Pixera PX2 Octo + GUI Card"
+        ],
+        [
+          "Quantity",
+          "5 units"
+        ],
+        [
+          "Unit Price",
+          "£39,100 (ex VAT) / ~€55,000"
+        ],
+        [
+          "Total Cost",
+          "~€275,000"
+        ],
+        [
+          "Form Factor",
+          "2U rack-mount"
+        ],
+        [
+          "Network",
+          "10GBase-T ports"
+        ],
+        [
+          "Status",
+          "Pricing confirmed"
+        ]
+      ],
+      [
+        [
+          "Picturall",
+          "Pro series",
+          "Premium playback",
+          "Used at Outernet",
+          "Limited operators in Ireland"
+        ],
+        [
+          "Hive",
+          "Blade servers",
+          "Cost-conscious option",
+          "100G ports available",
+          "Under evaluation"
+        ],
+        [
+          "Custom Build",
+          "Dell/similar + Pixera dongle",
+          "Alternative approach",
+          "Fully supported hardware",
+          "To be priced"
+        ]
+      ],
+      [
+        [
+          "Supplier",
+          "Audiotek Ltd, Swords Business Park, Ireland"
+        ],
+        [
+          "Contact",
+          "Tom Macklin (tom.macklin@l-acoustics.com)"
+        ],
+        [
+          "Quote Ref",
+          "QU-20070 (Room 1), QU-20071 (Room 2)"
+        ],
+        [
+          "Quote Date",
+          "25 Feb 2026 (expires 27 Mar 2026)"
+        ],
+        [
+          "Room 1 Cost",
+          "€226,453.83"
+        ],
+        [
+          "Room 2 Cost",
+          "€175,131.93"
+        ],
+        [
+          "Total Audio",
+          "€401,585.76"
+        ]
+      ],
+      [
+        [
+          "X8i",
+          "Surround speaker",
+          "34 total",
+          "90° axisymmetric, 129 dB",
+          "Room 1 & 2"
+        ],
+        [
+          "X6i",
+          "Height speaker",
+          "37 total",
+          "90° axisymmetric, 123 dB",
+          "Room 1 & 2"
+        ],
+        [
+          "SYVA SUB",
+          "Subwoofer",
+          "16 total",
+          "128 dB peak",
+          "Room 1 & 2"
+        ],
+        [
+          "LA7.16i CE",
+          "Amplified controller",
+          "6",
+          "16 x 1300W @ 8Ω",
+          "Server room"
+        ],
+        [
+          "L-ISA Processor II",
+          "Spatial audio processor",
+          "1",
+          "64 outputs (upgraded)",
+          "Server room"
+        ],
+        [
+          "LS10",
+          "AVB switch",
+          "4",
+          "10-port Milan-certified",
+          "Server room"
+        ]
+      ],
+      [
+        [
+          "L-Acoustics SEMINARSession",
+          "€4,160 (up to 8 seats)"
+        ],
+        [
+          "L-Acoustics SEMINARSeat",
+          "€1,560 (Immersive Mixing Engineer)"
+        ],
+        [
+          "L-Acoustics TrainingSeat",
+          "€1,368 (System & Workflow)"
+        ],
+        [
+          "Calibration",
+          "€1,350/day per room (€2,700 total)"
+        ]
+      ],
+      [
+        [
+          "M4500-32C",
+          "100G Core Switch",
+          "2",
+          "32x 100G QSFP28, CSM4532 chipset",
+          "€24,500/unit"
+        ],
+        [
+          "XSM4344C",
+          "PoE+ Edge Switch",
+          "2",
+          "44x 10Gb PoE+ with 100G uplink",
+          "€15,000/unit"
+        ]
+      ],
+      [
+        [
+          "Cisco Compatible",
+          "QSFP-100G-CWDM4-S",
+          "64",
+          "100GBASE-CWDM4, 1310nm, 2km",
+          "€220/unit"
+        ]
+      ],
+      [
+        [
+          "OS2 Fiber",
+          "4-core LC, 50m",
+          "50",
+          "Single-mode with redundant cores",
+          "€150/unit"
+        ],
+        [
+          "Cat6a",
+          "S/FTP LSZH, 50m",
+          "75",
+          "Shielded twisted pair",
+          "€75/unit"
+        ]
+      ],
+      [
+        [
+          "NetShelter SX 48U",
+          "Server rack",
+          "2",
+          "48U, 600x1070mm footprint",
+          "€3,900/unit"
+        ],
+        [
+          "Smart-UPS SRT 10000VA RM",
+          "UPS system",
+          "2",
+          "10kVA rack-mount",
+          "€10,000/unit"
+        ]
+      ],
+      [
+        [
+          "Product",
+          "Microsync Broadcast"
+        ],
+        [
+          "Function",
+          "Sync generator for PTP and Tri-level burst"
+        ],
+        [
+          "Quantity",
+          "1"
+        ],
+        [
+          "Cost",
+          "€25,000 (estimated)"
+        ],
+        [
+          "Status",
+          "Quote pending (TBC)"
+        ],
+        [
+          "Power",
+          "100W"
+        ],
+        [
+          "Heat Output",
+          "341 BTU/h"
+        ]
+      ],
+      [
+        [
+          "ASUS",
+          "ROG Swift OLED PG27UCDM",
+          "2",
+          "27\" 4K OLED monitor",
+          "€949/unit"
+        ],
+        [
+          "Logitech",
+          "MX Keys S",
+          "2",
+          "Wireless keyboard",
+          "€100/unit"
+        ]
+      ],
+      [
+        [
+          "Product",
+          "OAK 4 D Pro"
+        ],
+        [
+          "Quantity",
+          "44 units (planned)"
+        ],
+        [
+          "Per-Camera Bandwidth",
+          "2.5 Gbps"
+        ],
+        [
+          "Theoretical Aggregate",
+          "~110 Gbps"
+        ],
+        [
+          "Function",
+          "Motion detection, depth sensing, tracking"
+        ]
+      ],
+      [
+        [
+          "Fiber Termination",
+          "Included in labor estimate"
+        ],
+        [
+          "Switch Configuration",
+          "Included in labor estimate"
+        ],
+        [
+          "Sync Calibration",
+          "Included in labor estimate"
+        ],
+        [
+          "General Labor",
+          "TBC"
+        ]
+      ],
+      [
+        [
+          "Vendor",
+          "Contact",
+          "Product/Service",
+          "Status"
+        ],
+        [
+          "Audiotek",
+          "Tom Macklin",
+          "L-Acoustics Audio",
+          "Quoted"
+        ],
+        [
+          "Barco",
+          "WIP",
+          "Projection",
+          "Primary spec"
+        ],
+        [
+          "Panasonic",
+          "TBC",
+          "Projection (alt)",
+          "Under review"
+        ],
+        [
+          "Epson",
+          "TBC",
+          "Projection (alt)",
+          "Under review"
+        ],
+        [
+          "AV Stumpfl",
+          "TBC",
+          "Pixera Servers",
+          "Pricing confirmed"
+        ],
+        [
+          "Netgear",
+          "TBC",
+          "Network switches",
+          "Spec confirmed"
+        ],
+        [
+          "Meinberg",
+          "TBC",
+          "Sync generator",
+          "Quote pending"
+        ],
+        [
+          "APC",
+          "TBC",
+          "Racks & UPS",
+          "Spec confirmed"
+        ],
+        [
+          "Luxonis",
+          "TBC",
+          "Cameras/sensors",
+          "Under evaluation"
+        ],
+        [
+          "DVIGear",
+          "TBC",
+          "Signal transport",
+          "Under evaluation"
+        ]
+      ],
+      [
+        [
+          "Category",
+          "Status",
+          "Cost",
+          "Notes"
+        ],
+        [
+          "Projection Equipment",
+          "Quoting",
+          "€TBC",
+          "Barco primary, alternatives under review"
+        ],
+        [
+          "Media Servers",
+          "Confirmed",
+          "€275,000",
+          "Pixera PX2 Octo pricing confirmed"
+        ],
+        [
+          "Audio System",
+          "Quoted",
+          "€386,145",
+          "Audiotek quote expires 27 Mar"
+        ],
+        [
+          "Network Infrastructure",
+          "Confirmed",
+          "€93,080",
+          "Netgear switches + transceivers"
+        ],
+        [
+          "Server Room",
+          "Confirmed",
+          "€443,103",
+          "Racks, UPS, cabling included"
+        ],
+        [
+          "Signal Transport",
+          "Evaluating",
+          "€TBC",
+          "Fiber vs HDBaseT vs ST2110"
+        ],
+        [
+          "Sync Generator",
+          "Pending",
+          "€25,000 (est)",
+          "Meinberg quote TBC"
+        ],
+        [
+          "Sensors/Tracking",
+          "Evaluating",
+          "€TBC",
+          "Bandwidth architecture TBC"
+        ]
+      ]
+    ]
+  },
+  "projectAtAGlance": {
+    "Location": "Dublin, Ireland",
+    "Venue Type": "Two-room immersive art space",
+    "Target Opening": "September 2026",
+    "Rental Duration": "12-18 months (initial phase)",
+    "Total Exhibition Space": "~280 sq. m.",
+    "Technical Lead": "Krisjanis (Kris) Berzins, IdirNet"
+  },
+  "projectionSystems": {
+    "Room 1 (Main Gallery)": "14x Barco I600-4K10 (10,000 lm, 4K) + Floor projection",
+    "Room 2": "8x Barco I600-4K8 (8,000 lm, 4K)",
+    "Floor Projection": "15x Barco G50-W8 (8,000 lm, 2K)",
+    "Lensing": "ILD 0.37 UST (ultra-short throw) + 0.65-0.75:1 short-throw",
+    "Signal Transport": "4:4:4 @ 60Hz, 16:10 aspect ratio"
+  },
+  "mediaServers": {
+    "Primary Servers": "5x Pixera PX2 Octo (2U each)",
+    "GUI Control": "Dedicated GUI card on one server",
+    "Outputs": "~14 x 4K + 12 x 2K (Room 1), configurable for Room 2",
+    "Sync": "Meinberg Microsync Broadcast (PTP + Tri-level genlock)"
+  },
+  "audioSystem": {
+    "Platform": "L-Acoustics L-ISA Immersive Audio",
+    "Room 1 Speakers": "20x X8i (surround) + 20x X6i (height) + 8x SYVA SUB",
+    "Room 2 Speakers": "14x X8i (surround) + 17x X6i (height) + 8x SYVA SUB",
+    "Amplification": "6x LA7.16i CE (16-channel, 1300W @ 8Ω)",
+    "Processing": "L-ISA Processor II (64 outputs)",
+    "Network": "Milan-AVB (not Dante native)",
+    "Sync Generator": "Meinberg Microsync Broadcast (TBC)"
+  },
+  "networkInfrastructure": {
+    "Core Switches": "2x Netgear M4500-32C (100G QSFP28)",
+    "Edge Switches": "2x Netgear XSM4344C (44x 10Gb PoE+ with 100G uplink)",
+    "Transceivers": "64x QSFP-100G-CWDM4-S compatible",
+    "Fiber Cabling": "50x OS2 4-core LC to LC (50m runs)",
+    "Copper Cabling": "75x Cat6a S/FTP LSZH (50m runs)"
+  },
+  "serverRoom": {
+    "Physical Infrastructure (Racks)": "€7,800",
+    "Power Protection (UPS)": "€20,000",
+    "Media Servers (Pixera)": "€275,000",
+    "Synchronization (Meinberg)": "€25,000",
+    "Network Hardware (Switches)": "€79,000",
+    "Optical Transceivers": "€14,080",
+    "Cabling Infrastructure": "€13,125",
+    "Workstation & Peripherals": "€4,098",
+    "Labor & Installation": "€5,000",
+    "TOTAL SERVER ROOM": "€443,103"
+  },
+  "heatLoad": {
+    "Heat Load Server Room (Visual)": "~21,161 BTU/h",
+    "Heat Load Server Room Audio ( Est.)": "~14,450 BTU/h pending final spec from vendors",
+    "Heat Load Projectors in Galleries 1 + 2": "~82880 BTU/h"
+  },
+  "budgetSummary": [
+    {
+      "Category": "Projection Equipment (Barco)",
+      "Amount": "€TBC",
+      "Status": "Quoting"
+    },
+    {
+      "Category": "Media Servers (Pixera)",
+      "Amount": "€275,000",
+      "Status": "Confirmed"
+    },
+    {
+      "Category": "Audio System (L-Acoustics)",
+      "Amount": "€386,145",
+      "Status": "Quoted"
+    },
+    {
+      "Category": "Server Room Infrastructure",
+      "Amount": "€443,103",
+      "Status": "Confirmed"
+    },
+    {
+      "Category": "Signal Transport",
+      "Amount": "€TBC",
+      "Status": "Evaluating"
+    },
+    {
+      "Category": "Installation & Labour",
+      "Amount": "€TBC",
+      "Status": "Pending"
+    }
+  ],
+  "vendorStatus": {
+    "Category": "Status",
+    "Projection Equipment": "Quoting",
+    "Media Servers": "Confirmed",
+    "Audio System": "Quoted",
+    "Network Infrastructure": "Confirmed",
+    "Server Room": "Confirmed",
+    "Signal Transport": "Evaluating",
+    "Sync Generator": "Pending",
+    "Sensors/Tracking": "Evaluating"
+  },
+  "signalTransport": [
+    [
+      "Specification",
+      "1: HDMI Fiber",
+      "2: DP Fiber",
+      "3: HDBaseT 3.0"
+    ],
+    [
+      "Technology",
+      "HDMI 2.0 → SM Fiber",
+      "DisplayPort 1.4 → SM Fiber",
+      "DP→HDMI→HDBaseT 3.0"
+    ],
+    [
+      "Hardware",
+      "Kramer 675R/T + DP→HDMI",
+      "DVIGear DVI-7380 (OS2 LC)",
+      "Barco R9803120 cards + transmitters"
+    ],
+    [
+      "4K Channels",
+      "22",
+      "22",
+      "22"
+    ],
+    [
+      "Cost per 4K Ch.",
+      "€1,423",
+      "€1,048",
+      "€3,364"
+    ],
+    [
+      "4K Transport Subtotal",
+      "€31,306",
+      "€23,056",
+      "€74,008"
+    ],
+    [
+      "Import/Duty/VAT (~27%)",
+      "~€8,000",
+      "~€6,458",
+      "~€20,000"
+    ],
+    [
+      "Delivered 4K Cost",
+      "~€39,306",
+      "€29,514",
+      "~€94,000"
+    ],
+    [
+      "2K Transport (Floor)",
+      "€15,000",
+      "€15,000",
+      "€15,000"
+    ],
+    [
+      "TOTAL",
+      "~€54,300",
+      "€44,514",
+      "~€109,000"
+    ],
+    [
+      "Bandwidth",
+      "18 Gbps (at ceiling)",
+      "32.4 Gbps (headroom)",
+      "18 Gbps"
+    ],
+    [
+      "Points of Failure",
+      "22 active adapters",
+      "0 (native end-to-end)",
+      "22 proprietary cards"
+    ],
+    [
+      "Status",
+      "❌ Rejected",
+      "✅ Specified",
+      "⚠️ Rejected for 4K Walls**"
+    ]
+  ],
+  "projectorTotals": {
+    "Fiber Infrastructure": "50× OS2 4-core LC runs (200 fiber strands total)",
+    "Copper Infrastructure": "75× Cat6a S/FTP runs",
+    "Switch Ports": "88× 10Gb PoE+, 64× 100G QSFP28",
+    "AVB Switches": "4× L-Acoustics LS10 (Primary/Secondary pairs)",
+    "Protocols": "DP 1.4 (video), Milan-AVB (audio), TCP/IP (sensors/control)"
+  }
+}
