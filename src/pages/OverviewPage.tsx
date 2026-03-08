@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import CopyEmail from '../components/CopyEmail';
 import { 
   Video, 
   Volume2, 
@@ -95,7 +96,7 @@ export default function OverviewPage() {
   }, []);
 
   return (
-    <div ref={pageRef} className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div ref={pageRef} className="page-enter min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-10 sm:mb-12">
@@ -126,7 +127,7 @@ export default function OverviewPage() {
               <div>
                 <div className="text-xs mono text-soft-gray mb-1">PROJECT LEAD</div>
                 <div className="text-white text-sm">Krisjanis Berzins</div>
-                <div className="text-neon-cyan text-xs">kris@idirnet.com</div>
+                <CopyEmail email="kris@idirnet.com" isDarkMode={true} />
               </div>
             </div>
 

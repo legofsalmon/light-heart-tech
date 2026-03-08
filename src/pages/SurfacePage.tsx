@@ -70,7 +70,7 @@ Goo Systems,Quote Expiry,,,3 Apr 2026,Quoted`;
   const bgClass = isDarkMode ? 'bg-[#0A0A0A]' : 'bg-gray-50';
 
   return (
-    <div ref={pageRef} className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div ref={pageRef} className="page-enter min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-8 sm:mb-10">
@@ -116,64 +116,63 @@ Goo Systems,Quote Expiry,,,3 Apr 2026,Quoted`;
             className="font-display text-base font-bold mb-4"
             style={{ color: isDarkMode ? '#FFFFFF' : '#000000' }}
           >
-            BEFORE / AFTER COMPARISON
+            SURFACE TREATMENT COMPARISON
           </h3>
+          <p className={`text-xs mb-4 ${isDarkMode ? 'text-[#888]' : 'text-gray-500'}`}>
+            Drag the slider to compare untreated (left) vs treated (right) projection surfaces.
+          </p>
           
           <div 
-            className="relative h-48 sm:h-64 border overflow-hidden"
+            className="relative h-48 sm:h-64 border overflow-hidden rounded-lg"
             style={{ borderColor, backgroundColor: isDarkMode ? '#0A0A0A' : '#F5F5F5' }}
           >
-            {/* Before (Untreated) */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div 
-                  className="w-32 h-20 mx-auto mb-3 rounded"
-                  style={{ 
-                    background: 'linear-gradient(to right, #666, #999, #666)'
-                  }}
-                />
-                <div className={`text-xs mono ${isDarkMode ? 'text-[#A0A0A0]' : 'text-gray-500'}`}>
-                  UNTREATED SURFACE
-                </div>
-                <div className="text-[10px]" style={{ color: '#FF006E' }}>
-                  HOT SPOTS VISIBLE
-                </div>
+            {/* Before (Untreated) - shows hot spot gradient */}
+            <div className="absolute inset-0">
+              <div className="absolute inset-0" style={{
+                background: 'radial-gradient(ellipse at 40% 40%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 40%, rgba(100,100,100,0.3) 100%)',
+              }} />
+              <div className="absolute inset-0" style={{
+                background: 'radial-gradient(ellipse at 70% 60%, rgba(255,255,255,0.25) 0%, transparent 35%)',
+              }} />
+              <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF006E' }} />
+                <span className="text-[10px] uppercase tracking-wider font-mono" style={{ color: '#FF006E' }}>
+                  Untreated — uneven brightness
+                </span>
               </div>
             </div>
 
-            {/* After (Treated) */}
+            {/* After (Treated) - uniform grey */}
             <div 
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0"
               style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
-              <div className="text-center">
-                <div 
-                  className="w-32 h-20 mx-auto mb-3 rounded"
-                  style={{ 
-                    background: '#777'
-                  }}
-                />
-                <div className="text-xs mono" style={{ color: accentColor }}>
-                  TREATED SURFACE
-                </div>
-                <div className="text-[10px]" style={{ color: '#39FF14' }}>
-                  UNIFORM DISTRIBUTION
-                </div>
+              <div className="absolute inset-0" style={{
+                background: isDarkMode
+                  ? 'linear-gradient(135deg, #4a4a4a 0%, #505050 50%, #4a4a4a 100%)'
+                  : 'linear-gradient(135deg, #aaa 0%, #b0b0b0 50%, #aaa 100%)',
+              }} />
+              <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#39FF14' }} />
+                <span className="text-[10px] uppercase tracking-wider font-mono" style={{ color: '#39FF14' }}>
+                  Gain 0.7 treated — uniform distribution
+                </span>
               </div>
             </div>
 
             {/* Slider Handle */}
             <div 
-              className="absolute top-0 bottom-0 w-1 cursor-ew-resize"
+              className="absolute top-0 bottom-0 w-0.5 cursor-ew-resize z-10"
               style={{ 
                 left: `${sliderPosition}%`,
                 transform: 'translateX(-50%)',
-                backgroundColor: accentColor
+                backgroundColor: accentColor,
+                boxShadow: `0 0 8px ${accentColor}60`,
               }}
             >
               <div 
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: accentColor }}
+                style={{ backgroundColor: accentColor, boxShadow: `0 0 12px ${accentColor}40` }}
               >
                 <ArrowRight className="w-4 h-4" style={{ color: isDarkMode ? '#000' : '#FFF' }} />
               </div>
@@ -185,7 +184,7 @@ Goo Systems,Quote Expiry,,,3 Apr 2026,Quoted`;
               max="100"
               value={sliderPosition}
               onChange={(e) => setSliderPosition(Number(e.target.value))}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
             />
           </div>
         </div>

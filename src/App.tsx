@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FloatingDocLink from './components/FloatingDocLink';
+import SyncBanner from './components/SyncBanner';
 import PasswordGate from './components/PasswordGate';
 import HomePage from './pages/HomePage';
 import TechnicalDirectionPage from './pages/TechnicalDirectionPage';
@@ -30,6 +31,7 @@ function ScrollToTop() {
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showSyncBanner, setShowSyncBanner] = useState(false);
 
   useEffect(() => {
     const auth = sessionStorage.getItem('lightheart_auth');
@@ -37,6 +39,16 @@ function App() {
       setIsAuthenticated(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const shown = sessionStorage.getItem('lightheart_sync_shown');
+      if (!shown) {
+        setShowSyncBanner(true);
+        sessionStorage.setItem('lightheart_sync_shown', 'true');
+      }
+    }
+  }, [isAuthenticated]);
 
   const toggleTheme = () => setIsDarkMode(prev => !prev);
 
@@ -56,9 +68,10 @@ function App() {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0a0a] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
+      <div className={`min-h-screen flex flex-col transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0a0a] text-[#e0e0e0]' : 'bg-[#f5f5f0] text-[#1a1a1a]'}`}>
         <Header isDarkMode={isDarkMode} onThemeToggle={toggleTheme} />
-        <main className="pt-20">
+        {showSyncBanner && <SyncBanner isDarkMode={isDarkMode} />}
+        <main className="pt-20 flex-1">
           <Routes>
             <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
             <Route path="/technical-direction" element={<TechnicalDirectionPage isDarkMode={isDarkMode} />} />

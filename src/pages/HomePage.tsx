@@ -57,33 +57,42 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
   const accentColor = isDarkMode ? '#00F0FF' : '#0066CC';
   const subTextColor = isDarkMode ? '#A0A0A0' : '#666666';
   const borderColor = isDarkMode ? '#1F1F1F' : '#E5E5E5';
+  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.08)' : `1px solid ${borderColor}`;
 
   return (
-    <div className={`min-h-screen flex flex-col page-enter ${isDarkMode ? 'grid-bg' : ''}`}>
+    <div className={`min-h-[calc(100vh-5rem)] flex flex-col page-enter ${isDarkMode ? 'grid-bg' : ''}`}>
       {/* Hero */}
-      <div className={`flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative ${isDarkMode ? 'hero-glow' : ''}`}>
+      <div className={`flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 relative ${isDarkMode ? 'hero-glow' : ''}`}>
         {isDarkMode && (
           <div className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to right, rgba(0, 240, 255, 0.03), transparent, rgba(0, 240, 255, 0.03))' }}
           />
         )}
 
-        <div className="max-w-4xl mx-auto relative z-10">
-          {/* Status badge - dark mode only */}
-          {isDarkMode && (
-            <div ref={badgeRef} className="flex justify-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
-                style={{ background: 'rgba(0, 240, 255, 0.08)', border: '1px solid rgba(0, 240, 255, 0.25)' }}
+        <div className="max-w-4xl mx-auto relative z-10 w-full">
+          {/* Status badge - always present to prevent layout shift */}
+          <div ref={badgeRef} className="flex justify-center mb-6" style={{ minHeight: '36px' }}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+              style={{
+                background: isDarkMode ? 'rgba(0, 240, 255, 0.08)' : 'rgba(0, 102, 204, 0.06)',
+                border: isDarkMode ? '1px solid rgba(0, 240, 255, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
+              }}
+            >
+              <span className="status-dot" style={{
+                background: isDarkMode ? '#00f0ff' : '#0066cc',
+                boxShadow: isDarkMode ? '0 0 8px rgba(0, 240, 255, 0.6)' : '0 0 8px rgba(0, 102, 204, 0.4)',
+              }} />
+              <span className="text-xs font-mono tracking-[0.15em] uppercase"
+                style={{ color: isDarkMode ? '#00F0FF' : '#0066CC' }}
               >
-                <span className="status-dot" />
-                <span className="text-[#00F0FF] text-xs font-mono tracking-[0.15em] uppercase">System Online</span>
-              </div>
+                System Online
+              </span>
             </div>
-          )}
+          </div>
 
           {/* Title */}
-          <div ref={titleRef} className="text-center mb-8">
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
+          <div ref={titleRef} className="text-center mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-3">
               <span style={{ color: isDarkMode ? '#FFFFFF' : '#000000' }}>LIGHTHEART</span>
             </h1>
             <div className="text-xl sm:text-2xl md:text-3xl tracking-[0.2em] mb-2" style={{ color: accentColor }}>
@@ -94,21 +103,31 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
             </div>
           </div>
 
-          {isDarkMode && <div className="gradient-line w-48 mx-auto mb-8" />}
+          {/* Gradient divider - always present, styled per theme */}
+          <div className="w-48 mx-auto mb-6" style={{
+            height: '1px',
+            background: isDarkMode
+              ? 'linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.5), transparent)'
+              : 'linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.3), transparent)',
+          }} />
 
           {/* Introduction */}
           <div
             ref={introRef}
-            className={`p-6 sm:p-8 border mb-8 relative ${isDarkMode ? 'hud-card hud-corners' : ''}`}
-            style={isDarkMode ? {} : { borderColor }}
+            className="p-6 sm:p-8 mb-8 relative rounded-lg"
+            style={{
+              border: cardBorder,
+              background: isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)',
+              backdropFilter: isDarkMode ? 'blur(20px)' : 'none',
+            }}
           >
             {isDarkMode && <div className="hud-corners-extra absolute inset-0 rounded-lg pointer-events-none" />}
-            <h2 className="font-display text-lg sm:text-xl font-bold mb-4"
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-3"
               style={{ color: isDarkMode ? '#FFFFFF' : '#000000' }}
             >
               Welcome to This Technical Specification
             </h2>
-            <p className="text-sm sm:text-base leading-relaxed mb-4" style={{ color: subTextColor }}>
+            <p className="text-sm sm:text-base leading-relaxed mb-3" style={{ color: subTextColor }}>
               This document contains the complete technical design, specification, and budget
               ring-fencing for a permanent two-room immersive installation. The system comprises
               37 projectors, 71 speakers, 5 media servers, and comprehensive network infrastructure.
@@ -123,7 +142,7 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
           <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/technical-direction"
-              className={`group inline-flex items-center gap-2 px-6 py-3 font-display font-bold tracking-wider text-sm transition-colors w-full sm:w-auto justify-center ${isDarkMode ? 'btn-cyan' : ''}`}
+              className={`group inline-flex items-center gap-2 px-6 py-3 font-display font-bold tracking-wider text-sm transition-all w-full sm:w-auto justify-center rounded ${isDarkMode ? 'btn-cyan' : 'hover:opacity-90'}`}
               style={{ backgroundColor: accentColor, color: isDarkMode ? '#000000' : '#FFFFFF' }}
             >
               ENTER SPECIFICATION
@@ -131,7 +150,7 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
             </Link>
             <Link
               to="/visualization"
-              className={`group inline-flex items-center gap-2 px-6 py-3 font-display font-bold tracking-wider text-sm border-2 transition-colors w-full sm:w-auto justify-center ${isDarkMode ? 'btn-outline-cyan' : ''}`}
+              className={`group inline-flex items-center gap-2 px-6 py-3 font-display font-bold tracking-wider text-sm border-2 transition-all w-full sm:w-auto justify-center rounded ${isDarkMode ? 'btn-outline-cyan' : 'hover:bg-[#0066cc]/10'}`}
               style={{ borderColor: accentColor, color: accentColor }}
             >
               3D VISUALIZATION
@@ -141,9 +160,9 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="border-t" style={{ borderColor }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      {/* Stats - pinned to bottom */}
+      <div style={{ borderTop: `1px solid ${borderColor}` }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[
               { value: 37, label: 'PROJECTORS' },
@@ -163,7 +182,7 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
       </div>
 
       {/* Info bar */}
-      <div className="border-t" style={{ borderColor }}>
+      <div style={{ borderTop: `1px solid ${borderColor}` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className={`flex flex-col sm:flex-row items-center justify-between gap-2 text-xs mono ${isDarkMode ? 'text-[#A0A0A0]' : 'text-gray-500'}`}>
             <span>KRISJANIS BERZINS — IDIRNET</span>

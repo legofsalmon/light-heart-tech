@@ -36,7 +36,7 @@ export default function Header({ isDarkMode, onThemeToggle }: HeaderProps) {
 
   useEffect(() => { setIsMenuOpen(false); }, [location.pathname]);
 
-  
+
   const borderColor = isDarkMode ? 'border-[#333]' : 'border-[#ddd]';
   const textColor = isDarkMode ? 'text-[#e0e0e0]' : 'text-[#1a1a1a]';
   const accentHex = isDarkMode ? '#00d4ff' : '#0066cc';

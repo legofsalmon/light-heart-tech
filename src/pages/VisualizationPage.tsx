@@ -65,7 +65,7 @@ export default function VisualizationPage({ isDarkMode }: VisualizationPageProps
   const subTextColor = isDarkMode ? '#A0A0A0' : '#666666';
 
   return (
-    <div ref={pageRef} className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div ref={pageRef} className="page-enter min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-8 sm:mb-10">

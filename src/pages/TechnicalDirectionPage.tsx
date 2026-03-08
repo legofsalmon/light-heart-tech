@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown, Download } from 'lucide-react';
+import CopyEmail from '../components/CopyEmail';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,7 +135,7 @@ HVAC,Recommended,177737 BTU/h`;
   };
 
   return (
-    <div ref={pageRef} className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div ref={pageRef} className="page-enter min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Page Header */}
         <div className="td-content mb-8 sm:mb-10">
@@ -192,7 +193,7 @@ HVAC,Recommended,177737 BTU/h`;
               <div>
                 <div className="text-[10px] mono mb-1">PROJECT LEAD</div>
                 <div style={{ color: isDarkMode ? '#FFFFFF' : '#000000' }}>Krisjanis Berzins</div>
-                <div style={{ color: accentColor }}>kris@idirnet.com</div>
+                <CopyEmail email="kris@idirnet.com" isDarkMode={isDarkMode} />
               </div>
               <div>
                 <div className="text-[10px] mono mb-1">CLIENT</div>

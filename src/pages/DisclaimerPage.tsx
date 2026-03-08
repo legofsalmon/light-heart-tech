@@ -1,3 +1,4 @@
+import CopyEmail from '../components/CopyEmail';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -40,7 +41,7 @@ export default function DisclaimerPage({ isDarkMode }: DisclaimerPageProps) {
   const bgClass = isDarkMode ? 'bg-[#0A0A0A]' : 'bg-gray-50';
 
   return (
-    <div ref={pageRef} className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div ref={pageRef} className="page-enter min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Page Header */}
         <div className="disclaimer-section mb-8 sm:mb-10">
@@ -248,7 +249,7 @@ export default function DisclaimerPage({ isDarkMode }: DisclaimerPageProps) {
                 <span>Technical Spec by</span>
                 <span style={{ color: accentColor }}>idirnet</span>
                 <span>|</span>
-                <span>kris@idirnet.com</span>
+                <CopyEmail email="kris@idirnet.com" isDarkMode={isDarkMode} />
               </div>
             </div>
           </div>
@@ -275,7 +276,7 @@ export default function DisclaimerPage({ isDarkMode }: DisclaimerPageProps) {
             >
               This document is password protected. Access is restricted to authorized 
               personnel only. If you have accessed this document without authorization, 
-              please contact kris@idirnet.com immediately.
+              please contact <CopyEmail email="kris@idirnet.com" isDarkMode={isDarkMode} /> immediately.
             </p>
           </div>
         </div>
