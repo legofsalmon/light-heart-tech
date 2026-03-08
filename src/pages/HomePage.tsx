@@ -60,15 +60,9 @@ export default function HomePage({ isDarkMode }: HomePageProps) {
   const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.08)' : `1px solid ${borderColor}`;
 
   return (
-    <div className={`min-h-[calc(100vh-5rem)] flex flex-col page-enter ${isDarkMode ? 'grid-bg' : ''}`}>
+    <div className="min-h-[calc(100vh-5rem)] flex flex-col page-enter">
       {/* Hero */}
-      <div className={`flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 relative ${isDarkMode ? 'hero-glow' : ''}`}>
-        {isDarkMode && (
-          <div className="absolute inset-0 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, rgba(0, 240, 255, 0.03), transparent, rgba(0, 240, 255, 0.03))' }}
-          />
-        )}
-
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 relative">
         <div className="max-w-4xl mx-auto relative z-10 w-full">
           {/* Status badge - always present to prevent layout shift */}
           <div ref={badgeRef} className="flex justify-center mb-6" style={{ minHeight: '36px' }}>
