@@ -8,10 +8,10 @@ import HudSettings, { DEFAULT_PARAMS } from './components/HudSettings';
 import type { HudParams } from './components/HudSettings';
 import { SoundProvider } from './components/SoundEngine';
 import { useGlobalSoundEffects } from './hooks/useSoundEffects';
+import { LiveDocProvider } from './data/LiveDocProvider';
 import PasswordGate from './components/PasswordGate';
-import OriginalBriefPage from './pages/OriginalBriefPage';
-import AudioBridgingPage from './pages/AudioBridgingPage';
 import HomePage from './pages/HomePage';
+import OriginalBriefPage from './pages/OriginalBriefPage';
 import TechnicalDirectionPage from './pages/TechnicalDirectionPage';
 import ProjectionPage from './pages/ProjectionPage';
 import SignalPage from './pages/SignalPage';
@@ -19,6 +19,7 @@ import SurfacePage from './pages/SurfacePage';
 import SensorsPage from './pages/SensorsPage';
 import NetworkPage from './pages/NetworkPage';
 import AudioPage from './pages/AudioPage';
+import AudioBridgingPage from './pages/AudioBridgingPage';
 import LatencyPage from './pages/LatencyPage';
 import ServerPage from './pages/ServerPage';
 import HVACPage from './pages/HVACPage';
@@ -40,10 +41,7 @@ function SoundEffectsAttacher() {
 }
 
 function AppContent({ isDarkMode, hudParams, showSyncBanner, toggleTheme }: {
-  isDarkMode: boolean;
-  hudParams: HudParams;
-  showSyncBanner: boolean;
-  toggleTheme: () => void;
+  isDarkMode: boolean; hudParams: HudParams; showSyncBanner: boolean; toggleTheme: () => void;
 }) {
   return (
     <>
@@ -87,19 +85,13 @@ function App() {
   const [hudParams, setHudParams] = useState<HudParams>(DEFAULT_PARAMS);
 
   useEffect(() => {
-    const auth = sessionStorage.getItem('lightheart_auth');
-    if (auth === 'pharmakon') {
-      setIsAuthenticated(true);
-    }
+    if (sessionStorage.getItem('lightheart_auth') === 'pharmakon') setIsAuthenticated(true);
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      const shown = sessionStorage.getItem('lightheart_sync_shown');
-      if (!shown) {
-        setShowSyncBanner(true);
-        sessionStorage.setItem('lightheart_sync_shown', 'true');
-      }
+    if (isAuthenticated && !sessionStorage.getItem('lightheart_sync_shown')) {
+      setShowSyncBanner(true);
+      sessionStorage.setItem('lightheart_sync_shown', 'true');
     }
   }, [isAuthenticated]);
 
@@ -124,15 +116,17 @@ function App() {
 
   return (
     <SoundProvider>
-      <HashRouter>
-        <AppContent
-          isDarkMode={isDarkMode}
-          hudParams={hudParams}
-          showSyncBanner={showSyncBanner}
-          toggleTheme={toggleTheme}
-        />
-        <HudSettings params={hudParams} onChange={setHudParams} isDarkMode={isDarkMode} />
-      </HashRouter>
+      <LiveDocProvider>
+        <HashRouter>
+          <AppContent
+            isDarkMode={isDarkMode}
+            hudParams={hudParams}
+            showSyncBanner={showSyncBanner}
+            toggleTheme={toggleTheme}
+          />
+          <HudSettings params={hudParams} onChange={setHudParams} isDarkMode={isDarkMode} />
+        </HashRouter>
+      </LiveDocProvider>
     </SoundProvider>
   );
 }
