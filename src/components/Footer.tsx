@@ -2,7 +2,7 @@ interface FooterProps {
   isDarkMode: boolean;
 }
 
-export default function Footer({ isDarkMode }: FooterProps) {
+export default function Footer({ isDarkMode: _isDarkMode }: FooterProps) {
   return (
     <footer
       style={{

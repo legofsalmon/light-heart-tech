@@ -7,7 +7,7 @@ interface PasswordGateProps {
   isDarkMode: boolean;
 }
 
-export default function PasswordGate({ onAuth, isDarkMode }: PasswordGateProps) {
+export default function PasswordGate({ onAuth, isDarkMode: _isDarkMode }: PasswordGateProps) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
