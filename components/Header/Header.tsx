@@ -5,25 +5,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { NAV_ITEMS } from '@/data/sectionMap';
 import styles from './Header.module.scss';
 
-const navItems = [
-  { label: 'BRIEF', href: '/brief' },
-  { label: 'TECHNICAL DIRECTION', href: '/technical-direction' },
-  { label: 'PROJECTION', href: '/projection' },
-  { label: 'SIGNAL', href: '/signal' },
-  { label: 'SURFACE', href: '/surface' },
-  { label: 'SENSORS', href: '/sensors' },
-  { label: 'NETWORK', href: '/network' },
-  { label: 'AUDIO', href: '/audio' },
-  { label: 'AUDIO BRIDGE', href: '/audio-bridging' },
-  { label: 'LATENCY', href: '/latency' },
-  { label: 'SERVER', href: '/server' },
-  { label: 'HVAC', href: '/hvac' },
-  { label: 'VENDORS', href: '/vendors' },
-  { label: '3D VIZ', href: '/visualization' },
-  { label: 'DISCLAIMER', href: '/disclaimer' },
-];
+const navItems = NAV_ITEMS.map(item => ({
+  label: item.navLabel,
+  href: `/${item.slug}`,
+}));
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

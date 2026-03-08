@@ -1,0 +1,267 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.caption {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $soft-gray;
+  margin-bottom: $space-sm;
+}
+
+/* ═══════════════════════════════════════════
+   STAT GRID — big numbers in cards
+   ═══════════════════════════════════════════ */
+
+.statGridWrap {
+  margin: $space-lg 0;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-sm;
+
+  @include sm { grid-template-columns: repeat(3, 1fr); }
+  @include lg { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
+
+.statCard {
+  text-align: center;
+  padding: $space-md $space-sm;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.2);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    border-color: rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+    transform: translateY(-1px);
+  }
+
+  :global(.light-mode) & {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: $light-border;
+  }
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $neon-cyan;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+
+  @include sm { font-size: 1.5rem; }
+
+  &.currency { color: $neon-cyan; }
+  &.unit { color: $neon-cyan; }
+  &.number { color: $neon-cyan; }
+  &.percentage { color: $neon-lime; }
+}
+
+.statUnit {
+  font-size: 0.65em;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 0.15em;
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $soft-gray;
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════
+   KEY-VALUE CARD — label/value pairs
+   ═══════════════════════════════════════════ */
+
+.kvWrap {
+  margin: $space-md 0;
+}
+
+.kvGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $void-gray; // gap color
+
+  @include sm { grid-template-columns: repeat(2, 1fr); }
+  @include lg { grid-template-columns: repeat(3, 1fr); }
+}
+
+.kvItem {
+  padding: $space-sm $space-md;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 240, 255, 0.03);
+  }
+
+  :global(.light-mode) & {
+    background: rgba(255, 255, 255, 0.6);
+
+    &:hover { background: rgba(0, 180, 200, 0.04); }
+  }
+}
+
+.kvLabel {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $soft-gray;
+  margin-bottom: 0.125rem;
+}
+
+.kvValue {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+
+  &.currency { color: $neon-cyan; font-weight: 700; }
+  &.unit { color: $neon-cyan; }
+  &.number { color: $neon-cyan; font-weight: 700; }
+  &.percentage { color: $neon-lime; }
+
+  :global(.light-mode) & {
+    color: $light-text;
+    &.currency, &.unit, &.number { color: darken($neon-cyan, 20%); }
+    &.percentage { color: darken($neon-lime, 25%); }
+  }
+}
+
+/* ═══════════════════════════════════════════
+   STATUS BADGES
+   ═══════════════════════════════════════════ */
+
+.statusBadgeWrap {
+  margin-bottom: 0.25rem;
+}
+
+.statusBadge {
+  display: inline-block;
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.status_cyan {
+  color: $neon-cyan;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+}
+
+.status_lime {
+  color: $neon-lime;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+.status_orange {
+  color: $status-orange;
+  background: rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.25);
+}
+
+.status_red {
+  color: $status-red;
+  background: rgba(255, 51, 51, 0.1);
+  border: 1px solid rgba(255, 51, 51, 0.25);
+}
+
+/* ═══════════════════════════════════════════
+   DATA TABLE — standard multi-column
+   ═══════════════════════════════════════════ */
+
+.tableWrap {
+  margin: $space-md 0;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+
+  :global(.light-mode) & { border-color: $light-border; }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.th {
+  text-align: left;
+  padding: $space-sm $space-md;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $neon-cyan;
+  background: rgba(0, 240, 255, 0.04);
+  border-bottom: 1px solid $void-gray;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+
+  :global(.light-mode) & {
+    color: darken($neon-cyan, 25%);
+    background: rgba(0, 180, 200, 0.06);
+  }
+}
+
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color 0.15s ease;
+
+  &:hover { background-color: rgba(0, 240, 255, 0.02); }
+  &:last-child { border-bottom: none; }
+
+  :global(.light-mode) &:hover { background-color: rgba(0, 180, 200, 0.04); }
+}
+
+.td {
+  padding: $space-sm $space-md;
+  color: inherit;
+  vertical-align: top;
+
+  &.currency { color: $neon-cyan; font-weight: 600; }
+  &.unit { color: $neon-cyan; }
+  &.percentage { color: $neon-lime; }
+}
+
+/* ═══════════════════════════════════════════
+   SINGLE COLUMN
+   ═══════════════════════════════════════════ */
+
+.singleCol {
+  margin: $space-sm 0;
+}
+
+.singleItem {
+  padding: $space-xs 0;
+  font-size: 0.875rem;
+  color: $soft-gray;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+
+  &:last-child { border-bottom: none; }
+}

@@ -1,92 +1,245 @@
 'use client';
 
+import { Download, AlertTriangle, Info, CheckCircle2 } from 'lucide-react';
 import type { DocSection } from '@/data/types';
-import SpecTable from '@/components/ui/SpecTable';
 import styles from './DocSectionRenderer.module.scss';
 
-interface DocSectionRendererProps {
+/* ═══ Pattern detection ═══════════════════════════ */
+
+const CURRENCY_RE = /€[\d,.]+/;
+const NUM_UNIT_RE = /[\d,.]+\s*(kg|kW|W\b|BTU\/h|BTU|lm|dB|mm|m\b|Gbps|MHz|ms|sq\.\s*m)/i;
+const STATUS_RE = /\b(confirmed|quoted|pending|tbc|quoting|ordered|in progress|complete|active|specified)\b/i;
+const KV_RE = /^([A-Z][^:]{1,40}):\s+(.+)/;
+const WARN_RE = /\b(important|warning|caution|note|action required|critical|open items?)\b/i;
+
+function isCurr(s: string) { return CURRENCY_RE.test(s); }
+function isNum(s: string) { return NUM_UNIT_RE.test(s) || /^[\d,.]+$/.test(s.trim()); }
+function isStat(s: string) { return STATUS_RE.test(s); }
+
+function statColor(s: string): string {
+  const l = s.toLowerCase();
+  if (/confirmed|complete|active|specified/.test(l)) return '#00ff88';
+  if (/quoted|in progress|ordered/.test(l)) return '#00F0FF';
+  if (/pending|tbc|quoting/.test(l)) return '#ff8c00';
+  return '#888';
+}
+
+function extractNum(s: string) {
+  const cm = s.match(/€([\d,.]+)/);
+  if (cm) return { n: '€' + cm[1], u: '' };
+  const nm = s.match(/([\d,.]+)\s*(kg|kW|W\b|BTU\/h|BTU|lm|dB|Gbps|MHz|ms|sq\.\s*m)/i);
+  if (nm) return { n: nm[1], u: nm[2] };
+  return null;
+}
+
+function classifyTable(rows: string[][]): 'kv' | 'stats' | 'data' {
+  if (!rows || rows.length === 0) return 'data';
+  const cols = rows[0]?.length || 0;
+  if (cols === 2) {
+    const numRows = rows.filter(r => isNum(r[1]) || isCurr(r[1])).length;
+    return numRows >= rows.length * 0.4 ? 'stats' : 'kv';
+  }
+  return 'data';
+}
+
+function downloadCSV(rows: string[][], name: string) {
+  const csv = rows.map(r => r.map(c => '"' + c.replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name.replace(/\s+/g, '_') + '.csv';
+  a.click();
+}
+
+/* ═══ Sub-renderers ═══════════════════════════════ */
+
+function KVCards({ rows }: { rows: string[][] }) {
+  return (
+    <div className={styles.kvGrid}>
+      {rows.map((r, i) => (
+        <div key={i} className={styles.kvCard}>
+          <div className={styles.kvLabel}>{r[0]}</div>
+          <div className={styles.kvValue}>{r[1]}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StatCards({ rows }: { rows: string[][] }) {
+  return (
+    <div className={styles.statGrid}>
+      {rows.map((r, i) => {
+        const ex = extractNum(r[1]);
+        return (
+          <div key={i} className={styles.statCard}>
+            <div className={styles.statValue}>{ex ? ex.n : r[1]}</div>
+            {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
+            <div className={styles.statLabel}>{r[0]}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function DataTable({ rows, title }: { rows: string[][]; title?: string }) {
+  if (rows.length === 0) return null;
+  const [header, ...body] = rows;
+  return (
+    <div className={styles.tableWrap}>
+      <div className={styles.tableHeader}>
+        {title && <span className={styles.tableCaption}>{title}</span>}
+        {rows.length > 2 && (
+          <button className={styles.csvBtn} onClick={() => downloadCSV(rows, title || 'data')}>
+            <Download size={12} /> DOWNLOAD CSV
+          </button>
+        )}
+      </div>
+      <div className={styles.tableScroll}>
+        <table className={styles.table}>
+          <thead><tr>{header.map((c, i) => <th key={i} className={styles.th}>{c}</th>)}</tr></thead>
+          <tbody>
+            {body.map((row, ri) => (
+              <tr key={ri} className={styles.tr}>
+                {row.map((cell, ci) => (
+                  <td key={ci} className={styles.td} style={{
+                    color: isStat(cell) ? statColor(cell) : isCurr(cell) ? '#00F0FF' : undefined,
+                    fontWeight: isCurr(cell) ? 600 : undefined,
+                  }}>
+                    {isStat(cell) ? (
+                      <span className={styles.statusBadge} style={{ color: statColor(cell), borderColor: statColor(cell) + '40' }}>{cell}</span>
+                    ) : cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function SmartList({ items }: { items: string[] }) {
+  const kvItems = items.filter(item => KV_RE.test(item));
+  const plainItems = items.filter(item => !KV_RE.test(item));
+
+  const parsed = kvItems.map(item => {
+    const m = item.match(KV_RE);
+    return m ? { key: m[1].trim(), value: m[2].trim() } : null;
+  }).filter(Boolean) as { key: string; value: string }[];
+
+  const numCount = parsed.filter(kv => isNum(kv.value) || isCurr(kv.value)).length;
+  const isStatLike = parsed.length > 0 && numCount >= parsed.length * 0.4;
+
+  return (
+    <>
+      {parsed.length > 0 && (
+        isStatLike ? (
+          <div className={styles.statGrid}>
+            {parsed.map((kv, i) => {
+              const ex = extractNum(kv.value);
+              const numMatch = kv.value.match(/(\d[\d,.]*)/);
+              return (
+                <div key={i} className={styles.statCard}>
+                  <div className={styles.statValue}>{ex ? ex.n : numMatch ? numMatch[1] : kv.value.substring(0, 20)}</div>
+                  {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
+                  <div className={styles.statLabel}>{kv.key}</div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className={styles.kvGrid}>
+            {parsed.map((kv, i) => (
+              <div key={i} className={styles.kvCard}>
+                <div className={styles.kvLabel}>{kv.key}</div>
+                <div className={styles.kvValue}>{kv.value}</div>
+              </div>
+            ))}
+          </div>
+        )
+      )}
+      {plainItems.length > 0 && (
+        <ul className={styles.list}>
+          {plainItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      )}
+    </>
+  );
+}
+
+function Callout({ text }: { text: string }) {
+  const isWarn = /important|critical|warning|caution/i.test(text);
+  const color = isWarn ? '#ff8c00' : '#00F0FF';
+  const bg = isWarn ? 'rgba(255,140,0,0.06)' : 'rgba(0,240,255,0.04)';
+  const Icon = isWarn ? AlertTriangle : Info;
+  return (
+    <div className={styles.callout} style={{ borderColor: color, background: bg }}>
+      <Icon size={16} style={{ color, flexShrink: 0, marginTop: '2px' }} />
+      <div className={styles.calloutText}>{text}</div>
+    </div>
+  );
+}
+
+/* ═══ Main Smart Renderer ═════════════════════════ */
+
+interface Props {
   section: DocSection;
-  /** If true, render the title as an h2 inside a glass panel header */
   showTitle?: boolean;
-  /** CSS class for the wrapper */
   className?: string;
 }
 
-/**
- * Renders a single DocSection from the worker JSON.
- * Handles: fullText, tables, listItems, subsections.
- */
-export default function DocSectionRenderer({
-  section,
-  showTitle = true,
-  className,
-}: DocSectionRendererProps) {
+export default function DocSectionRenderer({ section, showTitle = true, className }: Props) {
   if (!section) return null;
 
-  const hasContent =
-    section.fullText ||
-    section.tables?.length > 0 ||
-    section.listItems?.length > 0 ||
-    (section.subsections && section.subsections.length > 0);
-
-  if (!hasContent && !showTitle) return null;
+  const titleIsCallout = section.title && WARN_RE.test(section.title);
 
   return (
     <div className={`${styles.section} ${className || ''}`}>
       {showTitle && section.title && (
-        <h3 className={styles.title}>{section.title}</h3>
+        titleIsCallout
+          ? <Callout text={section.fullText || section.title} />
+          : <h3 className={styles.title}>{section.title}</h3>
       )}
 
-      {/* Full text — split into paragraphs */}
-      {section.fullText && (
+      {section.fullText && !titleIsCallout && (
         <div className={styles.text}>
-          {section.fullText
-            .split('\n')
-            .filter((p) => p.trim())
-            .map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
+          {section.fullText.split('\n').filter(p => p.trim()).map((para, i) =>
+            WARN_RE.test(para)
+              ? <Callout key={i} text={para} />
+              : <p key={i}>{para}</p>
+          )}
         </div>
       )}
 
-      {/* Tables */}
-      {section.tables?.map((table, i) => (
-        <SpecTable key={`t-${i}`} rows={table} />
-      ))}
+      {section.tables?.map((table, i) => {
+        const shape = classifyTable(table);
+        if (shape === 'kv') return <KVCards key={'t' + i} rows={table} />;
+        if (shape === 'stats') return <StatCards key={'t' + i} rows={table} />;
+        return <DataTable key={'t' + i} rows={table} title={section.title} />;
+      })}
 
-      {/* List items */}
       {section.listItems && section.listItems.length > 0 && (
-        <ul className={styles.list}>
-          {section.listItems.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
+        <SmartList items={section.listItems} />
       )}
 
-      {/* Subsections */}
       {section.subsections?.map((sub, i) => (
-        <div key={`sub-${i}`} className={styles.subsection}>
+        <div key={'s' + i} className={styles.subsection}>
           {sub.title && <h4 className={styles.subTitle}>{sub.title}</h4>}
           {sub.text && (
             <div className={styles.text}>
-              {sub.text
-                .split('\n')
-                .filter((p) => p.trim())
-                .map((para, j) => (
-                  <p key={j}>{para}</p>
-                ))}
+              {sub.text.split('\n').filter(p => p.trim()).map((para, j) => <p key={j}>{para}</p>)}
             </div>
           )}
-          {sub.tables?.map((table, ti) => (
-            <SpecTable key={`sub-t-${ti}`} rows={table} />
-          ))}
-          {sub.lists && sub.lists.length > 0 && (
-            <ul className={styles.list}>
-              {sub.lists.map((item, li) => (
-                <li key={li}>{item}</li>
-              ))}
-            </ul>
-          )}
+          {sub.tables?.map((table, ti) => {
+            const shape = classifyTable(table);
+            if (shape === 'kv') return <KVCards key={'st' + ti} rows={table} />;
+            if (shape === 'stats') return <StatCards key={'st' + ti} rows={table} />;
+            return <DataTable key={'st' + ti} rows={table} />;
+          })}
+          {sub.lists && sub.lists.length > 0 && <SmartList items={sub.lists} />}
         </div>
       ))}
     </div>

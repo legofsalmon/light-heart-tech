@@ -3,8 +3,9 @@
 
 .page { @include page-container; }
 .container { @include content-width; }
+.header { @include section-header; }
 
-.header {
+.headerMeta {
   display: flex;
   align-items: center;
   gap: $space-sm;
@@ -16,22 +17,16 @@
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: $space-xl;
-
+  margin-bottom: $space-sm;
   @include sm { font-size: 2.5rem; }
-
+  @include md { font-size: 3rem; }
   :global(.light-mode) & { color: $light-text; }
 }
 
-.text {
+.description {
   color: $soft-gray;
-  font-size: 0.9375rem;
-  line-height: 1.8;
-
-  p {
-    margin-bottom: $space-md;
-    &:last-child { margin-bottom: 0; }
-  }
-
-  :global(.light-mode) & { color: #555; }
+  max-width: 40rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  @include sm { font-size: 1rem; }
 }

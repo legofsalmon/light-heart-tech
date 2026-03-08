@@ -2,12 +2,8 @@
 @use '../../styles/mixins' as *;
 
 .section {
-  margin-bottom: $space-lg;
-
-  & + & {
-    padding-top: $space-lg;
-    border-top: 1px solid $void-gray;
-  }
+  margin-bottom: $space-md;
+  & + & { padding-top: $space-md; border-top: 1px solid $void-gray; }
 }
 
 .title {
@@ -18,33 +14,212 @@
   margin-bottom: $space-md;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-
-  :global(.light-mode) & {
-    color: $light-text;
-  }
+  :global(.light-mode) & { color: $light-text; }
 }
 
 .text {
   color: $soft-gray;
   font-size: 0.875rem;
   line-height: 1.7;
+  margin-bottom: $space-md;
+  p { margin-bottom: $space-sm; &:last-child { margin-bottom: 0; } }
+  :global(.light-mode) & { color: #555; }
+}
 
-  p {
-    margin-bottom: $space-sm;
+/* ── KV Cards ─────────────────── */
+.kvGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-sm;
+  margin: $space-md 0;
+  @include sm { grid-template-columns: repeat(3, 1fr); }
+}
 
-    &:last-child { margin-bottom: 0; }
-  }
-
+.kvCard {
+  padding: $space-sm $space-md;
+  border: 1px solid $void-gray;
+  border-radius: $radius-sm;
+  background: rgba(0, 240, 255, 0.02);
+  transition: border-color 0.2s ease;
+  &:hover { border-color: rgba(0, 240, 255, 0.15); }
   :global(.light-mode) & {
-    color: #555;
+    border-color: $light-border;
+    background: rgba(0, 150, 200, 0.03);
   }
 }
 
+.kvLabel {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $soft-gray;
+  margin-bottom: 0.125rem;
+}
+
+.kvValue {
+  font-size: 0.8125rem;
+  color: #fff;
+  font-weight: 500;
+  :global(.light-mode) & { color: $light-text; }
+}
+
+/* ── Stat Cards ───────────────── */
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-sm;
+  margin: $space-md 0;
+  @include sm { grid-template-columns: repeat(3, 1fr); }
+  @include lg { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+}
+
+.statCard {
+  text-align: center;
+  padding: $space-md;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  background: $dark-card;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  &:hover {
+    border-color: rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+  }
+  :global(.light-mode) & { background: $light-card; border-color: $light-border; }
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: $neon-cyan;
+  margin-bottom: 0.125rem;
+  font-variant-numeric: tabular-nums;
+  @include sm { font-size: 1.625rem; }
+  :global(.light-mode) & { color: darken($neon-cyan, 20%); }
+}
+
+.statUnit {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  color: $soft-gray;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  color: $soft-gray;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Tables ────────────────────── */
+.tableWrap {
+  margin: $space-md 0;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  overflow: hidden;
+  :global(.light-mode) & { border-color: $light-border; }
+}
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-sm $space-md;
+  border-bottom: 1px solid $void-gray;
+  :global(.light-mode) & { border-bottom-color: $light-border; }
+}
+
+.tableCaption {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $soft-gray;
+}
+
+.csvBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $neon-cyan;
+  background: none;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: $radius-sm;
+  padding: 0.25rem 0.625rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    background: rgba(0, 240, 255, 0.08);
+    border-color: rgba(0, 240, 255, 0.4);
+  }
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.th {
+  text-align: left;
+  padding: $space-sm $space-md;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $neon-cyan;
+  border-bottom: 1px solid $void-gray;
+  white-space: nowrap;
+  background: rgba(0, 240, 255, 0.03);
+  :global(.light-mode) & { color: darken($neon-cyan, 25%); background: rgba(0, 150, 200, 0.04); }
+}
+
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color 0.15s ease;
+  &:hover { background-color: rgba(0, 240, 255, 0.02); }
+  &:last-child { border-bottom: none; }
+  :global(.light-mode) &:hover { background-color: rgba(0, 180, 200, 0.04); }
+}
+
+.td {
+  padding: $space-sm $space-md;
+  color: inherit;
+  vertical-align: top;
+}
+
+.statusBadge {
+  display: inline-block;
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+/* ── Lists ─────────────────────── */
 .list {
   list-style: none;
   padding: 0;
   margin: $space-sm 0;
-
   li {
     position: relative;
     padding-left: 1.25rem;
@@ -52,7 +227,6 @@
     font-size: 0.8125rem;
     color: $soft-gray;
     line-height: 1.6;
-
     &::before {
       content: '';
       position: absolute;
@@ -64,25 +238,16 @@
       background: $neon-cyan;
       opacity: 0.6;
     }
-
-    :global(.light-mode) & {
-      color: #555;
-
-      &::before {
-        background: darken($neon-cyan, 20%);
-      }
-    }
+    :global(.light-mode) & { color: #555; &::before { background: darken($neon-cyan, 20%); } }
   }
 }
 
+/* ── Subsections ───────────────── */
 .subsection {
   margin-top: $space-md;
   padding-left: $space-md;
   border-left: 2px solid rgba(0, 240, 255, 0.1);
-
-  :global(.light-mode) & {
-    border-left-color: rgba(0, 100, 150, 0.15);
-  }
+  :global(.light-mode) & { border-left-color: rgba(0, 100, 150, 0.15); }
 }
 
 .subTitle {
@@ -91,8 +256,23 @@
   font-weight: 600;
   color: $neon-cyan;
   margin-bottom: $space-sm;
+  :global(.light-mode) & { color: darken($neon-cyan, 25%); }
+}
 
-  :global(.light-mode) & {
-    color: darken($neon-cyan, 25%);
-  }
+/* ── Callout panels ────────────── */
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: $space-md $space-lg;
+  border-left: 3px solid;
+  border-radius: $radius-sm;
+  margin: $space-md 0;
+}
+
+.calloutText {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: $soft-gray;
+  :global(.light-mode) & { color: #555; }
 }

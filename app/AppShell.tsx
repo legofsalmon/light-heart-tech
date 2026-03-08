@@ -8,14 +8,21 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import SyncBanner from '@/components/SyncBanner/SyncBanner';
 import HudBackground, { DEFAULT_PARAMS } from '@/components/HudBackground/HudBackground';
+import HudSettings from '@/components/HudSettings/HudSettings';
 import type { HudParams } from '@/components/HudBackground/types';
 import ScrollToTop from '@/components/ScrollToTop';
+import { useGlobalSoundEffects } from '@/hooks/useSoundEffects';
+
+function SoundEffectsAttacher() {
+  useGlobalSoundEffects();
+  return null;
+}
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
   const { isDarkMode } = useTheme();
   const [showSyncBanner, setShowSyncBanner] = useState(false);
-  const [hudParams] = useState<HudParams>(DEFAULT_PARAMS);
+  const [hudParams, setHudParams] = useState<HudParams>(DEFAULT_PARAMS);
 
   useEffect(() => {
     if (isAuthenticated && !sessionStorage.getItem('lightheart_sync_shown')) {
@@ -31,6 +38,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ScrollToTop />
+      <SoundEffectsAttacher />
       <HudBackground params={hudParams} />
       <div
         style={{
@@ -49,6 +57,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </main>
         <Footer />
       </div>
+      {isDarkMode && <HudSettings params={hudParams} onChange={setHudParams} />}
     </>
   );
 }
