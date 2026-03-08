@@ -183,6 +183,53 @@ function Callout({ text }: { text: string }) {
   );
 }
 
+/* ═══ Prose extraction ═════════════════════════════
+ * fullText contains ALL text, including table cells and list items
+ * rendered as plain text. We extract only the actual prose (copy)
+ * by removing lines that exist in the structured data.
+ * ═════════════════════════════════════════════════ */
+
+function extractProse(
+  fullText: string,
+  tables: string[][][] | undefined,
+  listItems: string[] | undefined,
+): string[] {
+  if (!fullText) return [];
+
+  // Build a set of "fingerprints" from structured data
+  const structuredFingerprints = new Set<string>();
+
+  // Add table cell content (trimmed, first 30 chars for fuzzy match)
+  (tables || []).flat(2).forEach(cell => {
+    const t = cell.trim();
+    if (t.length > 2) structuredFingerprints.add(t.substring(0, 30));
+  });
+
+  // Add list items (first 20 chars for fuzzy match)
+  (listItems || []).forEach(item => {
+    const t = item.trim();
+    if (t.length > 2) structuredFingerprints.add(t.substring(0, 20));
+  });
+
+  if (structuredFingerprints.size === 0) {
+    // No structured data — all text is prose
+    return fullText.split('\n').filter(p => p.trim());
+  }
+
+  // Filter: keep lines that don't match any structured data fingerprint
+  return fullText
+    .split('\n')
+    .filter(line => {
+      const t = line.trim();
+      if (!t) return false;
+      // Check if this line's beginning matches any structured fingerprint
+      for (const fp of structuredFingerprints) {
+        if (t.startsWith(fp) || fp.startsWith(t.substring(0, 20))) return false;
+      }
+      return true;
+    });
+}
+
 /* ═══ Main Smart Renderer ═════════════════════════ */
 
 interface Props {
@@ -196,20 +243,8 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
 
   const titleIsCallout = section.title && WARN_RE.test(section.title);
 
-  // Deduplication: check if fullText is just a plain-text dump of table/list data
-  const hasStructuredData =
-    (section.tables && section.tables.length > 0) ||
-    (section.listItems && section.listItems.length > 0);
-  
-  let fullTextIsDuplicate = false;
-  if (hasStructuredData && section.fullText) {
-    const ft = section.fullText;
-    const firstTableCell = section.tables?.[0]?.[0]?.[0] || '';
-    const firstListItem = (section.listItems?.[0] || '').substring(0, 15);
-    fullTextIsDuplicate =
-      (firstTableCell.length > 2 && ft.includes(firstTableCell)) ||
-      (firstListItem.length > 2 && ft.includes(firstListItem));
-  }
+  // Extract only the prose (copy) from fullText, excluding table/list data
+  const proseLines = extractProse(section.fullText, section.tables, section.listItems);
 
   return (
     <div className={`${styles.section} ${className || ''}`}>
@@ -219,9 +254,10 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
           : <h3 className={styles.title}>{section.title}</h3>
       )}
 
-      {section.fullText && !titleIsCallout && !fullTextIsDuplicate && (
+      {/* Prose copy from the doc */}
+      {proseLines.length > 0 && !titleIsCallout && (
         <div className={styles.text}>
-          {section.fullText.split('\n').filter(p => p.trim()).map((para, i) =>
+          {proseLines.map((para, i) =>
             WARN_RE.test(para)
               ? <Callout key={i} text={para} />
               : <p key={i}>{para}</p>
@@ -229,6 +265,7 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
         </div>
       )}
 
+      {/* Tables — smart rendering based on shape */}
       {section.tables?.map((table, i) => {
         const shape = classifyTable(table);
         if (shape === 'kv') return <KVCards key={'t' + i} rows={table} />;
@@ -236,24 +273,20 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
         return <DataTable key={'t' + i} rows={table} title={section.title} />;
       })}
 
+      {/* List items — smart rendering based on pattern */}
       {section.listItems && section.listItems.length > 0 && (
         <SmartList items={section.listItems} />
       )}
 
+      {/* Subsections */}
       {section.subsections?.map((sub, i) => {
-        const subHasStructured = (sub.tables && sub.tables.length > 0) || (sub.lists && sub.lists.length > 0);
-        let subTextIsDup = false;
-        if (subHasStructured && sub.text) {
-          const fc = sub.tables?.[0]?.[0]?.[0] || '';
-          const fl = (sub.lists?.[0] || '').substring(0, 15);
-          subTextIsDup = (fc.length > 2 && sub.text.includes(fc)) || (fl.length > 2 && sub.text.includes(fl));
-        }
+        const subProse = extractProse(sub.text, sub.tables, sub.lists);
         return (
           <div key={'s' + i} className={styles.subsection}>
             {sub.title && <h4 className={styles.subTitle}>{sub.title}</h4>}
-            {sub.text && !subTextIsDup && (
+            {subProse.length > 0 && (
               <div className={styles.text}>
-                {sub.text.split('\n').filter(p => p.trim()).map((para, j) => <p key={j}>{para}</p>)}
+                {subProse.map((para, j) => <p key={j}>{para}</p>)}
               </div>
             )}
             {sub.tables?.map((table, ti) => {
