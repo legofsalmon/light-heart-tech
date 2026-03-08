@@ -1,0 +1,70 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  border-top: 1px solid;
+}
+
+.inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: $space-lg $space-md;
+
+  @include sm { padding: $space-lg; }
+}
+
+.topRow {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  margin-bottom: $space-md;
+
+  @include sm {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.small {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.tiny {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.divider {
+  border-top: 1px solid;
+  margin-bottom: $space-md;
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  @include sm {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.bottomRight {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.link {
+  text-decoration: none;
+  transition: opacity $transition-fast;
+
+  &:hover { text-decoration: underline; }
+}

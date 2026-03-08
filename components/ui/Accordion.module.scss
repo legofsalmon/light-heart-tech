@@ -1,0 +1,75 @@
+@use '../../styles/variables' as *;
+
+.item {
+  margin-bottom: $space-md;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+
+  &:hover {
+    border-color: rgba(0, 240, 255, 0.15);
+  }
+
+  :global(.light-mode) & {
+    border-color: $light-border;
+
+    &:hover {
+      border-color: rgba(0, 100, 150, 0.2);
+    }
+  }
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-md $space-lg;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.2s ease;
+  text-align: left;
+
+  &:hover {
+    background-color: rgba(0, 240, 255, 0.03);
+  }
+
+  :global(.light-mode) & {
+    color: $light-text;
+
+    &:hover {
+      background-color: rgba(0, 100, 150, 0.04);
+    }
+  }
+}
+
+.triggerText {
+  font-family: $font-display;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chevron {
+  color: $neon-cyan;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  :global(.light-mode) & {
+    color: darken($neon-cyan, 20%);
+  }
+}
+
+.content {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+}
+
+.contentInner {
+  padding: 0 $space-lg $space-lg;
+}

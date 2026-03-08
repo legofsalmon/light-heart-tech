@@ -1,0 +1,6 @@
+// ─── Lightheart Global Styles ────────────────────────────
+// This is the single entry point imported by app/layout.tsx.
+// No Tailwind — everything is hand-authored SCSS.
+
+@use 'base';
+@use 'animations';

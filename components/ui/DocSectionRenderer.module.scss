@@ -1,0 +1,98 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  margin-bottom: $space-lg;
+
+  & + & {
+    padding-top: $space-lg;
+    border-top: 1px solid $void-gray;
+  }
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: $space-md;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+
+  :global(.light-mode) & {
+    color: $light-text;
+  }
+}
+
+.text {
+  color: $soft-gray;
+  font-size: 0.875rem;
+  line-height: 1.7;
+
+  p {
+    margin-bottom: $space-sm;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  :global(.light-mode) & {
+    color: #555;
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: $space-sm 0;
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: $space-xs;
+    font-size: 0.8125rem;
+    color: $soft-gray;
+    line-height: 1.6;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: $neon-cyan;
+      opacity: 0.6;
+    }
+
+    :global(.light-mode) & {
+      color: #555;
+
+      &::before {
+        background: darken($neon-cyan, 20%);
+      }
+    }
+  }
+}
+
+.subsection {
+  margin-top: $space-md;
+  padding-left: $space-md;
+  border-left: 2px solid rgba(0, 240, 255, 0.1);
+
+  :global(.light-mode) & {
+    border-left-color: rgba(0, 100, 150, 0.15);
+  }
+}
+
+.subTitle {
+  font-family: $font-display;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $neon-cyan;
+  margin-bottom: $space-sm;
+
+  :global(.light-mode) & {
+    color: darken($neon-cyan, 25%);
+  }
+}

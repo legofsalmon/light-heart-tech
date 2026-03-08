@@ -1,0 +1,82 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { @include page-container; }
+.container { @include content-width; }
+
+.header { @include section-header; }
+
+.headerMeta {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin-bottom: $space-sm;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: $space-sm;
+
+  @include sm { font-size: 2.5rem; }
+  @include md { font-size: 3rem; }
+
+  :global(.light-mode) & { color: $light-text; }
+}
+
+.description {
+  color: $soft-gray;
+  max-width: 40rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+
+  @include sm { font-size: 1rem; }
+}
+
+/* ── Stat cards ────────────────── */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-sm;
+  margin-bottom: $space-xl;
+
+  @include sm { grid-template-columns: repeat(3, 1fr); }
+  @include lg { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
+
+.statCard {
+  text-align: center;
+  padding: $space-md;
+  border: 1px solid $void-gray;
+  border-radius: $radius-md;
+  background: $dark-card;
+  backdrop-filter: blur(12px);
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    border-color: rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+  }
+
+  :global(.light-mode) & {
+    background: $light-card;
+    border-color: $light-border;
+  }
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.125rem;
+
+  @include sm { font-size: 1.5rem; }
+}
+
+.statLabel {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+}

@@ -1,0 +1,281 @@
+@use 'variables' as *;
+
+// ─── Box model reset ─────────────────────────────────────
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ─── Base body ───────────────────────────────────────────
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-body;
+  line-height: 1.6;
+  background: $dark-bg;
+  color: $dark-text;
+  transition: background-color $transition-base, color $transition-base;
+}
+
+.light-mode body,
+body.light-mode {
+  background: $light-bg;
+  color: $light-text;
+}
+
+// ─── Scrollbar ───────────────────────────────────────────
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $cyan-subtle;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.25);
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba(0, 240, 255, 0.45);
+  }
+}
+
+// ─── Selection ───────────────────────────────────────────
+
+::selection {
+  background: rgba(0, 240, 255, 0.25);
+  color: #fff;
+}
+
+// ─── Focus ───────────────────────────────────────────────
+
+:focus-visible {
+  outline: 2px solid rgba(0, 212, 255, 0.5);
+  outline-offset: 2px;
+}
+
+// ─── Grid background ────────────────────────────────────
+
+.grid-bg {
+  background-image:
+    linear-gradient($cyan-soft 1px, transparent 1px),
+    linear-gradient(90deg, $cyan-soft 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+// ─── Hero glow ───────────────────────────────────────────
+
+.hero-glow {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 70%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 240, 255, 0.07) 0%,
+      rgba(0, 140, 200, 0.03) 30%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// ─── Gradient line divider ───────────────────────────────
+
+.gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, $cyan-border, transparent);
+}
+
+// ─── Status LED ──────────────────────────────────────────
+
+.status-led {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: statusPulse 2s ease-in-out infinite;
+
+  &.cyan {
+    background: $neon-cyan;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  }
+
+  &.orange {
+    background: $status-orange;
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+  }
+
+  &.lime {
+    background: $neon-lime;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+  }
+
+  &.red {
+    background: $status-red;
+    box-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
+  }
+}
+
+// ─── Glass panel utility class ───────────────────────────
+
+.glass-panel {
+  position: relative;
+  background: $dark-card;
+  backdrop-filter: blur(20px);
+  border: 1px solid $dark-border;
+  border-radius: $radius-md;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    border-color: rgba(0, 240, 255, 0.25);
+    box-shadow: 0 0 20px $cyan-glow-sm, 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.light-mode .glass-panel {
+  background: $light-card;
+  border-color: $light-border;
+
+  &:hover {
+    border-color: rgba(0, 180, 200, 0.3);
+    box-shadow: 0 0 20px rgba(0, 180, 200, 0.08), 0 8px 32px rgba(0, 0, 0, 0.06);
+  }
+}
+
+// ─── HUD corners utility class ───────────────────────────
+
+.hud-corners {
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid $cyan-border;
+    border-left: 2px solid $cyan-border;
+    border-radius: $radius-md 0 0 0;
+  }
+
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid $cyan-border;
+    border-right: 2px solid $cyan-border;
+    border-radius: 0 0 $radius-md 0;
+  }
+}
+
+// ─── Range slider ────────────────────────────────────────
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: $neon-cyan;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+    border: none;
+  }
+
+  &::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: $neon-cyan;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+    border: none;
+  }
+}
+
+// ─── Typography utilities ────────────────────────────────
+
+.font-display {
+  font-family: $font-display;
+}
+
+.mono {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.text-soft-gray {
+  color: $soft-gray;
+}
+
+.text-neon-cyan {
+  color: $neon-cyan;
+}
+
+.text-neon-lime {
+  color: $neon-lime;
+}
+
+// ─── Hover effects (global) ──────────────────────────────
+
+.vendor-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s $ease-out-expo;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px $cyan-glow-sm;
+  }
+}
+
+button[data-state] {
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $cyan-subtle;
+  }
+}
+
+// ─── Stat number ─────────────────────────────────────────
+
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: statusPulse 2s ease-in-out infinite;
+}

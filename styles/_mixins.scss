@@ -1,0 +1,199 @@
+@use 'variables' as *;
+
+// ─── Responsive ──────────────────────────────────────────
+
+@mixin sm  { @media (min-width: $bp-sm)  { @content; } }
+@mixin md  { @media (min-width: $bp-md)  { @content; } }
+@mixin lg  { @media (min-width: $bp-lg)  { @content; } }
+@mixin xl  { @media (min-width: $bp-xl)  { @content; } }
+@mixin xxl { @media (min-width: $bp-2xl) { @content; } }
+
+// ─── Glass panel (the primary card style) ────────────────
+
+@mixin glass-panel {
+  position: relative;
+  background: $dark-card;
+  backdrop-filter: blur(20px);
+  border: 1px solid $dark-border;
+  border-radius: $radius-md;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    border-color: rgba(0, 240, 255, 0.25);
+    box-shadow: 0 0 20px $cyan-glow-sm, 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(.light-mode) & {
+    background: $light-card;
+    border-color: $light-border;
+
+    &:hover {
+      border-color: rgba(0, 180, 200, 0.3);
+      box-shadow: 0 0 20px rgba(0, 180, 200, 0.08), 0 8px 32px rgba(0, 0, 0, 0.06);
+    }
+  }
+}
+
+// ─── HUD card with corner brackets ──────────────────────
+
+@mixin hud-card {
+  @include glass-panel;
+}
+
+@mixin hud-corners {
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid $cyan-border;
+    border-left: 2px solid $cyan-border;
+    border-radius: $radius-md 0 0 0;
+  }
+
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid $cyan-border;
+    border-right: 2px solid $cyan-border;
+    border-radius: 0 0 $radius-md 0;
+  }
+}
+
+// ─── Status LED indicator ────────────────────────────────
+
+@mixin status-led($color: $neon-cyan) {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $color;
+  box-shadow: 0 0 8px rgba($color, 0.6);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+// ─── Section header pattern ──────────────────────────────
+
+@mixin section-header {
+  margin-bottom: $space-xl;
+
+  @include sm {
+    margin-bottom: $space-2xl;
+  }
+}
+
+// ─── Mono text (used for labels, codes) ──────────────────
+
+@mixin mono {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+// ─── Page container ──────────────────────────────────────
+
+@mixin page-container {
+  min-height: 100vh;
+  padding: $space-3xl $space-md;
+
+  @include sm {
+    padding: $space-4xl $space-lg;
+  }
+
+  @include lg {
+    padding: $space-4xl $space-xl;
+  }
+}
+
+@mixin content-width {
+  max-width: 72rem; // 1152px — matches max-w-6xl
+  margin: 0 auto;
+}
+
+// ─── Grid helpers ────────────────────────────────────────
+
+@mixin grid($cols: 1, $gap: $space-md) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}
+
+@mixin responsive-grid($sm: 1, $md: 2, $lg: 3, $gap: $space-md) {
+  @include grid($sm, $gap);
+  @include sm  { grid-template-columns: repeat($md, 1fr); }
+  @include lg  { grid-template-columns: repeat($lg, 1fr); }
+}
+
+// ─── Button styles ───────────────────────────────────────
+
+@mixin btn-cyan {
+  position: relative;
+  overflow: hidden;
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: 0 0 20px $cyan-glow-lg, 0 0 60px $cyan-glow-sm;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@mixin btn-outline-cyan {
+  transition: all $transition-base;
+
+  &:hover {
+    background: $cyan-hover;
+    border-color: $cyan-border;
+    box-shadow: 0 0 15px $cyan-glow-md;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+// ─── Text color helpers ──────────────────────────────────
+
+@mixin text-white {
+  color: #fff;
+
+  :global(.light-mode) & {
+    color: $light-text;
+  }
+}
+
+@mixin text-soft {
+  color: $soft-gray;
+
+  :global(.light-mode) & {
+    color: #666;
+  }
+}
+
+@mixin text-cyan {
+  color: $neon-cyan;
+
+  :global(.light-mode) & {
+    color: darken($neon-cyan, 20%);
+  }
+}
+
+// ─── Gradient line divider ───────────────────────────────
+
+@mixin gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, $cyan-border, transparent);
+}

@@ -1,0 +1,110 @@
+@use 'variables' as *;
+
+// ─── Page enter ──────────────────────────────────────────
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.6s $ease-out-expo both;
+}
+
+// ─── Glow pulse ──────────────────────────────────────────
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px $cyan-glow-sm, 0 0 60px rgba(0, 240, 255, 0.04);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.16), 0 0 80px rgba(0, 240, 255, 0.07);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+// ─── Status pulse ────────────────────────────────────────
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+// ─── Accordion ───────────────────────────────────────────
+
+@keyframes accordionOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-state="open"] > [role="region"] {
+  animation: accordionOpen 0.3s $ease-out-expo;
+}
+
+// ─── Sync banner ─────────────────────────────────────────
+
+@keyframes syncSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes syncFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.sync-banner {
+  animation: syncSlideDown 0.4s $ease-out-expo both;
+}
+
+.sync-banner-hide {
+  animation: syncFadeOut 0.3s ease forwards;
+}
+
+// ─── Copy toast ──────────────────────────────────────────
+
+@keyframes toastPop {
+  0% {
+    transform: translateY(10px) scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.copy-toast {
+  animation: toastPop 0.3s $ease-out-expo both;
+}

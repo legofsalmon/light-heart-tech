@@ -1,0 +1,61 @@
+@use '../../styles/variables' as *;
+
+.wrapper {
+  margin: $space-md 0;
+}
+
+.caption {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $soft-gray;
+  margin-bottom: $space-xs;
+}
+
+.scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.th {
+  text-align: left;
+  padding: $space-sm $space-md;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $neon-cyan;
+  border-bottom: 1px solid $void-gray;
+  white-space: nowrap;
+
+  :global(.light-mode) & {
+    color: darken($neon-cyan, 25%);
+  }
+}
+
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: rgba(0, 240, 255, 0.02);
+  }
+
+  :global(.light-mode) &:hover {
+    background-color: rgba(0, 180, 200, 0.04);
+  }
+}
+
+.td {
+  padding: $space-sm $space-md;
+  color: inherit;
+  vertical-align: top;
+}

@@ -1,0 +1,151 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-header;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid;
+  transition: all $transition-base;
+}
+
+.inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 $space-md;
+
+  @include sm { padding: 0 $space-lg; }
+  @include lg { padding: 0 $space-xl; }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+/* ── Logo ──────────────────────── */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logoText {
+  font-family: $font-display;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  @include md { font-size: 1.25rem; }
+}
+
+.logoDivider {
+  display: none;
+  font-size: 0.75rem;
+
+  @include sm { display: inline; }
+}
+
+.logoSub {
+  display: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  @include sm { display: inline; }
+}
+
+/* ── Desktop nav ───────────────── */
+
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+
+  @include lg { display: flex; }
+}
+
+.navLink {
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color $transition-fast;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.navIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 2px;
+  border-radius: 1px;
+}
+
+/* ── Action buttons ────────────── */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.iconBtn {
+  padding: 0.5rem;
+  border: 1px solid;
+  background: none;
+  cursor: pointer;
+  transition: color $transition-fast;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover { opacity: 0.8; }
+}
+
+.menuBtn {
+  composes: iconBtn;
+  display: flex;
+
+  @include lg { display: none; }
+}
+
+/* ── Mobile menu ───────────────── */
+
+.mobileMenu {
+  border-top: 1px solid;
+
+  @include lg { display: none; }
+}
+
+.mobileNav {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: $space-md;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.mobileLink {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all $transition-fast;
+}

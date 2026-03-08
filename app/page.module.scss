@@ -1,0 +1,222 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero ──────────────────────── */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-2xl $space-md;
+
+  @include sm { padding: $space-2xl $space-lg; }
+  @include lg { padding: $space-2xl $space-xl; }
+}
+
+.heroInner {
+  max-width: 56rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ── Badge ─────────────────────── */
+.badgeWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $space-lg;
+  min-height: 36px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-md;
+  border-radius: 9999px;
+}
+
+.badgeText {
+  font-size: 0.75rem;
+  font-family: $font-mono;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Title block ───────────────── */
+.titleBlock {
+  text-align: center;
+  margin-bottom: $space-lg;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+
+  @include sm { font-size: 3rem; }
+  @include md { font-size: 3.75rem; }
+  @include lg { font-size: 4.5rem; }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+  margin-bottom: $space-sm;
+
+  @include sm { font-size: 1.5rem; }
+  @include md { font-size: 1.875rem; }
+}
+
+.byline {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+
+  @include sm { font-size: 0.875rem; }
+}
+
+/* ── Divider ───────────────────── */
+.divider {
+  width: 12rem;
+  height: 1px;
+  margin: 0 auto $space-lg;
+}
+
+/* ── Intro card ────────────────── */
+.introCard {
+  padding: $space-lg;
+  margin-bottom: $space-xl;
+  position: relative;
+  border-radius: $radius-md;
+
+  @include sm { padding: $space-xl; }
+}
+
+.introTitle {
+  font-family: $font-display;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+
+  @include sm { font-size: 1.25rem; }
+}
+
+.introText {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+
+  &:last-child { margin-bottom: 0; }
+
+  @include sm { font-size: 1rem; }
+}
+
+/* ── CTAs ──────────────────────── */
+.ctaRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+
+  @include sm { flex-direction: row; }
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: 0.75rem $space-lg;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  transition: all $transition-base;
+  width: 100%;
+  justify-content: center;
+
+  @include sm { width: auto; }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+
+  svg {
+    transition: transform $transition-base;
+  }
+}
+
+.ctaSecondary {
+  border: 2px solid;
+  background: transparent;
+}
+
+/* ── Stats bar ─────────────────── */
+.statsBar {
+  border-top: 1px solid;
+}
+
+.statsInner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: $space-lg $space-md;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-md;
+  text-align: center;
+
+  @include md { grid-template-columns: repeat(4, 1fr); }
+
+  @include sm { padding: $space-lg; }
+}
+
+.statItem { text-align: center; }
+
+.statValue {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  @include sm { font-size: 1.875rem; }
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Info bar ──────────────────── */
+.infoBar {
+  border-top: 1px solid;
+}
+
+.infoInner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0.75rem $space-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-sm;
+  font-family: $font-mono;
+  font-size: 0.75rem;
+
+  @include sm {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.75rem $space-lg;
+  }
+}

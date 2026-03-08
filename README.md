@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# Lightheart Next.js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Next.js 15 + SCSS rewrite of the Lightheart immersive experience spec viewer.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Install dependencies
+npm install
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Run dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:3000](http://localhost:3000) to verify the SCSS foundation is working.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+app/                    # Next.js App Router pages
+├── layout.tsx          # Root layout + providers
+├── page.tsx            # Homepage
+├── page.module.scss    # Homepage styles
+├── brief/page.tsx      # Stub — Section 1
+├── projection/page.tsx # Stub — Section 3
+├── ...                 # All 16 routes stubbed
+components/             # Shared components (Step 3-4)
+data/                   # LiveDocProvider + types (Step 2)
+├── types.ts            # SpecData types — ready
+hooks/                  # Custom hooks (Step 7)
+sections/               # Homepage sections (Step 5)
+styles/                 # SCSS architecture
+├── globals.scss        # Entry point
+├── _variables.scss     # Design tokens
+├── _mixins.scss        # Reusable patterns
+├── _animations.scss    # Keyframes
+└── _base.scss          # Reset + utility classes
+```
+
+## Migration Status
+
+- [x] Step 1: Next.js scaffold + SCSS foundation
+- [x] Step 2: Data layer (LiveDocProvider + useLiveSection)
+- [x] Step 3: App shell (layout, header, footer, auth, HUD)
+- [x] Step 4: UI component library (SpecTable, DocSectionRenderer, SpecPage)
+- [x] Step 5: Homepage with live data overview
+- [x] Step 6: All 16 pages wired to live doc
+- [ ] Step 7: Optional polish (SoundEngine, HudSettings panel, CustomCursor)
+- [ ] Step 8: Deploy to Vercel
+
+## Deploy to Vercel
+
+1. Push to GitHub
+2. Import repo at [vercel.com/new](https://vercel.com/new)
+3. Framework: **Next.js** (auto-detected)
+4. Deploy

@@ -1,0 +1,85 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.banner {
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  z-index: calc($z-header - 1);
+}
+
+.inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0.625rem $space-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+
+  @include sm { padding: 0.625rem $space-lg; }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.statusText {
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.docLink {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid;
+  border-radius: 4px;
+  transition: opacity $transition-fast;
+
+  &:hover { opacity: 0.8; }
+}
+
+.closeBtn {
+  padding: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  transition: opacity $transition-fast;
+
+  &:hover { opacity: 0.7; }
+}
+
+.hideMobile {
+  display: none;
+  @include sm { display: inline; }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
