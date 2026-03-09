@@ -5,11 +5,51 @@
 .container { @include content-width; }
 .header { @include section-header; }
 
+.headerMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-sm;
+}
+
 .headerMeta {
   display: flex;
   align-items: center;
   gap: $space-sm;
-  margin-bottom: $space-sm;
+}
+
+.flagExportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba(255, 140, 0, 0.25);
+  background: rgba(255, 140, 0, 0.06);
+  color: #ff8c00;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 140, 0, 0.12);
+    border-color: rgba(255, 140, 0, 0.4);
+  }
+
+  :global(.light-mode) & {
+    border-color: rgba(200, 110, 0, 0.2);
+    background: rgba(255, 140, 0, 0.05);
+    color: #cc6600;
+
+    &:hover {
+      background: rgba(255, 140, 0, 0.1);
+      border-color: rgba(200, 110, 0, 0.35);
+    }
+  }
 }
 
 .titleRow {

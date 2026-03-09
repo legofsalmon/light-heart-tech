@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import gsap from 'gsap';
 import {
   Projector, Speaker, Cpu, Thermometer, FileText, Compass,
   Radio, Wifi, Clock, Server, Users, ShieldAlert, MonitorPlay, Layers,
-  NotebookPen,
+  NotebookPen, Download,
 } from 'lucide-react';
 import { useLiveDoc } from '@/data/LiveDocProvider';
 import { getSectionRange } from '@/data/sectionMap';
+import type { DocSection } from '@/data/types';
 import DocSectionRenderer from '@/components/ui/DocSectionRenderer';
 import { AccordionItem } from '@/components/ui/Accordion';
 import styles from './page.module.scss';
@@ -22,6 +23,103 @@ const SLUG_SUMMARY: Record<string, string> = {
   'server': 'serverRoom',
   'hvac': 'heatLoad',
 };
+
+/* ── Research-flag keyword scanner ─────────── */
+
+const RESEARCH_RE = /\b(TBC|TBD|pending|quoting|pending final spec|action required|open items?|to be confirmed|to be determined|awaiting|under review|not yet specified|needs? (?:review|decision|confirmation))\b/gi;
+
+interface ResearchFlag {
+  section: string;
+  context: string;
+  keyword: string;
+}
+
+function scanSectionForFlags(section: DocSection, parentTitle: string): ResearchFlag[] {
+  const flags: ResearchFlag[] = [];
+  const sectionTitle = section.title || parentTitle;
+
+  const scanText = (text: string, ctx: string) => {
+    RESEARCH_RE.lastIndex = 0;
+    let m;
+    while ((m = RESEARCH_RE.exec(text)) !== null) {
+      // Extract ~60 chars of surrounding context
+      const start = Math.max(0, m.index - 30);
+      const end = Math.min(text.length, m.index + m[0].length + 30);
+      const snippet = text.slice(start, end).replace(/\n/g, ' ').trim();
+      flags.push({
+        section: ctx,
+        context: (start > 0 ? '…' : '') + snippet + (end < text.length ? '…' : ''),
+        keyword: m[0],
+      });
+    }
+    RESEARCH_RE.lastIndex = 0;
+  };
+
+  if (section.fullText) scanText(section.fullText, sectionTitle);
+  section.tables?.forEach(table => {
+    table.forEach(row => row.forEach(cell => {
+      if (RESEARCH_RE.test(cell)) {
+        RESEARCH_RE.lastIndex = 0;
+        scanText(cell, sectionTitle);
+      }
+    }));
+  });
+  section.listItems?.forEach(item => {
+    if (RESEARCH_RE.test(item)) {
+      RESEARCH_RE.lastIndex = 0;
+      scanText(item, sectionTitle);
+    }
+  });
+  section.subsections?.forEach(sub => {
+    const subTitle = sub.title ? `${sectionTitle} > ${sub.title}` : sectionTitle;
+    if (sub.text) scanText(sub.text, subTitle);
+    sub.tables?.forEach(table => {
+      table.forEach(row => row.forEach(cell => {
+        if (RESEARCH_RE.test(cell)) {
+          RESEARCH_RE.lastIndex = 0;
+          scanText(cell, subTitle);
+        }
+      }));
+    });
+    sub.lists?.forEach(item => {
+      if (RESEARCH_RE.test(item)) {
+        RESEARCH_RE.lastIndex = 0;
+        scanText(item, subTitle);
+      }
+    });
+  });
+
+  return flags;
+}
+
+function collectResearchFlags(sections: DocSection[], parentTitle: string): ResearchFlag[] {
+  const all: ResearchFlag[] = [];
+  for (const sec of sections) {
+    all.push(...scanSectionForFlags(sec, parentTitle));
+  }
+  // Deduplicate by context+keyword
+  const seen = new Set<string>();
+  return all.filter(f => {
+    const key = `${f.context}||${f.keyword}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function downloadFlagsCSV(flags: ResearchFlag[], sectionName: string) {
+  const header = ['Keyword', 'Section', 'Context'];
+  const rows = flags.map(f => [f.keyword, f.section, f.context]);
+  const csv = [header, ...rows]
+    .map(r => r.map(c => '"' + c.replace(/"/g, '""') + '"').join(','))
+    .join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `research-flags_${sectionName}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 
 /** Section icon for each section */
 const SLUG_ICON: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
@@ -111,14 +209,36 @@ export default function SectionPage() {
 
   const IconComponent = SLUG_ICON[slug];
 
+  // Collect research flags for this section
+  const researchFlags = useMemo(
+    () => collectResearchFlags(sections, range.title),
+    [sections, range.title],
+  );
+
+  const handleExportFlags = useCallback(() => {
+    downloadFlagsCSV(researchFlags, slug);
+  }, [researchFlags, slug]);
+
   return (
     <div ref={pageRef} className={`page-enter ${styles.page}`}>
       <div className={styles.container}>
         {/* Page header with section icon */}
         <div className={styles.header}>
-          <div className={styles.headerMeta}>
-            <span className="status-led cyan" />
-            <span className="mono text-soft-gray">SECTION {range.sectionNumber}</span>
+          <div className={styles.headerMetaRow}>
+            <div className={styles.headerMeta}>
+              <span className="status-led cyan" />
+              <span className="mono text-soft-gray">SECTION {range.sectionNumber}</span>
+            </div>
+            {researchFlags.length > 0 && (
+              <button
+                onClick={handleExportFlags}
+                className={styles.flagExportBtn}
+                title={`Export ${researchFlags.length} research flag${researchFlags.length !== 1 ? 's' : ''} as CSV`}
+              >
+                <Download size={12} />
+                <span>{researchFlags.length} FLAG{researchFlags.length !== 1 ? 'S' : ''}</span>
+              </button>
+            )}
           </div>
           <div className={styles.titleRow}>
             {IconComponent && (
