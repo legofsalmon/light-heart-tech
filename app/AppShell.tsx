@@ -11,7 +11,6 @@ import HudBackground, { DEFAULT_PARAMS } from '@/components/HudBackground/HudBac
 import HudSettings from '@/components/HudSettings/HudSettings';
 import type { HudParams } from '@/components/HudBackground/types';
 import ScrollToTop from '@/components/ScrollToTop';
-import HighlighterTool from '@/components/Highlighter/Highlighter';
 import { useGlobalSoundEffects } from '@/hooks/useSoundEffects';
 
 function SoundEffectsAttacher() {
@@ -61,7 +60,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </main>
         <Footer />
       </div>
-      <HighlighterTool />
       {isDarkMode && <HudSettings params={hudParams} onChange={setHudParams} />}
     </>
   );

@@ -127,6 +127,7 @@
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(16px);
   min-width: 130px;
+  max-width: 200px;
   transition: all 0.25s ease;
 
   :global(.light-mode) & {
@@ -229,6 +230,8 @@
   padding-top: 8px;
   border-top: 1px solid rgba(0, 240, 255, 0.1);
   animation: fadeIn 0.2s ease;
+  max-width: 100%;
+  overflow: hidden;
 
   :global(.light-mode) & { border-top-color: rgba(0, 0, 0, 0.06); }
 }
@@ -245,6 +248,11 @@
   font-size: 0.65rem;
   font-weight: 700;
   color: $neon-cyan;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
 
   :global(.light-mode) & { color: #005580; }
 }

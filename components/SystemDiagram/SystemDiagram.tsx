@@ -158,16 +158,28 @@ export default function SystemDiagram() {
     return edge.from === hoveredNode || edge.to === hoveredNode;
   }, [hoveredNode]);
 
-  // Get quick stats for a node
+  // Get quick stats for a node — truncated for compact tooltip display
   const getNodeStats = useCallback((slug: string) => {
     const key = SLUG_STATS_KEY[slug];
     if (!key) return [];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const record = (data as any)[key];
     if (!record || typeof record !== 'object') return [];
-    return Object.entries(record).slice(0, 2).map(([k, v]) => ({
-      label: k, value: String(v),
-    }));
+    return Object.entries(record).slice(0, 2).map(([k, v]) => {
+      let val = String(v);
+      // Truncate long values for compact node tooltip
+      if (val.length > 18) {
+        // Try to extract a leading number with unit
+        const numMatch = val.match(/^~?([\d,.]+\s*(?:x\s*)?[A-Za-z\d/]+)/);
+        if (numMatch) {
+          val = numMatch[0];
+        } else {
+          val = val.substring(0, 16) + '…';
+        }
+      }
+      const label = k.length > 12 ? k.substring(0, 11) + '…' : k;
+      return { label, value: val };
+    });
   }, [data]);
 
   /* ── Compute bezier path between two nodes using pixel coords ────── */

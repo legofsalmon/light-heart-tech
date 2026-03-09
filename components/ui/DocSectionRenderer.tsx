@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { Download, AlertTriangle, Info, Table2, List, Hash, FileText, ChevronRight } from 'lucide-react';
 import type { DocSection } from '@/data/types';
 import styles from './DocSectionRenderer.module.scss';
@@ -11,6 +12,33 @@ const NUM_UNIT_RE = /[\d,.]+\s*(kg|kW|W\b|BTU\/h|BTU|lm|dB|mm|m\b|Gbps|MHz|ms|sq
 const STATUS_RE = /\b(confirmed|quoted|pending|tbc|quoting|ordered|in progress|complete|active|specified)\b/i;
 const KV_RE = /^([A-Z][^:]{1,40}):\s+(.+)/;
 const WARN_RE = /\b(important|warning|caution|note|action required|critical|open items?)\b/i;
+
+/* ═══ Research-flag auto-highlight ════════════════ */
+const RESEARCH_RE = /\b(TBC|TBD|pending|quoting|pending final spec|action required|open items?|to be confirmed|to be determined|awaiting|under review|not yet specified|needs? (?:review|decision|confirmation))\b/gi;
+
+/** Wraps research-flag keywords in <mark> tags. Returns a React fragment. */
+function flagText(text: string): React.ReactNode {
+  if (!RESEARCH_RE.test(text)) return text;
+  // Reset lastIndex after test
+  RESEARCH_RE.lastIndex = 0;
+  const parts: React.ReactNode[] = [];
+  let lastIdx = 0;
+  let match: RegExpExecArray | null;
+  while ((match = RESEARCH_RE.exec(text)) !== null) {
+    if (match.index > lastIdx) {
+      parts.push(text.slice(lastIdx, match.index));
+    }
+    parts.push(
+      <mark key={match.index} className="research-flag">{match[0]}</mark>
+    );
+    lastIdx = match.index + match[0].length;
+  }
+  if (lastIdx < text.length) {
+    parts.push(text.slice(lastIdx));
+  }
+  RESEARCH_RE.lastIndex = 0;
+  return <>{parts}</>;
+}
 
 function isCurr(s: string) { return CURRENCY_RE.test(s); }
 function isNum(s: string) { return NUM_UNIT_RE.test(s) || /^[\d,.]+$/.test(s.trim()); }
@@ -89,7 +117,7 @@ function KVCards({ rows }: { rows: string[][] }) {
         {rows.map((r, i) => (
           <div key={i} className={styles.kvCard}>
             <div className={styles.kvLabel}>{r[0]}</div>
-            <div className={styles.kvValue}>{r[1]}</div>
+            <div className={styles.kvValue}>{flagText(r[1])}</div>
           </div>
         ))}
       </div>
@@ -132,7 +160,7 @@ function StatCards({ rows }: { rows: string[][] }) {
             {textRows.map((r, i) => (
               <div key={i} className={styles.kvCard}>
                 <div className={styles.kvLabel}>{r[0]}</div>
-                <div className={styles.kvValue}>{r[1]}</div>
+                <div className={styles.kvValue}>{flagText(r[1])}</div>
               </div>
             ))}
           </div>
@@ -172,7 +200,7 @@ function DataTable({ rows, title }: { rows: string[][]; title?: string }) {
                     }}>
                       {isStat(cell) ? (
                         <span className={styles.statusBadge} style={{ color: statColor(cell), borderColor: statColor(cell) + '40' }}>{cell}</span>
-                      ) : cell}
+                      ) : flagText(cell)}
                     </td>
                   ))}
                 </tr>
@@ -233,7 +261,7 @@ function SmartList({ items }: { items: string[] }) {
               {parsed.map((kv, i) => (
                 <div key={i} className={styles.kvCard}>
                   <div className={styles.kvLabel}>{kv.key}</div>
-                  <div className={styles.kvValue}>{kv.value}</div>
+                  <div className={styles.kvValue}>{flagText(kv.value)}</div>
                 </div>
               ))}
             </div>
@@ -244,7 +272,7 @@ function SmartList({ items }: { items: string[] }) {
         <div className={styles.listSection}>
           <ContentBadge type="list" count={plainItems.length} />
           <ul className={styles.list}>
-            {plainItems.map((item, i) => <li key={i}>{item}</li>)}
+            {plainItems.map((item, i) => <li key={i}>{flagText(item)}</li>)}
           </ul>
         </div>
       )}
@@ -344,8 +372,8 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
             if (WARN_RE.test(para)) return <Callout key={i} text={para} />;
             const isCaption = para.length < 60 && !/[.!?]$/.test(para.trim()) && /^[A-Z]/.test(para);
             return isCaption
-              ? <h5 key={i} className={styles.captionLabel}>{para}</h5>
-              : <p key={i}>{para}</p>;
+              ? <h5 key={i} className={styles.captionLabel}>{flagText(para)}</h5>
+              : <p key={i}>{flagText(para)}</p>;
           })}
         </div>
       )}
@@ -371,7 +399,10 @@ export default function DocSectionRenderer({ section, showTitle = true, classNam
             {sub.title && <h4 className={styles.subTitle}>{sub.title}</h4>}
             {subProse.length > 0 && (
               <div className={styles.text}>
-                {subProse.map((para, j) => <p key={j}>{para}</p>)}
+                {subProse.map((para, j) => {
+                  if (WARN_RE.test(para)) return <Callout key={j} text={para} />;
+                  return <p key={j}>{flagText(para)}</p>;
+                })}
               </div>
             )}
             {sub.tables?.map((table, ti) => {
