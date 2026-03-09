@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { NAV_ITEMS } from '@/data/sectionMap';
 import SearchButton from '@/components/Search/Search';
@@ -18,7 +18,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -85,14 +85,6 @@ export default function Header() {
           {/* Right actions */}
           <div className={styles.actions}>
             <SearchButton />
-            <button
-              onClick={toggleTheme}
-              className={styles.iconBtn}
-              style={{ borderColor: border, color: muted }}
-              aria-label="Toggle theme"
-            >
-              {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={styles.menuBtn}
