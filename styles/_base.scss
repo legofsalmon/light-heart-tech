@@ -327,6 +327,15 @@ button[data-state] {
   border-color: rgba(200, 110, 0, 0.2);
 }
 
+// When the user toggles research flags off, neutralise the mark styling
+.hide-research-flags .research-flag {
+  background: transparent;
+  color: inherit;
+  border-color: transparent;
+  font-weight: inherit;
+  padding: 0;
+}
+
 // ─── Reduced motion ─────────────────────────────────────
 
 @media (prefers-reduced-motion: reduce) {

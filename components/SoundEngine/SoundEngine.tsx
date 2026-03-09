@@ -1,7 +1,6 @@
 'use client';
 
 import { createContext, useContext, useCallback, useRef, useState, useEffect } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
 
 // ── Audio context singleton ──────────────────
 let audioCtx: AudioContext | null = null;
@@ -71,12 +70,14 @@ interface SoundContextValue {
   play: (name: SoundName) => void;
   muted: boolean;
   volume: number;
+  toggleMute: () => void;
 }
 
 const SoundContext = createContext<SoundContextValue>({
   play: () => {},
   muted: true,
   volume: 0.5,
+  toggleMute: () => {},
 });
 
 export function useSounds() {
@@ -100,31 +101,23 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
     if (fn) { try { fn(volume); } catch { /* ignore */ } }
   }, [volume]);
 
+  const toggleMute = useCallback(() => {
+    setMuted(prev => {
+      if (prev) {
+        // Was muted — prime AudioContext on unmute
+        try { getAudioCtx(); sounds.click(0.5); } catch { /* */ }
+      }
+      return !prev;
+    });
+  }, []);
+
   useEffect(() => {
     sessionStorage.setItem('lightheart_muted', String(muted));
   }, [muted]);
 
   return (
-    <SoundContext.Provider value={{ play, muted, volume }}>
+    <SoundContext.Provider value={{ play, muted, volume, toggleMute }}>
       {children}
-      <button
-        onClick={() => {
-          if (muted) { try { getAudioCtx(); sounds.click(0.5); } catch { /* */ } }
-          setMuted(prev => !prev);
-        }}
-        style={{
-          position: 'fixed', bottom: '1.5rem', left: '1.5rem', zIndex: 50,
-          padding: '0.625rem', borderRadius: '8px', transition: 'all 0.3s',
-          backgroundColor: 'rgba(20, 20, 20, 0.9)',
-          border: `1px solid ${muted ? 'rgba(255,255,255,0.08)' : 'rgba(0, 240, 255, 0.2)'}`,
-          backdropFilter: 'blur(12px)',
-          color: muted ? '#555' : '#00F0FF',
-          cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}
-        title={muted ? 'Enable sounds' : 'Mute sounds'}
-      >
-        {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-      </button>
     </SoundContext.Provider>
   );
 }

@@ -4,6 +4,7 @@ import { LiveDocProvider } from '@/data/LiveDocProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AuthProvider } from '@/components/AuthProvider';
 import { SoundProvider } from '@/components/SoundEngine/SoundEngine';
+import { HighlightProvider } from '@/components/ControlPanel/HighlightContext';
 import AppShell from './AppShell';
 
 interface ProvidersProps {
@@ -15,9 +16,11 @@ export default function Providers({ children }: ProvidersProps) {
     <SoundProvider>
       <ThemeProvider>
         <AuthProvider>
-          <LiveDocProvider>
-            <AppShell>{children}</AppShell>
-          </LiveDocProvider>
+          <HighlightProvider>
+            <LiveDocProvider>
+              <AppShell>{children}</AppShell>
+            </LiveDocProvider>
+          </HighlightProvider>
         </AuthProvider>
       </ThemeProvider>
     </SoundProvider>
