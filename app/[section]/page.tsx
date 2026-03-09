@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import gsap from 'gsap';
 import {
@@ -45,19 +45,30 @@ export default function SectionPage() {
   const slug = params.section as string;
   const { data, loading } = useLiveDoc();
   const pageRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   const range = getSectionRange(slug, data.sections);
 
+  // Stable key so animation only fires once per slug
+  const rangeKey = range ? `${slug}-${range.startIndex}` : null;
+
+  useEffect(() => {
+    // Reset animation flag when slug changes
+    hasAnimated.current = false;
+  }, [slug]);
+
   useEffect(() => {
     const page = pageRef.current;
-    if (!page || !range) return;
+    if (!page || !rangeKey || hasAnimated.current) return;
+    hasAnimated.current = true;
     const ctx = gsap.context(() => {
-      gsap.from('.spec-card', {
-        y: 30, opacity: 0, duration: 0.5, stagger: 0.06, ease: 'expo.out', delay: 0.15,
-      });
+      gsap.fromTo('.spec-card',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: 'expo.out', delay: 0.15 },
+      );
     }, page);
     return () => ctx.revert();
-  }, [range]);
+  }, [rangeKey]);
 
   // 404 for unknown slugs
   if (!loading && !range) {
