@@ -85,7 +85,7 @@
 
 .navLink {
   position: relative;
-  padding: 0.25rem 0.5rem;
+  padding: 0.875rem 0.5rem;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -117,7 +117,10 @@
 
 .iconBtn {
   padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
   border: 1px solid;
+  border-radius: $radius-sm;
   background: none;
   cursor: pointer;
   transition: color $transition-fast;
@@ -153,10 +156,14 @@
 }
 
 .mobileLink {
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-decoration: none;
+  border-radius: $radius-sm;
   transition: all $transition-fast;
 }

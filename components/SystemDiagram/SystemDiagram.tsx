@@ -37,16 +37,16 @@ const NODES: DiagramNode[] = [
   { id: 'signal',     label: 'SIGNAL TRANSPORT', icon: Radio,      slug: 'signal',     group: 'transport',      x: 25, y: 28 },
   { id: 'projection', label: 'PROJECTORS',       icon: Projector,  slug: 'projection', group: 'content',        x: 75, y: 28 },
   // Row 3 — Infrastructure + Experience core
-  { id: 'network',    label: 'NETWORK',          icon: Wifi,       slug: 'network',    group: 'infrastructure', x: 12, y: 50 },
+  { id: 'network',    label: 'NETWORK',          icon: Wifi,       slug: 'network',    group: 'infrastructure', x: 15, y: 50 },
   { id: 'sensors',    label: 'SENSORS',          icon: Cpu,        slug: 'sensors',    group: 'experience',     x: 50, y: 50 },
-  { id: 'surface',    label: 'SURFACES',         icon: Layers,     slug: 'surface',    group: 'content',        x: 88, y: 50 },
+  { id: 'surface',    label: 'SURFACES',         icon: Layers,     slug: 'surface',    group: 'content',        x: 85, y: 50 },
   // Row 4 — Audio
   { id: 'audio-bridging', label: 'AUDIO BRIDGE', icon: MonitorPlay, slug: 'audio-bridging', group: 'transport', x: 25, y: 72 },
   { id: 'audio',      label: 'L-ISA AUDIO',      icon: Speaker,    slug: 'audio',      group: 'experience',     x: 75, y: 72 },
   // Row 5 — Bottom support
   { id: 'latency',    label: 'LATENCY',          icon: Clock,      slug: 'latency',    group: 'transport',      x: 50, y: 90 },
-  { id: 'hvac',       label: 'HVAC',             icon: Thermometer, slug: 'hvac',      group: 'infrastructure', x: 12, y: 90 },
-  { id: 'vendors',    label: 'VENDORS',          icon: Users,      slug: 'vendors',    group: 'infrastructure', x: 88, y: 90 },
+  { id: 'hvac',       label: 'HVAC',             icon: Thermometer, slug: 'hvac',      group: 'infrastructure', x: 15, y: 90 },
+  { id: 'vendors',    label: 'VENDORS',          icon: Users,      slug: 'vendors',    group: 'infrastructure', x: 85, y: 90 },
 ];
 
 const EDGES: DiagramEdge[] = [

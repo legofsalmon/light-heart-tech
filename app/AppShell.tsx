@@ -11,6 +11,7 @@ import HudBackground, { DEFAULT_PARAMS } from '@/components/HudBackground/HudBac
 import HudSettings from '@/components/HudSettings/HudSettings';
 import type { HudParams } from '@/components/HudBackground/types';
 import ScrollToTop from '@/components/ScrollToTop';
+import HighlighterTool from '@/components/Highlighter/Highlighter';
 import { useGlobalSoundEffects } from '@/hooks/useSoundEffects';
 
 function SoundEffectsAttacher() {
@@ -40,6 +41,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <ScrollToTop />
       <SoundEffectsAttacher />
       <HudBackground params={hudParams} />
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <div
         style={{
           minHeight: '100vh',
@@ -52,11 +56,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       >
         <Header />
         {showSyncBanner && <SyncBanner />}
-        <main style={{ paddingTop: '5rem', flex: 1, position: 'relative', zIndex: 1 }}>
+        <main id="main-content" role="main" style={{ paddingTop: '5rem', flex: 1, position: 'relative', zIndex: 1 }}>
           {children}
         </main>
         <Footer />
       </div>
+      <HighlighterTool />
       {isDarkMode && <HudSettings params={hudParams} onChange={setHudParams} />}
     </>
   );
