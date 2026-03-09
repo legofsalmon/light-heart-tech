@@ -22,6 +22,7 @@ interface LiveDocState {
   loading: boolean;
   error: string | null;
   lastFetched: string | null;
+  fetchedAt: Date | null;
   sectionCount: number;
   refetch: () => void;
 }
@@ -32,6 +33,7 @@ const LiveDocContext = createContext<LiveDocState>({
   loading: false,
   error: null,
   lastFetched: null,
+  fetchedAt: null,
   sectionCount: 0,
   refetch: () => {},
 });
@@ -56,6 +58,7 @@ export function LiveDocProvider({ children }: LiveDocProviderProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastFetched, setLastFetched] = useState<string | null>(null);
+  const [fetchedAt, setFetchedAt] = useState<Date | null>(null);
   const fetchedRef = useRef(false);
 
   const fetchLiveData = useCallback(async () => {
@@ -76,6 +79,7 @@ export function LiveDocProvider({ children }: LiveDocProviderProps) {
         setData(liveData);
         setIsLive(true);
         setLastFetched(liveData._meta.syncedAt);
+        setFetchedAt(new Date());
         setError(null);
       }
     } catch (err) {
@@ -103,6 +107,7 @@ export function LiveDocProvider({ children }: LiveDocProviderProps) {
         loading,
         error,
         lastFetched,
+        fetchedAt,
         sectionCount,
         refetch: fetchLiveData,
       }}

@@ -68,3 +68,69 @@
 
   &:hover { text-decoration: underline; }
 }
+
+/* ── Sync status bar ──────────── */
+
+.syncBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-sm;
+  padding-bottom: $space-md;
+  margin-bottom: $space-md;
+  border-bottom: 1px solid;
+}
+
+.syncLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.syncText {
+  font-family: $font-mono;
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: $font-mono;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  min-height: 28px;
+  border: 1px solid;
+  border-radius: $radius-sm;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(0, 240, 255, 0.06);
+  }
+
+  :global(.light-mode) & {
+    &:hover {
+      background: rgba(0, 100, 200, 0.04);
+    }
+  }
+}
+
+.spin {
+  animation: footerSpin 1s linear infinite;
+}
+
+@keyframes footerSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
