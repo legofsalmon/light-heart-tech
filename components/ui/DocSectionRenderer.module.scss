@@ -128,6 +128,9 @@
   font-size: 0.8125rem;
   color: #fff;
   font-weight: 500;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
   :global(.light-mode) & { color: $light-text; }
 }
 
@@ -137,16 +140,21 @@
   grid-template-columns: repeat(2, 1fr);
   gap: $space-sm;
   @include sm { grid-template-columns: repeat(3, 1fr); }
-  @include lg { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+  @include lg { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 }
 
 .statCard {
   text-align: center;
-  padding: $space-md;
+  padding: $space-md $space-sm;
   border: 1px solid $void-gray;
   border-radius: $radius-md;
   background: $dark-card;
   backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   &:hover {
     border-color: rgba(0, 240, 255, 0.2);
@@ -163,8 +171,17 @@
   color: $neon-cyan;
   margin-bottom: 0.125rem;
   font-variant-numeric: tabular-nums;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
   @include sm { font-size: 1.625rem; }
   :global(.light-mode) & { color: #005580; }
+}
+
+/* Compact variant for values > 15 chars */
+.statValueCompact {
+  font-size: 1rem;
+  @include sm { font-size: 1.125rem; }
 }
 
 .statUnit {
@@ -182,6 +199,8 @@
   color: $soft-gray;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  margin-top: auto;
+  padding-top: $space-xs;
 }
 
 /* ── Tables ────────────────────── */

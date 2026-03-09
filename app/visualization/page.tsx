@@ -314,17 +314,7 @@ export default function VisualizationPage() {
           </div>
         </div>
 
-        {/* Original venue floor plan */}
-        <div className={`spec-card ${styles.floorPlanCard}`}>
-          <h3 className={styles.floorPlanTitle}>VENUE FLOOR PLAN</h3>
-          <div className={styles.floorPlanImgWrap}>
-            <img
-              src="/images/sections/floor-plan.png"
-              alt="Lightheart Venue Floor Plan - Usher's Island"
-              className={styles.floorPlanImg}
-            />
-          </div>
-        </div>
+        {/* Venue floor plan removed — architecture floor plan above covers this */}
       </div>
     </div>
   );

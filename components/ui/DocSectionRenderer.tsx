@@ -36,8 +36,17 @@ function classifyTable(rows: string[][]): 'kv' | 'stats' | 'data' {
   if (!rows || rows.length === 0) return 'data';
   const cols = rows[0]?.length || 0;
   if (cols === 2) {
-    const numRows = rows.filter(r => isNum(r[1]) || isCurr(r[1])).length;
-    return numRows >= rows.length * 0.4 ? 'stats' : 'kv';
+    // Only classify as stats if values are SHORT numeric/currency — not long specs
+    const pureStatRows = rows.filter(r => {
+      const val = r[1]?.trim() || '';
+      const isPureNum = /^[\d,.]+$/.test(val);
+      const isShortCurr = isCurr(val) && val.length < 20;
+      const isShortNum = isNum(val) && val.length < 25;
+      return isPureNum || isShortCurr || isShortNum;
+    });
+    // Need majority of rows to be short numeric for stat display
+    if (pureStatRows.length >= rows.length * 0.5) return 'stats';
+    return 'kv';
   }
   return 'data';
 }
@@ -89,22 +98,47 @@ function KVCards({ rows }: { rows: string[][] }) {
 }
 
 function StatCards({ rows }: { rows: string[][] }) {
+  // Split into numeric (short display) vs text-heavy (KV display)
+  const numericRows = rows.filter(r => extractNum(r[1]) !== null || r[1].trim().length <= 25);
+  const textRows = rows.filter(r => extractNum(r[1]) === null && r[1].trim().length > 25);
+
   return (
-    <div className={styles.statsSection}>
-      <ContentBadge type="stats" count={rows.length} />
-      <div className={styles.statGrid}>
-        {rows.map((r, i) => {
-          const ex = extractNum(r[1]);
-          return (
-            <div key={i} className={styles.statCard}>
-              <div className={styles.statValue}>{ex ? ex.n : r[1]}</div>
-              {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
-              <div className={styles.statLabel}>{r[0]}</div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <>
+      {numericRows.length > 0 && (
+        <div className={styles.statsSection}>
+          <ContentBadge type="stats" count={numericRows.length} />
+          <div className={styles.statGrid}>
+            {numericRows.map((r, i) => {
+              const ex = extractNum(r[1]);
+              const val = ex ? ex.n : r[1];
+              const isLong = val.length > 15;
+              return (
+                <div key={i} className={styles.statCard}>
+                  <div className={`${styles.statValue} ${isLong ? styles.statValueCompact : ''}`}>
+                    {val}
+                  </div>
+                  {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
+                  <div className={styles.statLabel}>{r[0]}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {textRows.length > 0 && (
+        <div className={styles.kvSection}>
+          <ContentBadge type="kv" count={textRows.length} />
+          <div className={styles.kvGrid}>
+            {textRows.map((r, i) => (
+              <div key={i} className={styles.kvCard}>
+                <div className={styles.kvLabel}>{r[0]}</div>
+                <div className={styles.kvValue}>{r[1]}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -163,8 +197,12 @@ function SmartList({ items }: { items: string[] }) {
     return m ? { key: m[1].trim(), value: m[2].trim() } : null;
   }).filter(Boolean) as { key: string; value: string }[];
 
-  const numCount = parsed.filter(kv => isNum(kv.value) || isCurr(kv.value)).length;
-  const isStatLike = parsed.length > 0 && numCount >= parsed.length * 0.4;
+  // Only stat-like if values are SHORT numbers/currency — not long equipment descriptions
+  const numCount = parsed.filter(kv => {
+    const v = kv.value.trim();
+    return (isNum(v) || isCurr(v)) && v.length < 25;
+  }).length;
+  const isStatLike = parsed.length > 0 && numCount >= parsed.length * 0.5;
 
   return (
     <>
@@ -176,9 +214,11 @@ function SmartList({ items }: { items: string[] }) {
               {parsed.map((kv, i) => {
                 const ex = extractNum(kv.value);
                 const numMatch = kv.value.match(/(\d[\d,.]*)/);
+                const val = ex ? ex.n : numMatch ? numMatch[1] : kv.value.substring(0, 20);
+                const isLong = val.length > 15;
                 return (
                   <div key={i} className={styles.statCard}>
-                    <div className={styles.statValue}>{ex ? ex.n : numMatch ? numMatch[1] : kv.value.substring(0, 20)}</div>
+                    <div className={`${styles.statValue} ${isLong ? styles.statValueCompact : ''}`}>{val}</div>
                     {ex?.u && <div className={styles.statUnit}>{ex.u}</div>}
                     <div className={styles.statLabel}>{kv.key}</div>
                   </div>
