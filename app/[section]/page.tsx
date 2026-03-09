@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import {
   Projector, Speaker, Cpu, Thermometer, FileText, Compass,
   Radio, Wifi, Clock, Server, Users, ShieldAlert, MonitorPlay, Layers,
+  NotebookPen,
 } from 'lucide-react';
 import { useLiveDoc } from '@/data/LiveDocProvider';
 import { getSectionRange } from '@/data/sectionMap';
@@ -38,6 +39,7 @@ const SLUG_ICON: Record<string, React.ComponentType<{ size?: number; className?:
   'hvac': Thermometer,
   'vendors': Users,
   'disclaimer': ShieldAlert,
+  'dev-notes': NotebookPen,
 };
 
 export default function SectionPage() {

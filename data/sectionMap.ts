@@ -27,6 +27,7 @@ export const NAV_ITEMS: SectionMeta[] = [
   { slug: 'vendors', navLabel: 'VENDORS' },
   { slug: 'visualization', navLabel: '3D VIZ' },
   { slug: 'disclaimer', navLabel: 'DISCLAIMER' },
+  { slug: 'dev-notes', navLabel: 'DEV NOTES' },
 ];
 
 /** Mapping from slug keywords to section title patterns in the doc */
@@ -46,6 +47,7 @@ const SLUG_TO_PATTERN: Record<string, string> = {
   'vendors': 'contractor',
   'visualization': '3d viz',
   'disclaimer': 'disclaimer',
+  'dev-notes': 'dev notes',
 };
 
 /**
