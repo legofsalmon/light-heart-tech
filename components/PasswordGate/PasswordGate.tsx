@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Lock, Eye, EyeOff, Shield } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Lock, Eye, EyeOff, Shield, User } from 'lucide-react';
 import gsap from 'gsap';
 import { useAuth } from '@/components/AuthProvider';
 import { useTheme } from '@/components/ThemeProvider';
+import { PASSWORD_MAP, ROLE_LANDING } from '@/data/accessConfig';
 import styles from './PasswordGate.module.scss';
 
 interface PasswordGateProps {
@@ -15,11 +17,13 @@ interface PasswordGateProps {
 }
 
 export default function PasswordGate({ restricted, zoneLabel }: PasswordGateProps) {
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const { authenticate, roleLabel, logout } = useAuth();
   const { isDarkMode } = useTheme();
+  const router = useRouter();
   const cardRef = useRef<HTMLDivElement>(null);
   const lockRef = useRef<HTMLDivElement>(null);
 
@@ -40,8 +44,13 @@ export default function PasswordGate({ restricted, zoneLabel }: PasswordGateProp
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const success = authenticate(password);
-    if (!success) {
+    const success = authenticate(password, name);
+    if (success) {
+      const matchedRole = PASSWORD_MAP[password.trim().toLowerCase()];
+      if (matchedRole) {
+        router.push(ROLE_LANDING[matchedRole]);
+      }
+    } else {
       setError(true);
       const card = cardRef.current;
       if (card) {
@@ -129,9 +138,35 @@ export default function PasswordGate({ restricted, zoneLabel }: PasswordGateProp
         )}
 
         <form onSubmit={handleSubmit} className={styles.form}>
+          {!restricted && (
+            <div>
+              <label className={styles.label} style={{ color: muted }}>
+                Your Name
+              </label>
+              <div className={styles.inputWrap}>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={styles.input}
+                  style={{
+                    backgroundColor: isDarkMode ? '#08080c' : '#f5f5f0',
+                    borderColor: border,
+                    color: text,
+                  }}
+                  placeholder="e.g. Brendan"
+                  autoFocus
+                />
+                <span className={styles.eyeBtn} style={{ color: isDarkMode ? '#666' : '#999', pointerEvents: 'none' }}>
+                  <User size={18} />
+                </span>
+              </div>
+            </div>
+          )}
+
           <div>
             <label className={styles.label} style={{ color: muted }}>
-              {restricted ? 'Enter Access Code for This Area' : 'Enter Access Code'}
+              {restricted ? 'Enter Access Code for This Area' : 'Access Code'}
             </label>
             <div className={styles.inputWrap}>
               <input
@@ -145,7 +180,7 @@ export default function PasswordGate({ restricted, zoneLabel }: PasswordGateProp
                   color: text,
                 }}
                 placeholder="password"
-                autoFocus
+                autoFocus={!!restricted}
               />
               <button
                 type="button"

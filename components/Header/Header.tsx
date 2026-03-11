@@ -24,7 +24,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { isDarkMode } = useTheme();
-  const { role, canAccessZone, roleLabel, logout } = useAuth();
+  const { role, canAccessZone, roleLabel, userName, logout } = useAuth();
 
   const isAdmin = role === 'admin';
 
@@ -127,15 +127,27 @@ export default function Header() {
           <div className={styles.actions}>
             <SearchButton />
             {role && (
-              <button
-                onClick={logout}
-                className={styles.logoutBtn}
-                style={{ color: muted, borderColor: border }}
-                aria-label="Logout"
-                title={`Signed in as ${roleLabel}`}
-              >
-                <LogOut size={14} />
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                {userName && (
+                  <span style={{
+                    fontSize: '0.7rem',
+                    color: muted,
+                    letterSpacing: '0.03em',
+                    display: 'none',
+                  }} className={styles.userName}>
+                    {userName}
+                  </span>
+                )}
+                <button
+                  onClick={logout}
+                  className={styles.logoutBtn}
+                  style={{ color: muted, borderColor: border }}
+                  aria-label="Logout"
+                  title={`Signed in as ${userName || roleLabel}`}
+                >
+                  <LogOut size={14} />
+                </button>
+              </div>
             )}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

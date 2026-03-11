@@ -6,6 +6,7 @@ import {
   type Zone,
   PASSWORD_MAP,
   ROLE_LABELS,
+  ROLE_LANDING,
   canAccess,
   canAccessRoute,
   getAccessibleZones,
@@ -15,7 +16,9 @@ interface AuthState {
   isAuthenticated: boolean;
   role: Role | null;
   roleLabel: string;
-  authenticate: (password: string) => boolean;
+  userName: string;
+  authenticate: (password: string, name?: string) => boolean;
+  getLanding: () => string;
   canAccessZone: (zone: Zone) => boolean;
   canAccessPath: (pathname: string) => boolean;
   accessibleZones: Zone[];
@@ -26,7 +29,9 @@ const AuthContext = createContext<AuthState>({
   isAuthenticated: false,
   role: null,
   roleLabel: '',
+  userName: '',
   authenticate: () => false,
+  getLanding: () => '/',
   canAccessZone: () => false,
   canAccessPath: () => false,
   accessibleZones: [],
@@ -39,25 +44,33 @@ export function useAuth() {
 
 const STORAGE_KEY = 'lightheart_auth';
 const ROLE_KEY = 'lightheart_role';
+const NAME_KEY = 'lightheart_name';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState<Role | null>(null);
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     const savedRole = sessionStorage.getItem(ROLE_KEY) as Role | null;
     const savedAuth = sessionStorage.getItem(STORAGE_KEY);
+    const savedName = sessionStorage.getItem(NAME_KEY);
     if (savedRole && savedAuth === 'true') {
       setRole(savedRole);
       setIsAuthenticated(true);
+      if (savedName) setUserName(savedName);
     }
   }, []);
 
-  const authenticate = useCallback((password: string) => {
+  const authenticate = useCallback((password: string, name?: string) => {
     const matchedRole = PASSWORD_MAP[password.trim().toLowerCase()];
     if (matchedRole) {
       sessionStorage.setItem(STORAGE_KEY, 'true');
       sessionStorage.setItem(ROLE_KEY, matchedRole);
+      if (name?.trim()) {
+        sessionStorage.setItem(NAME_KEY, name.trim());
+        setUserName(name.trim());
+      }
       setRole(matchedRole);
       setIsAuthenticated(true);
       return true;
@@ -65,11 +78,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return false;
   }, []);
 
+  const getLanding = useCallback(() => {
+    return role ? ROLE_LANDING[role] : '/';
+  }, [role]);
+
   const logout = useCallback(() => {
     sessionStorage.removeItem(STORAGE_KEY);
     sessionStorage.removeItem(ROLE_KEY);
+    sessionStorage.removeItem(NAME_KEY);
     sessionStorage.removeItem('lightheart_sync_shown');
     setRole(null);
+    setUserName('');
     setIsAuthenticated(false);
   }, []);
 
@@ -92,7 +111,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isAuthenticated,
         role,
         roleLabel,
+        userName,
         authenticate,
+        getLanding,
         canAccessZone,
         canAccessPath,
         accessibleZones,

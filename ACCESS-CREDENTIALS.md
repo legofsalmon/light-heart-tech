@@ -45,12 +45,18 @@
 
 ## How It Works
 
-1. User visits any page → sees the **Password Gate**
-2. They enter their password → system determines their **role**
-3. Role maps to **zones** (techspec, ops, executive, marketing, brand)
-4. Header shows only the zones they can access
-5. If they navigate to a restricted page → orange **"Restricted Access"** gate with option to switch account
-6. **Logout button** (arrow icon) in top-right of header
+1. User visits any page → sees the **Password Gate** with Name + Access Code fields
+2. They enter their name and password → system determines their **role**
+3. After login, they're **automatically redirected** to their landing page:
+   - Admin → `/` (Tech Spec home)
+   - Tech Spec → `/brief`
+   - Core Team → `/ops` (Operations Hub)
+   - Executive → `/executive` (MD Dashboard)
+   - Marketing → `/marketing` (Marketing Hub)
+4. Role maps to **zones** (techspec, ops, executive, marketing, brand)
+5. Header shows their name and only the zones they can access
+6. If they navigate to a restricted page → orange **"Restricted Access"** gate with option to switch account
+7. **Logout button** (arrow icon) in top-right of header
 
 ---
 

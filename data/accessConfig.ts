@@ -36,6 +36,15 @@ export const ROLE_LABELS: Record<Role, string> = {
   marketing: 'Marketing',
 };
 
+/** Role → Landing page after login */
+export const ROLE_LANDING: Record<Role, string> = {
+  admin: '/',
+  techspec: '/brief',
+  coreteam: '/ops',
+  executive: '/executive',
+  marketing: '/marketing',
+};
+
 /** Route prefix → Zone mapping */
 export function getRouteZone(pathname: string): Zone {
   if (pathname.startsWith('/ops')) return 'ops';

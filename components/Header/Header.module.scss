@@ -87,6 +87,12 @@
   }
 }
 
+.userName {
+  display: none !important;
+
+  @include sm { display: inline !important; }
+}
+
 .logoutBtn {
   padding: 0.4rem;
   min-width: 32px;
