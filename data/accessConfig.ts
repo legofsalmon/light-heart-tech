@@ -39,6 +39,7 @@ export const ROLE_LABELS: Record<Role, string> = {
 /** Route prefix → Zone mapping */
 export function getRouteZone(pathname: string): Zone {
   if (pathname.startsWith('/ops')) return 'ops';
+  if (pathname.startsWith('/plan')) return 'ops';
   if (pathname.startsWith('/executive')) return 'executive';
   if (pathname.startsWith('/marketing')) return 'marketing';
   if (pathname.startsWith('/brand')) return 'brand';
