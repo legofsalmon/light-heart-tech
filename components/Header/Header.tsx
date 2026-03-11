@@ -50,6 +50,10 @@ export default function Header() {
     if (pathname.startsWith('/technology')) return 'ops';
     if (pathname.startsWith('/executive')) return 'executive';
     if (pathname.startsWith('/marketing')) return 'marketing';
+    if (pathname.startsWith('/about')) return 'marketing';
+    if (pathname.startsWith('/visit')) return 'marketing';
+    if (pathname.startsWith('/artists')) return 'marketing';
+    if (pathname.startsWith('/press')) return 'marketing';
     if (pathname.startsWith('/brand')) return 'brand';
     return 'techspec';
   }, [pathname]);

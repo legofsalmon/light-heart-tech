@@ -31,8 +31,8 @@ export const PLAN_SECTIONS: PlanSection[] = [
         ['Location', 'Dublin quays, near Guinness Storehouse'],
         ['Buildings purchased', 'Summer 2024'],
         ['Total investment', '~€4-4.5m'],
-        ['Projection rooms', '2 rooms, 14x 4K projectors, mapped floors'],
-        ['Sound system', 'L-ISA, 37-50 speakers, 360 spatial audio'],
+        ['Projection rooms', '2 rooms, 37 Barco projectors (4K + 2K), mapped floors'],
+        ['Sound system', 'L-ISA, 87 L-Acoustics speakers (71 mains + 16 subs), 96 spatial audio objects'],
         ['Target opening', 'September 2026'],
         ['Programming model', 'Quarterly changeover exhibitions'],
         ['Year 1 priority', '3 major populist shows (financial recovery focus)'],
@@ -129,7 +129,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
       { type: 'table', headers: ['Step', 'Action', 'Example: "Immersive Art"'], rows: [
         ['Term', 'Define in plain language', '"Art that surrounds you — projected on every surface, with sound that moves through the room."'],
         ['Emergence', 'Where does this come from?', '"Started with teamLab in Japan, Meow Wolf in the US. Now a global movement."'],
-        ['Materialisation', 'How does it appear at Lightheart?', '"14 projectors, 50 speakers, floors included. You walk through it."'],
+        ['Materialisation', 'How does it appear at Lightheart?', '"37 projectors, 87 speakers, floors included. You walk through it."'],
         ['Positioning', 'How does it relate to what people know?', '"Not a museum. Not a theme park. The gallery where you stand inside the art."'],
         ['Operation', 'How does it function in our system?', '"New exhibition every quarter. Each one a completely new world."'],
       ]},
@@ -197,7 +197,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
       { type: 'table', headers: ['Element', 'Detail'], rows: [
         ['Who', 'Digital artists, designers, NCAD/Trinity students, tech-art practitioners'],
         ['Key message', 'A serious space for serious work — infrastructure built for artists'],
-        ['Proof points', 'Tech specs (14x 4K projectors, L-ISA), artist-first programming, open calls'],
+        ['Proof points', 'Tech specs (37 Barco projectors, L-ISA spatial audio), artist-first programming, open calls'],
         ['Desired action', 'Submit work, attend events, advocate within community'],
         ['Best channel', 'LinkedIn, direct outreach, artist networks, website tech-spec page'],
       ]},

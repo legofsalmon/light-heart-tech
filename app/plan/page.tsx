@@ -7,6 +7,7 @@ import {
   Circle, Menu, X,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { Comments } from '@/components/Comments';
 import { PLAN_SECTIONS, PLAN_NAV_GROUPS, type SectionContent } from '@/data/planData';
 
 export default function PlanPage() {
@@ -297,6 +298,9 @@ export default function PlanPage() {
               )}
             </div>
           ))}
+
+          {/* Comments */}
+          <Comments sectionId="plan-general" />
 
           {/* Footer */}
           <div style={{

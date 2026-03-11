@@ -8,6 +8,8 @@ import {
   Globe, Activity, Lock, ArrowRight,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { DataTable } from '@/components/DataTable';
+import { GpgpuCanvas } from '@/components/GpgpuCanvas';
 
 /* ── DATA ─────────────────────────────────────────────── */
 
@@ -187,7 +189,11 @@ export default function TechnologyPage() {
     <div className="page-enter" style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1rem' }}>
 
       {/* ── HERO ───────────────────────────────── */}
-      <div ref={heroRef} style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
+      <div ref={heroRef} style={{ marginBottom: '2.5rem', textAlign: 'center', position: 'relative' }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.4, pointerEvents: 'none', zIndex: 0 }}>
+          <GpgpuCanvas particleCount={1500} color={[0.77, 0.63, 0.4]} speed={0.2} height="100%" />
+        </div>
+        <div style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
           <span className="status-dot" style={{ background: gold, boxShadow: `0 0 8px ${gold}99` }} />
           <span style={{ fontFamily: 'var(--font-mono, monospace)', fontSize: '0.7rem', color: gold, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
@@ -207,6 +213,7 @@ export default function TechnologyPage() {
         <p style={{ color: muted, fontSize: '0.875rem', maxWidth: '38rem', margin: '0 auto', lineHeight: 1.6 }}>
           The first purpose-built immersive gallery in Ireland. Every technical decision was made to serve one goal: creating art that surrounds you completely.
         </p>
+        </div>
       </div>
 
       {/* ── STATS GRID ─────────────────────────── */}
@@ -236,24 +243,20 @@ export default function TechnologyPage() {
             <p style={{ color: muted, fontSize: '0.85rem', marginBottom: '1rem', lineHeight: 1.7 }}>
               Thirty-seven Barco projectors across two galleries. Fourteen 4K projectors on the main gallery walls. Eight more in the second room. Plus fifteen floor projectors that transform the ground beneath your feet into part of the canvas.
             </p>
-            <div style={{ overflowX: 'auto', marginBottom: '1.25rem' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-                <thead><tr>
-                  <th style={thStyle}>Location</th><th style={thStyle}>Model</th><th style={thStyle}>Resolution</th><th style={thStyle}>Brightness</th><th style={thStyle}>Qty</th><th style={thStyle}>Lens</th>
-                </tr></thead>
-                <tbody>
-                  {PROJECTION_ROOMS.map((p, i) => (
-                    <tr key={i}>
-                      <td style={tdStyle}>{p.location}</td>
-                      <td style={{ ...tdStyle, fontFamily: 'monospace', color: gold }}>{p.model}</td>
-                      <td style={tdStyle}>{p.resolution}</td>
-                      <td style={tdStyle}>{p.brightness}</td>
-                      <td style={{ ...tdStyle, fontWeight: 700 }}>{p.qty}</td>
-                      <td style={{ ...tdStyle, fontFamily: 'monospace', fontSize: '0.75rem' }}>{p.lens}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <DataTable
+                columns={[
+                  { key: 'location', label: 'Location' },
+                  { key: 'model', label: 'Model' },
+                  { key: 'resolution', label: 'Resolution' },
+                  { key: 'brightness', label: 'Brightness' },
+                  { key: 'qty', label: 'Qty' },
+                  { key: 'lens', label: 'Lens' },
+                ]}
+                data={PROJECTION_ROOMS}
+                searchable={false}
+                compact
+              />
             </div>
 
             <h4 style={{ color: gold, fontSize: '0.85rem', marginBottom: '0.75rem' }}>Barco Pulse Ecosystem</h4>
@@ -377,7 +380,7 @@ export default function TechnologyPage() {
             <div style={{ padding: '1rem', background: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.4)', border: `1px solid ${border}`, borderRadius: '8px', borderLeft: `3px solid ${gold}`, marginBottom: '1rem' }}>
               <h4 style={{ fontSize: '0.85rem', color: gold, marginBottom: '0.5rem' }}>Luxonis OAK 4 D Pro Wide</h4>
               {[
-                { label: 'Room 1', value: '28 units (specified)' },
+                { label: 'Total', value: '44 depth cameras' },
                 { label: 'Room 2', value: 'Additional units TBC' },
                 { label: 'Field of View', value: '120\u00B0 horizontal' },
                 { label: 'Depth Range', value: '3.4m coverage at 1m standoff' },
@@ -412,22 +415,18 @@ export default function TechnologyPage() {
             <p style={{ color: muted, fontSize: '0.85rem', marginBottom: '1rem', lineHeight: 1.7 }}>
               Five separate networks, each isolated to prevent interference. Video signals don&apos;t compete with audio. Sensor data doesn&apos;t slow down control commands. Everything has dedicated bandwidth.
             </p>
-            <div style={{ overflowX: 'auto', marginBottom: '1.25rem' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-                <thead><tr>
-                  <th style={thStyle}>Network</th><th style={thStyle}>Hardware</th><th style={thStyle}>Protocol</th><th style={thStyle}>Purpose</th>
-                </tr></thead>
-                <tbody>
-                  {NETWORK_TABLE.map((n, i) => (
-                    <tr key={i}>
-                      <td style={{ ...tdStyle, fontWeight: 600, color: gold }}>{n.network}</td>
-                      <td style={{ ...tdStyle, fontFamily: 'monospace', fontSize: '0.75rem' }}>{n.hardware}</td>
-                      <td style={tdStyle}>{n.protocol}</td>
-                      <td style={tdStyle}>{n.purpose}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <DataTable
+                columns={[
+                  { key: 'network', label: 'Network' },
+                  { key: 'hardware', label: 'Hardware' },
+                  { key: 'protocol', label: 'Protocol' },
+                  { key: 'purpose', label: 'Purpose' },
+                ]}
+                data={NETWORK_TABLE}
+                searchable={false}
+                compact
+              />
             </div>
             <h4 style={{ color: gold, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Backbone</h4>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.5rem' }}>

@@ -9,7 +9,7 @@
 
 ## The Project
 
-**Lightheart** is a purpose-built immersive gallery on Dublin's quays (near Guinness Storehouse). Quarterly changing exhibitions using 14 ultra-short-throw 4K laser projectors across walls and floors, with L-ISA spatial audio (37-50 speakers, 360-degree sound). Total investment approximately EUR 4-4.5m. Opening September 2026.
+**Lightheart** is a purpose-built immersive gallery on Dublin's quays (near Guinness Storehouse). Quarterly changing exhibitions using 37 Barco projectors (4K + 2K) across walls and floors, with L-ISA spatial audio (87 L-Acoustics speakers, 96 spatial objects, 360-degree sound). Total investment approximately EUR 4-4.5m. Opening September 2026.
 
 **IDIRNET** (Kev Freeney's studio) handles creative direction, technical design, and AV systems via B2B retainer.
 

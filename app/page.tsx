@@ -5,7 +5,9 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { useAuth } from '@/components/AuthProvider';
 import SystemDiagram from '@/components/SystemDiagram/SystemDiagram';
+import { SPECS, TEAM } from '@/data/constants';
 import styles from './page.module.scss';
 
 function AnimatedCounter({ target, duration = 2 }: { target: number; duration?: number }) {
@@ -47,6 +49,8 @@ export default function HomePage() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
   const { isDarkMode } = useTheme();
+  const { role } = useAuth();
+  const isInternal = role === 'admin' || role === 'techspec' || role === 'coreteam';
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
@@ -83,13 +87,15 @@ export default function HomePage() {
           {/* Title */}
           <div ref={titleRef} className={styles.titleBlock}>
             <h1 className={styles.title} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
-              LIGHTHEART
+              {isInternal ? 'LIGHTHEART' : 'YOU STAND INSIDE IT'}
             </h1>
-            <div className={styles.subtitle} style={{ color: accent }}>
-              IMMERSIVE EXPERIENCE
+            <div className={styles.subtitle} style={{ color: isInternal ? accent : '#c4a265' }}>
+              {isInternal ? 'IMMERSIVE EXPERIENCE' : 'LIGHTHEART'}
             </div>
             <div className={styles.byline} style={{ color: muted }}>
-              TECHNICAL SPECIFICATION BY IDIRNET
+              {isInternal
+                ? 'TECHNICAL SPECIFICATION BY IDIRNET'
+                : "Dublin's immersive gallery where contemporary art surrounds you"}
             </div>
           </div>
 
@@ -108,13 +114,17 @@ export default function HomePage() {
           }}>
             {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
             <h2 className={styles.introTitle} style={{ color: isDarkMode ? '#FFF' : '#000' }}>
-              Welcome to This Technical Specification
+              {isInternal ? 'Welcome to This Technical Specification' : 'Purpose-Built for Immersion'}
             </h2>
             <p className={styles.introText} style={{ color: muted }}>
-              This document contains the complete technical design, specification, and budget ring-fencing for a permanent two-room immersive installation. The system comprises 37 projectors, 71 speakers, 5 media servers, and comprehensive network infrastructure.
+              {isInternal
+                ? `This document contains the complete technical design, specification, and budget ring-fencing for a permanent two-room immersive installation. The system comprises ${SPECS.projectors} projectors, ${SPECS.speakers} speakers, ${SPECS.mediaServers} media servers, and comprehensive network infrastructure.`
+                : `Lightheart is a purpose-built immersive art space on Dublin\u2019s quays. ${SPECS.projectors} Barco projectors fill the walls. ${SPECS.speakers} L-Acoustics speakers create three-dimensional sound. ${SPECS.depthCameras} depth cameras respond to your presence. You don\u2019t view the art\u2014you\u2019re inside it.`}
             </p>
             <p className={styles.introText} style={{ color: muted }}>
-              Target opening: September 2026. Location: Dublin, Ireland. Total project duration: 21 days from commencement to completion.
+              {isInternal
+                ? `Target opening: ${SPECS.opening}. Location: Dublin, Ireland. Total project duration: 21 days from commencement to completion.`
+                : `Two galleries. ${SPECS.totalArea} square metres. ${SPECS.audioObjects} individually controlled audio objects in 3D space. Opening ${SPECS.opening}.`}
             </p>
           </div>
 
@@ -138,10 +148,10 @@ export default function HomePage() {
       <div className={styles.statsBar} style={{ borderTopColor: border }}>
         <div className={styles.statsInner}>
           {[
-            { value: 37, label: 'PROJECTORS' },
-            { value: 71, label: 'SPEAKERS' },
-            { value: 5, label: 'MEDIA SERVERS' },
-            { value: 280, label: 'SQ. METERS' },
+            { value: SPECS.projectors, label: 'PROJECTORS' },
+            { value: SPECS.speakers, label: 'SPEAKERS' },
+            { value: SPECS.mediaServers, label: 'MEDIA SERVERS' },
+            { value: SPECS.totalArea, label: 'SQ. METERS' },
           ].map((stat, i) => (
             <div key={i} className={styles.statItem}>
               <div className={styles.statValue} style={{ color: accent }}>
@@ -163,9 +173,9 @@ export default function HomePage() {
       {/* Info bar */}
       <div className={styles.infoBar} style={{ borderTopColor: border }}>
         <div className={styles.infoInner} style={{ color: muted }}>
-          <span>KRISJANIS BERZINS — IDIRNET</span>
-          <span>LIGHTHEART LTD</span>
-          <span style={{ color: accent }}>4 MARCH 2026</span>
+          <span>{TEAM.brendan.name} — {TEAM.brendan.title}</span>
+          <span>{TEAM.kev.name} &amp; {TEAM.kris.name} — {TEAM.kris.org}</span>
+          <span style={{ color: accent }}>{SPECS.opening}</span>
         </div>
       </div>
     </div>

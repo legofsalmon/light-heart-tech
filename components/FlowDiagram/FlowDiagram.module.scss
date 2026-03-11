@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+
+.container {
+  border-radius: $radius-md;
+  border: 1px solid $dark-border;
+  overflow: hidden;
+  position: relative;
+
+  // Override ReactFlow defaults for dark theme
+  :global(.react-flow__node) {
+    cursor: pointer;
+    transition: box-shadow $transition-fast;
+  }
+
+  :global(.react-flow__controls button) {
+    background: transparent;
+    border: none;
+    color: inherit;
+    &:hover {
+      background: $cyan-hover;
+    }
+  }
+}

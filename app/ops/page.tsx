@@ -9,6 +9,15 @@ import {
   GitBranch, MessageSquare, ExternalLink,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { DataTable } from '@/components/DataTable';
+import { Comments } from '@/components/Comments';
+import dynamic from 'next/dynamic';
+import { SPECS } from '@/data/constants';
+
+const FlowDiagram = dynamic(
+  () => import('@/components/FlowDiagram').then(m => ({ default: m.FlowDiagram })),
+  { ssr: false, loading: () => <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontSize: '0.8rem' }}>Loading diagram…</div> }
+);
 
 /* ── DATA ─────────────────────────────────────────────── */
 
@@ -165,6 +174,41 @@ const MEETINGS = [
   { meeting: 'Weekly Pulse Check', when: 'Weekly', duration: '30 min', who: 'Core team', purpose: 'Framework review, blockers, commitments' },
   { meeting: 'Brendan Priorities', when: 'Weekly', duration: '60 min', who: 'Kev + Brendan', purpose: 'High-level priorities, decisions, budget' },
   { meeting: 'RAD Sync', when: 'Tuesdays', duration: 'Varies', who: 'Kev + RAD', purpose: 'Brand progress, deliverable handoffs' },
+];
+
+const TSM_NODES = [
+  // Global Stack (blue) - column 1
+  ...TSM_STACKS[0].planes.map((p, i) => ({
+    id: `g-${i}`, type: 'stack' as const,
+    position: { x: 0, y: i * 70 },
+    data: { label: p.name, detail: p.detail, stack: 'Global', status: p.status, color: '#4a8abf' },
+  })),
+  // Internal Stack (gold) - column 2
+  ...TSM_STACKS[1].planes.map((p, i) => ({
+    id: `i-${i}`, type: 'stack' as const,
+    position: { x: 220, y: i * 70 },
+    data: { label: p.name, detail: p.detail, stack: 'Internal', status: p.status, color: '#c4a265' },
+  })),
+  // External Stack (green) - column 3
+  ...TSM_STACKS[2].planes.map((p, i) => ({
+    id: `e-${i}`, type: 'stack' as const,
+    position: { x: 440, y: i * 70 },
+    data: { label: p.name, detail: p.detail, stack: 'External', status: p.status, color: '#27ae60' },
+  })),
+];
+
+const TSM_EDGES = [
+  // Vertical connections within each stack
+  ...Array.from({ length: 6 }, (_, i) => ({ id: `g-v-${i}`, source: `g-${i}`, target: `g-${i+1}`, type: 'animated' as const, data: { edgeType: 'data' } })),
+  ...Array.from({ length: 6 }, (_, i) => ({ id: `i-v-${i}`, source: `i-${i}`, target: `i-${i+1}`, type: 'animated' as const, data: { edgeType: 'signal' } })),
+  ...Array.from({ length: 6 }, (_, i) => ({ id: `e-v-${i}`, source: `e-${i}`, target: `e-${i+1}`, type: 'animated' as const, data: { edgeType: 'network' } })),
+  // Cross-stack connections at key planes
+  { id: 'gi-0', source: 'g-0', target: 'i-0', type: 'animated' as const, data: { edgeType: 'data' } },
+  { id: 'ie-0', source: 'i-0', target: 'e-0', type: 'animated' as const, data: { edgeType: 'data' } },
+  { id: 'gi-3', source: 'g-3', target: 'i-3', type: 'animated' as const, data: { edgeType: 'signal' } },
+  { id: 'ie-3', source: 'i-3', target: 'e-3', type: 'animated' as const, data: { edgeType: 'signal' } },
+  { id: 'gi-6', source: 'g-6', target: 'i-6', type: 'animated' as const, data: { edgeType: 'critical' } },
+  { id: 'ie-6', source: 'i-6', target: 'e-6', type: 'animated' as const, data: { edgeType: 'critical' } },
 ];
 
 /* ── HELPERS ──────────────────────────────────────────── */
@@ -328,6 +372,13 @@ export default function OpsHubPage() {
                 </div>
               ))}
             </div>
+            <div style={{ marginTop: '1.5rem', borderRadius: 8, overflow: 'hidden', border: `1px solid ${border}` }}>
+              <FlowDiagram
+                initialNodes={TSM_NODES}
+                initialEdges={TSM_EDGES}
+                height={550}
+              />
+            </div>
             <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.8rem', color: muted }}>
               <strong style={{ color: gold }}>Concrescence</strong> \u2014 The moment all three stacks align. Opening night is the first.
             </div>
@@ -340,18 +391,17 @@ export default function OpsHubPage() {
         {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
         <SectionHeader id="tools" title="Six Unified Tools" icon={Target} iconColor={gold} />
         {openSections.tools && (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-              <thead><tr>
-                <th style={thStyle}>Tool</th><th style={thStyle}>Core Idea</th><th style={thStyle}>Apply When</th><th style={thStyle}>Owner</th>
-              </tr></thead>
-              <tbody>
-                {SIX_TOOLS.map((t, i) => (
-                  <tr key={i}><td style={{ ...tdStyle, fontWeight: 600 }}>{t.tool}</td><td style={tdStyle}>{t.idea}</td><td style={tdStyle}>{t.apply}</td><td style={tdStyle}>{t.owner}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            columns={[
+              { key: 'tool', label: 'Tool', width: '15%' },
+              { key: 'idea', label: 'Core Idea', width: '30%' },
+              { key: 'apply', label: 'Apply When', width: '35%' },
+              { key: 'owner', label: 'Owner', width: '20%' },
+            ]}
+            data={SIX_TOOLS}
+            searchable={false}
+            compact
+          />
         )}
       </div>
 
@@ -387,33 +437,34 @@ export default function OpsHubPage() {
             <p style={{ color: muted, fontSize: '0.8rem', marginBottom: '1rem' }}>From the 70-page tech spec. Two immersive rooms, ~280 sq. m. total exhibition space.</p>
 
             <h4 style={{ color: accent, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Projection (37 Barco projectors)</h4>
-            <div style={{ overflowX: 'auto', marginBottom: '1rem' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-                <thead><tr>
-                  <th style={thStyle}>Location</th><th style={thStyle}>Model</th><th style={thStyle}>Qty</th><th style={thStyle}>Resolution</th><th style={thStyle}>Brightness</th><th style={thStyle}>Power</th>
-                </tr></thead>
-                <tbody>
-                  {PROJECTION_SPECS.map((p, i) => (
-                    <tr key={i}><td style={tdStyle}>{p.location}</td><td style={{ ...tdStyle, fontFamily: 'monospace' }}>{p.model}</td><td style={tdStyle}>{p.qty}</td><td style={tdStyle}>{p.resolution}</td><td style={tdStyle}>{p.brightness}</td><td style={tdStyle}>{p.power}</td></tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <DataTable
+              columns={[
+                { key: 'location', label: 'Location' },
+                { key: 'model', label: 'Model' },
+                { key: 'qty', label: 'Qty' },
+                { key: 'resolution', label: 'Resolution' },
+                { key: 'brightness', label: 'Brightness' },
+                { key: 'power', label: 'Power' },
+              ]}
+              data={PROJECTION_SPECS}
+              searchable={false}
+              compact
+            />
             <p style={{ fontSize: '0.75rem', color: muted, marginBottom: '1.5rem' }}>Total: 24,510W / ~121A. Heat: 82,880 BTU/h. Signal: DisplayPort 1.4 over OS2 fiber (DVIGear DVI-7380).</p>
 
             <h4 style={{ color: accent, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Audio \u2014 L-ISA Spatial (87 speakers)</h4>
-            <div style={{ overflowX: 'auto', marginBottom: '1rem' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-                <thead><tr>
-                  <th style={thStyle}>Room</th><th style={thStyle}>Speaker</th><th style={thStyle}>Qty</th><th style={thStyle}>Role</th><th style={thStyle}>SPL</th>
-                </tr></thead>
-                <tbody>
-                  {AUDIO_SPECS.map((a, i) => (
-                    <tr key={i}><td style={tdStyle}>{a.room}</td><td style={{ ...tdStyle, fontFamily: 'monospace' }}>{a.speaker}</td><td style={tdStyle}>{a.qty}</td><td style={tdStyle}>{a.role}</td><td style={tdStyle}>{a.spl}</td></tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <DataTable
+              columns={[
+                { key: 'room', label: 'Room' },
+                { key: 'speaker', label: 'Speaker' },
+                { key: 'qty', label: 'Qty' },
+                { key: 'role', label: 'Role' },
+                { key: 'spl', label: 'SPL' },
+              ]}
+              data={AUDIO_SPECS}
+              searchable={false}
+              compact
+            />
             <p style={{ fontSize: '0.75rem', color: muted, marginBottom: '1.5rem' }}>L-ISA Processor II: 96 spatial objects, 96kHz, Milan-AVB protocol. 6x LA7.16i amplified controllers. Cost: EUR 401,586.</p>
 
             <h4 style={{ color: accent, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Infrastructure</h4>
@@ -421,7 +472,7 @@ export default function OpsHubPage() {
               {[
                 { title: 'Media Servers', icon: Server, cardText: '5x Pixera PX2 Octo (2U). EUR 275,000 total. 800W/unit. Meinberg Microsync for PTP + genlock sync.' },
                 { title: 'Network', icon: Wifi, cardText: '5 segregated networks: Video (fiber), Audio (Milan-AVB), Sensor (IP), Server Sync (multicast), Management (OSC/PTP). Core: 2x Netgear M4500-32C (100G).' },
-                { title: 'Sensors', icon: Eye, cardText: '28x Luxonis OAK 4 D Pro Wide (Room 1). Onboard depth + neural inference. 120\u00B0 FOV. PoE+ 2.5GbE. EUR 32,116.' },
+                { title: 'Sensors', icon: Eye, cardText: '44 Luxonis OAK 4 D Pro Wide depth cameras. Onboard depth + neural inference. 120\u00B0 FOV. PoE+ 2.5GbE. EUR 32,116.' },
                 { title: 'Server Room', icon: Shield, cardText: '2x 48U racks. 2x APC 10kVA UPS. Total heat: ~118,500 BTU/h. HVAC target: NC-35 acoustic rating in galleries.' },
               ].map(({ title, icon: Icon, cardText }) => (
                 <div key={title} style={{ padding: '1rem', background: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.4)', border: `1px solid ${border}`, borderRadius: '8px' }}>
@@ -442,23 +493,19 @@ export default function OpsHubPage() {
         {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
         <SectionHeader id="vendors" title="Vendors & Quote Deadlines" icon={FileText} />
         {openSections.vendors && (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-              <thead><tr>
-                <th style={thStyle}>System</th><th style={thStyle}>Vendor</th><th style={thStyle}>Cost (EUR)</th><th style={thStyle}>Expires</th><th style={thStyle}>Status</th>
-              </tr></thead>
-              <tbody>
-                {VENDORS.map((v, i) => (
-                  <tr key={i}>
-                    <td style={tdStyle}>{v.system}</td><td style={tdStyle}>{v.vendor}</td>
-                    <td style={{ ...tdStyle, fontFamily: 'monospace' }}>{v.cost}</td>
-                    <td style={{ ...tdStyle, fontWeight: v.expires !== '\u2014' ? 600 : 400 }}>{v.expires}</td>
-                    <td style={tdStyle}><Tag status={v.status}>{v.status}</Tag></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            columns={[
+              { key: 'system', label: 'System' },
+              { key: 'vendor', label: 'Vendor' },
+              { key: 'cost', label: 'Cost (EUR)' },
+              { key: 'expires', label: 'Expires' },
+              { key: 'status', label: 'Status', render: (v: unknown) => <Tag status={String(v)}>{String(v)}</Tag> },
+            ]}
+            data={VENDORS}
+            statusKey="status"
+            statusColors={{ critical: '#c0392b', warning: '#f39c12', active: '#27ae60', complete: '#27ae60', blocked: '#c0392b' }}
+            compact
+          />
         )}
       </div>
 
@@ -467,23 +514,16 @@ export default function OpsHubPage() {
         {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
         <SectionHeader id="risks" title="Risk Register" icon={AlertTriangle} iconColor="#c0392b" />
         {openSections.risks && (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-              <thead><tr>
-                <th style={thStyle}>Risk</th><th style={thStyle}>Likelihood</th><th style={thStyle}>Impact</th><th style={thStyle}>Mitigation</th>
-              </tr></thead>
-              <tbody>
-                {RISKS.map((r, i) => (
-                  <tr key={i}>
-                    <td style={tdStyle}>{r.risk}</td>
-                    <td style={tdStyle}><Tag status="warning">{r.likelihood}</Tag></td>
-                    <td style={tdStyle}><Tag status="critical">{r.impact}</Tag></td>
-                    <td style={tdStyle}>{r.mitigation}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            columns={[
+              { key: 'risk', label: 'Risk' },
+              { key: 'likelihood', label: 'Likelihood', render: (v: unknown) => <Tag status="warning">{String(v)}</Tag> },
+              { key: 'impact', label: 'Impact', render: (v: unknown) => <Tag status="critical">{String(v)}</Tag> },
+              { key: 'mitigation', label: 'Mitigation' },
+            ]}
+            data={RISKS}
+            compact
+          />
         )}
       </div>
 
@@ -492,22 +532,18 @@ export default function OpsHubPage() {
         {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
         <SectionHeader id="decisions" title="Decisions Pending" icon={MessageSquare} />
         {openSections.decisions && (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-              <thead><tr>
-                <th style={thStyle}>Decision</th><th style={thStyle}>Owner</th><th style={thStyle}>Deadline</th><th style={thStyle}>Status</th>
-              </tr></thead>
-              <tbody>
-                {DECISIONS_PENDING.map((d, i) => (
-                  <tr key={i}>
-                    <td style={tdStyle}>{d.decision}</td><td style={tdStyle}>{d.owner}</td>
-                    <td style={{ ...tdStyle, fontWeight: 600 }}>{d.deadline}</td>
-                    <td style={tdStyle}><Tag status={d.status}>{d.status}</Tag></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            columns={[
+              { key: 'decision', label: 'Decision' },
+              { key: 'owner', label: 'Owner' },
+              { key: 'deadline', label: 'Deadline' },
+              { key: 'status', label: 'Status', render: (v: unknown) => <Tag status={String(v)}>{String(v)}</Tag> },
+            ]}
+            data={DECISIONS_PENDING}
+            statusKey="status"
+            statusColors={{ critical: '#c0392b', pending: '#f39c12' }}
+            compact
+          />
         )}
       </div>
 
@@ -554,23 +590,23 @@ export default function OpsHubPage() {
         {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
         <SectionHeader id="meetings" title="Meeting Cadence" icon={Clock} />
         {openSections.meetings && (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
-              <thead><tr>
-                <th style={thStyle}>Meeting</th><th style={thStyle}>When</th><th style={thStyle}>Duration</th><th style={thStyle}>Who</th><th style={thStyle}>Purpose</th>
-              </tr></thead>
-              <tbody>
-                {MEETINGS.map((m, i) => (
-                  <tr key={i}>
-                    <td style={{ ...tdStyle, fontWeight: 600 }}>{m.meeting}</td><td style={tdStyle}>{m.when}</td>
-                    <td style={tdStyle}>{m.duration}</td><td style={tdStyle}>{m.who}</td><td style={tdStyle}>{m.purpose}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            columns={[
+              { key: 'meeting', label: 'Meeting' },
+              { key: 'when', label: 'When' },
+              { key: 'duration', label: 'Duration' },
+              { key: 'who', label: 'Who' },
+              { key: 'purpose', label: 'Purpose' },
+            ]}
+            data={MEETINGS}
+            searchable={false}
+            compact
+          />
         )}
       </div>
+
+      {/* Comments */}
+      <Comments sectionId="ops-general" />
 
       {/* Quick links */}
       <div style={{ padding: '1rem 1.5rem', background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', marginBottom: '3rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>

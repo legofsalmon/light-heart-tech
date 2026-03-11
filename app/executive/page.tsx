@@ -8,6 +8,14 @@ import {
   Target, Zap, Eye, Heart,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { DataTable } from '@/components/DataTable';
+import { Comments } from '@/components/Comments';
+import dynamic from 'next/dynamic';
+
+const FlowDiagram = dynamic(
+  () => import('@/components/FlowDiagram').then(m => ({ default: m.FlowDiagram })),
+  { ssr: false, loading: () => <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontSize: '0.8rem' }}>Loading diagram…</div> }
+);
 
 /* ────────── Data ────────── */
 
@@ -95,7 +103,7 @@ const TECH_CARDS = [
   { title: '37 Projectors', desc: 'Barco I600 (4K+) on walls, G50 on floors. Ultra-short-throw lenses. Both rooms fully mapped. Room 1: 14 wall + 10 floor. Room 2: 8 wall + 5 floor.' },
   { title: '87 Speakers (L-ISA)', desc: 'L-Acoustics spatial audio across both rooms. 96 individually controlled sound objects in 3D space. 360-degree immersive sound. EUR 401,586.' },
   { title: '5 Media Servers', desc: 'Pixera PX2 Octo — professional immersive playback. Synchronized via precision clock (Meinberg). EUR 275,000.' },
-  { title: '28+ Sensors', desc: 'Luxonis depth cameras with onboard AI processing. Real-time visitor tracking enables interactive experiences. EUR 32,116 (Room 1).' },
+  { title: '44 Sensors', desc: 'Luxonis depth cameras with onboard AI processing. Real-time visitor tracking enables interactive experiences. EUR 32,116 (Room 1).' },
 ];
 
 const FOUNDING_CIRCLE = [
@@ -124,6 +132,25 @@ const IDIRNET_ROLES = [
   { title: 'Technical Design', desc: 'AV system specification, network architecture, sensor systems, integration' },
   { title: 'Digital Platform', desc: 'Website development, deployment, analytics, digital infrastructure' },
 ];
+
+const MILESTONE_NODES = MILESTONES.map((m, i) => ({
+  id: `m-${i}`,
+  type: 'status' as const,
+  position: { x: (i % 4) * 240, y: Math.floor(i / 4) * 100 },
+  data: {
+    label: m.item,
+    detail: m.date,
+    status: m.status as 'active' | 'pending' | 'critical' | 'blocked' | 'upcoming' | 'target' | 'completed',
+  },
+}));
+
+const MILESTONE_EDGES = MILESTONES.slice(0, -1).map((_, i) => ({
+  id: `me-${i}`,
+  source: `m-${i}`,
+  target: `m-${i + 1}`,
+  type: 'animated' as const,
+  data: { edgeType: MILESTONES[i].status === 'critical' ? 'critical' : 'data' },
+}));
 
 /* ────────── Component ────────── */
 
@@ -361,6 +388,14 @@ export default function ExecutivePage() {
       <div style={{ marginBottom: '2rem' }}>
         <SectionHeader id="milestones" icon={Calendar} color={gold} label="Key Milestones" />
         {openSections.milestones && (
+          <>
+          <div style={{ marginBottom: '1rem', borderRadius: 8, overflow: 'hidden', border: `1px solid ${border}` }}>
+            <FlowDiagram
+              initialNodes={MILESTONE_NODES}
+              initialEdges={MILESTONE_EDGES}
+              height={350}
+            />
+          </div>
           <div style={{ background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
             {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
             {/* Header */}
@@ -385,6 +420,7 @@ export default function ExecutivePage() {
               </div>
             ))}
           </div>
+          </>
         )}
       </div>
 
@@ -432,34 +468,19 @@ export default function ExecutivePage() {
             <p style={{ fontSize: '0.85rem', color: muted, marginBottom: '1rem' }}>
               200 founding members (hard cap). Applications open June 20. Projected Year 1 revenue: ~€75,000.
             </p>
-            <div style={{ background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', overflow: 'hidden', position: 'relative', marginBottom: '0.75rem' }}>
-              {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
-              <div style={{
-                display: 'grid', gridTemplateColumns: '100px 90px 100px 100px', padding: '0.6rem 1rem',
-                background: isDarkMode ? 'rgba(196,162,101,0.1)' : 'rgba(196,162,101,0.06)',
-                borderBottom: `2px solid ${isDarkMode ? 'rgba(196,162,101,0.3)' : 'rgba(196,162,101,0.2)'}`,
-                fontSize: '0.7rem', fontWeight: 600, color: gold, textTransform: 'uppercase', letterSpacing: '0.05em',
-              }}>
-                <span>Tier</span><span>Price/year</span><span>Available</span><span>Target Revenue</span>
-              </div>
-              {FOUNDING_CIRCLE.map((r, i) => (
-                <div key={i} style={{
-                  display: 'grid', gridTemplateColumns: '100px 90px 100px 100px', padding: '0.6rem 1rem',
-                  borderBottom: i < FOUNDING_CIRCLE.length - 1 ? `1px solid ${border}` : 'none',
-                }}>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: text }}>{r.tier}</span>
-                  <span style={{ fontSize: '0.85rem', color: muted }}>{r.price}</span>
-                  <span style={{ fontSize: '0.85rem', color: muted }}>{r.available}</span>
-                  <span style={{ fontSize: '0.85rem', color: text }}>{r.revenue}</span>
-                </div>
-              ))}
-              <div style={{
-                display: 'grid', gridTemplateColumns: '290px 100px', padding: '0.6rem 1rem',
-                borderTop: `1px solid ${border}`,
-              }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: text, textAlign: 'right' }}>Total (at full take-up)</span>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: gold }}>€73,800</span>
-              </div>
+            <DataTable
+              columns={[
+                { key: 'tier', label: 'Tier' },
+                { key: 'price', label: 'Price/year' },
+                { key: 'available', label: 'Available' },
+                { key: 'revenue', label: 'Target Revenue' },
+              ]}
+              data={FOUNDING_CIRCLE}
+              searchable={false}
+              compact
+            />
+            <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#c4a265', textAlign: 'right', marginTop: '0.25rem' }}>
+              Total (at full take-up): €73,800
             </div>
             <p style={{ fontSize: '0.8rem', color: isDarkMode ? '#555' : '#aaa' }}>
               Corporate memberships are a separate programme (€2,500 / €5,000 / €10,000 tiers — to be developed after founding programme launches).
@@ -558,6 +579,9 @@ export default function ExecutivePage() {
           </>
         )}
       </div>
+
+      {/* Comments */}
+      <Comments sectionId="executive-general" />
 
       {/* Footer */}
       <div style={{

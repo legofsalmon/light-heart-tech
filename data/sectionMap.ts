@@ -41,6 +41,10 @@ export const NAV_ITEMS: SectionMeta[] = [
 
   // ── Marketing zone ──
   { slug: 'marketing', navLabel: 'MARKETING', zone: 'marketing' },
+  { slug: 'about', navLabel: 'ABOUT', zone: 'marketing' },
+  { slug: 'visit', navLabel: 'VISIT', zone: 'marketing' },
+  { slug: 'artists', navLabel: 'ARTISTS', zone: 'marketing' },
+  { slug: 'press', navLabel: 'PRESS', zone: 'marketing' },
 ];
 
 /** Mapping from slug keywords to section title patterns in the doc */
