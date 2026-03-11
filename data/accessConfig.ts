@@ -49,6 +49,7 @@ export const ROLE_LANDING: Record<Role, string> = {
 export function getRouteZone(pathname: string): Zone {
   if (pathname.startsWith('/ops')) return 'ops';
   if (pathname.startsWith('/plan')) return 'ops';
+  if (pathname.startsWith('/technology')) return 'ops';
   if (pathname.startsWith('/executive')) return 'executive';
   if (pathname.startsWith('/marketing')) return 'marketing';
   if (pathname.startsWith('/brand')) return 'brand';

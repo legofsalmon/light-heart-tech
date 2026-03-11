@@ -47,6 +47,7 @@ export default function Header() {
   // Determine current zone from pathname
   const currentZone = useMemo(() => {
     if (pathname.startsWith('/ops')) return 'ops';
+    if (pathname.startsWith('/technology')) return 'ops';
     if (pathname.startsWith('/executive')) return 'executive';
     if (pathname.startsWith('/marketing')) return 'marketing';
     if (pathname.startsWith('/brand')) return 'brand';
