@@ -50,7 +50,7 @@ export interface Artist {
     instagram?: string;
     website?: string;
   };
-  // For Pauric: 75,000 followers mentioned in planning docs
+  // For Agustin / Glasseye XR: follower count from planning docs
   reach?: {
     followers?: number;
     platform?: string;
@@ -208,12 +208,12 @@ export const digitalNatureExhibition: Exhibition = {
   },
   
   artist: {
-    name: 'Pauric Freeman',
-    slug: 'pauric-freeman',
-    location: 'Berlin (b. Dublin)',
+    name: 'Agustin Vidal Saavedra',
+    slug: 'agustin-vidal-saavedra',
+    location: 'Dublin (via Glasseye XR)',
     bio: {
-      short: 'Pauric Freeman is a Berlin-based artist working at the intersection of real-time graphics, spatial audio, and embodied interaction. His practice explores how digital environments can develop the responsive qualities of living systems—creating work that exists only in the moment of encounter.',
-      extended: 'Pauric Freeman (b. Dublin, based Berlin) creates immersive environments where digital processes mimic organic behaviour. Working with real-time engines, spatial audio, and sensor systems, he builds worlds that respond to collective presence rather than playing pre-rendered content. His work has been presented at [VENUE 1], [VENUE 2], and [FESTIVAL]—each time creating singular experiences that resist documentation. Freeman\'s practice is grounded in the belief that digital art should demand the same physical presence as performance: you cannot experience it through a screen. Digital Nature represents Freeman\'s most ambitious work to date—a full-gallery installation using Lightheart\'s complete technical infrastructure to create a world that genuinely breathes with its visitors.'
+      short: 'Agustin Vidal Saavedra is the founder and creative director of Glasseye XR, working at the intersection of extended reality, real-time graphics, and immersive installation. His practice explores how digital environments can develop the responsive qualities of living systems\u2014creating work that exists only in the moment of encounter.',
+      extended: 'Agustin Vidal Saavedra leads Glasseye XR, a studio dedicated to pushing the boundaries of immersive experience through real-time engines, spatial audio, and sensor-driven interaction. After years of working internationally on large-scale XR projects, Digital Nature marks a homecoming\u2014bringing his practice back to Dublin. Working with real-time systems and embodied interaction, he builds worlds that respond to collective presence rather than playing pre-rendered content. His work has been presented at [VENUE 1], [VENUE 2], and [FESTIVAL]\u2014each time creating singular experiences that resist documentation. Vidal Saavedra\'s practice is grounded in the belief that digital art should demand the same physical presence as performance: you cannot experience it through a screen. Digital Nature represents his most ambitious work to date\u2014a full-gallery installation using Lightheart\'s complete technical infrastructure to create a world that genuinely breathes with its visitors.'
     },
     portrait: undefined, // [DRAFT - PENDING ASSET]
     socialMedia: {
@@ -227,13 +227,13 @@ export const digitalNatureExhibition: Exhibition = {
   },
   
   concept: {
-    summary: 'Step inside a living system. Digital Nature transforms Lightheart\'s twin galleries into an responsive ecology where organic forms and digital processes merge. This is not nature documentary projected large—this is an environment that senses, responds, and evolves with the collective presence of those within it. In Room 1, towering projections engulf visitors in a generative forest that breathes at the pace of the room. As you move, the environment notices. As the group settles, the system settles with you. Room 2 offers an intimate counterpoint: a meditative space where individual gesture ripples through liquid light. Berlin-based artist Pauric Freeman creates a world that exists only when inhabited—work that cannot be photographed, screenshotted, or satisfactorily described. You simply have to be there.',
+    summary: 'Step inside a living system. Digital Nature transforms Lightheart\'s twin galleries into a responsive ecology where organic forms and digital processes merge. This is not nature documentary projected large\u2014this is an environment that senses, responds, and evolves with the collective presence of those within it. In Room 1, towering projections engulf visitors in a generative forest that breathes at the pace of the room. As you move, the environment notices. As the group settles, the system settles with you. Room 2 offers an intimate counterpoint: a meditative space where individual gesture ripples through liquid light. Agustin Vidal Saavedra of Glasseye XR creates a world that exists only when inhabited\u2014work that cannot be photographed, screenshotted, or satisfactorily described. You simply have to be there.',
     
     coreIdea: '[DRAFT - PENDING ARTIST INPUT] Digital Nature asks: What if digital environments developed the responsive intelligence of natural ecosystems? Rather than projecting nature imagery onto walls, this work creates a synthetic ecology that behaves like a living system—sensing collective presence, adapting to group energy, and evolving over the 50-minute encounter.',
     
     curatorialRationale: [
       'Embodied Participation: The work only functions when bodies are present. Sensors track collective movement and presence, feeding real-time systems that respond to the actual humans in the room. This is not content you consume—it\'s an environment you co-create through your presence.',
-      'Purpose-Built Specificity: Freeman\'s work engages every aspect of Lightheart\'s technical infrastructure—the 37 projectors, 87 speakers, and 44 sensors are not tools he uses but collaborators in the work. This exhibition could not exist anywhere else.',
+      'Purpose-Built Specificity: Vidal Saavedra\'s work engages every aspect of Lightheart\'s technical infrastructure\u2014the 37 projectors, 87 speakers, and 44 sensors are not tools he uses but collaborators in the work. This exhibition could not exist anywhere else.',
       'Technogenetic Integration: The real-time systems are co-authors. The Pixera servers, L-ISA processor, and Luxonis sensors make decisions in milliseconds, creating behaviour that emerges from the interaction of human presence and computational process.',
       'Negentropic Practice: The 50-minute duration allows the work to develop slowly—rewarding sustained attention with deepening complexity. This is the antithesis of scroll-and-swipe culture.'
     ],
@@ -350,7 +350,7 @@ export const digitalNatureExhibition: Exhibition = {
     { date: '2026-09-12', phase: 'opening', title: 'GRAND OPENING', status: 'scheduled' },
     
     // Documentation Phase
-    { date: '2026-03-15', phase: 'documentation', title: 'Pauric Freeman promotional video shoot (separate from exhibition)', status: 'scheduled' },
+    { date: '2026-03-15', phase: 'documentation', title: 'Agustin Vidal Saavedra / Glasseye XR promotional video shoot (separate from exhibition)', status: 'scheduled' },
     { date: '2026-09-12', phase: 'documentation', title: 'Opening night documentation', status: 'scheduled' },
     { date: '2026-10-15', phase: 'documentation', title: 'Mid-run review + adjustments', status: 'pending' },
     { date: '2026-12-06', phase: 'documentation', title: 'Final documentation + archive', status: 'scheduled' }
@@ -359,39 +359,39 @@ export const digitalNatureExhibition: Exhibition = {
   quotes: [
     {
       id: 'q1-nature',
-      text: '[DRAFT - PENDING ARTIST INPUT] "I\'m not interested in projecting nature onto walls. I want to create systems that behave like nature—responsive, unpredictable, alive only when engaged. The digital and the organic aren\'t opposites. They\'re converging."',
-      attribution: 'Pauric Freeman',
-      role: 'Artist',
+      text: '[DRAFT - PENDING ARTIST INPUT] "I\'m not interested in projecting nature onto walls. I want to build systems that behave like nature\u2014responsive, unpredictable, alive only when someone is present. Real-time rendering makes that possible in ways that weren\'t there five years ago."',
+      attribution: 'Agustin Vidal Saavedra',
+      role: 'Artist / Glasseye XR',
       context: 'artist',
       status: 'draft'
     },
     {
       id: 'q2-presence',
-      text: '[DRAFT - PENDING ARTIST INPUT] "This work doesn\'t exist without you. Not as a metaphor—literally. The servers are rendering nothing until the sensors detect presence. The forest is dormant. Your arrival wakes it."',
-      attribution: 'Pauric Freeman',
-      role: 'Artist',
+      text: '[DRAFT - PENDING ARTIST INPUT] "This work doesn\'t exist without you. Not as a metaphor\u2014literally. The servers are rendering nothing until the sensors detect presence. The forest is dormant. Your arrival wakes it."',
+      attribution: 'Agustin Vidal Saavedra',
+      role: 'Artist / Glasseye XR',
       context: 'artist',
       status: 'draft'
     },
     {
       id: 'q3-technology',
-      text: '[DRAFT - PENDING ARTIST INPUT] "We usually think of technology as mediation—screens between us and the world. But these systems can be immediate. The projector isn\'t showing you a forest. It is the forest, in that moment, responding to your breath."',
-      attribution: 'Pauric Freeman',
-      role: 'Artist',
+      text: '[DRAFT - PENDING ARTIST INPUT] "In XR we spend so much time mediating reality through headsets and screens. Here the mediation disappears. The projector isn\'t showing you a forest\u2014it is the forest, in that moment, responding to your presence."',
+      attribution: 'Agustin Vidal Saavedra',
+      role: 'Artist / Glasseye XR',
       context: 'artist',
       status: 'draft'
     },
     {
       id: 'q4-lightheart',
-      text: '[DRAFT - PENDING ARTIST INPUT] "When Kev described what they were building in Dublin, I knew immediately. This isn\'t a venue you adapt to—it\'s a canvas designed for this specific kind of work. I couldn\'t make Digital Nature anywhere else."',
-      attribution: 'Pauric Freeman',
-      role: 'Artist',
+      text: '[DRAFT - PENDING ARTIST INPUT] "When Kev described what they were building in Dublin, I knew immediately. Coming home to make this work feels right\u2014this isn\'t a venue you adapt to, it\'s a canvas designed for exactly this kind of immersive practice."',
+      attribution: 'Agustin Vidal Saavedra',
+      role: 'Artist / Glasseye XR',
       context: 'artist',
       status: 'draft'
     },
     {
       id: 'q5-curatorial',
-      text: '"We chose Digital Nature as our inaugural exhibition because it demonstrates everything Lightheart stands for. Pauric isn\'t using our technology—he\'s collaborating with it. The projectors, speakers, and sensors aren\'t tools; they\'re co-authors in a work that exists only in the moment of encounter."',
+      text: '"We chose Digital Nature as our inaugural exhibition because it demonstrates everything Lightheart stands for. Agustin isn\'t using our technology\u2014he\'s collaborating with it. The projectors, speakers, and sensors aren\'t tools; they\'re co-authors in a work that exists only in the moment of encounter."',
       attribution: 'Kev Freeney',
       role: 'Creative Director',
       context: 'curator',
@@ -402,9 +402,9 @@ export const digitalNatureExhibition: Exhibition = {
   visitorInfo: {
     duration: 50,
     capacity: {
-      total: 40,
-      room1: 25,
-      room2: 15,
+      total: 155,
+      room1: 100,
+      room2: 55,
       status: 'draft'
     },
     schedule: undefined, // [DRAFT - PENDING OPERATIONAL PLANNING]
@@ -457,10 +457,10 @@ export const digitalNatureExhibition: Exhibition = {
   press: {
     primaryHook: '"Ireland\'s first purpose-built immersive gallery opens with work that can only be experienced in person"',
     secondaryAngles: [
-      '[DRAFT - PENDING ARTIST INPUT] Artist\'s return to Dublin after Berlin success',
+      '[DRAFT - PENDING ARTIST INPUT] Agustin Vidal Saavedra bringing it home \u2014 Glasseye XR founder returns to Dublin',
       '[DRAFT] Technical innovation: real-time systems creating "living" digital art',
       '[DRAFT] The anti-selfie-museum: work that resists documentation',
-      '[DRAFT] Collaboration between Lightheart and Berlin-based Irish artist'
+      '[DRAFT] Collaboration between Lightheart and Glasseye XR'
     ],
     targetOutlets: [
       'Irish Times, Irish Independent (culture sections)',
@@ -474,7 +474,7 @@ export const digitalNatureExhibition: Exhibition = {
     lastUpdated: '2026-03-10',
     contentStatus: 'draft',
     pendingInputs: [
-      'Artist quotes (awaiting Pauric input)',
+      'Artist quotes (awaiting Agustin input)',
       'Specific interaction mechanics (awaiting technical collaboration)',
       'Exact visitor capacity (pending safety review)',
       'Ticket pricing (pending strategy finalisation)',

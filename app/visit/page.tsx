@@ -89,9 +89,9 @@ export default function VisitPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#999' : '#555';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const cardBg = isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)';
-  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)';
+  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.10)' : '1px solid rgba(0,0,0,0.08)';
 
   useEffect(() => {
     if (heroRef.current) {

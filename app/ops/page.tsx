@@ -23,7 +23,7 @@ const FlowDiagram = dynamic(
 
 const PHASE_DATA = [
   { name: 'Foundations', status: 'active', weeks: '1–6', desc: 'Brand identity from RAD (Apr 4). Website MVP. Fire cert submission (Mar 24). 32 deliverables.' },
-  { name: 'Controlled Visibility', status: 'upcoming', weeks: '5–8', desc: 'Website live. Pauric Freeman content. LinkedIn + IG active. Newsletter functional.' },
+  { name: 'Controlled Visibility', status: 'upcoming', weeks: '5\u20138', desc: 'Website live. Agustin Vidal Saavedra / Glasseye XR content. LinkedIn + IG active. Newsletter functional.' },
   { name: 'Pre-Launch Build', status: 'upcoming', weeks: '9–18', desc: 'AV installation. Exhibition 1 development. Press materials. Founding Circle launch.' },
   { name: 'Launch Campaign', status: 'upcoming', weeks: '19–22', desc: '10-day countdown. Press embargo. Personal invites to cultural figures.' },
   { name: 'Opening', status: 'upcoming', weeks: '23–25', desc: 'Soft opening. Operational readiness. Concrescence — all three stacks converge.' },
@@ -120,7 +120,7 @@ const VENDORS = [
 const RISKS = [
   { risk: 'Fire certification delayed', likelihood: 'Medium', impact: 'Critical', mitigation: 'Submit by Mar 24. Follow up weekly.' },
   { risk: 'L-Acoustics quote expires (Mar 27)', likelihood: 'Medium', impact: 'High', mitigation: 'Decision needed this week on audio commitment.' },
-  { risk: 'Brand identity not ready for Pauric video', likelihood: 'Medium', impact: 'High', mitigation: 'RAD brand v1 deadline: Apr 4. Pauric video: Apr 28.' },
+  { risk: 'Brand identity not ready for Agustin video', likelihood: 'Medium', impact: 'High', mitigation: 'RAD brand v1 deadline: Apr 4. Agustin video: Apr 28.' },
   { risk: 'Level-setting construction delays', likelihood: 'Medium', impact: 'High', mitigation: 'Contractor paused. Needs finalized levels to resume.' },
   { risk: 'Website not ready for Phase 2', likelihood: 'Medium', impact: 'High', mitigation: 'MVP build in progress. Target: Apr 21.' },
   { risk: 'Trademark conflict ("Lightheart")', likelihood: 'Low-Med', impact: 'Medium', mitigation: 'Ireland-only jurisdiction reduces risk. Fallback: "Lightheart Immersive".' },
@@ -260,7 +260,7 @@ export default function OpsHubPage() {
 
   const accent = isDarkMode ? '#00F0FF' : '#004466';
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#888' : '#666';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';
   const border = isDarkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.1)';
   const cardBg = isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)';

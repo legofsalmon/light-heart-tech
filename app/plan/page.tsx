@@ -26,7 +26,7 @@ export default function PlanPage() {
 
   const accent = isDarkMode ? '#00F0FF' : '#004466';
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#888' : '#666';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';
   const border = isDarkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.1)';
   const cardBg = isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)';
@@ -305,7 +305,7 @@ export default function PlanPage() {
           {/* Footer */}
           <div style={{
             borderTop: `1px solid ${border}`, padding: '2rem 0', textAlign: 'center',
-            fontSize: '0.75rem', color: isDarkMode ? '#555' : '#aaa', marginTop: '2rem',
+            fontSize: '0.75rem', color: isDarkMode ? '#888' : '#999', marginTop: '2rem',
           }}>
             <em>This is a living document. Update weekly during sprint reviews.</em><br />
             <strong>Last updated: 2026-03-10</strong>

@@ -54,7 +54,7 @@ const PRINCIPLES = [
   },
   {
     title: 'Purpose-Built Specificity',
-    desc: 'Freeman\u2019s work engages every aspect of Lightheart\u2019s technical infrastructure\u201437 projectors, 87 speakers, and 44 sensors are not tools he uses but collaborators in the work.',
+    desc: 'Vidal Saavedra\u2019s work engages every aspect of Lightheart\u2019s technical infrastructure\u201437 projectors, 87 speakers, and 44 sensors are not tools he uses but collaborators in the work.',
     icon: Shield,
     color: '#c4a265',
   },
@@ -125,10 +125,10 @@ export default function ExhibitionsPage() {
 
   const cyan = '#00d4ff';
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#999' : '#555';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const cardBg = isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)';
   const cardBorder = isDarkMode
-    ? '1px solid rgba(255,255,255,0.06)'
+    ? '1px solid rgba(255,255,255,0.10)'
     : '1px solid rgba(0,0,0,0.08)';
 
   useEffect(() => {
@@ -189,7 +189,7 @@ export default function ExhibitionsPage() {
             marginBottom: '0.75rem',
           }}
         >
-          Pauric Freeman
+          Agustin Vidal Saavedra <span style={{ fontSize: '0.7em', opacity: 0.7 }}> / Glasseye XR</span>
         </p>
         <p
           style={{

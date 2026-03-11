@@ -47,12 +47,12 @@ const PRINCIPLES = [
 
 const TIMELINE = [
   { year: '2023', title: 'Concept', items: ['Brendan Dillon conceives Lightheart', 'Initial feasibility studies'] },
-  { year: '2024', title: 'Planning', items: ['Site selection (Dublin quays)', 'IDIRNET engagement begins', 'Fundraising and partnerships'] },
-  { year: '2025', title: 'Design', items: ['Architectural design', 'Technical specification development', 'Vendor engagement'] },
-  { year: 'Feb 2026', title: 'Technical Design', items: ['IDIRNET completes 70-page tech spec', 'Vendor quotes and procurement'] },
+  { year: '2024', title: 'Planning', items: ['Site selection (Dublin quays)', 'Fundraising and partnerships'] },
+  { year: '2025', title: 'Design', items: ['Architectural design', 'Planning and approvals'] },
+  { year: 'Feb 2026', title: 'Technical Design', items: ['IDIRNET engagement begins', 'IDIRNET completes 70-page tech spec', 'Vendor quotes and procurement'] },
   { year: 'Mar 2026', title: 'Pre-Construction', items: ['Final approvals', 'Contractor selection', 'Brand development with RAD'] },
   { year: 'Apr\u2013Aug 2026', title: 'Build', items: ['Construction and fit-out', 'AV installation', 'Testing and commissioning'] },
-  { year: 'Sep 2026', title: 'OPENING', items: ['Grand opening', 'Pauric Freeman: "Digital Nature"'] },
+  { year: 'Sep 2026', title: 'OPENING', items: ['Grand opening', 'Agustin Vidal Saavedra / Glasseye XR: "Digital Nature"'] },
 ];
 
 const VENUE_SPECS = [
@@ -106,9 +106,9 @@ export default function AboutPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#999' : '#555';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const cardBg = isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)';
-  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)';
+  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.10)' : '1px solid rgba(0,0,0,0.08)';
 
   useEffect(() => {
     if (heroRef.current) {
@@ -182,7 +182,7 @@ export default function AboutPage() {
             </h3>
             <p style={{ color: muted, fontSize: '0.9rem', lineHeight: 1.7 }}>
               After three years of planning and a {SPECS.investment} investment, Lightheart opens
-              in {SPECS.opening}. Our inaugural exhibition, Pauric Freeman&apos;s &ldquo;Digital Nature,&rdquo;
+              in {SPECS.opening}. Our inaugural exhibition, &ldquo;Digital Nature&rdquo; by Agustin Vidal Saavedra of Glasseye XR,
               launches a quarterly program of internationally recognized immersive works.
             </p>
           </div>

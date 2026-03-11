@@ -115,7 +115,7 @@ All campaigns must serve at least one:
 | **Apr 11** | Template kit v1 (watermark, end-cards, lower-thirds, captions, credits) |
 | **Apr 17** | Brand stack document (onboarding external producers) |
 | **Apr 21** | Website MVP live |
-| **Apr 28** | First branded content piece (Pauric Freeman video) |
+| **Apr 28** | First branded content piece (Agustin Vidal Saavedra / Glasseye XR video) |
 | **Late Apr** | Channel launch (IG, LinkedIn, TikTok) — requires brand kit + 8-10 content pieces |
 | **Jun 6** | Membership page live |
 | **Jun 20** | Welcome pack design + Founding Circle applications open |

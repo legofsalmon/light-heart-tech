@@ -273,7 +273,7 @@ export default function HomePage() {
               COMING SOON
             </div>
             <h3 className={styles.teaserTitle} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
-              Digital Nature {'\u2014'} Pauric Freeman
+              Digital Nature {'\u2014'} Agustin Vidal Saavedra / Glasseye XR
             </h3>
             <p className={styles.teaserDate} style={{ color: muted }}>
               Opening {SPECS.opening}

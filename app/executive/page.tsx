@@ -71,7 +71,7 @@ const MARKETING_ACTIVE = [
 ];
 
 const MARKETING_UPCOMING = [
-  { phase: 'Phase 2', item: 'Pauric Freeman anchor content production (Apr 28)' },
+  { phase: 'Phase 2', item: 'Agustin Vidal Saavedra anchor content production (Apr 28)' },
   { phase: 'Phase 2', item: 'Channel launch — LinkedIn, Instagram, TikTok (late Apr)' },
   { phase: 'Phase 2', item: 'Newsletter platform launch' },
   { phase: 'Phase 3', item: 'Founding Circle applications open (Jun 20)' },
@@ -86,7 +86,7 @@ const MILESTONES = [
   { date: 'Apr 7', item: 'Level-setting works commence', status: 'blocked', dep: 'Finalized levels' },
   { date: 'Apr 17', item: 'Phase 1 Gate Review', status: 'upcoming', dep: 'All Phase 1 items' },
   { date: 'Apr 21', item: 'Website MVP live', status: 'active', dep: 'RAD brand' },
-  { date: 'Apr 28', item: 'Pauric Freeman content branded', status: 'upcoming', dep: 'Brand identity' },
+  { date: 'Apr 28', item: 'Agustin Vidal Saavedra content branded', status: 'upcoming', dep: 'Brand identity' },
   { date: 'Apr 30', item: 'Fire certification approval (est.)', status: 'pending', dep: 'Authority' },
   { date: 'May 1', item: 'Website fully live', status: 'upcoming', dep: 'MVP + content' },
   { date: 'Jun 6', item: 'Membership page live', status: 'upcoming', dep: 'Brand + payments' },
@@ -172,7 +172,7 @@ export default function ExecutivePage() {
 
   const accent = isDarkMode ? '#00F0FF' : '#004466';
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#888' : '#666';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';
   const border = isDarkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.1)';
   const cardBg = isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)';
@@ -234,7 +234,7 @@ export default function ExecutivePage() {
         <p style={{ color: muted, fontSize: '0.875rem', marginTop: '0.5rem' }}>
           Marketing progress, key milestones, decisions needed, and timeline to opening
         </p>
-        <p style={{ color: isDarkMode ? '#555' : '#aaa', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+        <p style={{ color: isDarkMode ? '#888' : '#999', fontSize: '0.75rem', marginTop: '0.25rem' }}>
           Last updated: March 11, 2026 | Week 2 of 25
         </p>
       </div>
@@ -312,7 +312,7 @@ export default function ExecutivePage() {
                 }}>
                   <div style={{ fontFamily: 'var(--font-display, Inter, system-ui)', fontSize: '1.2rem', fontWeight: 600, color: p.current ? gold : muted, marginBottom: '0.15rem' }}>{p.num}</div>
                   <div style={{ fontSize: '0.65rem', color: p.current ? gold : muted, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{p.name}</div>
-                  <div style={{ fontSize: '0.65rem', color: p.current ? gold : isDarkMode ? '#555' : '#aaa' }}>{p.weeks}</div>
+                  <div style={{ fontSize: '0.65rem', color: p.current ? gold : isDarkMode ? '#888' : '#999' }}>{p.weeks}</div>
                 </div>
               ))}
             </div>
@@ -325,7 +325,7 @@ export default function ExecutivePage() {
             }}>
               <div style={{ height: '100%', width: '15%', background: gold, borderRadius: '4px' }} />
             </div>
-            <div style={{ fontSize: '0.75rem', color: isDarkMode ? '#555' : '#aaa' }}>~15% complete | Gate Review: April 17</div>
+            <div style={{ fontSize: '0.75rem', color: isDarkMode ? '#888' : '#999' }}>~15% complete | Gate Review: April 17</div>
           </>
         )}
       </div>
@@ -482,7 +482,7 @@ export default function ExecutivePage() {
             <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#c4a265', textAlign: 'right', marginTop: '0.25rem' }}>
               Total (at full take-up): €73,800
             </div>
-            <p style={{ fontSize: '0.8rem', color: isDarkMode ? '#555' : '#aaa' }}>
+            <p style={{ fontSize: '0.8rem', color: isDarkMode ? '#888' : '#999' }}>
               Corporate memberships are a separate programme (€2,500 / €5,000 / €10,000 tiers — to be developed after founding programme launches).
             </p>
           </>
@@ -573,7 +573,7 @@ export default function ExecutivePage() {
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: '0.8rem', color: isDarkMode ? '#555' : '#aaa' }}>
+            <p style={{ fontSize: '0.8rem', color: isDarkMode ? '#888' : '#999' }}>
               Core team: Kev Freeney (Creative Director), Krisjanis Berzins (Technical Lead), Colly (Infrastructure), plus contractors as needed.
             </p>
           </>
@@ -586,7 +586,7 @@ export default function ExecutivePage() {
       {/* Footer */}
       <div style={{
         borderTop: `1px solid ${border}`, padding: '1.5rem 0', textAlign: 'center',
-        fontSize: '0.75rem', color: isDarkMode ? '#555' : '#aaa', marginBottom: '2rem',
+        fontSize: '0.75rem', color: isDarkMode ? '#888' : '#999', marginBottom: '2rem',
       }}>
         <p>Lightheart — Managing Director Overview</p>
         <p>Prepared by IDIRNET | Updated March 11, 2026</p>

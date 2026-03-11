@@ -309,7 +309,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
       { type: 'heading', level: 3, text: 'Channel Setup & Content Release' },
       { type: 'table', headers: ['ID', 'Task', 'Dates', 'Output'], rows: [
         ['M3-01', 'Channel setup — IG, TikTok, LinkedIn', 'Apr 26-28', 'Profiles live'],
-        ['M3-02', 'Publish Pauric feature', 'Apr 27 - May 3', 'Pauric release week'],
+        ['M3-02', 'Publish Agustin / Glasseye XR feature', 'Apr 27 - May 3', 'Agustin release week'],
         ['M3-03', 'Publish Immersive Literacy series', 'May 3-17', 'Series live'],
         ['M3-04', 'Interview series v1', 'May 3-12', 'Interview pack v1'],
       ]},
@@ -370,7 +370,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
         'Website as Source of Truth — The website is the canonical source. Social media drives traffic to the website.',
       ]},
       { type: 'heading', level: 3, text: 'Critical Cross-Links' },
-      { type: 'pre', text: 'Photography + Video → Asset Library → Website → Every channel\nTech Spec Capture → Rental Partners → Equipment Spec Sheets → Press kit + Artist onboarding\nPauric Freeman shoot → Artist Series → Reels/TikTok → Website feature page\nTerminology Explainers → References map → Interview series → Website articles\nPublic brainstorm → Governance node → LinkedIn credibility → Press angles\nFeedback loop → Editorial calendar updates → Website copy improvements' },
+      { type: 'pre', text: 'Photography + Video → Asset Library → Website → Every channel\nTech Spec Capture → Rental Partners → Equipment Spec Sheets → Press kit + Artist onboarding\nAgustin Vidal Saavedra / Glasseye XR shoot → Artist Series → Reels/TikTok → Website feature page\nTerminology Explainers → References map → Interview series → Website articles\nPublic brainstorm → Governance node → LinkedIn credibility → Press angles\nFeedback loop → Editorial calendar updates → Website copy improvements' },
     ],
   },
   {
@@ -404,7 +404,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
         ['Behind-the-scenes / tech', 'Silicon Republic, Tech Central, Wired UK', 'The tech behind immersive art'],
         ['Tourism positioning', 'Irish Independent Travel, Lonely Planet, Failte Ireland', 'Dublin\'s newest must-visit cultural destination'],
         ['Founder story', 'Business Post, Irish Examiner, LinkedIn', 'From NCAD to €4.5m gallery'],
-        ['Artist feature', 'Visual Artists Ireland, Paper Visual Art', 'Pauric Freeman residency — first artist to activate the space'],
+        ['Artist feature', 'Visual Artists Ireland, Paper Visual Art', 'Agustin Vidal Saavedra / Glasseye XR residency \u2014 first artist to activate the space'],
       ]},
       { type: 'heading', level: 3, text: 'Press Kit Contents (Target: June)' },
       { type: 'list', items: [
@@ -454,7 +454,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
         ['Press coverage', '3-5 articles at launch', 'Press tracker'],
         ['Newsletter subscribers', '500 pre-launch', 'Email platform'],
         ['Social following', 'Combined 1,000+ across channels', 'Platform analytics'],
-        ['Video views', 'Pauric hero video: 5,000+ views', 'Platform analytics'],
+        ['Video views', 'Agustin hero video: 5,000+ views', 'Platform analytics'],
       ]},
     ],
   },
@@ -490,9 +490,9 @@ export const PLAN_SECTIONS: PlanSection[] = [
     content: [
       { type: 'table', headers: ['Risk', 'Likelihood', 'Impact', 'Mitigation'], rows: [
         ['Fire certification delayed → September opening missed', 'Medium', 'Critical', 'Track weekly. Identify backup dates.'],
-        ['Brand identity from RAD not ready for Pauric video', 'Medium', 'High', 'Logo at minimum needed by Wk 6-7.'],
+        ['Brand identity from RAD not ready for Agustin video', 'Medium', 'High', 'Logo at minimum needed by Wk 6-7.'],
         ['Trademark conflict with "Lightheart" name', 'Low-Medium', 'Medium', 'Legal review. "Lightheart Immersive" as fallback.'],
-        ['Pauric Freeman unavailable', 'Low', 'High', 'Alternative anchor artist as backup.'],
+        ['Agustin Vidal Saavedra unavailable', 'Low', 'High', 'Alternative anchor artist as backup.'],
         ['Website not ready for Controlled Visibility', 'Medium', 'High', 'MVP approach — launch lean, iterate.'],
         ['Social media comparison with illusion galleries', 'Medium', 'Medium', 'Clear differentiation in all messaging.'],
         ['Level-setting construction delays', 'Medium', 'High', 'Marketing timeline can flex by 2-4 weeks.'],
@@ -510,7 +510,7 @@ export const PLAN_SECTIONS: PlanSection[] = [
         ['2026-03-09', 'Brand direction: striking, bold, simple, timeless', 'Institutional longevity', 'RAD'],
         ['2026-03-09', '"Lightheart" name retained', 'Ireland-only jurisdiction reduces risk', 'Kev'],
         ['2026-03-01', '3-month marketing plan adopted (DCC session)', 'Credibility-first approach', 'Kev'],
-        ['2026-03-01', 'Pauric Freeman as anchor content artist', 'First public content piece', 'Kev'],
+        ['2026-03-01', 'Agustin Vidal Saavedra (Glasseye XR) as anchor content artist', 'First public content piece', 'Kev'],
         ['2026-03-01', 'Website = source of truth', 'Search > impulse scroll. AI indexing matters.', 'Kev'],
         ['2024', 'Buildings purchased', 'Strategic location on Dublin quays', '—'],
       ]},

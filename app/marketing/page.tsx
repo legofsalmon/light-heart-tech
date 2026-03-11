@@ -131,7 +131,7 @@ export default function MarketingPage() {
 
   const accent = isDarkMode ? '#00d4ff' : '#004466';
   const gold = '#c4a265';
-  const muted = isDarkMode ? '#888' : '#666';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';
   const border = isDarkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.1)';
   const cardBg = isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)';

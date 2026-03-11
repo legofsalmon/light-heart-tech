@@ -72,9 +72,9 @@ export default function MembershipPage() {
 
   const gold = '#c4a265';
   const cyan = '#00d4ff';
-  const muted = isDarkMode ? '#999' : '#555';
+  const muted = isDarkMode ? '#aaa' : '#555';
   const cardBg = isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)';
-  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)';
+  const cardBorder = isDarkMode ? '1px solid rgba(255,255,255,0.10)' : '1px solid rgba(0,0,0,0.08)';
   const rowBorder = isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)';
 
   useEffect(() => {
@@ -402,7 +402,7 @@ export default function MembershipPage() {
                     if (val === true) {
                       content = <Check size={16} style={{ color: '#27ae60' }} />;
                     } else if (val === false) {
-                      content = <Minus size={16} style={{ color: isDarkMode ? '#555' : '#bbb' }} />;
+                      content = <Minus size={16} style={{ color: isDarkMode ? '#777' : '#999' }} />;
                     } else {
                       content = <span style={{ color: muted }}>{val}</span>;
                     }
@@ -557,7 +557,7 @@ export default function MembershipPage() {
               fontSize: '0.75rem', color: muted, display: 'flex',
               alignItems: 'center', gap: '0.4rem',
             }}>
-              <Shield size={12} style={{ color: isDarkMode ? '#555' : '#bbb' }} />
+              <Shield size={12} style={{ color: isDarkMode ? '#777' : '#999' }} />
               {signal}
             </div>
           ))}
