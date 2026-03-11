@@ -1,33 +1,44 @@
 import type { DocSection } from './types';
+import type { Zone } from './accessConfig';
 
 /** URL slug to display metadata */
 export interface SectionMeta {
   slug: string;
   navLabel: string;
+  zone: Zone;
 }
 
 /**
- * All valid URL slugs for the nav.
- * The nav labels and slugs are the ONLY hardcoded config in the entire app.
- * Everything else (titles, content, section ranges) comes from the doc.
+ * Navigation items grouped by zone.
+ * Admin sees all. Other roles see only their zone's items.
  */
 export const NAV_ITEMS: SectionMeta[] = [
-  { slug: 'brief', navLabel: 'BRIEF' },
-  { slug: 'technical-direction', navLabel: 'TECHNICAL DIRECTION' },
-  { slug: 'projection', navLabel: 'PROJECTION' },
-  { slug: 'signal', navLabel: 'SIGNAL' },
-  { slug: 'surface', navLabel: 'SURFACE' },
-  { slug: 'sensors', navLabel: 'SENSORS' },
-  { slug: 'network', navLabel: 'NETWORK' },
-  { slug: 'audio-bridging', navLabel: 'AUDIO BRIDGE' },
-  { slug: 'audio', navLabel: 'AUDIO' },
-  { slug: 'latency', navLabel: 'LATENCY' },
-  { slug: 'server', navLabel: 'SERVER' },
-  { slug: 'hvac', navLabel: 'HVAC' },
-  { slug: 'vendors', navLabel: 'VENDORS' },
-  { slug: 'visualization', navLabel: '3D VIZ' },
-  { slug: 'disclaimer', navLabel: 'DISCLAIMER' },
-  { slug: 'dev-notes', navLabel: 'DEV NOTES' },
+  // ── Tech Spec zone ──
+  { slug: 'brief', navLabel: 'BRIEF', zone: 'techspec' },
+  { slug: 'technical-direction', navLabel: 'TECHNICAL DIRECTION', zone: 'techspec' },
+  { slug: 'projection', navLabel: 'PROJECTION', zone: 'techspec' },
+  { slug: 'signal', navLabel: 'SIGNAL', zone: 'techspec' },
+  { slug: 'surface', navLabel: 'SURFACE', zone: 'techspec' },
+  { slug: 'sensors', navLabel: 'SENSORS', zone: 'techspec' },
+  { slug: 'network', navLabel: 'NETWORK', zone: 'techspec' },
+  { slug: 'audio-bridging', navLabel: 'AUDIO BRIDGE', zone: 'techspec' },
+  { slug: 'audio', navLabel: 'AUDIO', zone: 'techspec' },
+  { slug: 'latency', navLabel: 'LATENCY', zone: 'techspec' },
+  { slug: 'server', navLabel: 'SERVER', zone: 'techspec' },
+  { slug: 'hvac', navLabel: 'HVAC', zone: 'techspec' },
+  { slug: 'vendors', navLabel: 'VENDORS', zone: 'techspec' },
+  { slug: 'visualization', navLabel: '3D VIZ', zone: 'techspec' },
+  { slug: 'disclaimer', navLabel: 'DISCLAIMER', zone: 'techspec' },
+  { slug: 'dev-notes', navLabel: 'DEV NOTES', zone: 'techspec' },
+
+  // ── Operations zone ──
+  { slug: 'ops', navLabel: 'OPS HUB', zone: 'ops' },
+
+  // ── Executive zone ──
+  { slug: 'executive', navLabel: 'EXECUTIVE', zone: 'executive' },
+
+  // ── Marketing zone ──
+  { slug: 'marketing', navLabel: 'MARKETING', zone: 'marketing' },
 ];
 
 /** Mapping from slug keywords to section title patterns in the doc */
