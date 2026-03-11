@@ -1,0 +1,18 @@
+# Lightheart Marketing Website Redirects
+
+# Ensure trailing slashes for SEO
+/about          /about.html         200
+/exhibitions    /exhibitions.html   200
+/visit          /visit.html         200
+/membership     /membership.html    200
+/press          /press.html         200
+/newsletter     /newsletter.html    200
+/subscribe      /newsletter.html    200
+/join           /membership.html    200
+
+# Legacy redirects (for future use)
+/waitlist       /newsletter.html    301
+/founding       /membership.html    301
+
+# Catch-all redirect to homepage (for SPA behavior if needed)
+/*              /index.html         200

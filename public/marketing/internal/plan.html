@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lightheart — PR & Marketing Master Plan (Internal)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f5f5f0;
+      --gold: #c4a265;
+      --gold-dim: rgba(196,162,101,0.15);
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --border: #2a2a2a;
+      --muted: #888;
+      --red: #c0392b;
+      --green: #27ae60;
+      --yellow: #f39c12;
+      --sidebar-w: 320px;
+    }
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4,h5{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+    h1{font-size:2.2rem;margin-bottom:1rem}
+    h2{font-size:1.8rem;margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);color:var(--gold)}
+    h3{font-size:1.3rem;margin:1.8rem 0 .75rem;color:var(--text)}
+    h4{font-size:1.1rem;margin:1.5rem 0 .5rem;color:var(--gold)}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{color:#d4b275}
+    blockquote{border-left:3px solid var(--gold);padding:.75rem 1.25rem;margin:1.5rem 0;background:var(--surface);border-radius:0 6px 6px 0;font-style:italic;color:#ccc}
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
+    th{background:var(--gold-dim);color:var(--gold);font-weight:600;text-align:left;padding:.6rem .8rem;border:1px solid var(--border);font-family:'Playfair Display',serif}
+    td{padding:.5rem .8rem;border:1px solid var(--border);vertical-align:top;color:var(--text)}
+    tr:nth-child(even){background:var(--surface)}
+    ul,ol{margin:0 0 1rem 1.5rem}
+    li{margin-bottom:.4rem}
+    pre{background:var(--surface);padding:1rem;border-radius:6px;font-size:.85rem;color:var(--gold);overflow-x:auto;border:1px solid var(--border)}
+    code{font-family:'SF Mono',monospace;font-size:.85rem;color:var(--gold)}
+    hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+    
+    /* Warning Banner */
+    .warning-banner{background:var(--red);color:#fff;padding:.75rem 1rem;text-align:center;font-size:.85rem;font-weight:600;position:sticky;top:0;z-index:200}
+    
+    /* Layout */
+    #sidebar{position:fixed;top:40px;left:0;width:var(--sidebar-w);height:calc(100vh - 40px);background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;z-index:100;padding:0}
+    #sidebar-header{padding:1.5rem;border-bottom:1px solid var(--border);background:var(--bg)}
+    #sidebar-header h2{font-size:1.2rem;color:var(--gold);margin:0;padding:0;border:none}
+    #sidebar-header .confidential{font-size:.65rem;color:var(--red);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-top:.5rem}
+    #sidebar-header .meta{font-size:.75rem;color:var(--muted);margin-top:.5rem}
+    #sidebar nav{padding:.5rem 0}
+    .nav-group{border-bottom:1px solid var(--border)}
+    .nav-group-title{padding:.6rem 1rem;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold)}
+    .nav-items a{display:block;padding:.35rem 1rem .35rem 1.5rem;font-size:.8rem;color:var(--muted);transition:all .15s;border-left:2px solid transparent}
+    .nav-items a:hover,.nav-items a.active{color:var(--text);background:var(--surface2);border-left-color:var(--gold)}
+    #main{margin-left:var(--sidebar-w);min-height:100vh}
+    #top-bar{position:sticky;top:40px;z-index:90;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+    #content{padding:2rem;max-width:1000px}
+    
+    /* Status indicators */
+    .status{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem}
+    .dot{width:8px;height:8px;border-radius:50%}
+    .dot-complete{background:var(--green)}
+    .dot-progress{background:var(--yellow)}
+    .dot-planned{background:#555}
+    .dot-critical{background:var(--red);box-shadow:0 0 4px var(--red)}
+    
+    /* Cards */
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin:1.5rem 0}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem}
+    .card h4{color:var(--gold);margin-bottom:.5rem;font-size:1rem}
+    .card p{font-size:.88rem;color:#bbb;margin-bottom:.5rem}
+    
+    /* Timeline */
+    .timeline{position:relative;padding:1.5rem 0 1.5rem 2rem;margin:1.5rem 0}
+    .timeline::before{content:'';position:absolute;left:.75rem;top:0;bottom:0;width:2px;background:var(--border)}
+    .tl-item{position:relative;margin-bottom:1.5rem;padding-left:1.5rem}
+    .tl-item::before{content:'';position:absolute;left:-1.3rem;top:.5rem;width:12px;height:12px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)}
+    .tl-item.active::before{background:var(--gold)}
+    .tl-phase{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);font-weight:600}
+    .tl-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin:.2rem 0}
+    .tl-date{font-size:.8rem;color:var(--muted)}
+    
+    /* Section anchor */
+    .section-anchor{display:block;position:relative;top:-80px;visibility:hidden}
+    
+    /* Responsive */
+    @media(max-width:900px){
+      #sidebar{display:none}
+      #main{margin-left:0}
+      #content{padding:1.5rem}
+      .warning-banner{position:relative}
+    }
+    
+    /* Utility */
+    .text-center{text-align:center}
+    .text-muted{color:var(--muted)}
+    .text-gold{color:var(--gold)}
+    .mb-2{margin-bottom:2rem}
+    .mt-2{margin-top:2rem}
+    .highlight{background:var(--gold-dim);padding:.1rem .3rem;border-radius:3px}
+  </style>
+</head>
+<body>
+  <div class="warning-banner">⚠️ CONFIDENTIAL — Internal Use Only — Not for Public Distribution</div>
+  
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <h2>Lightheart</h2>
+      <div class="confidential">⚠️ Internal / Confidential</div>
+      <div class="meta">PR & Marketing Master Plan<br>Week 2 of 12 | March 2026</div>
+    </div>
+    <nav>
+      <div class="nav-group">
+        <div class="nav-group-title">Master Plan Sections</div>
+        <div class="nav-items">
+          <a href="#sec1">1. Project Overview</a>
+          <a href="#sec2">2. Curatorial Philosophy & Brand DNA</a>
+          <a href="#sec3">3. Process & Method: Unified Toolkit</a>
+          <a href="#sec4">4. Strategic Positioning</a>
+          <a href="#sec5">5. Audience Segmentation</a>
+          <a href="#sec6">6. Brand Identity Status</a>
+          <a href="#sec7">7. The 5-Phase Marketing Timeline</a>
+          <a href="#sec8">8. Phase 1: Foundations</a>
+          <a href="#sec9">9. Phase 2: Controlled Visibility</a>
+          <a href="#sec10">10. Phase 3: Pre-Launch Build</a>
+          <a href="#sec11">11. Phase 4: Launch</a>
+          <a href="#sec12">12. Phase 5: Post-Launch Rhythm</a>
+          <a href="#sec13">13. Content Clusters & Production Pipeline</a>
+          <a href="#sec14">14. Channel Strategy</a>
+          <a href="#sec15">15. Press & PR Strategy</a>
+          <a href="#sec16">16. Partnerships & Outreach</a>
+          <a href="#sec17">17. Measurement & KPIs</a>
+          <a href="#sec18">18. Reading List — Key Principles</a>
+          <a href="#sec19">19. Risk Register</a>
+          <a href="#sec20">20. Decision Log</a>
+          <a href="#sec21">21. Weekly Sprint Tracker</a>
+        </div>
+      </div>
+      
+      <div class="nav-group">
+        <div class="nav-group-title">Appendices</div>
+        <div class="nav-items">
+          <a href="#appendix-a">Appendix A: G.U.I.D.E. Framework</a>
+          <a href="#appendix-b">Appendix B: Key Terminology</a>
+          <a href="#appendix-c">Appendix C: Source Documents</a>
+          <a href="#appendix-d">Appendix D: Web Version</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main">
+    <div id="top-bar">
+      <strong>PR & Marketing Master Plan</strong>
+      <span style="color:var(--muted);font-size:.85rem">| Week 2 of 12 | Target Opening: September 2026</span>
+      <span style="flex:1"></span>
+      <a href="../index.html" target="_blank" style="font-size:.8rem">View Public Site →</a>
+    </div>
+    
+    <div id="content">
+      
+      <!-- HEADER -->
+      <h1>Lightheart — PR & Marketing Master Plan</h1>
+      <blockquote>
+        <strong>Working document</strong> | Created: 2026-03-10 | Owner: Kev Freeney<br>
+        Status: <span style="color:var(--yellow)">ACTIVE</span> — Week 2 of 12-week pre-launch plan<br>
+        Target Opening: <strong>September 2026</strong>
+      </blockquote>
+      
+      <!-- SECTION 1: PROJECT OVERVIEW -->
+      <span class="section-anchor" id="sec1"></span>
+      <h2>1. Project Overview</h2>
+      
+      <h3>What is Lightheart?</h3>
+      <p>A world-class <strong>immersive gallery</strong> in Dublin, located on the quays near the Guinness Storehouse. Quarterly changing exhibitions that balance large-scale populist "hero" shows with smaller, niche, community-led programming.</p>
+      
+      <h3>Key Facts</h3>
+      <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td><strong>Location</strong></td><td>Dublin quays, near Guinness Storehouse</td></tr>
+        <tr><td><strong>Buildings purchased</strong></td><td>Summer 2024</td></tr>
+        <tr><td><strong>Total investment</strong></td><td>~€4-4.5m</td></tr>
+        <tr><td><strong>Projection rooms</strong></td><td>2 rooms, 14x 4K projectors, mapped floors</td></tr>
+        <tr><td><strong>Sound system</strong></td><td>L-ISA, 37-50 speakers, 360 spatial audio</td></tr>
+        <tr><td><strong>Target opening</strong></td><td>September 2026</td></tr>
+        <tr><td><strong>Programming model</strong></td><td>Quarterly changeover exhibitions</td></tr>
+        <tr><td><strong>Year 1 priority</strong></td><td>3 major populist shows (financial recovery focus)</td></tr>
+      </table>
+      
+      <h3>Construction Status (as of Mar 9, 2026)</h3>
+      <ul>
+        <li><span class="status"><span class="dot dot-complete"></span></span> Buildings purchased</li>
+        <li><span class="status"><span class="dot dot-complete"></span></span> Roof replacement & internal supports completed (2024)</li>
+        <li><span class="status"><span class="dot dot-complete"></span></span> Architect engaged (since October 2024)</li>
+        <li><span class="status"><span class="dot dot-complete"></span></span> Multiple contractors active on-site</li>
+        <li><span class="status"><span class="dot dot-complete"></span></span> Planning application submitted (2 weeks ago)</li>
+        <li><span class="status"><span class="dot dot-critical"></span></span> <strong>Fire certification submission</strong> — targeted within next 2 weeks (CRITICAL PATH)</li>
+        <li><span class="status"><span class="dot dot-planned"></span></span> Level-setting works — contractor paused pending finalized levels</li>
+        <li><span class="status"><span class="dot dot-planned"></span></span> Fire certification approval — critical to September opening</li>
+      </ul>
+      
+      <!-- SECTION 2: CURATORIAL PHILOSOPHY -->
+      <span class="section-anchor" id="sec2"></span>
+      <h2>2. Curatorial Philosophy & Brand DNA</h2>
+      
+      <p>Four founding principles that govern all communications and programming:</p>
+      
+      <h3>Principle 1: Independence</h3>
+      <p>Lightheart retains full editorial and curatorial independence. External funding is acceptable but never at the cost of programmatic freedom. The gallery will never become dependent on funding streams that compromise this.</p>
+      <p><strong>Comms implication:</strong> Messaging must signal strength of conviction without being combative. Position as self-funded, self-directed, beholden to no agenda.</p>
+      
+      <h3>Principle 2: Future Optimism</h3>
+      <p>The gallery embraces AI, robotics, spatial audio, 3D, sensor technology — not to warn about the future but to show what's possible. Counter the prevailing doom narrative in contemporary art.</p>
+      <p><strong>Comms implication:</strong> Tone should be energising and forward-looking. Avoid catastrophism. Show technology as empowering. This is a differentiator from most digital art spaces.</p>
+      
+      <h3>Principle 3: Awe</h3>
+      <p>Collective wonder over individual spectacle. Communal experiences where audiences feel profound awe together. Constantly push boundaries of what's technically possible.</p>
+      <p><strong>Comms implication:</strong> Visual content must convey scale and wonder. BTS (behind-the-scenes) content showing the mechanism builds credibility. The phrase "sell understanding, not just magic" should guide content strategy.</p>
+      
+      <h3>Principle 4: Pluralism</h3>
+      <p>Everyone's story can be told. Ideas should be challenged through art, not censored. Resist the culture of cancellation. Focus on shared humanity rather than identity categories.</p>
+      <p><strong>Comms implication:</strong> Programming announcements should emphasise breadth of perspective. Avoid culture-war framing but don't shy from provocative work.</p>
+      
+      <!-- SECTION 3: TRIPLE STACK MODEL -->
+      <span class="section-anchor" id="sec3"></span>
+      <h2>3. Process & Method: The Unified Toolkit</h2>
+
+      <blockquote>
+        Lightheart uses <strong>six methodological tools</strong> in tandem. Five are drawn from marketing strategy. One — the Triple Stack Model — comes from Kev Freeney's practice-based research into embodied perception and immersive art. None of these tools operates alone. They are lenses applied together across every phase, every deliverable, every decision.
+      </blockquote>
+
+      <h3>The Six Tools at a Glance</h3>
+      <table>
+        <tr><th>Tool</th><th>Source</th><th>What It Does for Us</th><th>When We Reach for It</th></tr>
+        <tr>
+          <td><strong>Triple Stack Model (TSM)</strong></td>
+          <td>Kev Freeney, MA Thesis (NCAD/UL 2025)</td>
+          <td>Three-layer audit: infrastructure → embodied perception → relational space. Ensures the experience is coherent from the ground up.</td>
+          <td>Exhibition design, space planning, visitor journey, staff training, opening checklists</td>
+        </tr>
+        <tr>
+          <td><strong>Alchemy</strong></td>
+          <td>Rory Sutherland</td>
+          <td>Psycho-logic over logic. Reframe how people perceive value. Small interventions, outsized effects.</td>
+          <td>Pricing perception, queue design, naming, counter-intuitive positioning, scarcity framing</td>
+        </tr>
+        <tr>
+          <td><strong>Purple Cow / Sneezers</strong></td>
+          <td>Seth Godin</td>
+          <td>Be remarkable or be invisible. Identify and activate the people who spread the word.</td>
+          <td>Launch mechanics, Founding Circle, referral loops, content that earns attention</td>
+        </tr>
+        <tr>
+          <td><strong>6 Principles of Persuasion</strong></td>
+          <td>Robert Cialdini</td>
+          <td>Reciprocity, commitment, social proof, authority, liking, scarcity. The mechanics of trust and action.</td>
+          <td>CTA design, testimonials, early-bird offers, partnership leverage, newsletter copy</td>
+        </tr>
+        <tr>
+          <td><strong>Story-Driven / Fortune Cookie</strong></td>
+          <td>Bernadette Jiwa</td>
+          <td>Start with how the customer feels, not what you sell. Difference + resonance = brand.</td>
+          <td>Brand narrative, tone of voice, website copy, press angles, emotional sequencing</td>
+        </tr>
+        <tr>
+          <td><strong>RACE Model</strong></td>
+          <td>Helen McNulty / Smart Insights</td>
+          <td>Reach → Act → Convert → Engage. Structured funnel for digital marketing ops.</td>
+          <td>Channel planning, KPI setting, campaign structure, analytics dashboards, attribution</td>
+        </tr>
+      </table>
+
+      <h3>How the Tools Work Together</h3>
+      <p>A practical example — <strong>planning the Founding Circle launch</strong>:</p>
+      <table>
+        <tr><th>Tool</th><th>Contribution</th></tr>
+        <tr><td><strong>TSM</strong></td><td>Design the preview night as a concrescence event — check all three stacks (infrastructure ready? embodied pacing considered? relational ritual designed?)</td></tr>
+        <tr><td><strong>Sutherland</strong></td><td>Price the tiers using psycho-logic, not cost-plus. Frame the €250 tier as "less than a euro a day."</td></tr>
+        <tr><td><strong>Godin</strong></td><td>Identify the 50 sneezers who'll tell 500. Give them something remarkable to talk about.</td></tr>
+        <tr><td><strong>Cialdini</strong></td><td>Scarcity (200 places), commitment (annual commitment = identity), social proof (waiting list counter).</td></tr>
+        <tr><td><strong>Jiwa</strong></td><td>Lead with the feeling: "You were there before anyone else." Not the features.</td></tr>
+        <tr><td><strong>McNulty</strong></td><td>Map the funnel: Instagram reach → landing page act → checkout convert → member community engage.</td></tr>
+      </table>
+      <p>Every major deliverable in this plan can be stress-tested against all six. If a decision only satisfies one tool, it's probably incomplete.</p>
+
+      <hr>
+
+      <h3>The Triple Stack Model — In Detail</h3>
+      <p>The TSM provides a three-layer audit for any experience, exhibition, or event. It asks: <em>Are the conditions right? Does the body know? Is the transition handled?</em></p>
+
+      <h4>Global Stack — Infrastructure & Systems</h4>
+      <p>What has to be true before anyone walks in. The room's readiness.</p>
+      <table>
+        <tr><th>Plane</th><th>Operational Check</th></tr>
+        <tr><td>Ground</td><td>Electrical, HVAC, safety — the felt capacity of the room</td></tr>
+        <tr><td>Runtime</td><td>Media server, clock sync, playback — the room's beat</td></tr>
+        <tr><td>Circulation</td><td>Visitor flow, entry sequence, dwell timing, exit legibility</td></tr>
+        <tr><td>Channels</td><td>Consent protocol, photography policy, GDPR, recording disclosure</td></tr>
+        <tr><td>Frames</td><td>Sightlines, luminance, caption readability, response timing</td></tr>
+        <tr><td>Roles</td><td>Staff positions, visitor roles, steward training</td></tr>
+        <tr><td>Horizons</td><td>Quarterly review cycle, metric definitions, programme direction</td></tr>
+      </table>
+
+      <h4>Internal Stack — Embodied Perception</h4>
+      <p>What the visitor feels in their body. The somatic pacing of the experience.</p>
+      <table>
+        <tr><th>Plane</th><th>Operational Check</th></tr>
+        <tr><td>Root</td><td>Floor surface, seating, temperature — physical grounding</td></tr>
+        <tr><td>Sacral</td><td>Exhibition pacing, emotional arc, transition timing</td></tr>
+        <tr><td>Solar Plexus</td><td>Visitor choice architecture, opt-in/opt-out, intensity zones</td></tr>
+        <tr><td>Heart</td><td>Co-regulation, group pacing, shared perception moments</td></tr>
+        <tr><td>Throat</td><td>Staff language guide, signage tone, visitor communication</td></tr>
+        <tr><td>Third Eye</td><td>Attention design, gaze direction, flicker safety</td></tr>
+        <tr><td>Crown</td><td>Exit experience, reflection space, post-visit integration</td></tr>
+      </table>
+
+      <h4>External Stack — Transition & Relational Space</h4>
+      <p>How visitors move from the outside world into the immersive space and back out.</p>
+      <table>
+        <tr><th>Plane</th><th>Operational Check</th></tr>
+        <tr><td>Space</td><td>Sightline testing, route mapping, spatial verification</td></tr>
+        <tr><td>Portal (Threshold)</td><td>Entry count-in, consent line, exit cue visibility</td></tr>
+        <tr><td>Gesture</td><td>Movement pacing, accessible alternatives, abort protocol</td></tr>
+        <tr><td>Mirror</td><td>Feedback systems, echo design, visitor state indicators</td></tr>
+        <tr><td>Narrative</td><td>Visitor journey arc, change log, offboarding sequence</td></tr>
+        <tr><td>Atmosphere</td><td>Luminance/warmth/air ranges, SPL caps, quiet pockets</td></tr>
+        <tr><td>Feedback Loop</td><td>Learning cycles, data collection, posted change process</td></tr>
+      </table>
+
+      <h4>Concrescence — When the Stacks Converge</h4>
+      <p>The moment when all three stacks align into temporary unity — infrastructure, perception, and participation cohere. Opening night is the first concrescence. Each exhibition opening thereafter is another. The quarterly rhythm creates a cycle the city can organise around.</p>
+
+      <hr>
+
+      <h3>T.E.M.P.O. — The Communication Method</h3>
+      <p>A practical tool for introducing any unfamiliar concept — to staff, press, public, or stakeholders. Use it when explaining "immersive art," "spatial audio," "quarterly programming," or anything visitors may not yet understand.</p>
+      <table>
+        <tr><th>Step</th><th>Action</th><th>Example: "Immersive Art"</th></tr>
+        <tr><td><strong>T</strong>erm</td><td>Define in plain language</td><td>"Art that surrounds you — projected on every surface, with sound that moves through the room."</td></tr>
+        <tr><td><strong>E</strong>mergence</td><td>Where does this come from?</td><td>"Started with teamLab in Japan, Meow Wolf in the US. Now a global movement."</td></tr>
+        <tr><td><strong>M</strong>aterialisation</td><td>How does it appear at Lightheart?</td><td>"14 projectors, 50 speakers, floors included. You walk through it."</td></tr>
+        <tr><td><strong>P</strong>ositioning</td><td>How does it relate to what people know?</td><td>"Not a museum. Not a theme park. The gallery where you stand inside the art."</td></tr>
+        <tr><td><strong>O</strong>peration</td><td>How does it function in our system?</td><td>"New exhibition every quarter. Each one a completely new world."</td></tr>
+      </table>
+      <p>T.E.M.P.O. works alongside Jiwa's story-driven method (lead with feeling) and Sutherland's reframing (find the psycho-logical angle). It's how we translate technical capability into human language.</p>
+
+      <h3>4E Cognition — Why the Experience Works</h3>
+      <p>The underlying theory of perception that informs TSM and, by extension, every experience design decision at Lightheart:</p>
+      <ul>
+        <li><strong>Embodied:</strong> Exhibitions engage the body, not just the eye — this is why the floor is projected too</li>
+        <li><strong>Embedded:</strong> The gallery's physical environment actively patterns attention and movement</li>
+        <li><strong>Extended:</strong> Technology (projectors, spatial audio) participates in perception — it's not a screen you watch, it's an extension of how you sense the room</li>
+        <li><strong>Enactive:</strong> The visitor's experience is enacted through their movement, not passively received — this is what separates Lightheart from cinema</li>
+      </ul>
+      <p>In marketing terms: 4E is why "you have to be there" works as a message. You can't replicate this on a screen. That's the product's built-in purple cow (Godin) and its natural scarcity (Cialdini).</p>
+      
+      <!-- SECTION 4: STRATEGIC POSITIONING -->
+      <span class="section-anchor" id="sec4"></span>
+      <h2>4. Strategic Positioning</h2>
+      
+      <h3>Core Strategic Mantra</h3>
+      <blockquote style="font-size:1.3rem;text-align:center">
+        <strong>Build credibility first.<br>Build clarity second.<br>Build noise last.</strong>
+      </blockquote>
+      <p>This sequence, established in the DCC strategy session, governs the entire marketing rollout.</p>
+      
+      <h3>Layer 1 — The Core Product (Homepage level)</h3>
+      <ul>
+        <li>A world-class immersive gallery in Dublin</li>
+        <li>Quarterly changing exhibitions</li>
+        <li>High quality audiovisual work</li>
+        <li>Ticketed cultural destination</li>
+        <li>Clear visitor promise</li>
+      </ul>
+      
+      <h3>Layer 2 — The Ambition (About page level)</h3>
+      <ul>
+        <li>Community infrastructure for digital art</li>
+        <li>Digital art advocacy & policy positioning</li>
+        <li>Education alignment (NCAD, Trinity, schools)</li>
+        <li>R&D possibilities</li>
+        <li>Future pipeline & artist development</li>
+      </ul>
+      <p><strong>Rule:</strong> If the ambition narrative overtakes the core offer, you lose clarity. Layer 2 enriches Layer 1 but never replaces it.</p>
+      
+      <h3>What Lightheart Is NOT</h3>
+      <table>
+        <tr><th>Not this</th><th>Why</th></tr>
+        <tr><td>Instagram trap / selfie museum</td><td>Commodified spectacle. Two illusion galleries on Dame Street already occupy this space.</td></tr>
+        <tr><td>One-room optical gimmick</td><td>Existing Dublin "immersive" offerings are described as gimmicky and child-focused.</td></tr>
+        <tr><td>Tourist trap</td><td>Lightheart aims to be the venue people <em>actively recommend</em>, not stumble into.</td></tr>
+        <tr><td>Trend-driven product</td><td>Brand must have timelessness and institutional longevity.</td></tr>
+        <tr><td>5-channel social media blitz</td><td>Controlled visibility > noise. Intros > social media.</td></tr>
+      </table>
+      
+      <h3>Competitive Landscape</h3>
+      <p><strong>International Benchmarks (aspirational):</strong></p>
+      <ul>
+        <li>180 Strand, London</li>
+        <li>Atelier des Lumieres, Paris</li>
+        <li>Belfast immersive warehouse project (Visual Spectrum)</li>
+      </ul>
+      
+      <p><strong>Irish Landscape:</strong></p>
+      <ul>
+        <li>No comparable high-standard immersive gallery in Dublin</li>
+        <li>Existing local examples: gimmicky, child-focused, rental-based</li>
+        <li>Lightheart positioned as raising the national standard</li>
+      </ul>
+      
+      <h3>The Real Competition</h3>
+      <p>Lightheart is competing for leisure time and cultural attention against:</p>
+      <ul>
+        <li>Netflix / streaming</li>
+        <li>Cinema</li>
+        <li>Phone dopamine loops</li>
+        <li>The RDS Van Gogh touring model</li>
+        <li>Tourist attractions</li>
+        <li>Traditional cultural institutions</li>
+      </ul>
+      
+      <h3>Key Differentiator: Quarterly Changeover</h3>
+      <p>Illusion galleries don't change. Van Gogh touring shows rarely change. Tourist attractions are static. Quarterly programming gives Lightheart:</p>
+      <ul>
+        <li>Freshness & repeat visits</li>
+        <li>Membership potential</li>
+        <li>Media hooks every quarter</li>
+        <li>An ongoing story to tell</li>
+        <li>Cultural rhythm</li>
+      </ul>
+      
+      <!-- SECTION 5: AUDIENCE SEGMENTATION -->
+      <span class="section-anchor" id="sec5"></span>
+      <h2>5. Audience Segmentation</h2>
+      
+      <h3>Primary: General Public (Experience-Seekers)</h3>
+      <table>
+        <tr><th>Element</th><th>Detail</th></tr>
+        <tr><td><strong>Who</strong></td><td>Dublin residents, domestic tourists, international visitors (14+)</td></tr>
+        <tr><td><strong>Key message</strong></td><td>A new kind of cultural experience in Dublin — see art that surrounds you</td></tr>
+        <tr><td><strong>Proof points</strong></td><td>Quarterly changing exhibitions, world-class technology, curated not gimmicky</td></tr>
+        <tr><td><strong>Desired action</strong></td><td>Buy tickets, subscribe to newsletter, share experience</td></tr>
+        <tr><td><strong>Best channel</strong></td><td>Instagram (visual credibility), Website (SEO/search), Tourism listings</td></tr>
+      </table>
+      
+      <h3>Secondary: Creative Community (Artists & Designers)</h3>
+      <table>
+        <tr><th>Element</th><th>Detail</th></tr>
+        <tr><td><strong>Who</strong></td><td>Digital artists, designers, NCAD/Trinity students, tech-art practitioners</td></tr>
+        <tr><td><strong>Key message</strong></td><td>A serious space for serious work — infrastructure built for artists</td></tr>
+        <tr><td><strong>Proof points</strong></td><td>Tech specs (14x 4K projectors, L-ISA), artist-first programming, open calls</td></tr>
+        <tr><td><strong>Desired action</strong></td><td>Submit work, attend events, advocate within community</td></tr>
+        <tr><td><strong>Best channel</strong></td><td>LinkedIn, direct outreach, artist networks, website tech-spec page</td></tr>
+      </table>
+      
+      <h3>Tertiary: Institutions (Education, Councils, Funders, Tourism)</h3>
+      <table>
+        <tr><th>Element</th><th>Detail</th></tr>
+        <tr><td><strong>Who</strong></td><td>Dublin City Council, Failte Ireland, Arts Council, universities, schools</td></tr>
+        <tr><td><strong>Key message</strong></td><td>Lightheart is infrastructure — it raises Ireland's cultural capacity</td></tr>
+        <tr><td><strong>Proof points</strong></td><td>Investment scale, governance structure, education alignment, quarterly model</td></tr>
+        <tr><td><strong>Desired action</strong></td><td>Partner, list venue, refer visitors, co-fund programmes</td></tr>
+        <tr><td><strong>Best channel</strong></td><td>LinkedIn, direct email, governance page, institutional language</td></tr>
+      </table>
+      
+      <!-- SECTION 6: BRAND IDENTITY STATUS -->
+      <span class="section-anchor" id="sec6"></span>
+      <h2>6. Brand Identity Status</h2>
+      
+      <h3>Current State (as of Mar 10, 2026)</h3>
+      <table>
+        <tr><th>Item</th><th>Status</th></tr>
+        <tr><td><strong>Brand agency</strong></td><td>RAD (David Lawler + Brian) — confirmed Mar 9</td></tr>
+        <tr><td><strong>Meeting cadence</strong></td><td>Rolling Tuesdays</td></tr>
+        <tr><td><strong>Design direction</strong></td><td>European/Swiss style, timeless, not trendy. Striking, bold, simple.</td></tr>
+        <tr><td><strong>Name</strong></td><td>"Lightheart" preferred as one word</td></tr>
+        <tr><td><strong>Trademark risk</strong></td><td>Lightheart Gear (camping) + Lightheart (games). Ireland-only jurisdiction may reduce risk. May need modifier: "Lightheart Immersive"</td></tr>
+        <tr><td><strong>Brand system</strong></td><td>Needs to flex between "arty/experimental" and "family-friendly/accessible"</td></tr>
+        <tr><td><strong>Typography</strong></td><td>Identified as critical connective thread</td></tr>
+        <tr><td><strong>Previous branding</strong></td><td>Will not continue — shifting from playful to foundational</td></tr>
+        <tr><td><strong>Deliverables</strong></td><td>Brand identity, key assets, website front-end & back-end</td></tr>
+        <tr><td><strong>Invoice</strong></td><td>50% deposit sent</td></tr>
+      </table>
+      
+      <h3>Brand System Components Needed</h3>
+      <ul>
+        <li>Logo system (primary + variations for extensions: Lightheart Cafe, Lightheart Club)</li>
+        <li>Typography system (flex between experimental and accessible)</li>
+        <li>Colour system</li>
+        <li>Graphic devices & systematic layout structures</li>
+        <li>Watermark rules</li>
+        <li>End-cards (video)</li>
+        <li>Lower-thirds</li>
+        <li>Caption style</li>
+        <li>Credits format</li>
+        <li>Brand stack document (for onboarding)</li>
+      </ul>
+      
+      <h3>Integration with Marketing</h3>
+      <p>The Pauric Freeman anchor video is the first public content piece. The logo needs to appear at the end of this video. RAD's brand work must align with the content production timeline — the video announcement drives the logo delivery deadline.</p>
+      
+      <!-- SECTION 7: 5-PHASE TIMELINE -->
+      <span class="section-anchor" id="sec7"></span>
+      <h2>7. The 5-Phase Marketing Timeline</h2>
+      
+      <pre>
+MAR           APR           MAY           JUN           JUL           AUG           SEP
+|─── FOUNDATIONS ──|── CONTROLLED ──|── PRE-LAUNCH BUILD ─────|── LAUNCH ──|── RHYTHM ──|
+     Wk 1-6           VISIBILITY         Wk 9-18              Wk 19-22     Wk 23+
+                       Wk 5-8</pre>
+      
+      <table>
+        <tr><th>Phase</th><th>Period</th><th>Focus</th><th>Key Deliverable</th></tr>
+        <tr><td><strong>1. Foundations</strong></td><td>Mar 1 - Apr 11</td><td>Positioning, website architecture, SEO, personas, analytics</td><td>Lean but strong website live</td></tr>
+        <tr><td><strong>2. Controlled Visibility</strong></td><td>Apr 12 - May 30</td><td>Content pillars, social channels, newsletter, editorial calendar</td><td>3-month content calendar + email funnel</td></tr>
+        <tr><td><strong>3. Pre-Launch Build</strong></td><td>Jun 1 - Jul 31</td><td>Press materials, photography, video, asset bank, invite previews</td><td>Press outreach schedule + asset bank</td></tr>
+        <tr><td><strong>4. Launch</strong></td><td>Aug 1 - Aug 31</td><td>Countdown campaign, press embargo, partnerships, paid ads test</td><td>Gallery launch</td></tr>
+        <tr><td><strong>5. Post-Launch Rhythm</strong></td><td>Sep 1+</td><td>Quarterly exhibition cycle, data tracking, annual programming</td><td>Annual programming marketing calendar</td></tr>
+      </table>
+      
+      <!-- SECTION 8: PHASE 1 -->
+      <span class="section-anchor" id="sec8"></span>
+      <h2>8. Phase 1: Foundations (Wk 1-6) — March 1 to April 11</h2>
+      
+      <blockquote><strong>Mantra:</strong> Document → Credibility → Foundations</blockquote>
+      
+      <h3>8.1 Strategy & Positioning</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M1-01</td><td>Draft purpose statements — "Why we exist" + core visitor promise + ambition layer</td><td>Kev</td><td>Mar 1-7</td><td>Positioning one-pager v1</td><td>⬜ Planned</td></tr>
+        <tr><td>M1-02</td><td>Define category language — what do we call the venue?</td><td>Kev</td><td>Mar 2-7</td><td>Category labels v1</td><td>⬜ Planned</td></tr>
+        <tr><td>M1-03</td><td>Define 3 primary audience groups + motivations + barriers + CTAs</td><td>Kev</td><td>Mar 8-14</td><td>Personas v1</td><td>⬜ Planned</td></tr>
+        <tr><td>—</td><td>Define tone of voice</td><td>Kev</td><td>Mar 15-21</td><td>Positioning document</td><td>⬜ Planned</td></tr>
+        <tr><td>—</td><td>Clarify quarterly programming model</td><td>Kev</td><td>Mar 15-21</td><td>Positioning document</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>8.2 Documentation & Space Capture</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M1-04</td><td>Documentation plan — shotlist, call sheet, access plan, consent/releases, gear needs</td><td>Producer</td><td>Mar 1-7</td><td>Doc plan pack v1</td><td>⬜ Planned</td></tr>
+        <tr><td>M1-05</td><td>Photo shoot (space) — exterior, entry, wides, details, lighting states, scale refs</td><td>Video lead</td><td>Mar 8-11</td><td>40 selects + raw</td><td>⬜ Planned</td></tr>
+        <tr><td>M1-06</td><td>Tech spec capture — dimensions, surfaces, rigging, power, network, access/loading</td><td>Producer</td><td>Mar 10-14</td><td>Space spec sheet v1</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>8.3 Digital Presence</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M1-07</td><td>Website sitemap — MVP pages, IA, navigation, CTAs, content needs</td><td>Web dev</td><td>Mar 1-10</td><td>Sitemap + requirements</td><td>⬜ Planned</td></tr>
+        <tr><td>M1-08</td><td>Website copy v1 — Homepage, About (core vs ambition), Exhibition model, FAQ</td><td>Kev</td><td>Mar 15-21</td><td>Website copy v1</td><td>⬜ Planned</td></tr>
+        <tr><td>M1-11</td><td>Analytics baseline — GA + Search Console + event tracking plan</td><td>Data</td><td>Mar 22-28</td><td>Measurement baseline</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>8.4 Brand System</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M1-09</td><td>Template kit v1 — logo placement, watermark, end cards, lower thirds, credits</td><td>RAD/Designer</td><td>Mar 15-21</td><td>Template kit v1</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>8.5 Partnerships</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M1-10</td><td>Rental partner map — identify local rental suppliers (video, audio, lighting, power)</td><td>Partnerships</td><td>Mar 15-25</td><td>Vendor list v1 (15 contacts)</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>Cluster Map: Month 1</h3>
+      <pre>
+Month 1: Document → Credibility → Foundations
+│
+├── Cluster A: Document the Space
+│   ├── Space Documentation Plan (Wk1, NOW)
+│   ├── Photography Capture (Wk1-2, NOW)
+│   │   └── Exterior, entry, wides, details, lighting, scale
+│   ├── Technical Spec Capture (Wk1-2, NOW)
+│   │   └── Dimensions, power, rigging, access/loading, network → Space Spec Sheet v1
+│   └── Video Capture Plan (Wk2, NOW)
+│       └── Hero shots, teasers, BTS footage
+│
+├── Cluster B: Pauric Freeman Anchor Shoot
+│   ├── Outreach + Scope (Wk1, NOW)
+│   └── Video Shoot (Wk3, NEXT)
+│       └── Performance, BTS, 3 micro-interviews, 6 vertical cutdowns
+│       └── Output: Hero clip + 6 short-form assets
+│
+├── Cluster C: Production Partner Network
+│   ├── Vendors Relationship Map (Wk1-4, NOW)
+│   │   └── Video, lighting, audio, staging/power → Preferred supplier list
+│   └── Equipment Spec Sheets v1 (Wk3-4, NEXT)
+│       └── Baseline spec + high spec showcase → Tech Credibility Pack
+│
+├── Cluster D: Slow Brand Integration
+│   └── Logo + Brand Presence Rules (Wk2, NOW) [RAD]
+│       └── Watermark, end-cards, lower-thirds, caption style, credits
+│       └── Output: Template Kit v1
+│
+└── Cluster E: Website MVP + SEO
+    └── Website MVP Build (Wk1-4, NOW)
+        └── Homepage, About, Exhibition model, Newsletter, FAQs, Press page
+        └── Output: Site live + structured content</pre>
+      
+      <!-- SECTION 9: PHASE 2 -->
+      <span class="section-anchor" id="sec9"></span>
+      <h2>9. Phase 2: Controlled Visibility (Wk 5-8) — April 12 to May 30</h2>
+      
+      <blockquote><strong>Mantra:</strong> Content System → Series → Controlled Visibility</blockquote>
+      
+      <h3>9.1 Website MVP & SEO</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M2-01</td><td>Website MVP build — pages, photo selects, CTAs, newsletter capture</td><td>Web dev</td><td>Mar 29 - Apr 7</td><td>Website MVP live</td><td>⬜ Planned</td></tr>
+        <tr><td>M2-02</td><td>SEO hygiene — titles/meta, internal links, alt text, schema, keyword alignment</td><td>Web dev</td><td>Mar 29 - Apr 7</td><td>SEO checklist</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>9.2 Content System</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M2-03</td><td>Content pillars matrix — The Work, The Mechanism, The People, The Why</td><td>Comms lead</td><td>Mar 29 - Apr 4</td><td>Content matrix board</td><td>⬜ Planned</td></tr>
+        <tr><td>M2-04</td><td>Editorial calendar 90 days — cadence per channel, series slots, approvals, assets</td><td>Comms lead</td><td>Mar 29 - Apr 7</td><td>90-day editorial calendar</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>9.3 Content Production: Pauric Freeman</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M2-05</td><td>Pauric Freeman outreach — confirm availability, scope, fee, deliverables, releases</td><td>Producer</td><td>Apr 5-8</td><td>Booking confirmed</td><td>⬜ Planned</td></tr>
+        <tr><td>M2-06</td><td>Pauric shoot plan — shotlist: performance, BTS, 3 micro interviews, vertical framing</td><td>Video lead</td><td>Apr 7-11</td><td>Shoot plan pack v1</td><td>⬜ Planned</td></tr>
+        <tr><td>M2-07</td><td>Pauric shoot in space</td><td>Video lead</td><td>Apr 12-13</td><td>Raw footage + audio</td><td>⬜ Planned</td></tr>
+        <tr><td>M2-08</td><td>Pauric edit pack — 1 hero (60-90s), 6 cutdowns, 3 BTS clips, captions</td><td>Video lead</td><td>Apr 13-20</td><td>Video pack v1 (10 exports)</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>9.4 Content Series: Immersive Literacy</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M2-09</td><td>Immersive literacy scripts — 6 episodes with examples + CTAs</td><td>Comms lead</td><td>Apr 5-15</td><td>Script pack v1</td><td>⬜ Planned</td></tr>
+        <tr><td>M2-10</td><td>Reference map — link Irish + international reference works to each script</td><td>Kev</td><td>Apr 12-20</td><td>Reference node map v1 (20 refs)</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <p><strong>Terminology Explainer Topics:</strong></p>
+      <ol>
+        <li>What is immersive art?</li>
+        <li>Projection mapping</li>
+        <li>Spatial audio</li>
+        <li>Participation</li>
+        <li>Co-creative practice</li>
+        <li>Quarterly programme model</li>
+      </ol>
+      
+      <h3>9.5 Outreach</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M2-11</td><td>Intro outreach wave 1 — 10 warm intros: NCAD, Beta, Trinity, DCC listings, Spencer</td><td>Kev</td><td>Apr 19-25</td><td>Outreach tracker</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>Content Pillars Matrix</h3>
+      <table>
+        <tr><th>Pillar</th><th>What it covers</th><th>Content types</th><th>Primary audience</th></tr>
+        <tr><td><strong>The Work</strong></td><td>Exhibitions, installations, artist features</td><td>Hero video, artist profiles, exhibition teasers</td><td>Public + Creative</td></tr>
+        <tr><td><strong>The Mechanism</strong></td><td>BTS, tech specs, how it works</td><td>BTS reels, tech breakdowns, space walkthroughs</td><td>Creative + Institutions</td></tr>
+        <tr><td><strong>The People</strong></td><td>Artists, team, community</td><td>Interviews, founder stories, community features</td><td>All</td></tr>
+        <tr><td><strong>The Why</strong></td><td>Vision, philosophy, cultural positioning</td><td>Long-form LinkedIn, think pieces, governance updates</td><td>Institutions + Creative</td></tr>
+      </table>
+      
+      <!-- SECTION 10: PHASE 3 -->
+      <span class="section-anchor" id="sec10"></span>
+      <h2>10. Phase 3: Pre-Launch Build (Wk 9-18) — June 1 to July 31</h2>
+      
+      <blockquote><strong>Mantra:</strong> Asset Creation → Press Readiness → Community Seeding</blockquote>
+      
+      <h3>10.1 Channel Setup & Content Release</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M3-01</td><td>Channel setup — IG, TikTok, LinkedIn profiles, bios, link-in-bio, highlights, pins</td><td>Comms lead</td><td>Apr 26-28</td><td>Profiles live</td><td>⬜ Planned</td></tr>
+        <tr><td>M3-02</td><td>Publish Pauric feature — website page + staggered posts (hero + 2 cutdowns + BTS)</td><td>Comms lead</td><td>Apr 27 - May 3</td><td>Pauric release week</td><td>⬜ Planned</td></tr>
+        <tr><td>M3-03</td><td>Publish Immersive Literacy series — 6 episodes over 3 weeks, playlist + pinned post</td><td>Comms lead</td><td>May 3-17</td><td>Series live</td><td>⬜ Planned</td></tr>
+        <tr><td>M3-04</td><td>Interview series v1 — 3 short interviews (artist, technologist, educator) + 1 longer edit</td><td>Video lead</td><td>May 3-12</td><td>Interview pack v1</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>10.2 Press Materials</h3>
+      <table>
+        <tr><th>Task</th><th>Dates</th><th>Output</th></tr>
+        <tr><td>Draft master press release</td><td>Jun 1-14</td><td>Press kit</td></tr>
+        <tr><td>Cultural long-form pitch (arts/culture publications)</td><td>Jun 8-21</td><td>Pitch document</td></tr>
+        <tr><td>Behind-the-scenes feature pitch (technology angle)</td><td>Jun 15-28</td><td>Pitch document</td></tr>
+        <tr><td>Tourism positioning pitch (tourism/travel publications)</td><td>Jun 22 - Jul 5</td><td>Pitch document</td></tr>
+        <tr><td>Build press list</td><td>Jun 29 - Jul 12</td><td>Media list</td></tr>
+      </table>
+      
+      <h3>10.3 Asset Bank</h3>
+      <table>
+        <tr><th>Task</th><th>Dates</th><th>Output</th></tr>
+        <tr><td>Hero photography</td><td>Jun 1-21</td><td>Asset bank</td></tr>
+        <tr><td>Empty space photography</td><td>Jun 8-28</td><td>Asset bank</td></tr>
+        <tr><td>Render visuals</td><td>Jun 15 - Jul 5</td><td>Asset bank</td></tr>
+        <tr><td>Short teaser film</td><td>Jun 22 - Jul 12</td><td>Asset bank</td></tr>
+        <tr><td>Behind-the-scenes footage</td><td>Jun 29 - Jul 19</td><td>Asset bank</td></tr>
+        <tr><td>Founder interview video</td><td>Jul 6-26</td><td>Asset bank</td></tr>
+      </table>
+      
+      <h3>10.4 Governance & Community</h3>
+      <table>
+        <tr><th>ID</th><th>Task</th><th>Owner</th><th>Dates</th><th>Output</th><th>Status</th></tr>
+        <tr><td>M3-05</td><td>Governance page v1 — principles, advisory circle, commissioning stance, ethics</td><td>Kev</td><td>May 10-17</td><td>Page + LinkedIn post</td><td>⬜ Planned</td></tr>
+        <tr><td>M3-06</td><td>Public brainstorm planning — format, facilitator, invite list, filming, outputs</td><td>Producer</td><td>May 17-23</td><td>Event pack v1</td><td>⬜ Planned</td></tr>
+        <tr><td>—</td><td>Plan invite-only previews</td><td>—</td><td>Jul 13-31</td><td>Guest list board</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <!-- SECTION 11: PHASE 4 -->
+      <span class="section-anchor" id="sec11"></span>
+      <h2>11. Phase 4: Launch (Wk 19-22) — August 2026</h2>
+      
+      <table>
+        <tr><th>Task</th><th>Dates</th><th>Notes</th></tr>
+        <tr><td>Countdown campaign planning</td><td>Aug 1-7</td><td>Social countdown sequence</td></tr>
+        <tr><td>Press embargo coordination</td><td>Aug 8-14</td><td>Embargo + exclusive access for key journalists</td></tr>
+        <tr><td>Personal intro invites</td><td>Aug 8-21</td><td>Warm invitations to key cultural figures</td></tr>
+        <tr><td>LinkedIn founder story</td><td>Aug 15-21</td><td>Kev's personal narrative — the journey to opening</td></tr>
+        <tr><td>DCC website feature</td><td>Aug 15-28</td><td>Dublin City Council cultural listing</td></tr>
+        <tr><td>Small budget paid ads test</td><td>Aug 22-31</td><td>First paid campaign — test & learn</td></tr>
+      </table>
+      
+      <h3>Launch Week Checklist</h3>
+      <ul>
+        <li>Press embargo lifts</li>
+        <li>Website fully live with exhibition content</li>
+        <li>Ticket sales open</li>
+        <li>Social channels active with countdown content</li>
+        <li>Newsletter announcement sent</li>
+        <li>Key media coverage lands</li>
+        <li>Invite-only preview event held</li>
+        <li>DCC listing live</li>
+        <li>Google Business profile active</li>
+      </ul>
+      
+      <!-- SECTION 12: PHASE 5 -->
+      <span class="section-anchor" id="sec12"></span>
+      <h2>12. Phase 5: Post-Launch Rhythm (Wk 23+) — September 2026 onward</h2>
+      
+      <table>
+        <tr><th>Task</th><th>Dates</th><th>Output</th></tr>
+        <tr><td>Establish quarterly exhibition cycle</td><td>Sep 1-14</td><td>Annual programming calendar</td></tr>
+        <tr><td>Implement data tracking</td><td>Sep 1-14</td><td>Data review board</td></tr>
+        <tr><td>Monthly review protocol</td><td>Sep 15-30</td><td>Data review board</td></tr>
+        <tr><td>Map annual programming calendar</td><td>Sep 15-30</td><td>Annual calendar</td></tr>
+      </table>
+      
+      <h3>Ongoing Rhythm</h3>
+      <ul>
+        <li><strong>Quarterly:</strong> New exhibition launch → press cycle → content burst → review</li>
+        <li><strong>Monthly:</strong> Newsletter, KPI review, editorial calendar update</li>
+        <li><strong>Weekly:</strong> 1-2 posts per channel, community engagement</li>
+        <li><strong>Continuous:</strong> Feedback loop → editorial calendar updates → website copy improvements</li>
+      </ul>
+      
+      <!-- SECTION 13: CONTENT CLUSTERS -->
+      <span class="section-anchor" id="sec13"></span>
+      <h2>13. Content Clusters & Production Pipeline</h2>
+      
+      <h3>Central Hub Nodes (Running Wk 1-12, NOW priority)</h3>
+      <p>These three systems underpin everything:</p>
+      <ol>
+        <li><strong>Feedback Loop</strong> — Audience responses, analytics insights, and stakeholder feedback continuously refine the editorial calendar and website copy.</li>
+        <li><strong>Asset Library / DAM</strong> — Every photo, video, render, and document feeds into a central library. All channels pull from this single source.</li>
+        <li><strong>Website as Source of Truth</strong> — The website is the canonical source. Social media drives traffic to the website. Press references the website. Partners point to the website.</li>
+      </ol>
+      
+      <h3>Critical Cross-Links</h3>
+      <pre>
+Photography + Video → Asset Library → Website → Every channel
+Tech Spec Capture → Rental Partners → Equipment Spec Sheets → Press kit + Artist onboarding
+Pauric Freeman shoot → Artist Series → Reels/TikTok → Website feature page
+Terminology Explainers → References map → Interview series → Website articles
+Public brainstorm → Governance node → LinkedIn credibility → Press angles
+Feedback loop → Editorial calendar updates → Website copy improvements</pre>
+      
+      <!-- SECTION 14: CHANNEL STRATEGY -->
+      <span class="section-anchor" id="sec14"></span>
+      <h2>14. Channel Strategy</h2>
+      
+      <h3>Channel Hierarchy</h3>
+      <table>
+        <tr><th>Priority</th><th>Channel</th><th>Purpose</th><th>Audience</th><th>Cadence</th></tr>
+        <tr><td>1</td><td><strong>Website</strong></td><td>Source of truth, SEO, ticketing, newsletter capture</td><td>All</td><td>Continuous updates</td></tr>
+        <tr><td>2</td><td><strong>Instagram Reels</strong></td><td>Visual credibility, artist-led clips, BTS, scale shots</td><td>Public + Creative</td><td>1-2 posts/week</td></tr>
+        <tr><td>3</td><td><strong>LinkedIn</strong></td><td>Partnerships, governance, institutional language, credibility</td><td>Institutions + Creative</td><td>1 post/week</td></tr>
+        <tr><td>4</td><td><strong>TikTok</strong></td><td>Educational series, terminology, fast references, how-it-works</td><td>Public (younger)</td><td>1-2 posts/week</td></tr>
+        <tr><td>5</td><td><strong>Newsletter</strong></td><td>Direct relationship, exhibition announcements, insider access</td><td>Warm audience</td><td>1/month</td></tr>
+      </table>
+      
+      <h3>Channel-Specific Content Approach</h3>
+      
+      <h4>Instagram Reels:</h4>
+      <ul>
+        <li>Visual credibility shots (scale, light, space)</li>
+        <li>Artist-led clips (Pauric Freeman, future artists)</li>
+        <li>BTS mechanism content (projectors, sound system, mapping)</li>
+        <li>Scale reference shots (people in space)</li>
+      </ul>
+      
+      <h4>LinkedIn:</h4>
+      <ul>
+        <li>Partnership announcements</li>
+        <li>Governance progress updates</li>
+        <li>Institutional language (investment, infrastructure, cultural capacity)</li>
+        <li>Founder story posts</li>
+        <li>Think pieces on digital art in Ireland</li>
+      </ul>
+      
+      <h4>TikTok:</h4>
+      <ul>
+        <li>Immersive Literacy series (terminology explainers)</li>
+        <li>Fast reference clips (30s)</li>
+        <li>How-it-works breakdowns</li>
+        <li>Educational series</li>
+      </ul>
+      
+      <h3>What NOT to Do (Strategic Guardrails)</h3>
+      <ul>
+        <li>Do NOT launch 5 social channels simultaneously</li>
+        <li>Do NOT burn budget on paid ads before organic credibility is established</li>
+        <li>Do NOT oversell "National Centre" language too soon</li>
+        <li>Do NOT frame as tourist selfie venue</li>
+        <li>Do NOT compete with illusion galleries on their terms</li>
+        <li>Do NOT use generic social media templates — every piece must feel intentional</li>
+      </ul>
+      
+      <!-- SECTION 15: PRESS & PR STRATEGY -->
+      <span class="section-anchor" id="sec15"></span>
+      <h2>15. Press & PR Strategy</h2>
+      
+      <h3>Press Narrative Angles</h3>
+      <table>
+        <tr><th>Angle</th><th>Target Publications</th><th>Hook</th></tr>
+        <tr><td><strong>Cultural long-form</strong></td><td>Irish Times Arts, Journal of Music, Totally Dublin</td><td>New kind of cultural space opens in Dublin — not a selfie museum</td></tr>
+        <tr><td><strong>Behind-the-scenes / tech</strong></td><td>Silicon Republic, Tech Central, Wired UK</td><td>14 4K projectors, L-ISA sound — the tech behind immersive art</td></tr>
+        <tr><td><strong>Tourism positioning</strong></td><td>Irish Independent Travel, Lonely Planet, Failte Ireland</td><td>Dublin's newest must-visit cultural destination on the quays</td></tr>
+        <tr><td><strong>Founder story</strong></td><td>Business Post, Irish Examiner, LinkedIn</td><td>From NCAD to €4.5m gallery — building Ireland's immersive art infrastructure</td></tr>
+        <tr><td><strong>Artist feature</strong></td><td>Visual Artists Ireland, Paper Visual Art</td><td>Pauric Freeman residency — first artist to activate the space</td></tr>
+      </table>
+      
+      <h3>Press Kit Contents (Target: June)</h3>
+      <ul>
+        <li>Master press release</li>
+        <li>Founder bio + headshot</li>
+        <li>Space fact sheet (tech specs, dimensions)</li>
+        <li>10-15 hero photographs (high-res)</li>
+        <li>2-3 render visuals</li>
+        <li>Short teaser film</li>
+        <li>Quote sheet (founder, advisory, first artist)</li>
+        <li>Exhibition schedule (Q3/Q4 2026)</li>
+      </ul>
+      
+      <h3>Embargo Strategy</h3>
+      <ul>
+        <li>Build press list June-July</li>
+        <li>Offer exclusive behind-the-scenes access to 2-3 key journalists</li>
+        <li>Set embargo date aligned with launch week</li>
+        <li>Coordinate social media reveal with embargo lift</li>
+      </ul>
+      
+      <!-- SECTION 16: PARTNERSHIPS -->
+      <span class="section-anchor" id="sec16"></span>
+      <h2>16. Partnerships & Outreach</h2>
+      
+      <h3>Wave 1: Warm Intros (April, 10 contacts)</h3>
+      <table>
+        <tr><th>Contact</th><th>Type</th><th>Purpose</th></tr>
+        <tr><td>NCAD</td><td>Education</td><td>Alumni network, student engagement, exhibition pipeline</td></tr>
+        <tr><td>Trinity</td><td>Education</td><td>Research partnerships, digital humanities</td></tr>
+        <tr><td>Beta Festival</td><td>Creative ecosystem</td><td>Cross-promotion, shared audience</td></tr>
+        <tr><td>DCC Listings</td><td>Institutional</td><td>Cultural listings, tourism promotion</td></tr>
+        <tr><td>Spencer (referred)</td><td>Cultural connector</td><td>Introductions into Dublin's creative class</td></tr>
+      </table>
+      
+      <h3>Wave 2: Institutional (May-June)</h3>
+      <ul>
+        <li>Failte Ireland tourism listing</li>
+        <li>Dublin Tourism board</li>
+        <li>Arts Council notification (not funding application)</li>
+        <li>Local business associations (quays area)</li>
+      </ul>
+      
+      <h3>Production Partner Network</h3>
+      <table>
+        <tr><th>Category</th><th>Need</th></tr>
+        <tr><td>Video equipment</td><td>Rental suppliers, call-off rates</td></tr>
+        <tr><td>Lighting</td><td>Rental suppliers, specialist immersive lighting</td></tr>
+        <tr><td>Audio</td><td>L-ISA compatible, spatial audio specialists</td></tr>
+        <tr><td>Staging/power</td><td>Power distribution, staging elements</td></tr>
+      </table>
+      <p><strong>Output:</strong> Preferred supplier list + Equipment Spec Sheets v1 (baseline + high spec)</p>
+      
+      <!-- SECTION 17: MEASUREMENT & KPIs -->
+      <span class="section-anchor" id="sec17"></span>
+      <h2>17. Measurement & KPIs</h2>
+      
+      <h3>Phase 1-2 KPIs (Foundations → Controlled Visibility)</h3>
+      <table>
+        <tr><th>Metric</th><th>Target</th><th>Tool</th></tr>
+        <tr><td>Website indexed pages</td><td>All MVP pages indexed</td><td>Google Search Console</td></tr>
+        <tr><td>Newsletter signups</td><td>First 100 subscribers</td><td>Email platform</td></tr>
+        <tr><td>SEO ranking</td><td>Appear for "immersive gallery Dublin"</td><td>Search Console</td></tr>
+        <tr><td>Social profiles live</td><td>IG, LinkedIn, TikTok active</td><td>—</td></tr>
+        <tr><td>Outreach responses</td><td>5 of 10 warm intros respond</td><td>Outreach tracker</td></tr>
+      </table>
+      
+      <h3>Phase 3-4 KPIs (Pre-Launch → Launch)</h3>
+      <table>
+        <tr><th>Metric</th><th>Target</th><th>Tool</th></tr>
+        <tr><td>Press coverage</td><td>3-5 articles at launch</td><td>Press tracker</td></tr>
+        <tr><td>Newsletter subscribers</td><td>500 pre-launch</td><td>Email platform</td></tr>
+        <tr><td>Social following</td><td>Combined 1,000+ across channels</td><td>Platform analytics</td></tr>
+        <tr><td>Video views</td><td>Pauric hero video: 5,000+ views</td><td>Platform analytics</td></tr>
+        <tr><td>Ticket pre-sales</td><td>TBD based on exhibition confirmed</td><td>Ticketing platform</td></tr>
+      </table>
+      
+      <h3>Post-Launch Ongoing KPIs</h3>
+      <table>
+        <tr><th>Metric</th><th>Frequency</th><th>Tool</th></tr>
+        <tr><td>Website traffic + sources</td><td>Monthly</td><td>Google Analytics</td></tr>
+        <tr><td>Newsletter open/click rate</td><td>Monthly</td><td>Email platform</td></tr>
+        <tr><td>Social engagement rate</td><td>Monthly</td><td>Platform analytics</td></tr>
+        <tr><td>Press mentions</td><td>Quarterly</td><td>Media monitoring</td></tr>
+        <tr><td>Ticket sales vs. capacity</td><td>Weekly</td><td>Ticketing platform</td></tr>
+        <tr><td>Repeat visitor rate</td><td>Quarterly</td><td>Ticketing / membership data</td></tr>
+      </table>
+      
+      <!-- SECTION 18: READING LIST -->
+      <span class="section-anchor" id="sec18"></span>
+      <h2>18. Reading List — Key Principles Applied</h2>
+      
+      <blockquote>
+        Full book analyses with citations, frameworks, and tactical applications are in <code>book-analyses/</code>.<br>
+        The <code>APPLIED-FRAMEWORKS-PLAYBOOK.md</code> integrates all five frameworks into a unified tactical calendar.
+      </blockquote>
+      
+      <h3>Rory Sutherland — Alchemy (2019)</h3>
+      <blockquote>"Engineering doesn't allow for magic. Psychology does."</blockquote>
+      <p><em>Full analysis: <code>book-analyses/01-alchemy-sutherland.md</code></em></p>
+      
+      <p><strong>Core thesis:</strong> Human beings are <em>psycho-logical</em>, not logical. The most valuable marketing solutions live in the "doesn't make sense but works" quadrant — things competitors will never copy because they seem too irrational to adopt.</p>
+      
+      <p><strong>Key frameworks:</strong></p>
+      <ul>
+        <li><strong>Psycho-Logic</strong> — Build for how people <em>feel</em>, not what they rationally evaluate</li>
+        <li><strong>The Sense vs. Works Matrix</strong> — The top-right cell (works but doesn't make sense) is where alchemy lives</li>
+        <li><strong>Costly Signaling</strong> — For a signal to be trusted, it must be costly to fake (premium price, limited access, deliberate inefficiency)</li>
+        <li><strong>Satisficing</strong> — Humans seek "good enough across many dimensions," not optimised on one. Design the full arc of the visit, not one peak metric</li>
+        <li><strong>Reframing</strong> — Change the reference point and you change the perceived value</li>
+      </ul>
+      
+      <p><strong>10 Lightheart applications (summary):</strong></p>
+      <ol>
+        <li>Signal exclusivity through quarterly curation, not volume — never discount</li>
+        <li>Reframe the competition — position against a European trip, not Dublin attractions</li>
+        <li>Make the technology invisible but felt — specs for press, wonder for visitors</li>
+        <li>Test one counterintuitive tactic per quarter (silent sessions, permanent waitlist, "not for everyone" campaign)</li>
+        <li>Build reciprocity before the sale — preview events, documentaries, subscriber-first access</li>
+        <li>Make every detail a signal — email, ticket, lobby scent, wayfinding</li>
+        <li>Embrace strategic weirdness — a pressed flower, an unexplained ritual</li>
+        <li>Use the satisficing gap — design for 90 satisfying minutes, not 60 optimised ones</li>
+        <li>Let journalists do the explaining — brief critics privately, let their frames become the public's frames</li>
+        <li>Create logic-proof word of mouth — moments impossible to describe are moments that generate referral</li>
+      </ol>
+      
+      <hr>
+      
+      <h3>Seth Godin — Purple Cow (2003)</h3>
+      <blockquote>"In a crowded marketplace, fitting in is failing. Not standing out is the same as being invisible."</blockquote>
+      <p><em>Full analysis: <code>book-analyses/02-purple-cow-godin.md</code></em></p>
+      
+      <p><strong>Core thesis:</strong> The TV-Industrial Complex is dead. In a saturated market, being competent is the fastest route to invisibility. Remarkability must be designed into the product itself, not bolted on through advertising.</p>
+      
+      <p><strong>Key frameworks:</strong></p>
+      <ul>
+        <li><strong>The Idea Diffusion Curve</strong> — Target the 15-20% of innovators and early adopters ("sneezers"), not the mass market. If sneezers adopt, the mass follows. Design for the mass, and sneezers ignore you</li>
+        <li><strong>The Otaku Principle</strong> — Genuine obsession produces remarkable things. Don't ask "what does the market want?" — ask "what are we truly obsessed with?"</li>
+        <li><strong>The Magic Cycle</strong> — (1) Design remarkable experience → (2) Market to smallest viable audience of sneezers → (3) Sneezers spread through peer networks → (4) Reinvest; never rest on previous cow</li>
+        <li><strong>Three Eras of Marketing</strong> — Before Advertising (be good), During Advertising (out-spend), After Advertising (be remarkable). We are firmly in era three</li>
+      </ul>
+      
+      <p><strong>10 Lightheart applications (summary):</strong></p>
+      <ol>
+        <li>Build remarkability into the experience itself — design 5-7 moments per exhibition visitors cannot help describing</li>
+        <li>Target sneezers — Dublin's arts journalists, design influencers, tech leaders, cultural connectors. Map them before launch</li>
+        <li>Embrace controversy — not everyone will understand the price or the proposition. Sharpen, don't soften</li>
+        <li>Focus on the most valuable niche — culturally-engaged 30-55 with international travel experience and disposable income</li>
+        <li>Make the tech visible enough to be shareable — give visitors vocabulary ("spatial audio — the sound actually moves around you")</li>
+        <li>Build a permission asset — curated email list that compounds quarterly</li>
+        <li>Never rest on the first cow — Q2 2027 exhibition should already be in development at September 2026 launch</li>
+        <li>Cross-industry innovation — apply hospitality, gaming, fashion cadence thinking to the art world</li>
+        <li>Design for the "difficult to describe" moment — when visitors say "you just have to go," the purple cow is working</li>
+        <li>Make the quarterly cycle itself remarkable — announce with restraint, build through silence, train the audience to anticipate</li>
+      </ol>
+      
+      <p><strong>Self-assessment:</strong> Lightheart scores strongly across all 7 dimensions of remarkability (technology, content, venue, ticket model, community, cadence, word-of-mouth). The only risk is execution conservatism — softening the proposition to fill capacity.</p>
+      
+      <hr>
+      
+      <h3>Robert Cialdini — Influence: The Psychology of Persuasion (1984/2021)</h3>
+      <p><em>Full analysis: <code>book-analyses/03-persuasion-cialdini.md</code></em></p>
+      
+      <p><strong>Core thesis:</strong> Humans have evolved cognitive shortcuts ("click, whirr") triggered by specific environmental cues. Six universal principles drive all compliance decisions. Understanding them allows ethical, principled design of communications and experiences that earn genuine trust.</p>
+      
+      <p><strong>The 6 Principles — Lightheart tactical summary:</strong></p>
+      <table>
+        <tr><th>Principle</th><th>Mechanism</th><th>Lightheart Primary Tactic</th></tr>
+        <tr><td><strong>Reciprocation</strong></td><td>A gift creates a debt</td><td>Free preview events for 100 cultural influencers; behind-the-scenes newsletter; personal follow-up notes from artistic director</td></tr>
+        <tr><td><strong>Commitment & Consistency</strong></td><td>Small yeses lead to big yeses</td><td>Progressive ladder: Follow → Subscribe → Preview → Ticket → Membership. Booking friction (selecting session, confirming) deepens commitment</td></tr>
+        <tr><td><strong>Social Proof</strong></td><td>Uncertainty → look to others</td><td>Display sold-out sessions; facilitate visitor photography; collect specific testimonials ("my son asked when we could go back"); waitlist as demand signal</td></tr>
+        <tr><td><strong>Authority</strong></td><td>Deference to expertise signals</td><td>Curator credentials visible; institutional partnerships (NCAD, Trinity); production quality as authority signal; critical press coverage as authority transfer</td></tr>
+        <tr><td><strong>Liking</strong></td><td>We say yes to people we like</td><td>Host/ambassador programme (10-15 genuine Dublin cultural figures); warm staff; artist visibility through talks and Q&As; write like a person, not a brand</td></tr>
+        <tr><td><strong>Scarcity</strong></td><td>Rare = valuable</td><td>Quarterly exhibitions with hard end dates; session capacity limits; founding membership limited to 200; no-discount policy ever</td></tr>
+      </table>
+      
+      <p><strong>3-Phase tactical playbook:</strong></p>
+      <ul>
+        <li><strong>Pre-Launch:</strong> Reciprocation (free previews) + Authority (curator profiles, partnerships) + Scarcity (founding member cap) + Commitment (newsletter ladder)</li>
+        <li><strong>Launch & Year 1:</strong> Social Proof (attendance data, waitlists) + Scarcity (countdown to exhibition close) + Authority (press coverage)</li>
+        <li><strong>Community & Retention:</strong> Commitment (membership identity) + Liking (ambassador programme) + Social Proof (testimonial collection)</li>
+      </ul>
+      
+      <p><strong>Key insight for Lightheart:</strong> All six principles align <em>naturally</em> with the authentic proposition. The scarcity is real (quarterly exhibitions end), the authority is earned (if curation is excellent), the social proof is organic (if the experience is remarkable). The framework doesn't manufacture persuasion — it ensures the genuine substance is visible.</p>
+      
+      <hr>
+      
+      <h3>Bernadette Jiwa — 6-Book Synthesis</h3>
+      <p><em>Full analysis: <code>book-analyses/04-bernadette-jiwa-synthesis.md</code></em></p>
+      
+      <p><strong>Books:</strong> Story Driven (2018) | The Fortune Cookie Principle (2013) | Difference (2014) | Marketing: A Love Story (2014) | Make Your Idea Matter (2012) | What Great Storytellers Know (2016)</p>
+      
+      <p><strong>Core thesis across all works:</strong> Marketing is not about being seen — it is about mattering. The organisations that endure do not start with what they make; they start with the change they exist to create in people's lives. Products are cookies. Meaning is the fortune. Lead with the fortune.</p>
+      
+      <p><strong>1. The Fortune Cookie Principle — Applied to Lightheart:</strong></p>
+      <table>
+        <tr><th>Cookie (Feature)</th><th>Fortune (Meaning)</th></tr>
+        <tr><td>14 4K projectors</td><td>You won't stand in front of art. You'll stand inside it</td></tr>
+        <tr><td>L-ISA spatial audio</td><td>Sound that moves through your body, not past your ears</td></tr>
+        <tr><td>Quarterly exhibitions</td><td>Every visit is a completely new world</td></tr>
+        <tr><td>Dublin quays location</td><td>A cultural heartbeat on Dublin's waterfront</td></tr>
+        <tr><td>€4.5m investment</td><td>Ireland's most ambitious immersive art space</td></tr>
+      </table>
+      
+      <p><strong>2. Story-Driven vs Competition-Driven:</strong></p>
+      <table>
+        <tr><th>Competition-Driven (Avoid)</th><th>Story-Driven (Do This)</th></tr>
+        <tr><td>"Better than illusion galleries"</td><td>"A new category of cultural experience"</td></tr>
+        <tr><td>"Dublin's answer to TeamLab"</td><td>"The space Dublin has been waiting for"</td></tr>
+        <tr><td>"More projectors than anyone else"</td><td>"Technology in service of collective wonder"</td></tr>
+      </table>
+      
+      <p><strong>3. The Difference Model:</strong> Truth → People → Idea → Launch (not Idea → Market)</p>
+      <ul>
+        <li><strong>Truth:</strong> People are chronically starved of genuine wonder. Digital life delivers novelty but not awe.</li>
+        <li><strong>People:</strong> The designer who went to TeamLab. The art teacher seeking embodied experiences. The conference organiser wanting a unique event.</li>
+        <li><strong>Idea:</strong> A quarterly-changing immersive gallery that makes wonder accessible and repeatable.</li>
+      </ul>
+      
+      <p><strong>4. Lightheart's Story of Change:</strong></p>
+      <ul>
+        <li><strong>Before:</strong> Art in Ireland is something you look at across a respectful distance. Digital art is misunderstood, underfunded, and patronised. Nowhere in Dublin for world-class immersive work.</li>
+        <li><strong>Because Lightheart exists:</strong> Dublin has a dedicated space where art moves through your body. Artists have infrastructure. Audiences have awe.</li>
+        <li><strong>What this enables:</strong> Wonder is not reserved for other cities. Artists build careers at home. Ireland's cultural capacity grows. The quarterly rhythm creates a cultural heartbeat the city organises around.</li>
+      </ul>
+      
+      <p><strong>10 questions Jiwa would ask the team:</strong></p>
+      <ol>
+        <li>What is the truth that Lightheart was built to answer?</li>
+        <li>What business are you actually in? (Not "immersive gallery" — that's the cookie.)</li>
+        <li>Who is your single most specific "someone"?</li>
+        <li>What is your y-axis? (What non-revenue metric tells you you've succeeded?)</li>
+        <li>What story does a visitor get to tell about themselves?</li>
+        <li>What is your backstory, and does it reveal your purpose?</li>
+        <li>What emotional signal will visitors feel before entering the building?</li>
+        <li>What specific moments are you engineering inside each exhibition?</li>
+        <li>Is Lightheart competition-driven or story-driven?</li>
+        <li>What will be different about Dublin because Lightheart existed?</li>
+      </ol>
+      
+      <hr>
+      
+      <h3>Helen McNulty — Digital Marketing for Creatives (Workshop, March 2026)</h3>
+      <p><em>Full analysis: <code>book-analyses/05-helen-mcnulty-framework.md</code></em></p>
+      
+      <p><strong>Core framework:</strong> Holistic marketing integrating five layers (Internal values → Integrated channels → Relationships → Performance → Societal impact) with the RACE conversion funnel.</p>
+      
+      <p><strong>The RACE Model — Applied to Lightheart:</strong></p>
+      <table>
+        <tr><th>Stage</th><th>Action</th><th>Lightheart Tactics</th></tr>
+        <tr><td><strong>Reach</strong></td><td>Build awareness</td><td>Instagram Reels, PR/media, SEO for "immersive gallery Dublin", LinkedIn</td></tr>
+        <tr><td><strong>Act</strong></td><td>Engagement</td><td>Website (source of truth), exhibition pages, newsletter signup</td></tr>
+        <tr><td><strong>Convert</strong></td><td>Transaction</td><td>Ticket booking, corporate enquiry, early-bird pricing</td></tr>
+        <tr><td><strong>Engage</strong></td><td>Retention</td><td>Email sequences, membership, quarterly cycle, ambassador programme</td></tr>
+      </table>
+      
+      <p><strong>Content allocation:</strong> The Work 30% / The Mechanism 25% / The People 20% / The Why 15% / Conversion 10%</p>
+      
+      <p><strong>Key principles:</strong></p>
+      <ol>
+        <li>Clarity builds confidence. Confidence builds income.</li>
+        <li>People don't buy products. They buy meaning, identity, resolution.</li>
+        <li>Content ≠ constant posting. Content = strategic storytelling.</li>
+        <li>Perceived value is often more powerful than functional value. (via Sutherland)</li>
+        <li>Stop trying to be everywhere — focus on 3 channels done well.</li>
+      </ol>
+      
+      <p><strong>Value proposition reframing:</strong></p>
+      <ul>
+        <li>Traditional: "Immersive art gallery with 14 4K projectors" → Story-Driven: "A space where art transcends walls and surrounds your senses"</li>
+        <li>Traditional: "Quarterly changing exhibitions" → Story-Driven: "Every visit is a completely new world"</li>
+        <li>Traditional: "L-ISA spatial audio system" → Story-Driven: "Sound that moves through your body, not past your ears"</li>
+      </ul>
+      
+      <!-- SECTION 19: RISK REGISTER -->
+      <span class="section-anchor" id="sec19"></span>
+      <h2>19. Risk Register</h2>
+      
+      <table>
+        <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+        <tr><td>Fire certification delayed → September opening missed</td><td>Medium</td><td>Critical</td><td>Track weekly. Identify backup dates. Adjust marketing timeline if needed.</td></tr>
+        <tr><td>Brand identity from RAD not ready in time for Pauric video</td><td>Medium</td><td>High</td><td>Logo at minimum needed by Wk 6-7. Communicate hard deadline to RAD.</td></tr>
+        <tr><td>Trademark conflict with "Lightheart" name</td><td>Low-Medium</td><td>Medium</td><td>Legal review underway. Ireland-only jurisdiction reduces risk. "Lightheart Immersive" as fallback.</td></tr>
+        <tr><td>Pauric Freeman unavailable or timing doesn't align</td><td>Low</td><td>High</td><td>Alternative anchor artist as backup. Content plan doesn't hinge on single artist.</td></tr>
+        <tr><td>Website not ready for Controlled Visibility phase</td><td>Medium</td><td>High</td><td>MVP approach — launch lean, iterate. Don't wait for perfection.</td></tr>
+        <tr><td>Social media launch generates comparison with illusion galleries</td><td>Medium</td><td>Medium</td><td>Clear differentiation in all messaging. Never use "immersive experience" — use "immersive gallery" or "immersive art."</td></tr>
+        <tr><td>Level-setting construction delays</td><td>Medium</td><td>High</td><td>Monitor weekly. Marketing timeline can flex by 2-4 weeks if needed.</td></tr>
+      </table>
+      
+      <!-- SECTION 20: DECISION LOG -->
+      <span class="section-anchor" id="sec20"></span>
+      <h2>20. Decision Log</h2>
+      
+      <table>
+        <tr><th>Date</th><th>Decision</th><th>Rationale</th><th>Owner</th></tr>
+        <tr><td>2026-03-10</td><td>Triple Stack Model (TSM) integrated as artistic/operational method</td><td>Thesis methodology provides coherent framework for exhibition design, visitor experience, and staff training. Bridges academic rigour with operational practice.</td><td>Kev</td></tr>
+        <tr><td>2026-03-10</td><td>150-deliverable timeline created (Mar–Sep 2026)</td><td>Comprehensive phase-gated checklist with critical path analysis, TSM + 5 frameworks integrated</td><td>Kev</td></tr>
+        <tr><td>2026-03-09</td><td>RAD (David Lawler + Brian) confirmed as brand agency</td><td>European/Swiss design alignment, website capability</td><td>Kev</td></tr>
+        <tr><td>2026-03-09</td><td>Rolling Tuesday meetings with RAD</td><td>Mondays for campaign work, Tuesdays for brand check-ins</td><td>Kev + RAD</td></tr>
+        <tr><td>2026-03-09</td><td>Brand direction: striking, bold, simple, timeless</td><td>Avoid trendy throwaway aesthetics. Institutional longevity.</td><td>RAD</td></tr>
+        <tr><td>2026-03-09</td><td>"Lightheart" name retained, "Lightheart Immersive" as TM fallback</td><td>Ireland-only jurisdiction reduces risk</td><td>Kev</td></tr>
+        <tr><td>2026-03-01</td><td>3-month marketing plan adopted (Dara DCC session)</td><td>Credibility-first approach. Phased rollout.</td><td>Kev</td></tr>
+        <tr><td>2026-03-01</td><td>Pauric Freeman as anchor content artist</td><td>First public content piece. Shows the space in use with real art.</td><td>Kev</td></tr>
+        <tr><td>2026-03-01</td><td>Website = source of truth, not social media</td><td>Search > impulse scroll. AI indexing matters. Institutional discoverability.</td><td>Kev</td></tr>
+        <tr><td>2024</td><td>Buildings purchased</td><td>Strategic location on Dublin quays</td><td>—</td></tr>
+      </table>
+      
+      <!-- SECTION 21: WEEKLY SPRINT TRACKER -->
+      <span class="section-anchor" id="sec21"></span>
+      <h2>21. Weekly Sprint Tracker</h2>
+      
+      <h3>Week 2 (Mar 8-14) — CURRENT</h3>
+      <table>
+        <tr><th>Task</th><th>Owner</th><th>Status</th></tr>
+        <tr><td>Define 3 primary audience groups</td><td>Kev</td><td>⬜ In progress</td></tr>
+        <tr><td>Define category language</td><td>Kev</td><td>⬜ In progress</td></tr>
+        <tr><td>Photo shoot (space)</td><td>Video lead</td><td>⬜ Planned</td></tr>
+        <tr><td>Tech spec capture</td><td>Producer</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>Week 3 (Mar 15-21)</h3>
+      <table>
+        <tr><th>Task</th><th>Owner</th><th>Status</th></tr>
+        <tr><td>Define tone of voice</td><td>Kev</td><td>⬜ Planned</td></tr>
+        <tr><td>Clarify quarterly programming model</td><td>Kev</td><td>⬜ Planned</td></tr>
+        <tr><td>Website copy v1</td><td>Kev</td><td>⬜ Planned</td></tr>
+        <tr><td>Template kit v1 (RAD)</td><td>RAD</td><td>⬜ Planned</td></tr>
+        <tr><td>Rental partner map begins</td><td>Partnerships</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>Week 4 (Mar 22-28)</h3>
+      <table>
+        <tr><th>Task</th><th>Owner</th><th>Status</th></tr>
+        <tr><td>Create 3 clear personas</td><td>Kev</td><td>⬜ Planned</td></tr>
+        <tr><td>Build relationship map</td><td>Kev</td><td>⬜ Planned</td></tr>
+        <tr><td>Analytics baseline (GA + Search Console)</td><td>Data</td><td>⬜ Planned</td></tr>
+        <tr><td>About page development begins</td><td>Web dev</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>Week 5 (Mar 29 - Apr 4)</h3>
+      <table>
+        <tr><th>Task</th><th>Owner</th><th>Status</th></tr>
+        <tr><td>Website MVP build begins</td><td>Web dev</td><td>⬜ Planned</td></tr>
+        <tr><td>SEO hygiene</td><td>Web dev</td><td>⬜ Planned</td></tr>
+        <tr><td>Content pillars matrix</td><td>Comms lead</td><td>⬜ Planned</td></tr>
+        <tr><td>Editorial calendar 90 days</td><td>Comms lead</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <h3>Week 6 (Apr 5-11)</h3>
+      <table>
+        <tr><th>Task</th><th>Owner</th><th>Status</th></tr>
+        <tr><td>Pauric Freeman outreach</td><td>Producer</td><td>⬜ Planned</td></tr>
+        <tr><td>Newsletter capture integration</td><td>Web dev</td><td>⬜ Planned</td></tr>
+        <tr><td>AI crawl optimization</td><td>Web dev</td><td>⬜ Planned</td></tr>
+      </table>
+      
+      <!-- APPENDICES -->
+      <hr>
+      
+      <span class="section-anchor" id="appendix-a"></span>
+      <h2>Appendix A: Helen McNulty Marketing Framework (G.U.I.D.E.)</h2>
+      
+      <p>The ChatGPT transcript in the research folder demonstrates a marketing blueprint methodology from Helen McNulty's "Digital Marketing for Creatives" workshop. The framework structure is:</p>
+      
+      <table>
+        <tr><th>Element</th><th>Lightheart Application</th></tr>
+        <tr><td><strong>G — Guide Role</strong></td><td>Expert in immersive art + cultural venue marketing</td></tr>
+        <tr><td><strong>U — Understanding</strong></td><td>Dublin-based immersive gallery, quarterly exhibitions, €4.5m investment, September 2026 opening</td></tr>
+        <tr><td><strong>I — Inputs</strong></td><td>Website, tech specs, curatorial philosophy, audience segments, competitive landscape</td></tr>
+        <tr><td><strong>D — Destination</strong></td><td>Sold-out opening month. 500+ newsletter subscribers pre-launch. 3-5 press articles. Institutional recognition.</td></tr>
+        <tr><td><strong>E — Expression</strong></td><td>This master plan document + weekly sprint execution</td></tr>
+      </table>
+      
+      <h3>Marketing Strategy Blueprint (adapted for Lightheart)</h3>
+      <table>
+        <tr><th>Section</th><th>Lightheart Answer</th></tr>
+        <tr><td><strong>MISSION</strong></td><td>Lightheart creates communal experiences of awe through world-class immersive art, giving Dublin a cultural space that didn't exist before.</td></tr>
+        <tr><td><strong>VISION</strong></td><td>Lightheart is perceived as Ireland's leading immersive gallery — a place people actively recommend, return to quarterly, and feel proud of.</td></tr>
+        <tr><td><strong>STRATEGY</strong></td><td>Credibility → Clarity → Noise. Website first, personal intros second, social channels third, press fourth, paid last.</td></tr>
+        <tr><td><strong>CONTENT</strong></td><td>4 pillars: The Work, The Mechanism, The People, The Why</td></tr>
+        <tr><td><strong>TONE</strong></td><td>Confident but not arrogant. Technical but accessible. Irish but international in ambition. Warm but not twee.</td></tr>
+        <tr><td><strong>CHANNELS</strong></td><td>Website → Instagram → LinkedIn → TikTok → Newsletter</td></tr>
+        <tr><td><strong>ACTIONS</strong></td><td>Subscribe to newsletter → Buy tickets → Share with friends → Recommend to visitors</td></tr>
+        <tr><td><strong>COMMUNITY</strong></td><td>NCAD network, Beta Festival ecosystem, DCC cultural network, Dublin creative class</td></tr>
+      </table>
+      
+      <span class="section-anchor" id="appendix-b"></span>
+      <h2>Appendix B: Key Terminology Decisions</h2>
+      
+      <p>These terms need to be locked down in Week 1-2 and used consistently:</p>
+      
+      <table>
+        <tr><th>Decision</th><th>Options considered</th><th>Chosen term</th><th>Notes</th></tr>
+        <tr><td>What do we call the venue?</td><td>Immersive gallery / Digital art centre / Immersive art space / Experience centre</td><td><strong>TBD — Week 1 task</strong></td><td>Must differentiate from "immersive experience" (illusion galleries)</td></tr>
+        <tr><td>What do we call the exhibitions?</td><td>Shows / Exhibitions / Experiences / Programmes</td><td><strong>TBD</strong></td><td>"Exhibitions" is institutional. "Shows" is theatrical.</td></tr>
+        <tr><td>What do we call the technology?</td><td>Projection mapping / Immersive technology / Spatial media</td><td><strong>TBD</strong></td><td>Must be accessible to public while credible to creative community</td></tr>
+        <tr><td>How do we describe quarterly model?</td><td>Seasons / Quarters / Cycles / Programmes</td><td><strong>TBD</strong></td><td>Theatre/cinema model — think "what's showing" not "what's installed"</td></tr>
+      </table>
+      
+      <span class="section-anchor" id="appendix-c"></span>
+      <h2>Appendix C: Source Documents Index</h2>
+      
+      <h3>Original Research Materials</h3>
+      <table>
+        <tr><th>Document</th><th>Location</th><th>Key Content</th></tr>
+        <tr><td>Light Heart PR Marketing.pdf</td><td>Research and Dev/</td><td>Full strategy: mind maps, Gantt chart, task spreadsheet, DCC strategic recommendations</td></tr>
+        <tr><td>Light Heart PR Marketing.csv</td><td>Research and Dev/</td><td>44-task timeline across 5 phases (Mar-Sep 2026)</td></tr>
+        <tr><td>Lightheart_PR_Marketing_3Month_Revised_Lite.csv</td><td>Research and Dev/</td><td>25-task detailed sprint plan with IDs, workstreams, owners, KPIs</td></tr>
+        <tr><td>Copy of Lightheart Curatorial Philosophy.pdf</td><td>Research and Dev/</td><td>4 founding principles: Independence, Future Optimism, Awe, Pluralism</td></tr>
+        <tr><td>CHATGPT TRANSCRIPT (1).pdf</td><td>Research and Dev/</td><td>Helen McNulty G.U.I.D.E. framework demo (Sarah Rossney case study)</td></tr>
+        <tr><td>RAD – 2026_03_09 Notes by Gemini.pdf</td><td>Research and Dev/</td><td>RAD brand meeting notes: design direction, trademark, deliverables, schedule</td></tr>
+        <tr><td>02.03.26 Digital Marketing for Creatives.pdf</td><td>Research and Dev/</td><td>Helen McNulty workshop presentation</td></tr>
+        <tr><td>Alchemy — Rory Sutherland</td><td>Reading List/</td><td>Counterintuitive marketing, perception > reality</td></tr>
+        <tr><td>Purple Cow — Seth Godin</td><td>Reading List/</td><td>Remarkability, built-in word-of-mouth</td></tr>
+        <tr><td>Psychology of Persuasion — Cialdini</td><td>Reading List/</td><td>6 principles of influence</td></tr>
+        <tr><td>Bernadette Jiwa (6 books)</td><td>Reading List/</td><td>Story-driven marketing, emotional significance, the change you make</td></tr>
+      </table>
+      
+      <h3>Generated Documents — Strategy & Frameworks</h3>
+      <table>
+        <tr><th>Document</th><th>Location</th><th>Content</th></tr>
+        <tr><td><strong>LIGHTHEART-PR-MARKETING-MASTER.md</strong></td><td>PR-Marketing-Plan/</td><td>This document — the full 21-section master plan with TSM integration</td></tr>
+        <tr><td><strong>POSITIONING-ONE-PAGER.md</strong></td><td>PR-Marketing-Plan/</td><td>Draft positioning: Why We Exist, Core Promise, Story of Change, Tone</td></tr>
+        <tr><td><strong>APPLIED-FRAMEWORKS-PLAYBOOK.md</strong></td><td>PR-Marketing-Plan/</td><td>Tactical calendar integrating all 5 frameworks by week</td></tr>
+        <tr><td><strong>CONTENT-BRIEF-TEMPLATE.md</strong></td><td>PR-Marketing-Plan/</td><td>Reusable content brief with 5-framework alignment checks</td></tr>
+      </table>
+      
+      <h3>Generated Documents — Book Analyses</h3>
+      <table>
+        <tr><th>Document</th><th>Location</th><th>Content</th></tr>
+        <tr><td><strong>01-alchemy-sutherland.md</strong></td><td>PR-Marketing-Plan/book-analyses/</td><td>Full Sutherland analysis: Psycho-Logic, Signaling, 10 Lightheart applications</td></tr>
+        <tr><td><strong>02-purple-cow-godin.md</strong></td><td>PR-Marketing-Plan/book-analyses/</td><td>Full Godin analysis: Sneezers, Magic Cycle, 10 Lightheart applications</td></tr>
+        <tr><td><strong>03-persuasion-cialdini.md</strong></td><td>PR-Marketing-Plan/book-analyses/</td><td>Full Cialdini analysis: 6 Principles, Tactical Playbook, Trigger Reference Table</td></tr>
+        <tr><td><strong>04-bernadette-jiwa-synthesis.md</strong></td><td>PR-Marketing-Plan/book-analyses/</td><td>6-book Jiwa synthesis: Fortune Cookie, Difference Model, 15 applications, 10 diagnostic questions</td></tr>
+        <tr><td><strong>05-helen-mcnulty-framework.md</strong></td><td>PR-Marketing-Plan/book-analyses/</td><td>RACE Model, Holistic Marketing, 90-Day Plan, Value Proposition Development</td></tr>
+      </table>
+      
+      <h3>Generated Documents — Operational Deliverables</h3>
+      <table>
+        <tr><th>Document</th><th>Location</th><th>Content</th></tr>
+        <tr><td><strong>DELIVERABLES-TIMELINE-SEPT2026.md</strong></td><td>PR-Marketing-Plan/</td><td>150-deliverable timeline Mar–Sep 2026 with TSM + 5 frameworks integrated, critical path, phase gates</td></tr>
+        <tr><td><strong>EDITORIAL-CALENDAR-90DAY.md</strong></td><td>PR-Marketing-Plan/</td><td>13-week day-by-day content calendar (Wk 1–13), 4 content series, approval workflow</td></tr>
+        <tr><td><strong>FOUNDING-MEMBER-PROGRAMME.md</strong></td><td>PR-Marketing-Plan/</td><td>"The Founding Circle" — 3 tiers (€199/€499/€999), 200-member cap, financial model, launch strategy</td></tr>
+        <tr><td><strong>WEBSITE-COPY-V1.md</strong></td><td>PR-Marketing-Plan/</td><td>Complete 7-page website copy: Homepage, About, Exhibitions, Visit, Press, Newsletter, Membership + SEO</td></tr>
+        <tr><td><strong>PRESS-KIT-DRAFT.md</strong></td><td>PR-Marketing-Plan/</td><td>Press release, fact sheet, founder bio, quote sheet, 6 press angles, embargo protocol</td></tr>
+      </table>
+      
+      <h3>Web Version</h3>
+      <table>
+        <tr><th>Document</th><th>Location</th><th>Content</th></tr>
+        <tr><td><strong>web/index.html</strong></td><td>PR-Marketing-Plan/web/</td><td>Shareable interactive HTML version — all documents, TSM integration, responsive design</td></tr>
+      </table>
+      
+      <h3>Academic Source</h3>
+      <table>
+        <tr><th>Document</th><th>Location</th><th>Content</th></tr>
+        <tr><td><strong>Kevin Freeney Thesis 2025.pdf</strong></td><td>MASTERS/THESIS SUBMISSION/</td><td><em>Re-Embodiment in Digital Art: A Triple Stack Model for the Neganthropocene</em> — MA Thesis, source of TSM methodology</td></tr>
+      </table>
+      
+      <h3>Text Extracts (for reference/search)</h3>
+      <table>
+        <tr><th>Extract</th><th>Source</th><th>Size</th></tr>
+        <tr><td>alchemy-sutherland.txt</td><td>Alchemy — Rory Sutherland</td><td>42,520 chars</td></tr>
+        <tr><td>purple-cow-godin.txt</td><td>Purple Cow — Seth Godin</td><td>78,788 chars</td></tr>
+        <tr><td>persuasion-cialdini.txt</td><td>Influence — Robert Cialdini</td><td>149,980 chars</td></tr>
+        <tr><td>difference-jiwa.txt</td><td>Difference — Bernadette Jiwa</td><td>89,628 chars</td></tr>
+        <tr><td>make-idea-matter-jiwa.txt</td><td>Make Your Idea Matter — Jiwa</td><td>67,526 chars</td></tr>
+        <tr><td>marketing-love-story-jiwa.txt</td><td>Marketing: A Love Story — Jiwa</td><td>100,005 chars</td></tr>
+        <tr><td>story-driven-jiwa.txt</td><td>Story Driven — Jiwa</td><td>113,656 chars</td></tr>
+        <tr><td>fortune-cookie-jiwa.txt</td><td>Fortune Cookie Principle — Jiwa</td><td>110,185 chars</td></tr>
+        <tr><td>storytellers-know-jiwa.txt</td><td>What Great Storytellers Know — Jiwa</td><td>64,988 chars</td></tr>
+        <tr><td>helen-mcnulty-digital-marketing.txt</td><td>Digital Marketing for Creatives — McNulty</td><td>16,586 chars</td></tr>
+      </table>
+      
+      <span class="section-anchor" id="appendix-d"></span>
+      <h2>Appendix D: Web Version & Deployment</h2>
+      
+      <h3>Shareable HTML Site</h3>
+      <p>A complete interactive HTML version of this plan is available at <code>PR-Marketing-Plan/web/index.html</code>. This self-contained file includes:</p>
+      <ul>
+        <li>All 12 content sections from this master document</li>
+        <li>Collapsible framework analysis sections</li>
+        <li>CSS visual timeline</li>
+        <li>Responsive design (mobile, tablet, desktop)</li>
+        <li>Print-friendly styles</li>
+        <li>No external dependencies (except Google Fonts)</li>
+      </ul>
+      
+      <h3>Deployment Options</h3>
+      <p>To share this with designers, marketeers, and the managing director, deploy the HTML file using one of these methods:</p>
+      
+      <p><strong>Option 1: GitHub Pages (Recommended — Free, version-controlled)</strong></p>
+      <pre># 1. Create a repository on GitHub
+# 2. Push the web/ folder contents
+# 3. Enable GitHub Pages in Settings → Pages → Source: main branch
+# URL will be: https://[username].github.io/[repo-name]/</pre>
+      
+      <p><strong>Option 2: Netlify Drop (Fastest — drag and drop)</strong></p>
+      <pre># Visit https://app.netlify.com/drop
+# Drag the web/ folder onto the page
+# Instant URL generated — shareable immediately
+# Free tier available</pre>
+      
+      <p><strong>Option 3: Cloudflare Pages (Fast, free CDN)</strong></p>
+      <pre># 1. Connect GitHub repo or drag-and-drop
+# 2. Deploy from web/ folder
+# URL: https://[project].pages.dev</pre>
+      
+      <p><strong>Option 4: Vercel (Simple, free)</strong></p>
+      <pre># Install: npm i -g vercel
+# Navigate to web/ folder
+# Run: vercel
+# Follow prompts — instant URL</pre>
+      
+      <p><strong>Option 5: Simple file sharing</strong></p>
+      <pre># Upload web/index.html to Google Drive, Dropbox, or OneDrive
+# Share link — recipients download and open in browser
+# No hosting needed, but no live URL</pre>
+      
+      <hr>
+      
+      <p class="text-muted" style="text-align:center;margin-top:3rem">
+        <em>This is a living document. Update weekly during sprint reviews.</em><br>
+        <strong>Last updated: 2026-03-10</strong>
+      </p>
+      
+    </div>
+  </div>
+</body>
+</html>

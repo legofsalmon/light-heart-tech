@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founding Members | Lightheart — Limited to 200 People</title>
+  <meta name="description" content="Join The Founding Circle — limited to 200 people. Priority booking, exclusive previews, and permanent recognition as a founding supporter of Dublin's immersive gallery.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/main.css">
+  
+  <style>
+    .urgency-banner {
+      background: var(--color-gold);
+      color: var(--color-bg);
+      text-align: center;
+      padding: var(--space-sm) 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .social-proof {
+      background: var(--color-gold-dim);
+      border: 1px solid var(--color-gold-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .social-proof-text {
+      color: var(--color-gold);
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+    
+    .guarantee {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--color-bg-elevated);
+      border-radius: var(--radius-md);
+      margin-top: var(--space-xl);
+    }
+    
+    .guarantee-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .guarantee-content h4 {
+      margin-bottom: var(--space-xs);
+    }
+    
+    .guarantee-content p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Urgency Banner -->
+  <div class="urgency-banner">
+    🔥 Only 200 Founding Member places available — When they're gone, they're gone
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header" style="top: 36px;">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Light<span>heart</span></a>
+      
+      <nav class="nav" id="nav">
+        <a href="about.html" class="nav-link">About</a>
+        <a href="exhibitions.html" class="nav-link">Exhibitions</a>
+        <a href="visit.html" class="nav-link">Visit</a>
+        <a href="membership.html" class="nav-link active">Membership</a>
+        <a href="press.html" class="nav-link">Press</a>
+      </nav>
+      
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header" style="padding-top: calc(var(--header-height) + var(--space-4xl) + 36px);">
+    <div class="container">
+      <span class="feature-label">The Founding Circle</span>
+      <h1 class="page-header-title">200 people.<br>One shared belief.</h1>
+      <p class="page-header-subtitle">That Dublin deserves this. Join a community of people who chose to believe in something before it was proven.</p>
+    </div>
+  </section>
+
+  <!-- What Founding Membership Means -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="social-proof">
+        <p class="social-proof-text">🎯 <span data-counter="50">0</span>+ people have already joined — Secure your place</p>
+      </div>
+      
+      <div class="text-center">
+        <p style="font-size: 1.125rem; color: var(--color-text); margin-bottom: var(--space-lg);">Founding membership is not a loyalty card. It is a statement — that you believe in what Lightheart represents, that you want to be part of its story from the very beginning, and that you value cultural experiences that challenge and move you.</p>
+        
+        <p style="color: var(--color-text-muted);">As a founding member, you're not just buying access. You're joining a community of people who chose to believe in something before it was proven.</p>
+        
+        <p class="text-gold" style="font-style: italic; margin-top: var(--space-xl);">Founding membership is limited to 200 people. When they're gone, they're gone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Tiers -->
+  <section class="section" style="background: var(--color-bg-elevated);">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="feature-label">Choose Your Place</span>
+        <h2>Three ways to join</h2>
+        <p style="color: var(--color-text-muted); max-width: 600px; margin: var(--space-md) auto 0;">Each tier offers a different level of access and recognition. All founding members receive lifetime price protection.</p>
+      </div>
+      
+      <div class="tier-grid">
+        <!-- Circle Tier -->
+        <div class="tier">
+          <h3 class="tier-name">Circle</h3>
+          <div class="tier-price">€199<span>/year</span></div>
+          <p class="tier-description">For the culturally engaged Dubliner who wants to be part of something from the start.</p>
+          
+          <ul class="tier-features">
+            <li>Priority booking (48hr advance)</li>
+            <li>Unlimited exhibition visits</li>
+            <li>Quarterly preview evenings</li>
+            <li>Founding Circle newsletter</li>
+            <li>Membership card (numbered)</li>
+            <li>Welcome pack</li>
+            <li>Name on founding wall</li>
+            <li>2 guest passes per year</li>
+          </ul>
+          
+          <button class="btn btn-secondary tier-cta" onclick="joinTier('circle')">Join Circle →</button>
+        </div>
+        
+        <!-- Inner Circle Tier -->
+        <div class="tier tier-featured">
+          <h3 class="tier-name">Inner Circle</h3>
+          <div class="tier-price">€499<span>/year</span></div>
+          <p class="tier-description">For those who want deeper access and exclusive experiences.</p>
+          
+          <ul class="tier-features">
+            <li>Extended priority (1 week advance)</li>
+            <li>Unlimited visits + 1 permanent guest</li>
+            <li>All preview evenings</li>
+            <li>Quarterly curator walkthroughs</li>
+            <li>Behind-the-scenes visits</li>
+            <li>Premium membership card (metal)</li>
+            <li>Enhanced welcome pack</li>
+            <li>Name on founding wall (tier designation)</li>
+            <li>Website listing (opt-in)</li>
+            <li>6 guest passes per year</li>
+          </ul>
+          
+          <button class="btn btn-primary tier-cta" onclick="joinTier('inner')">Join Inner Circle →</button>
+        </div>
+        
+        <!-- Cornerstone Tier -->
+        <div class="tier">
+          <h3 class="tier-name">Cornerstone</h3>
+          <div class="tier-price">€999<span>/year</span></div>
+          <p class="tier-description">For patrons who want to make a foundational statement.</p>
+          
+          <ul class="tier-features">
+            <li>Guaranteed entry (any session)</li>
+            <li>Unlimited visits + 1 permanent guest</li>
+            <li>All Inner Circle benefits</li>
+            <li>Artist dinners (2x/year)</li>
+            <li>Direct line to Artistic Director</li>
+            <li>Luxury membership card (hand-finished)</li>
+            <li>Complete welcome pack + limited print</li>
+            <li>Prominent wall placement</li>
+            <li>12 guest passes per year</li>
+            <li>1 gift membership included</li>
+          </ul>
+          
+          <button class="btn btn-secondary tier-cta" onclick="joinTier('cornerstone')">Join Cornerstone →</button>
+        </div>
+      </div>
+      
+      <div class="guarantee">
+        <span class="guarantee-icon">🛡️</span>
+        <div class="guarantee-content">
+          <h4>Lifetime Price Protection</h4>
+          <p>Founding members keep their price forever as long as membership is continuous. Future members will pay more. Your founding status is permanent — your name stays on the wall even if you don't renew.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Fortune Not Cookie -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-2xl">
+        <span class="feature-label">What You're Really Buying</span>
+        <h2>The fortune, not the cookie</h2>
+      </div>
+      
+      <div class="card-grid card-grid-2">
+        <div class="card">
+          <h4 style="color: var(--color-gold); margin-bottom: var(--space-md);">🎫 The Cookie (What You Get)</h4>
+          <ul style="color: var(--color-text-muted); margin-left: var(--space-lg); margin-bottom: 0;">
+            <li>Priority booking for exhibitions</li>
+            <li>Exclusive preview evenings</li>
+            <li>Physical membership card</li>
+            <li>Curator-led walkthroughs</li>
+            <li>Welcome pack</li>
+            <li>Name on founding wall</li>
+            <li>Behind-the-scenes newsletter</li>
+            <li>Guest passes</li>
+          </ul>
+        </div>
+        
+        <div class="card" style="border-color: var(--color-gold-border);">
+          <h4 style="color: var(--color-gold); margin-bottom: var(--space-md);">💫 The Fortune (What It Means)</h4>
+          <ul style="color: var(--color-text-muted); margin-left: var(--space-lg); margin-bottom: 0;">
+            <li>The confidence you'll never miss a show</li>
+            <li>Standing in the room before anyone else</li>
+            <li>An object that reminds you who you are</li>
+            <li>Understanding the why behind the work</li>
+            <li>The feeling of being personally received</li>
+            <li>Permanence — part of the building's story</li>
+            <li>Knowing things the public doesn't</li>
+            <li>The ability to give extraordinary gifts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Join -->
+  <section class="section" style="background: var(--color-bg-elevated);">
+    <div class="container container-narrow">
+      <div class="text-center mb-2xl">
+        <span class="feature-label">How to Join</span>
+        <h2>Three phases to 200</h2>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+        <div style="display: flex; gap: var(--space-lg); align-items: flex-start;">
+          <div style="width: 40px; height: 40px; background: var(--color-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">✓</div>
+          <div>
+            <h4 style="margin-bottom: var(--space-xs);">Phase 1: Warm Network (COMPLETE)</h4>
+            <p style="color: var(--color-text-muted); margin-bottom: 0;">50 founding members secured through personal outreach. The community has begun.</p>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: var(--space-lg); align-items: flex-start;">
+          <div style="width: 40px; height: 40px; background: var(--color-gold); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">→</div>
+          <div>
+            <h4 style="margin-bottom: var(--space-xs);">Phase 2: Extended Network (NOW OPEN)</h4>
+            <p style="color: var(--color-text-muted); margin-bottom: 0;">Newsletter subscribers and referred friends. <strong>Places remaining: ~100</strong></p>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: var(--space-lg); align-items: flex-start;">
+          <div style="width: 40px; height: 40px; background: var(--color-surface); border: 2px solid var(--color-gold-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+          <div>
+            <h4 style="margin-bottom: var(--space-xs);">Phase 3: Final Places (COMING)</h4>
+            <p style="color: var(--color-text-muted); margin-bottom: 0;">Public announcement of final availability. Waitlist opens when full.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container container-narrow">
+      <div class="text-center mb-2xl">
+        <span class="feature-label">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">What happens if I don't renew?</div>
+          <div class="faq-answer">
+            <p>Your founding designation on the wall remains — permanently. Active benefits cease, but your place in Lightheart's history is secure. If you wish to rejoin later, you can at the then-current rate.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Can I upgrade my tier later?</div>
+          <div class="faq-answer">
+            <p>Yes, you can upgrade at any time. The price difference will be calculated pro-rata for your current membership year.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Is this tax deductible?</div>
+          <div class="faq-answer">
+            <p>Founding Circle memberships may be tax deductible for some members. Consult your tax advisor. We can provide receipts and documentation as needed.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">When will I receive my welcome pack?</div>
+          <div class="faq-answer">
+            <p>Welcome packs will be dispatched in August 2026, ahead of the September gallery opening. This allows us to include exhibition-specific materials and ensures everything meets our quality standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">Join The Founding Circle</h2>
+        <p class="newsletter-text" style="font-size: 1.125rem;">200 people. When they're gone, they're gone.<br>Your founding designation is forever.</p>
+        <button class="btn btn-primary btn-large" onclick="joinTier('inner')">Secure your place →</button>
+        <p class="newsletter-note">Questions? Email <a href="mailto:founding@lightheart.ie">founding@lightheart.ie</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Modal (Hidden by default) -->
+  <div id="joinModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: var(--space-lg);">
+    <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-gold-border); border-radius: var(--radius-lg); padding: var(--space-2xl); max-width: 480px; width: 100%; text-align: center;">
+      <h3 style="color: var(--color-gold); margin-bottom: var(--space-md);">Coming June 2026</h3>
+      <p style="color: var(--color-text-muted); margin-bottom: var(--space-xl);">Applications for The Founding Circle open soon. Join the waiting list to be notified first and secure your place before public announcement.</p>
+      <a href="newsletter.html?utm_source=membership_page&utm_medium=modal&utm_campaign=founding_circle" class="btn btn-primary">Join waiting list →</a>
+      <button onclick="closeModal()" style="display: block; margin: var(--space-md) auto 0; background: none; border: none; color: var(--color-text-muted); cursor: pointer;">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Light<span>heart</span></div>
+          <p class="footer-tagline">Dublin's immersive gallery. Where art surrounds you. Opening September 2026 on the Dublin Quays.</p>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="exhibitions.html">Exhibitions</a></li>
+            <li><a href="visit.html">Visit</a></li>
+            <li><a href="membership.html">Membership</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Information</h4>
+          <ul class="footer-links">
+            <li><a href="press.html">Press</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="membership.html#faq">FAQ</a></li>
+            <li><a href="mailto:founding@lightheart.ie">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">LinkedIn</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Lightheart Immersive. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="LinkedIn">💼</a>
+          <a href="newsletter.html" aria-label="Newsletter">✉</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function joinTier(tier) {
+      trackEvent('FoundingCircle', 'click_join', tier);
+      document.getElementById('joinModal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+      document.getElementById('joinModal').style.display = 'none';
+    }
+    
+    // Close modal on background click
+    document.getElementById('joinModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('joinModal')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
