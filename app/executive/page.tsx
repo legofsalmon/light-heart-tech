@@ -574,7 +574,7 @@ export default function ExecutivePage() {
               ))}
             </div>
             <p style={{ fontSize: '0.8rem', color: isDarkMode ? '#555' : '#aaa' }}>
-              Core team: Kev Freeney (Creative Director), Kris Berzins (Technical Lead), Colly (Infrastructure), plus contractors as needed.
+              Core team: Kev Freeney (Creative Director), Krisjanis Berzins (Technical Lead), Colly (Infrastructure), plus contractors as needed.
             </p>
           </>
         )}

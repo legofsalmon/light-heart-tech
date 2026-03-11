@@ -380,7 +380,7 @@ export default function OpsHubPage() {
               />
             </div>
             <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.8rem', color: muted }}>
-              <strong style={{ color: gold }}>Concrescence</strong> \u2014 The moment all three stacks align. Opening night is the first.
+              <strong style={{ color: gold }}>Concrescence</strong> &mdash; The moment all three stacks align. Opening night is the first.
             </div>
           </>
         )}
