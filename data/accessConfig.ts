@@ -56,6 +56,8 @@ export function getRouteZone(pathname: string): Zone {
   if (pathname.startsWith('/visit')) return 'marketing';
   if (pathname.startsWith('/artists')) return 'marketing';
   if (pathname.startsWith('/press')) return 'marketing';
+  if (pathname.startsWith('/exhibitions')) return 'marketing';
+  if (pathname.startsWith('/membership')) return 'marketing';
   if (pathname.startsWith('/brand')) return 'brand';
   // All tech spec routes: /, /brief, /projection, /signal, etc.
   return 'techspec';

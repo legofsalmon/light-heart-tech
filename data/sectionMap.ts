@@ -44,6 +44,8 @@ export const NAV_ITEMS: SectionMeta[] = [
   { slug: 'about', navLabel: 'ABOUT', zone: 'marketing' },
   { slug: 'visit', navLabel: 'VISIT', zone: 'marketing' },
   { slug: 'artists', navLabel: 'ARTISTS', zone: 'marketing' },
+  { slug: 'exhibitions', navLabel: 'EXHIBITIONS', zone: 'marketing' },
+  { slug: 'membership', navLabel: 'MEMBERSHIP', zone: 'marketing' },
   { slug: 'press', navLabel: 'PRESS', zone: 'marketing' },
 ];
 

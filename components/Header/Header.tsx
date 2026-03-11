@@ -54,6 +54,8 @@ export default function Header() {
     if (pathname.startsWith('/visit')) return 'marketing';
     if (pathname.startsWith('/artists')) return 'marketing';
     if (pathname.startsWith('/press')) return 'marketing';
+    if (pathname.startsWith('/exhibitions')) return 'marketing';
+    if (pathname.startsWith('/membership')) return 'marketing';
     if (pathname.startsWith('/brand')) return 'brand';
     return 'techspec';
   }, [pathname]);
