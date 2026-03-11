@@ -213,6 +213,199 @@
   margin: 0 auto;
 }
 
+/* ── Experience section ────────── */
+.experienceSection {
+  padding: $space-2xl $space-md;
+  border-top: 1px solid rgba(0, 240, 255, 0.06);
+
+  :global(.light-mode) & { border-top-color: rgba(0, 0, 0, 0.06); }
+
+  @include sm { padding: $space-2xl $space-lg; }
+}
+
+.experienceInner {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.sectionHeading {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: $space-sm;
+  letter-spacing: -0.01em;
+
+  @include sm { font-size: 1.875rem; }
+}
+
+.sectionSubtext {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: $space-xl;
+
+  @include sm { font-size: 1rem; }
+}
+
+.roomGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-lg;
+
+  @include md { grid-template-columns: repeat(2, 1fr); }
+}
+
+.roomCard {
+  position: relative;
+  padding: $space-lg;
+  border-radius: $radius-md;
+
+  @include sm { padding: $space-xl; }
+}
+
+.roomTitle {
+  font-family: $font-display;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: $space-sm;
+
+  @include sm { font-size: 1.25rem; }
+}
+
+.roomStats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-sm;
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  margin-bottom: $space-md;
+}
+
+.roomDesc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* ── Teaser section ───────────── */
+.teaserSection {
+  padding: $space-xl $space-md;
+
+  @include sm { padding: $space-xl $space-lg; }
+}
+
+.teaserInner {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.teaserCard {
+  display: block;
+  position: relative;
+  padding: $space-lg;
+  border-radius: $radius-md;
+  text-align: center;
+  transition: all $transition-base;
+
+  @include sm { padding: $space-xl; }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.teaserBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: $space-md;
+}
+
+.teaserTitle {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: $space-sm;
+
+  @include sm { font-size: 1.5rem; }
+}
+
+.teaserDate {
+  font-size: 0.875rem;
+  margin-bottom: $space-md;
+}
+
+.teaserLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+
+  svg {
+    transition: transform $transition-base;
+  }
+
+  .teaserCard:hover & svg {
+    transform: translateX(4px);
+  }
+}
+
+/* ── Nav CTA section ──────────── */
+.navCtaSection {
+  padding: 0 $space-md $space-2xl;
+
+  @include sm { padding: 0 $space-lg $space-2xl; }
+}
+
+.navCtaInner {
+  max-width: 56rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+
+  @include sm { grid-template-columns: repeat(2, 1fr); }
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.navCtaCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-md $space-lg;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  svg {
+    transition: transform $transition-base;
+    flex-shrink: 0;
+  }
+}
+
+.navCtaLabel {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
 /* ── Info bar ──────────────────── */
 .infoBar {
   border-top: 1px solid;

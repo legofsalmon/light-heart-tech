@@ -90,8 +90,8 @@ const SERVER_ROOM = {
 const BY_THE_NUMBERS = [
   { metric: 'Total Investment', value: '\u20AC4\u20134.5 million' },
   { metric: 'Exhibition Space', value: '~280 sq. m.' },
-  { metric: 'Projector Power', value: '24,510W' },
-  { metric: 'Heat Generated', value: '82,880 BTU/h' },
+  { metric: 'Projector Power', value: '24,610W' },
+  { metric: 'Heat Generated', value: '118,491 BTU/h' },
   { metric: 'Network Speed', value: '100G backbone' },
   { metric: 'Audio Latency', value: '3.2ms' },
   { metric: 'Sync Accuracy', value: 'Sample-accurate' },

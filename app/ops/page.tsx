@@ -450,7 +450,7 @@ export default function OpsHubPage() {
               searchable={false}
               compact
             />
-            <p style={{ fontSize: '0.75rem', color: muted, marginBottom: '1.5rem' }}>Total: 24,510W / ~121A. Heat: 82,880 BTU/h. Signal: DisplayPort 1.4 over OS2 fiber (DVIGear DVI-7380).</p>
+            <p style={{ fontSize: '0.75rem', color: muted, marginBottom: '1.5rem' }}>Total: 24,610W / ~121A. Projector heat: ~82,880 BTU/h. Signal: DisplayPort 1.4 over OS2 fiber (DVIGear DVI-7380).</p>
 
             <h4 style={{ color: accent, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Audio {'\u2014'} L-ISA Spatial (87 speakers)</h4>
             <DataTable

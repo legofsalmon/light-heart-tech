@@ -97,6 +97,11 @@ export default function HomePage() {
                 ? 'TECHNICAL SPECIFICATION BY IDIRNET'
                 : "Dublin's immersive gallery where contemporary art surrounds you"}
             </div>
+            <div className={styles.byline} style={{ color: muted, marginTop: '0.35rem' }}>
+              {isInternal
+                ? "Dublin's purpose-built immersive gallery where contemporary art surrounds you"
+                : ''}
+            </div>
           </div>
 
           {/* Gradient divider */}
@@ -114,16 +119,16 @@ export default function HomePage() {
           }}>
             {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
             <h2 className={styles.introTitle} style={{ color: isDarkMode ? '#FFF' : '#000' }}>
-              {isInternal ? 'Welcome to This Technical Specification' : 'Purpose-Built for Immersion'}
+              {isInternal ? 'Welcome to Lightheart' : 'Purpose-Built for Immersion'}
             </h2>
             <p className={styles.introText} style={{ color: muted }}>
               {isInternal
-                ? `This document contains the complete technical design, specification, and budget ring-fencing for a permanent two-room immersive installation. The system comprises ${SPECS.projectors} projectors, ${SPECS.speakers} speakers, ${SPECS.mediaServers} media servers, and comprehensive network infrastructure.`
-                : `Lightheart is a purpose-built immersive art space on Dublin\u2019s quays. ${SPECS.projectors} Barco projectors fill the walls. ${SPECS.speakers} L-Acoustics speakers create three-dimensional sound. ${SPECS.depthCameras} depth cameras respond to your presence. You don\u2019t view the art\u2014you\u2019re inside it.`}
+                ? `Lightheart is Dublin${'\u2019'}s purpose-built immersive gallery where contemporary art surrounds you. This specification covers the complete technical design for a permanent two-room installation: ${SPECS.projectors} projectors, ${SPECS.speakers} speakers, ${SPECS.mediaServers} media servers, and comprehensive network infrastructure across ${SPECS.totalArea} square metres.`
+                : `Lightheart is a purpose-built immersive art space on Dublin\u2019s quays. ${SPECS.projectors} Barco projectors fill the walls. ${SPECS.speakers} L-Acoustics speakers create three-dimensional sound. ${SPECS.depthCameras} depth cameras respond to your presence. You don\u2019t view the art${'\u2014'}you\u2019re inside it.`}
             </p>
             <p className={styles.introText} style={{ color: muted }}>
               {isInternal
-                ? `Target opening: ${SPECS.opening}. Location: Dublin, Ireland. Total project duration: 21 days from commencement to completion.`
+                ? `Two galleries. ${SPECS.audioObjects} individually controlled audio objects in 3D space. ${SPECS.depthCameras} depth sensors tracking visitor movement. Target opening: ${SPECS.opening}. Location: Dublin, Ireland.`
                 : `Two galleries. ${SPECS.totalArea} square metres. ${SPECS.audioObjects} individually controlled audio objects in 3D space. Opening ${SPECS.opening}.`}
             </p>
           </div>
@@ -163,10 +168,143 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Secondary stats bar */}
+      <div className={styles.statsBar} style={{ borderTopColor: border }}>
+        <div className={styles.statsInner}>
+          {[
+            { value: SPECS.galleries, label: 'GALLERIES' },
+            { value: SPECS.audioObjects, label: 'AUDIO OBJECTS' },
+            { value: SPECS.depthCameras, label: 'DEPTH SENSORS' },
+          ].map((stat, i) => (
+            <div key={i} className={styles.statItem}>
+              <div className={styles.statValue} style={{ color: accent }}>
+                <AnimatedCounter target={stat.value} duration={1.5 + i * 0.2} />
+              </div>
+              <div className={styles.statLabel} style={{ color: muted }}>{stat.label}</div>
+            </div>
+          ))}
+          <div className={styles.statItem}>
+            <div className={styles.statValue} style={{ color: accent, fontSize: '1.125rem' }}>
+              {SPECS.opening}
+            </div>
+            <div className={styles.statLabel} style={{ color: muted }}>OPENING</div>
+          </div>
+        </div>
+      </div>
+
       {/* System Architecture Diagram */}
       <div className={styles.diagramSection}>
         <div className={styles.diagramInner}>
           <SystemDiagram />
+        </div>
+      </div>
+
+      {/* Experience — Room cards */}
+      <div className={styles.experienceSection}>
+        <div className={styles.experienceInner}>
+          <h2 className={styles.sectionHeading} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
+            The Experience
+          </h2>
+          <p className={styles.sectionSubtext} style={{ color: muted }}>
+            Two purpose-built galleries designed from the ground up for immersive art.
+          </p>
+          <div className={styles.roomGrid}>
+            {/* Room 1 */}
+            <div className={styles.roomCard} style={{
+              border: cardBorder,
+              background: isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)',
+              backdropFilter: isDarkMode ? 'blur(20px)' : 'none',
+            }}>
+              {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
+              <h3 className={styles.roomTitle} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
+                Room 1: The Main Gallery
+              </h3>
+              <div className={styles.roomStats}>
+                <span style={{ color: accent }}>{SPECS.room1Area} sq.m</span>
+                <span style={{ color: muted }}>{'\u2022'}</span>
+                <span style={{ color: muted }}>{SPECS.room1WallProjectors + SPECS.room1FloorProjectors} projectors</span>
+                <span style={{ color: muted }}>{'\u2022'}</span>
+                <span style={{ color: muted }}>{SPECS.room1Speakers} speakers</span>
+              </div>
+              <p className={styles.roomDesc} style={{ color: muted }}>
+                The primary immersive space{'\u2014'}floor-to-ceiling projection across every surface with spatial audio that envelops the audience.
+              </p>
+            </div>
+            {/* Room 2 */}
+            <div className={styles.roomCard} style={{
+              border: cardBorder,
+              background: isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)',
+              backdropFilter: isDarkMode ? 'blur(20px)' : 'none',
+            }}>
+              {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
+              <h3 className={styles.roomTitle} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
+                Room 2: The Intimate Space
+              </h3>
+              <div className={styles.roomStats}>
+                <span style={{ color: accent }}>{SPECS.room2Area} sq.m</span>
+                <span style={{ color: muted }}>{'\u2022'}</span>
+                <span style={{ color: muted }}>{SPECS.room2WallProjectors + SPECS.room2FloorProjectors} projectors</span>
+                <span style={{ color: muted }}>{'\u2022'}</span>
+                <span style={{ color: muted }}>{SPECS.room2Speakers} speakers</span>
+              </div>
+              <p className={styles.roomDesc} style={{ color: muted }}>
+                A more focused, intimate environment for contemplative works and deeper audience interaction with the art.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Coming Soon — Exhibition teaser */}
+      <div className={styles.teaserSection}>
+        <div className={styles.teaserInner}>
+          <Link href="/exhibitions" className={styles.teaserCard} style={{
+            border: cardBorder,
+            background: isDarkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)',
+            backdropFilter: isDarkMode ? 'blur(20px)' : 'none',
+            textDecoration: 'none',
+          }}>
+            {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
+            <div className={styles.teaserBadge} style={{
+              background: isDarkMode ? 'rgba(0, 240, 255, 0.08)' : 'rgba(0, 102, 204, 0.06)',
+              border: isDarkMode ? '1px solid rgba(0, 240, 255, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
+              color: accent,
+            }}>
+              COMING SOON
+            </div>
+            <h3 className={styles.teaserTitle} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
+              Digital Nature {'\u2014'} Pauric Freeman
+            </h3>
+            <p className={styles.teaserDate} style={{ color: muted }}>
+              Opening {SPECS.opening}
+            </p>
+            <span className={styles.teaserLink} style={{ color: accent }}>
+              View Exhibition <ArrowRight size={16} />
+            </span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Navigation CTAs */}
+      <div className={styles.navCtaSection}>
+        <div className={styles.navCtaInner}>
+          {[
+            { label: 'Become a Founding Member', href: '/membership' },
+            { label: 'View Exhibition', href: '/exhibitions' },
+            { label: 'Plan Your Visit', href: '/visit' },
+            { label: 'Our Story', href: '/about' },
+          ].map((item) => (
+            <Link key={item.href} href={item.href} className={styles.navCtaCard} style={{
+              border: cardBorder,
+              background: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)',
+              textDecoration: 'none',
+            }}>
+              <span className={styles.navCtaLabel} style={{ color: isDarkMode ? '#FFF' : '#111' }}>
+                {item.label}
+              </span>
+              <ArrowRight size={18} style={{ color: accent }} />
+            </Link>
+          ))}
         </div>
       </div>
 
