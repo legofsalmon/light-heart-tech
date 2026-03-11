@@ -93,10 +93,12 @@ export default function Header() {
       <div className={styles.inner}>
         {/* Top row: Logo + zone tabs + actions */}
         <div className={styles.row}>
-          <Link href="/" className={styles.logo}>
-            <span className={styles.logoText} style={{ color: text }}>
-              LIGHTHEART
-            </span>
+          <div className={styles.logo}>
+            <Link href="/" className={styles.logoLink}>
+              <span className={styles.logoText} style={{ color: text }}>
+                LIGHTHEART
+              </span>
+            </Link>
             {showZoneTabs ? (
               <>
                 <span className={styles.logoDivider} style={{ color: muted }}>|</span>
@@ -127,7 +129,7 @@ export default function Header() {
                 </span>
               </>
             )}
-          </Link>
+          </div>
 
           <div className={styles.actions}>
             <SearchButton />

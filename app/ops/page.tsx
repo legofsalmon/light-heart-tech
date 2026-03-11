@@ -345,7 +345,7 @@ export default function OpsHubPage() {
       {/* TSM */}
       <div style={{ padding: '1.5rem', background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', marginBottom: '2rem', position: 'relative' }}>
         {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
-        <SectionHeader id="tsm" title="Triple Stack Model \u2014 Operational Checklists" icon={Layers} iconColor={gold} />
+        <SectionHeader id="tsm" title={`Triple Stack Model \u2014 Operational Checklists`} icon={Layers} iconColor={gold} />
         {openSections.tsm && (
           <>
             <p style={{ color: muted, fontSize: '0.8rem', marginBottom: '1rem', lineHeight: 1.6 }}>
@@ -415,9 +415,9 @@ export default function OpsHubPage() {
             <div style={{ background: `${gold}15`, border: `1px solid ${gold}30`, borderRadius: '8px', padding: '1.25rem', marginBottom: '1rem' }}>
               <h4 style={{ color: gold, marginBottom: '0.5rem', fontSize: '0.9rem' }}>Before any significant decision, ask:</h4>
               <ol style={{ paddingLeft: '1.25rem', fontSize: '0.85rem', color: text, lineHeight: 1.8 }}>
-                <li><strong>What would Jiwa do?</strong> \u2014 Does this align with our story? Does it lead with how the visitor feels?</li>
-                <li><strong>What would Sutherland test?</strong> \u2014 Is there a counter-intuitive option we&apos;re ignoring?</li>
-                <li><strong>What would Godin make remarkable?</strong> \u2014 Would a sneezer share this? Does it avoid invisibility?</li>
+                <li><strong>What would Jiwa do?</strong> {'\u2014'} Does this align with our story? Does it lead with how the visitor feels?</li>
+                <li><strong>What would Sutherland test?</strong> {'\u2014'} Is there a counter-intuitive option we&apos;re ignoring?</li>
+                <li><strong>What would Godin make remarkable?</strong> {'\u2014'} Would a sneezer share this? Does it avoid invisibility?</li>
               </ol>
             </div>
             <h4 style={{ color: gold, fontSize: '0.85rem', marginBottom: '0.25rem' }}>Morning Standup (5 min, daily)</h4>
@@ -452,7 +452,7 @@ export default function OpsHubPage() {
             />
             <p style={{ fontSize: '0.75rem', color: muted, marginBottom: '1.5rem' }}>Total: 24,510W / ~121A. Heat: 82,880 BTU/h. Signal: DisplayPort 1.4 over OS2 fiber (DVIGear DVI-7380).</p>
 
-            <h4 style={{ color: accent, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Audio \u2014 L-ISA Spatial (87 speakers)</h4>
+            <h4 style={{ color: accent, fontSize: '0.85rem', marginBottom: '0.5rem' }}>Audio {'\u2014'} L-ISA Spatial (87 speakers)</h4>
             <DataTable
               columns={[
                 { key: 'room', label: 'Room' },
