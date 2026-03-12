@@ -1,9 +1,19 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // SCSS is supported out of the box with the `sass` package installed
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],
+  },
+  transpilePackages: [
+    '@epok.tech/gl-gpgpu',
+    '@epok.tech/gl-screen-triangle',
+  ],
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.glsl$/,
+      type: 'asset/source',
+    });
+    return config;
   },
 };
 

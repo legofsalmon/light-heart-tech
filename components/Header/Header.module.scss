@@ -34,7 +34,12 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.logoLink {
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .logoText {
@@ -60,6 +65,78 @@
   letter-spacing: 0.05em;
 
   @include sm { display: inline; }
+}
+
+/* ── Zone tabs ────────────────── */
+
+.zoneTabs {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+
+  @include sm { display: flex; }
+}
+
+.zoneTab {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: all $transition-fast;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.userName {
+  display: none !important;
+
+  @include sm { display: inline !important; }
+}
+
+.logoutBtn {
+  padding: 0.4rem;
+  min-width: 32px;
+  min-height: 32px;
+  border: 1px solid;
+  border-radius: $radius-sm;
+  background: none;
+  cursor: pointer;
+  transition: color $transition-fast;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover { opacity: 0.8; }
+}
+
+/* ── Mobile zone group ────────── */
+
+.mobileZoneGroup {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: $space-sm;
+  padding-bottom: $space-sm;
+  border-bottom: 1px solid;
+  border-color: inherit;
+}
+
+.mobileZoneLink {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
 }
 
 /* ── Desktop nav (horizontally scrollable) ─── */

@@ -1,0 +1,167 @@
+@use '../../../styles/variables' as *;
+
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// ─── Floating controls ──────────────────────────────────
+
+.controls {
+  position: absolute;
+  top: $space-md;
+  right: $space-md;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.controlBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid $dark-border;
+}
+
+.lightControlBar {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: $light-border;
+}
+
+.filterBtn {
+  font-size: 0.6rem;
+  font-family: $font-mono;
+  padding: 3px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #888;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: #ccc;
+  }
+}
+
+.filterBtnActive {
+  font-weight: 600;
+}
+
+// ─── Back link ──────────────────────────────────────────
+
+.backLink {
+  position: absolute;
+  top: $space-md;
+  left: $space-md;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid $dark-border;
+  color: $neon-cyan;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-family: $font-mono;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.85);
+    border-color: $cyan-border;
+  }
+}
+
+.lightBackLink {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: $light-border;
+  color: #004466;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+// ─── Legend ──────────────────────────────────────────────
+
+.legend {
+  position: absolute;
+  bottom: $space-md;
+  left: $space-md;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid $dark-border;
+}
+
+.lightLegend {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: $light-border;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6rem;
+  font-family: $font-mono;
+  color: #999;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+// ─── Title ──────────────────────────────────────────────
+
+.titleOverlay {
+  position: absolute;
+  bottom: $space-md;
+  right: $space-md;
+  z-index: 10;
+  text-align: right;
+}
+
+.titleMain {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.lightTitleMain {
+  color: rgba(0, 0, 0, 0.08);
+}
+
+.titleSub {
+  font-family: $font-mono;
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.lightTitleSub {
+  color: rgba(0, 0, 0, 0.06);
+}

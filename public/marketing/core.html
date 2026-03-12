@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>IDIRNET Core — Lightheart Operations Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #141414;
+      --surface: #1c1c1c;
+      --text: #f5f5f0;
+      --gold: #c4a265;
+      --gold-light: #d4b275;
+      --gold-dim: rgba(196,162,101,0.15);
+      --gold-border: rgba(196,162,101,0.3);
+      --blue: #2a4a6b;
+      --blue-dim: rgba(42,74,107,0.15);
+      --green: #27ae60;
+      --green-dim: rgba(39,174,96,0.15);
+      --orange: #f39c12;
+      --orange-dim: rgba(243,156,18,0.15);
+      --red: #c0392b;
+      --red-dim: rgba(192,57,43,0.15);
+      --purple: #8e44ad;
+      --purple-dim: rgba(142,68,173,0.15);
+      --border: #2a2a2a;
+      --muted: #888;
+      --subtle: #666;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{color:var(--gold-light)}
+
+    /* Layout */
+    .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+
+    /* Sidebar */
+    .sidebar{background:var(--bg-elevated);border-right:1px solid var(--border);padding:1.5rem;position:sticky;top:0;height:100vh;overflow-y:auto}
+    .sidebar-brand{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:.25rem}
+    .sidebar-brand span{color:var(--gold)}
+    .sidebar-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:1.5rem;display:block}
+
+    .sidebar-section{margin-bottom:1.5rem}
+    .sidebar-heading{font-family:'Inter',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--subtle);margin-bottom:.5rem;font-weight:600}
+    .sidebar-link{display:block;padding:.4rem .75rem;color:var(--muted);font-size:.85rem;border-radius:4px;transition:all .15s;margin-bottom:2px}
+    .sidebar-link:hover{background:var(--gold-dim);color:var(--text)}
+    .sidebar-link.active{background:var(--gold-dim);color:var(--gold);border-left:2px solid var(--gold)}
+
+    .sidebar-team{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+    .team-member{display:flex;align-items:center;gap:.5rem;padding:.4rem 0;font-size:.8rem}
+    .team-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .team-dot.online{background:var(--green)}
+    .team-dot.away{background:var(--orange)}
+    .team-name{color:var(--text)}
+    .team-role{color:var(--subtle);font-size:.7rem}
+
+    /* Main Content */
+    .main{padding:2rem 3rem;max-width:1100px}
+
+    .page-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+    .page-header h1{font-size:2rem;margin-bottom:.5rem}
+    .page-header .subtitle{color:var(--muted);font-size:1rem}
+    .page-header .date{font-size:.75rem;color:var(--subtle);margin-top:.5rem}
+
+    /* Status Bar */
+    .status-bar{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+    .status-card{flex:1;min-width:180px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem}
+    .status-card .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.25rem}
+    .status-card .value{font-size:1.5rem;font-weight:600;font-family:'Playfair Display',serif}
+    .status-card .meta{font-size:.75rem;color:var(--subtle);margin-top:.25rem}
+    .status-card.green .value{color:var(--green)}
+    .status-card.gold .value{color:var(--gold)}
+    .status-card.orange .value{color:var(--orange)}
+    .status-card.red .value{color:var(--red)}
+
+    /* Sections */
+    .section{margin-bottom:3rem}
+    .section-anchor{position:relative;top:-80px;visibility:hidden}
+    .section h2{font-size:1.4rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    .section h3{font-size:1.1rem;margin:1.25rem 0 .75rem;color:var(--gold)}
+    .section h4{font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;margin:1rem 0 .5rem;color:var(--text)}
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem}
+    th{text-align:left;padding:.6rem .75rem;background:var(--bg-elevated);color:var(--gold);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--gold-border)}
+    td{padding:.6rem .75rem;border-bottom:1px solid var(--border);vertical-align:top}
+    tr:hover td{background:rgba(255,255,255,0.02)}
+
+    /* Cards */
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+    .card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:1.25rem;transition:border-color .2s}
+    .card:hover{border-color:var(--gold-border)}
+    .card-title{font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;margin-bottom:.5rem}
+    .card-text{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+    /* TSM Stacks */
+    .tsm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+    .tsm-stack{background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:1.25rem;border-top:3px solid var(--gold)}
+    .tsm-stack.global{border-top-color:var(--blue)}
+    .tsm-stack.internal{border-top-color:var(--gold)}
+    .tsm-stack.external{border-top-color:var(--green)}
+    .tsm-stack h4{font-family:'Playfair Display',serif;margin-bottom:.75rem;font-size:1rem}
+    .tsm-stack .subtitle{font-size:.75rem;color:var(--muted);margin-bottom:.75rem;font-style:italic}
+    .tsm-item{display:flex;justify-content:space-between;padding:.35rem 0;font-size:.8rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .tsm-item .plane{color:var(--text)}
+    .tsm-item .check{color:var(--muted);font-size:.75rem}
+    .tsm-item.done .check{color:var(--green)}
+    .tsm-item.wip .check{color:var(--orange)}
+    .tsm-item.pending .check{color:var(--subtle)}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:2rem;margin:1rem 0}
+    .timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--border)}
+    .timeline-item{position:relative;margin-bottom:1.25rem;padding-left:1.5rem}
+    .timeline-item::before{content:'';position:absolute;left:-2rem;top:.5rem;width:16px;height:16px;border-radius:50%;border:2px solid var(--border);background:var(--bg)}
+    .timeline-item.done::before{background:var(--green);border-color:var(--green)}
+    .timeline-item.active::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(196,162,101,0.4)}
+    .timeline-item.upcoming::before{background:var(--bg-elevated);border-color:var(--subtle)}
+    .timeline-date{font-size:.7rem;color:var(--subtle);text-transform:uppercase;letter-spacing:.05em}
+    .timeline-title{font-weight:600;font-size:.9rem;margin:.15rem 0}
+    .timeline-desc{font-size:.8rem;color:var(--muted)}
+
+    /* Tags */
+    .tag{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+    .tag.critical{background:var(--red-dim);color:var(--red)}
+    .tag.active{background:var(--green-dim);color:var(--green)}
+    .tag.pending{background:var(--orange-dim);color:var(--orange)}
+    .tag.blocked{background:var(--red-dim);color:var(--red)}
+    .tag.complete{background:var(--green-dim);color:var(--green)}
+
+    /* Decision Framework */
+    .decision-box{background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:8px;padding:1.25rem;margin:1rem 0}
+    .decision-box h4{color:var(--gold);margin-bottom:.5rem}
+    .decision-box ol{padding-left:1.25rem;font-size:.85rem;color:var(--text)}
+    .decision-box li{margin-bottom:.35rem}
+
+    /* Quick Actions */
+    .quick-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin:1rem 0}
+    .action-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.8rem;transition:all .2s;cursor:pointer}
+    .action-btn:hover{border-color:var(--gold);background:var(--gold-dim)}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:fixed;left:-280px;z-index:100;transition:left .3s;width:280px}
+      .sidebar.open{left:0}
+      .main{padding:1.5rem}
+      .tsm-grid{grid-template-columns:1fr}
+      .status-bar{flex-direction:column}
+    }
+
+    .mobile-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:101;background:var(--bg-elevated);border:1px solid var(--border);color:var(--text);padding:.5rem .75rem;border-radius:6px;cursor:pointer;font-size:1rem}
+    @media(max-width:900px){.mobile-toggle{display:block}}
+  </style>
+</head>
+<body>
+  <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">IDIR<span>NET</span></div>
+      <span class="sidebar-label">Core Operations Hub</span>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Overview</div>
+        <a href="#status" class="sidebar-link active">Project Status</a>
+        <a href="#timeline" class="sidebar-link">Timeline (25 weeks)</a>
+        <a href="#decisions" class="sidebar-link">Decisions Pending</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Methodology</div>
+        <a href="#tsm" class="sidebar-link">Triple Stack Model</a>
+        <a href="#six-tools" class="sidebar-link">Six Unified Tools</a>
+        <a href="#three-questions" class="sidebar-link">Decision Framework</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Technical</div>
+        <a href="#techspec" class="sidebar-link">AV System Overview</a>
+        <a href="#vendors" class="sidebar-link">Vendors & Deadlines</a>
+        <a href="#risks" class="sidebar-link">Risk Register</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Operations</div>
+        <a href="#deliverables" class="sidebar-link">Deliverables Tracker</a>
+        <a href="#meetings" class="sidebar-link">Meeting Cadence</a>
+        <a href="#links" class="sidebar-link">Quick Links</a>
+      </div>
+
+      <div class="sidebar-team">
+        <div class="sidebar-heading">Core Team</div>
+        <div class="team-member"><span class="team-dot online"></span><span class="team-name">Kev</span><span class="team-role">— Creative Director</span></div>
+        <div class="team-member"><span class="team-dot online"></span><span class="team-name">Kris</span><span class="team-role">— Technical Lead</span></div>
+        <div class="team-member"><span class="team-dot online"></span><span class="team-name">Colly</span><span class="team-role">— Infrastructure</span></div>
+        <div class="team-member"><span class="team-dot away"></span><span class="team-name">Laura</span><span class="team-role">— Contractor</span></div>
+        <div class="team-member"><span class="team-dot away"></span><span class="team-name">Jochem</span><span class="team-role">— Contractor</span></div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="page-header">
+        <h1>Lightheart Operations Hub</h1>
+        <p class="subtitle">IDIRNET core team dashboard — project status, methodology, technical specs, and operational tools</p>
+        <p class="date">Week 2 of 25 | Phase 1: Foundations | Updated March 11, 2026</p>
+      </div>
+
+      <!-- Status Bar -->
+      <span class="section-anchor" id="status"></span>
+      <div class="status-bar">
+        <div class="status-card gold">
+          <div class="label">Phase</div>
+          <div class="value">1 / 5</div>
+          <div class="meta">Foundations (Wk 1-6)</div>
+        </div>
+        <div class="status-card green">
+          <div class="label">Days to Opening</div>
+          <div class="value">174</div>
+          <div class="meta">September 1, 2026</div>
+        </div>
+        <div class="status-card orange">
+          <div class="label">Critical Path</div>
+          <div class="value">Fire Cert</div>
+          <div class="meta">Submission due Mar 24</div>
+        </div>
+        <div class="status-card gold">
+          <div class="label">Budget (Confirmed)</div>
+          <div class="value">~921K</div>
+          <div class="meta">Excl. projectors (TBC)</div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <a href="internal/plan.html" class="action-btn">📊 Full Strategy Dashboard</a>
+        <a href="internal/" class="action-btn">📁 Document Hub</a>
+        <a href="#tsm" class="action-btn">🔺 TSM Checklist</a>
+        <a href="#techspec" class="action-btn">🔧 Tech Specs</a>
+      </div>
+
+      <!-- Timeline -->
+      <div class="section">
+        <span class="section-anchor" id="timeline"></span>
+        <h2>25-Week Timeline</h2>
+
+        <div class="timeline">
+          <div class="timeline-item done">
+            <div class="timeline-date">Mar 10 (Week 1)</div>
+            <div class="timeline-title">Marketing Plan Activated</div>
+            <div class="timeline-desc">Master strategy complete. Website copy written. Editorial calendar drafted.</div>
+          </div>
+          <div class="timeline-item active">
+            <div class="timeline-date">Mar 10 - Apr 17 (Weeks 1-6) <span class="tag active">Current</span></div>
+            <div class="timeline-title">Phase 1: Foundations</div>
+            <div class="timeline-desc">Brand identity from RAD (Apr 4). Website MVP. Fire cert submission (Mar 24). Positioning, personas, analytics setup. 32 deliverables.</div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-date">Apr 14 - May 9 (Weeks 5-8)</div>
+            <div class="timeline-title">Phase 2: Controlled Visibility</div>
+            <div class="timeline-desc">Website live. Agustin Vidal Saavedra / Glasseye XR content. LinkedIn + IG active. Newsletter functional. 19 deliverables.</div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-date">May 12 - Jul 18 (Weeks 9-18)</div>
+            <div class="timeline-title">Phase 3: Pre-Launch Build</div>
+            <div class="timeline-desc">AV installation. Exhibition 1 development. Press materials. Asset bank. Founding Circle launch. TSM full rehearsal.</div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-date">Jul 21 - Aug 15 (Weeks 19-22)</div>
+            <div class="timeline-title">Phase 4: Launch Campaign</div>
+            <div class="timeline-desc">10-day countdown. Press embargo. Personal invites to cultural figures. Small paid ads test.</div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-date">Aug 18 - Sep 1 (Weeks 23-25)</div>
+            <div class="timeline-title">Phase 5: Opening</div>
+            <div class="timeline-desc">Soft opening. Operational readiness. Concrescence — all three stacks converge in the live room.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Triple Stack Model -->
+      <div class="section">
+        <span class="section-anchor" id="tsm"></span>
+        <h2>Triple Stack Model — Operational Checklists</h2>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem">The TSM audits readiness across three layers. Every exhibition, every event, every visitor experience is checked against these stacks. Phase 1 focuses on the Global Stack (infrastructure). The Internal and External Stacks become primary in Phases 2-3.</p>
+
+        <div class="tsm-grid">
+          <!-- Global Stack -->
+          <div class="tsm-stack global">
+            <h4 style="color:#4a8abf">Global Stack</h4>
+            <div class="subtitle">Infrastructure and systems — what must be true before anyone walks in</div>
+
+            <div class="tsm-item wip"><span class="plane">Ground</span><span class="check">◐ Electrical, HVAC, safety</span></div>
+            <div class="tsm-item pending"><span class="plane">Runtime</span><span class="check">○ Media server, clock sync</span></div>
+            <div class="tsm-item pending"><span class="plane">Circulation</span><span class="check">○ Visitor flow, entry sequence</span></div>
+            <div class="tsm-item pending"><span class="plane">Channels</span><span class="check">○ GDPR, consent, recording</span></div>
+            <div class="tsm-item pending"><span class="plane">Frames</span><span class="check">○ Sightlines, luminance</span></div>
+            <div class="tsm-item pending"><span class="plane">Roles</span><span class="check">○ Staff positions, training</span></div>
+            <div class="tsm-item pending"><span class="plane">Horizons</span><span class="check">○ Quarterly review cycle</span></div>
+          </div>
+
+          <!-- Internal Stack -->
+          <div class="tsm-stack internal">
+            <h4 style="color:var(--gold)">Internal Stack</h4>
+            <div class="subtitle">Embodied perception — what visitors feel in their body</div>
+
+            <div class="tsm-item pending"><span class="plane">Root</span><span class="check">○ Floor surface, seating, temp</span></div>
+            <div class="tsm-item pending"><span class="plane">Sacral</span><span class="check">○ Pacing, emotional arc</span></div>
+            <div class="tsm-item pending"><span class="plane">Solar Plexus</span><span class="check">○ Choice architecture</span></div>
+            <div class="tsm-item pending"><span class="plane">Heart</span><span class="check">○ Group pacing, co-regulation</span></div>
+            <div class="tsm-item pending"><span class="plane">Throat</span><span class="check">○ Staff language, signage</span></div>
+            <div class="tsm-item pending"><span class="plane">Third Eye</span><span class="check">○ Attention design, gaze</span></div>
+            <div class="tsm-item pending"><span class="plane">Crown</span><span class="check">○ Exit, reflection, integration</span></div>
+          </div>
+
+          <!-- External Stack -->
+          <div class="tsm-stack external">
+            <h4 style="color:var(--green)">External Stack</h4>
+            <div class="subtitle">Transition and relational space — how visitors move in and out</div>
+
+            <div class="tsm-item pending"><span class="plane">Space</span><span class="check">○ Sightline, route mapping</span></div>
+            <div class="tsm-item pending"><span class="plane">Portal</span><span class="check">○ Entry count-in, consent</span></div>
+            <div class="tsm-item pending"><span class="plane">Gesture</span><span class="check">○ Movement pacing, abort</span></div>
+            <div class="tsm-item pending"><span class="plane">Mirror</span><span class="check">○ Feedback, echo design</span></div>
+            <div class="tsm-item pending"><span class="plane">Narrative</span><span class="check">○ Journey arc, offboarding</span></div>
+            <div class="tsm-item pending"><span class="plane">Atmosphere</span><span class="check">○ Luminance, SPL caps</span></div>
+            <div class="tsm-item pending"><span class="plane">Feedback Loop</span><span class="check">○ Learning cycles, data</span></div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1rem;font-size:.85rem;color:var(--muted)">
+          <strong style="color:var(--gold)">Concrescence</strong> — The moment all three stacks align. Opening night is the first. Each quarterly exhibition opening is another.
+        </div>
+      </div>
+
+      <!-- Six Unified Tools -->
+      <div class="section">
+        <span class="section-anchor" id="six-tools"></span>
+        <h2>Six Unified Tools</h2>
+
+        <table>
+          <thead>
+            <tr><th>Tool</th><th>Core Idea</th><th>Apply When</th><th>Owner</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>TSM</strong></td><td>3-layer experience audit</td><td>Exhibition design, visitor journey, event checklists</td><td>Kev</td></tr>
+            <tr><td><strong>Alchemy</strong> (Sutherland)</td><td>Psycho-logic beats logic. Reframe value.</td><td>Pricing, naming, counter-intuitive positioning</td><td>TBD</td></tr>
+            <tr><td><strong>Purple Cow</strong> (Godin)</td><td>Be remarkable. Activate sneezers.</td><td>Launch mechanics, referral loops, content</td><td>TBD</td></tr>
+            <tr><td><strong>Persuasion</strong> (Cialdini)</td><td>6 principles of influence</td><td>CTA design, offers, partnership leverage</td><td>TBD</td></tr>
+            <tr><td><strong>Story-Driven</strong> (Jiwa)</td><td>Lead with feeling, not features</td><td>Brand narrative, tone of voice, copy</td><td>Kev</td></tr>
+            <tr><td><strong>RACE</strong> (McNulty)</td><td>Reach &rarr; Act &rarr; Convert &rarr; Engage</td><td>Channel planning, KPIs, campaign structure</td><td>TBD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Decision Framework -->
+      <div class="section">
+        <span class="section-anchor" id="three-questions"></span>
+        <h2>Three-Question Decision Rule</h2>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem">Every major decision passes through these three filters before execution:</p>
+
+        <div class="decision-box">
+          <h4>Before any significant decision, ask:</h4>
+          <ol>
+            <li><strong>What would Jiwa do?</strong> — Does this align with our story? Does it lead with how the visitor feels?</li>
+            <li><strong>What would Sutherland test?</strong> — Is there a counter-intuitive option we're ignoring? What's the psycho-logic angle?</li>
+            <li><strong>What would Godin make remarkable?</strong> — Would a sneezer share this? Does it avoid the trap of invisibility?</li>
+          </ol>
+        </div>
+
+        <h3>Morning Standup (5 min, daily)</h3>
+        <p style="font-size:.85rem;color:var(--muted)">Each team member answers the three questions above for their current work. No lengthy updates — just the three filters applied to today's priorities.</p>
+
+        <h3>Weekly Pulse Check (30 min)</h3>
+        <p style="font-size:.85rem;color:var(--muted)">Full three-question framework review across all active workstreams. Blocker check. Commitments for the next week.</p>
+      </div>
+
+      <!-- AV System Overview -->
+      <div class="section">
+        <span class="section-anchor" id="techspec"></span>
+        <h2>AV System Overview</h2>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem">From the 70-page tech spec (Feb-Mar 2026). Two immersive rooms, ~280 sq. m. total exhibition space.</p>
+
+        <h3>Projection (37 Barco projectors)</h3>
+        <table>
+          <thead><tr><th>Location</th><th>Model</th><th>Qty</th><th>Resolution</th><th>Brightness</th><th>Power</th></tr></thead>
+          <tbody>
+            <tr><td>Room 1 Walls</td><td>I600-4K10</td><td>14</td><td>WQUXGA (4K+)</td><td>10,000 lm</td><td>860W ea</td></tr>
+            <tr><td>Room 1 Floor</td><td>G50-W8</td><td>10</td><td>WUXGA (2K)</td><td>8,900 lm</td><td>500W ea</td></tr>
+            <tr><td>Room 2 Walls</td><td>I600-4K8</td><td>8</td><td>WQUXGA (4K+)</td><td>8,000 lm</td><td>640W ea</td></tr>
+            <tr><td>Room 2 Floor</td><td>G50-W8</td><td>5</td><td>WUXGA (2K)</td><td>8,000 lm</td><td>490W ea</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.8rem;color:var(--subtle);margin-top:.5rem">Total: 24,610W / ~121A. Heat: 118,491 BTU/h. Signal: DisplayPort 1.4 over OS2 fiber (DVIGear DVI-7380).</p>
+
+        <h3>Audio — L-ISA Spatial (87 speakers)</h3>
+        <table>
+          <thead><tr><th>Room</th><th>Speaker</th><th>Qty</th><th>Role</th><th>SPL</th></tr></thead>
+          <tbody>
+            <tr><td>Room 1</td><td>X8i</td><td>20</td><td>Surround</td><td>129 dB</td></tr>
+            <tr><td>Room 1</td><td>X6i</td><td>20</td><td>Height</td><td>123 dB</td></tr>
+            <tr><td>Room 1</td><td>SYVA SUB</td><td>8</td><td>Subwoofers</td><td>128 dB</td></tr>
+            <tr><td>Room 2</td><td>X8i</td><td>14</td><td>Surround</td><td>129 dB</td></tr>
+            <tr><td>Room 2</td><td>X6i</td><td>17</td><td>Height</td><td>123 dB</td></tr>
+            <tr><td>Room 2</td><td>SYVA SUB</td><td>8</td><td>Subwoofers</td><td>128 dB</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.8rem;color:var(--subtle);margin-top:.5rem">L-ISA Processor II: 96 spatial objects, 96kHz, Milan-AVB protocol. 6x LA7.16i amplified controllers. Cost: EUR 401,586.</p>
+
+        <h3>Infrastructure</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Media Servers</div>
+            <div class="card-text">5x Pixera PX2 Octo (2U). EUR 275,000 total. 800W/unit. Pixera playback software. Meinberg Microsync for PTP + genlock sync.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Network</div>
+            <div class="card-text">5 segregated networks: Video (fiber), Audio (Milan-AVB), Sensor (IP), Server Sync (multicast), Management (OSC/PTP). Core: 2x Netgear M4500-32C (100G).</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Sensors</div>
+            <div class="card-text">28x Luxonis OAK 4 D Pro Wide (Room 1). Onboard depth + neural inference. 120 deg FOV. PoE+ 2.5GbE. EUR 32,116.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Server Room</div>
+            <div class="card-text">2x 48U racks. 2x APC 10kVA UPS. Total heat: ~118,500 BTU/h. HVAC target: NC-35 acoustic rating in galleries.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vendors & Deadlines -->
+      <div class="section">
+        <span class="section-anchor" id="vendors"></span>
+        <h2>Vendors &amp; Quote Deadlines</h2>
+
+        <table>
+          <thead><tr><th>System</th><th>Vendor</th><th>Cost (EUR)</th><th>Quote Expires</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Audio (both rooms)</td><td>Audiotek / L-Acoustics</td><td>401,586</td><td><strong>Mar 27</strong></td><td><span class="tag critical">Expiring Soon</span></td></tr>
+            <tr><td>Surface Treatment</td><td>Goo Systems</td><td>~13,070</td><td><strong>Apr 3</strong></td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Media Servers</td><td>Pixera / AV Stumpfl</td><td>275,000</td><td>—</td><td><span class="tag complete">Confirmed</span></td></tr>
+            <tr><td>Network</td><td>Netgear</td><td>79,000</td><td>—</td><td><span class="tag complete">Confirmed</span></td></tr>
+            <tr><td>Signal Transport</td><td>DVIGear</td><td>44,514</td><td>—</td><td><span class="tag active">Specified</span></td></tr>
+            <tr><td>Sensors (Room 1)</td><td>Luxonis</td><td>32,116</td><td>—</td><td><span class="tag active">Specified</span></td></tr>
+            <tr><td>Sync Generator</td><td>Meinberg</td><td>25,000</td><td>—</td><td><span class="tag pending">Quote TBC</span></td></tr>
+            <tr><td>Projectors</td><td>Barco</td><td><strong>TBC</strong></td><td>—</td><td><span class="tag blocked">Outstanding</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Risk Register -->
+      <div class="section">
+        <span class="section-anchor" id="risks"></span>
+        <h2>Risk Register</h2>
+
+        <table>
+          <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr><td>Fire certification delayed</td><td><span class="tag pending">Medium</span></td><td><span class="tag critical">Critical</span></td><td>Submit by Mar 24. Follow up weekly.</td></tr>
+            <tr><td>L-Acoustics quote expires (Mar 27)</td><td><span class="tag pending">Medium</span></td><td><span class="tag critical">High</span></td><td>Decision needed this week on audio commitment.</td></tr>
+            <tr><td>Brand identity not ready for Agustin video</td><td><span class="tag pending">Medium</span></td><td><span class="tag critical">High</span></td><td>RAD brand v1 deadline: Apr 4. Agustin video: Apr 28.</td></tr>
+            <tr><td>Level-setting construction delays</td><td><span class="tag pending">Medium</span></td><td><span class="tag critical">High</span></td><td>Contractor paused. Needs finalized levels to resume.</td></tr>
+            <tr><td>Website not ready for Phase 2</td><td><span class="tag pending">Medium</span></td><td><span class="tag critical">High</span></td><td>MVP build in progress. Target: Apr 21.</td></tr>
+            <tr><td>Trademark conflict ("Lightheart")</td><td><span class="tag active">Low-Med</span></td><td><span class="tag pending">Medium</span></td><td>Ireland-only jurisdiction reduces risk. Fallback: "Lightheart Immersive".</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pending Decisions -->
+      <div class="section">
+        <span class="section-anchor" id="decisions"></span>
+        <h2>Decisions Pending</h2>
+
+        <table>
+          <thead><tr><th>Decision</th><th>Owner</th><th>Deadline</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>L-Acoustics audio commitment (quote expires Mar 27)</td><td>Brendan + Kev</td><td>Mar 25</td><td><span class="tag critical">Urgent</span></td></tr>
+            <tr><td>Surface treatment vendor (Smarter Surfaces vs Goo)</td><td>Kris</td><td>Apr 1</td><td><span class="tag pending">Open</span></td></tr>
+            <tr><td>Projector procurement model (rental vs purchase)</td><td>Brendan + Kev</td><td>Apr 15</td><td><span class="tag pending">Open</span></td></tr>
+            <tr><td>Sensor architecture (edge vs aggregator)</td><td>Kris + Colly</td><td>May 1</td><td><span class="tag pending">Open</span></td></tr>
+            <tr><td>UPS sizing (10kVA vs 15-20kVA)</td><td>Kris</td><td>Apr 15</td><td><span class="tag pending">Open</span></td></tr>
+            <tr><td>CMS choice for public website</td><td>Kev + RAD</td><td>Apr 21</td><td><span class="tag pending">Open</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Deliverables Tracker -->
+      <div class="section">
+        <span class="section-anchor" id="deliverables"></span>
+        <h2>Phase 1 Deliverables (32 items)</h2>
+
+        <h3>1A: Strategy &amp; Positioning</h3>
+        <table>
+          <thead><tr><th>Deliverable</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Positioning one-pager</td><td>Kev / Kimi</td><td><span class="tag active">In Progress</span></td></tr>
+            <tr><td>Category language guide</td><td>Kev</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Audience personas (3)</td><td>Kev</td><td><span class="tag complete">Complete</span></td></tr>
+            <tr><td>Tone of voice guide</td><td>Kev</td><td><span class="tag complete">Complete</span></td></tr>
+            <tr><td>Programming model definition</td><td>Kev</td><td><span class="tag complete">Complete</span></td></tr>
+            <tr><td>TSM integration brief</td><td>Kev</td><td><span class="tag complete">Complete</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3>1B: Construction &amp; Technical — CRITICAL PATH</h3>
+        <table>
+          <thead><tr><th>Deliverable</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Fire cert submission</td><td>Architect</td><td>Mar 24</td><td><span class="tag critical">Critical</span></td></tr>
+            <tr><td>Fire cert approval</td><td>Authority</td><td>Apr 30 (est)</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Level-setting works</td><td>Contractor</td><td>Apr 7</td><td><span class="tag blocked">Blocked</span></td></tr>
+            <tr><td>Electrical spec</td><td>Kris</td><td>Mar 31</td><td><span class="tag active">In Progress</span></td></tr>
+            <tr><td>HVAC spec</td><td>Kris</td><td>Apr 7</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Acoustic treatment</td><td>Kris</td><td>Apr 14</td><td><span class="tag pending">Pending</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3>1D: Brand Identity (RAD)</h3>
+        <table>
+          <thead><tr><th>Deliverable</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Logo system</td><td>RAD</td><td>Apr 4</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Typography system</td><td>RAD</td><td>Apr 4</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Colour system</td><td>RAD</td><td>Apr 4</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Template kit v1</td><td>RAD</td><td>Apr 11</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Brand stack document</td><td>RAD</td><td>Apr 17</td><td><span class="tag pending">Pending</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3>1E: Digital Presence</h3>
+        <table>
+          <thead><tr><th>Deliverable</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Sitemap</td><td>Claude Code</td><td><span class="tag complete">Complete</span></td></tr>
+            <tr><td>Website copy v1</td><td>Kev</td><td><span class="tag complete">Complete</span></td></tr>
+            <tr><td>SEO research</td><td>Claude Code / Kimi</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Analytics setup</td><td>Claude Code</td><td><span class="tag active">In Progress</span></td></tr>
+            <tr><td>Newsletter platform</td><td>Claude Code</td><td><span class="tag pending">Pending</span></td></tr>
+            <tr><td>Website MVP build</td><td>Claude Code</td><td><span class="tag active">In Progress</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Meeting Cadence -->
+      <div class="section">
+        <span class="section-anchor" id="meetings"></span>
+        <h2>Meeting Cadence</h2>
+
+        <table>
+          <thead><tr><th>Meeting</th><th>When</th><th>Duration</th><th>Who</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Morning Standup</td><td>Daily</td><td>5 min</td><td>Core team</td><td>Three-question filter on today's work</td></tr>
+            <tr><td>Weekly Pulse Check</td><td>Weekly</td><td>30 min</td><td>Core team</td><td>Framework review, blockers, commitments</td></tr>
+            <tr><td>Brendan Priorities</td><td>Weekly</td><td>60 min</td><td>Kev + Brendan</td><td>High-level priorities, decisions, budget</td></tr>
+            <tr><td>RAD Sync</td><td>Tuesdays (rolling)</td><td>Varies</td><td>Kev + RAD</td><td>Brand progress, deliverable handoffs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="section">
+        <span class="section-anchor" id="links"></span>
+        <h2>Quick Links</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Strategy Dashboard</div>
+            <div class="card-text"><a href="internal/plan.html">21-section master strategy</a> — full marketing plan with sidebar navigation</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Document Hub</div>
+            <div class="card-text"><a href="internal/">All internal documents</a> — research, frameworks, playbooks</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Public Website</div>
+            <div class="card-text"><a href="index.html">Marketing site</a> — 7 public pages (pre-launch)</div>
+          </div>
+          <div class="card">
+            <div class="card-title">GitHub Repo</div>
+            <div class="card-text"><a href="https://github.com/screeney/light-heart-tech" target="_blank">screeney/light-heart-tech</a> — deployment repo</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Brendan Dashboard</div>
+            <div class="card-text"><a href="brendan.html">MD-facing overview</a> — milestones, decisions, timeline</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Tech Spec (Full)</div>
+            <div class="card-text">70-page PDF — projectors, audio, network, servers, HVAC, budget</div>
+          </div>
+        </div>
+      </div>
+
+      <footer style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--subtle)">
+        <p>IDIRNET Core Operations Hub — Lightheart Project</p>
+        <p>Confidential. Not for distribution outside the core team.</p>
+        <p style="margin-top:.5rem">Updated: March 11, 2026 | Phase 1: Foundations | Week 2 of 25</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Sidebar link active state
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        // Close mobile sidebar
+        document.querySelector('.sidebar').classList.remove('open');
+      });
+    });
+
+    // Scroll spy
+    const sections = document.querySelectorAll('.section-anchor');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          document.querySelectorAll('.sidebar-link').forEach(l => {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>

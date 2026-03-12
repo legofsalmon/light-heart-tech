@@ -316,12 +316,12 @@
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   font-family: $font-mono;
   font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.45);
   letter-spacing: 0.04em;
 
   :global(.light-mode) & {
-    border-top-color: rgba(0, 0, 0, 0.04);
-    color: rgba(0, 0, 0, 0.2);
+    border-top-color: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.35);
   }
 }
 

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lightheart — Managing Director Overview</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #141414;
+      --surface: #1c1c1c;
+      --text: #f5f5f0;
+      --gold: #c4a265;
+      --gold-light: #d4b275;
+      --gold-dim: rgba(196,162,101,0.15);
+      --gold-border: rgba(196,162,101,0.3);
+      --blue: #2a4a6b;
+      --blue-dim: rgba(42,74,107,0.15);
+      --green: #27ae60;
+      --green-dim: rgba(39,174,96,0.15);
+      --orange: #f39c12;
+      --orange-dim: rgba(243,156,18,0.15);
+      --red: #c0392b;
+      --red-dim: rgba(192,57,43,0.15);
+      --border: #2a2a2a;
+      --muted: #888;
+      --subtle: #666;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{color:var(--gold-light)}
+
+    .container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
+
+    /* Header */
+    .page-header{text-align:center;padding:3rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+    .page-header .logo{font-family:'Playfair Display',serif;font-size:2rem;color:var(--text);margin-bottom:.25rem}
+    .page-header .logo span{color:var(--gold)}
+    .page-header h1{font-size:1.75rem;margin-bottom:.5rem}
+    .page-header .subtitle{color:var(--muted);font-size:1rem}
+    .page-header .date{font-size:.75rem;color:var(--subtle);margin-top:.5rem}
+
+    /* Status Stripe */
+    .status-stripe{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+    .stripe-card{text-align:center;padding:1.25rem;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px}
+    .stripe-card .number{font-size:2rem;font-weight:600;font-family:'Playfair Display',serif}
+    .stripe-card .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:.25rem}
+    .stripe-card.gold .number{color:var(--gold)}
+    .stripe-card.green .number{color:var(--green)}
+    .stripe-card.orange .number{color:var(--orange)}
+    .stripe-card.red .number{color:var(--red)}
+
+    /* Sections */
+    .section{margin-bottom:3rem}
+    .section h2{font-size:1.4rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    .section h3{font-size:1rem;color:var(--gold);margin:1.25rem 0 .75rem}
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem}
+    th{text-align:left;padding:.6rem .75rem;background:var(--bg-elevated);color:var(--gold);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--gold-border)}
+    td{padding:.6rem .75rem;border-bottom:1px solid var(--border);vertical-align:top}
+    tr:hover td{background:rgba(255,255,255,0.02)}
+
+    /* Cards */
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0}
+    .card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+    .card-title{font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;margin-bottom:.5rem}
+    .card-text{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+    /* Tags */
+    .tag{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+    .tag.critical{background:var(--red-dim);color:var(--red)}
+    .tag.done{background:var(--green-dim);color:var(--green)}
+    .tag.active{background:var(--green-dim);color:var(--green)}
+    .tag.pending{background:var(--orange-dim);color:var(--orange)}
+    .tag.upcoming{background:var(--blue-dim);color:#5a9acf}
+
+    /* Alert Box */
+    .alert{border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;font-size:.9rem}
+    .alert.urgent{background:var(--red-dim);border:1px solid rgba(192,57,43,0.3)}
+    .alert.info{background:var(--blue-dim);border:1px solid rgba(42,74,107,0.3)}
+    .alert.success{background:var(--green-dim);border:1px solid rgba(39,174,96,0.3)}
+    .alert strong{display:block;margin-bottom:.25rem}
+
+    /* Progress bar */
+    .progress{background:var(--surface);border-radius:4px;height:8px;margin:.75rem 0;overflow:hidden}
+    .progress-fill{height:100%;border-radius:4px;transition:width .3s}
+    .progress-fill.gold{background:var(--gold)}
+    .progress-fill.green{background:var(--green)}
+
+    /* Phase visualization */
+    .phases{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:1.5rem 0;border-radius:8px;overflow:hidden}
+    .phase{padding:.75rem .5rem;text-align:center;font-size:.75rem;border:1px solid var(--border)}
+    .phase .num{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;display:block;margin-bottom:.15rem}
+    .phase .name{display:block;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+    .phase.current{background:var(--gold-dim);border-color:var(--gold-border)}
+    .phase.current .num{color:var(--gold)}
+    .phase.future{background:var(--bg-elevated)}
+    .phase.future .num{color:var(--subtle)}
+
+    /* Decision Box */
+    .decision-box{background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:8px;padding:1.25rem;margin:1rem 0}
+    .decision-box h4{font-family:'Inter',sans-serif;font-weight:600;color:var(--gold);margin-bottom:.5rem;font-size:.9rem}
+    .decision-box p{font-size:.85rem;margin-bottom:.5rem}
+
+    /* Footer */
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--subtle)}
+
+    /* Responsive */
+    @media(max-width:700px){
+      .status-stripe{grid-template-columns:repeat(2,1fr)}
+      .phases{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="page-header">
+      <div class="logo">Light<span>heart</span></div>
+      <h1>Project Overview for Brendan</h1>
+      <p class="subtitle">Marketing progress, key milestones, decisions needed, and timeline to opening</p>
+      <p class="date">Last updated: March 11, 2026 | Week 2 of 25</p>
+    </div>
+
+    <!-- Status Stripe -->
+    <div class="status-stripe">
+      <div class="stripe-card gold">
+        <div class="number">174</div>
+        <div class="label">Days to Opening</div>
+      </div>
+      <div class="stripe-card green">
+        <div class="number">1 / 5</div>
+        <div class="label">Current Phase</div>
+      </div>
+      <div class="stripe-card orange">
+        <div class="number">3</div>
+        <div class="label">Decisions Needed</div>
+      </div>
+      <div class="stripe-card red">
+        <div class="number">1</div>
+        <div class="label">Critical Path Item</div>
+      </div>
+    </div>
+
+    <!-- Urgent Alert -->
+    <div class="alert urgent">
+      <strong>Critical Path: Fire Certification</strong>
+      Submission targeted for March 24. Approval needed by April 30 for September opening to hold. Level-setting contractor is paused pending finalized levels.
+    </div>
+
+    <!-- Phase Visualization -->
+    <div class="section">
+      <h2>Project Phases</h2>
+      <div class="phases">
+        <div class="phase current">
+          <span class="num">1</span>
+          <span class="name">Foundations</span>
+          <span style="font-size:.65rem;color:var(--gold)">Wk 1-6</span>
+        </div>
+        <div class="phase future">
+          <span class="num">2</span>
+          <span class="name">Visibility</span>
+          <span style="font-size:.65rem;color:var(--subtle)">Wk 5-8</span>
+        </div>
+        <div class="phase future">
+          <span class="num">3</span>
+          <span class="name">Pre-Launch</span>
+          <span style="font-size:.65rem;color:var(--subtle)">Wk 9-18</span>
+        </div>
+        <div class="phase future">
+          <span class="num">4</span>
+          <span class="name">Launch</span>
+          <span style="font-size:.65rem;color:var(--subtle)">Wk 19-22</span>
+        </div>
+        <div class="phase future">
+          <span class="num">5</span>
+          <span class="name">Opening</span>
+          <span style="font-size:.65rem;color:var(--subtle)">Wk 23-25</span>
+        </div>
+      </div>
+
+      <h3>Phase 1: Foundations (Current)</h3>
+      <p style="font-size:.9rem;color:var(--muted)">Establishing brand identity, website architecture, positioning, and construction readiness. 32 deliverables across strategy, construction, brand, digital, and production.</p>
+
+      <div class="progress"><div class="progress-fill gold" style="width:15%"></div></div>
+      <p style="font-size:.75rem;color:var(--subtle)">~15% complete | Gate Review: April 17</p>
+    </div>
+
+    <!-- Decisions Needed -->
+    <div class="section">
+      <h2>Decisions Needed from You</h2>
+
+      <div class="decision-box">
+        <h4>1. L-Acoustics Audio Commitment</h4>
+        <p>The audio system quote (EUR 401,586 for both rooms — 87 L-Acoustics speakers, L-ISA spatial processing) <strong>expires March 27</strong>. Decision needed by March 25 to allow processing time.</p>
+        <p style="color:var(--subtle);font-size:.8rem">This is the single largest confirmed cost item. The L-ISA system is what gives Lightheart its spatial audio capability — 360-degree sound with 96 individually controlled audio objects.</p>
+      </div>
+
+      <div class="decision-box">
+        <h4>2. Projector Procurement Model</h4>
+        <p>Rental vs. purchase for 37 Barco projectors. This is the <strong>largest outstanding cost item</strong> in the entire tech spec. Purchase gives long-term savings; rental reduces upfront commitment.</p>
+        <p style="color:var(--subtle);font-size:.8rem">Timeline: Decision by April 15 to allow lead times for September installation.</p>
+      </div>
+
+      <div class="decision-box">
+        <h4>3. Surface Treatment Vendor</h4>
+        <p>Choice between Smarter Surfaces and Goo Systems for projection surface coating (~EUR 13,000). Goo Systems quote expires <strong>April 3</strong>.</p>
+        <p style="color:var(--subtle);font-size:.8rem">Kris is evaluating both options based on luminance performance and application requirements.</p>
+      </div>
+    </div>
+
+    <!-- Marketing Progress -->
+    <div class="section">
+      <h2>Marketing Progress</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1rem">Five-phase marketing plan running March 10 to September 1. Core mantra: <em>Build credibility first. Build clarity second. Build noise last.</em></p>
+
+      <h3>Completed</h3>
+      <table>
+        <tbody>
+          <tr><td><span class="tag done">Done</span></td><td>21-section master marketing strategy (61KB document)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>Website copy v1 (7 pages — homepage, about, exhibitions, visit, membership, press, newsletter)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>Editorial calendar (90-day content production schedule)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>Founding Circle membership design (3 tiers, 200-member cap)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>Press kit draft (embargo protocol, press angles)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>150-item deliverables timeline mapped to September</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>Internal strategy dashboard built (live web page)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>Marketing website built (7 public pages, deployed to staging)</td></tr>
+          <tr><td><span class="tag done">Done</span></td><td>RAD briefing sent (brand agency context package)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>In Progress</h3>
+      <table>
+        <tbody>
+          <tr><td><span class="tag active">Active</span></td><td>Brand identity v1 from RAD (due April 4)</td></tr>
+          <tr><td><span class="tag active">Active</span></td><td>Website MVP build (target: April 21)</td></tr>
+          <tr><td><span class="tag active">Active</span></td><td>Analytics setup (tracking, KPIs)</td></tr>
+          <tr><td><span class="tag active">Active</span></td><td>Brand deliverables package for RAD (strategy docs, design specs)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Upcoming</h3>
+      <table>
+        <tbody>
+          <tr><td><span class="tag upcoming">Phase 2</span></td><td>Agustin Vidal Saavedra / Glasseye XR anchor content production (Apr 28)</td></tr>
+          <tr><td><span class="tag upcoming">Phase 2</span></td><td>Channel launch — LinkedIn, Instagram, TikTok (late Apr)</td></tr>
+          <tr><td><span class="tag upcoming">Phase 2</span></td><td>Newsletter platform launch</td></tr>
+          <tr><td><span class="tag upcoming">Phase 3</span></td><td>Founding Circle applications open (Jun 20)</td></tr>
+          <tr><td><span class="tag upcoming">Phase 3</span></td><td>Press kit distribution (Jul 1)</td></tr>
+          <tr><td><span class="tag upcoming">Phase 4</span></td><td>10-day countdown campaign (Aug 4-14)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key Milestones -->
+    <div class="section">
+      <h2>Key Milestones</h2>
+
+      <table>
+        <thead><tr><th>Date</th><th>Milestone</th><th>Status</th><th>Dependencies</th></tr></thead>
+        <tbody>
+          <tr><td>Mar 24</td><td>Fire certification submission</td><td><span class="tag critical">Critical</span></td><td>Architect</td></tr>
+          <tr><td>Mar 27</td><td>L-Acoustics quote deadline</td><td><span class="tag critical">Decision</span></td><td>Budget approval</td></tr>
+          <tr><td>Apr 4</td><td>Brand identity v1 from RAD</td><td><span class="tag pending">Pending</span></td><td>RAD (Dave + Brian)</td></tr>
+          <tr><td>Apr 7</td><td>Level-setting works commence</td><td><span class="tag pending">Blocked</span></td><td>Finalized levels</td></tr>
+          <tr><td>Apr 17</td><td>Phase 1 Gate Review</td><td><span class="tag upcoming">Upcoming</span></td><td>All Phase 1 items</td></tr>
+          <tr><td>Apr 21</td><td>Website MVP live</td><td><span class="tag active">Building</span></td><td>RAD brand</td></tr>
+          <tr><td>Apr 28</td><td>Agustin Vidal Saavedra / Glasseye XR content branded</td><td><span class="tag upcoming">Upcoming</span></td><td>Brand identity</td></tr>
+          <tr><td>Apr 30</td><td>Fire certification approval (est.)</td><td><span class="tag pending">Pending</span></td><td>Authority</td></tr>
+          <tr><td>May 1</td><td>Website fully live</td><td><span class="tag upcoming">Upcoming</span></td><td>MVP + content</td></tr>
+          <tr><td>Jun 6</td><td>Membership page live</td><td><span class="tag upcoming">Upcoming</span></td><td>Brand + payments</td></tr>
+          <tr><td>Jun 13</td><td>Projector installation begins</td><td><span class="tag upcoming">Upcoming</span></td><td>Procurement decision</td></tr>
+          <tr><td>Jun 20</td><td>Founding Circle applications open</td><td><span class="tag upcoming">Upcoming</span></td><td>Membership page</td></tr>
+          <tr><td>Jul 1</td><td>Press kit distribution</td><td><span class="tag upcoming">Upcoming</span></td><td>Brand + assets</td></tr>
+          <tr><td>Jul 11</td><td>Full AV system integration test</td><td><span class="tag upcoming">Upcoming</span></td><td>All hardware</td></tr>
+          <tr><td>Jul 18</td><td>Exhibition 1 installation complete</td><td><span class="tag upcoming">Upcoming</span></td><td>Artist + AV</td></tr>
+          <tr><td>Aug 1</td><td>Launch campaign begins</td><td><span class="tag upcoming">Upcoming</span></td><td>All assets ready</td></tr>
+          <tr><td><strong>Sep 1</strong></td><td><strong>Doors Open</strong></td><td><span class="tag upcoming">Target</span></td><td>Everything</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Technical System (High Level) -->
+    <div class="section">
+      <h2>Technical System at a Glance</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1rem">Two immersive rooms, ~280 sq. m. total exhibition space. Full specification: 70-page tech document by IDIRNET (Feb-Mar 2026).</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">37 Projectors</div>
+          <div class="card-text">Barco I600 (4K+) on walls, G50 on floors. Ultra-short-throw lenses. Both rooms fully mapped. Room 1: 14 wall + 10 floor. Room 2: 8 wall + 5 floor.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">87 Speakers (L-ISA)</div>
+          <div class="card-text">L-Acoustics spatial audio across both rooms. 96 individually controlled sound objects in 3D space. 360-degree immersive sound. <strong>EUR 401,586.</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-title">5 Media Servers</div>
+          <div class="card-text">Pixera PX2 Octo — professional immersive playback. Synchronized via precision clock (Meinberg). <strong>EUR 275,000.</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-title">28+ Sensors</div>
+          <div class="card-text">Luxonis depth cameras with onboard AI processing. Real-time visitor tracking enables interactive experiences. EUR 32,116 (Room 1).</div>
+        </div>
+      </div>
+
+      <div class="alert info" style="margin-top:1rem">
+        <strong>Budget Status (Confirmed Systems)</strong>
+        Audio: EUR 401,586 | Servers + Network: EUR 443,103 | Signal: EUR 44,514 | Sensors: EUR 32,116<br>
+        <strong>Total confirmed: ~EUR 921,319</strong> (excludes projectors — largest outstanding item, and surface treatment ~EUR 13,000)
+      </div>
+    </div>
+
+    <!-- Founding Circle -->
+    <div class="section">
+      <h2>Founding Circle (Revenue Projection)</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1rem">200 founding members (hard cap). Applications open June 20. Projected Year 1 revenue: ~EUR 75,000.</p>
+
+      <table>
+        <thead><tr><th>Tier</th><th>Price/year</th><th>Available</th><th>Target Revenue</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Circle</strong></td><td>EUR 199</td><td>120 (60%)</td><td>EUR 23,880</td></tr>
+          <tr><td><strong>Inner Circle</strong></td><td>EUR 499</td><td>60 (30%)</td><td>EUR 29,940</td></tr>
+          <tr><td><strong>Cornerstone</strong></td><td>EUR 999</td><td>20 (10%)</td><td>EUR 19,980</td></tr>
+          <tr><td colspan="3" style="text-align:right"><strong>Total (at full take-up)</strong></td><td><strong>EUR 73,800</strong></td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.8rem;color:var(--subtle);margin-top:.5rem">Corporate memberships are a separate programme (EUR 2,500 / 5,000 / 10,000 tiers — to be developed after founding programme launches).</p>
+    </div>
+
+    <!-- Brand Status -->
+    <div class="section">
+      <h2>Brand Development</h2>
+
+      <div class="alert success">
+        <strong>Brand Agency: RAD (Research And Destroy)</strong>
+        David Lawler + Brian. Confirmed March 9. 50% deposit sent. Rolling Tuesday meetings. European/Swiss design direction: timeless, bold, simple.
+      </div>
+
+      <h3>RAD Delivery Schedule</h3>
+      <table>
+        <thead><tr><th>Date</th><th>Deliverable</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Apr 4</td><td>Brand identity v1 (logo, type, colour)</td><td><span class="tag pending">Pending</span></td></tr>
+          <tr><td>Apr 11</td><td>Template kit v1 (watermark, end-cards, lower-thirds)</td><td><span class="tag upcoming">Upcoming</span></td></tr>
+          <tr><td>Apr 17</td><td>Brand stack document (onboarding)</td><td><span class="tag upcoming">Upcoming</span></td></tr>
+          <tr><td>Jun 20</td><td>Welcome pack + membership card design</td><td><span class="tag upcoming">Upcoming</span></td></tr>
+          <tr><td>Jun 27</td><td>Press kit visual design</td><td><span class="tag upcoming">Upcoming</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4 Curatorial Principles -->
+    <div class="section">
+      <h2>The Four Curatorial Principles</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1rem">Non-negotiable foundations that govern all programming, communications, and design decisions.</p>
+
+      <div class="card-grid" style="grid-template-columns:repeat(2,1fr)">
+        <div class="card" style="border-top:3px solid var(--gold)">
+          <div class="card-title">Independence</div>
+          <div class="card-text">Self-funded, self-directed, beholden to no agenda. External funding is welcome but never at the cost of editorial freedom.</div>
+        </div>
+        <div class="card" style="border-top:3px solid var(--green)">
+          <div class="card-title">Future Optimism</div>
+          <div class="card-text">Technology as wonder, not dystopia. We show what's possible. We counter the prevailing doom narrative in contemporary art.</div>
+        </div>
+        <div class="card" style="border-top:3px solid #5a9acf">
+          <div class="card-title">Awe</div>
+          <div class="card-text">Design for collective wonder. Communal experiences where audiences feel profound awe together. Push technical boundaries constantly.</div>
+        </div>
+        <div class="card" style="border-top:3px solid var(--orange)">
+          <div class="card-title">Pluralism</div>
+          <div class="card-text">Everyone's story can be told. Ideas challenged through art, not censored. Focus on shared humanity and breadth of perspective.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What IDIRNET Handles -->
+    <div class="section">
+      <h2>What IDIRNET Handles</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1rem">IDIRNET is Lightheart's technical and creative partner, handling:</p>
+
+      <div class="card-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card">
+          <div class="card-title">Creative Direction</div>
+          <div class="card-text">Exhibition curation support, artistic vision, curatorial principles, marketing strategy</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Technical Design</div>
+          <div class="card-text">AV system specification, network architecture, sensor systems, integration</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Digital Platform</div>
+          <div class="card-text">Website development, deployment, analytics, digital infrastructure</div>
+        </div>
+      </div>
+
+      <p style="font-size:.8rem;color:var(--subtle);margin-top:1rem">Core team: Kev Freeney (Creative Director), Krisjanis Berzins (Technical Lead), Colly (Infrastructure), plus contractors as needed.</p>
+    </div>
+
+    <footer>
+      <p>Lightheart — Managing Director Overview</p>
+      <p>Prepared by IDIRNET | Updated March 11, 2026</p>
+      <p style="margin-top:.5rem"><a href="core.html" style="color:var(--subtle)">Core Team Hub</a> · <a href="internal/plan.html" style="color:var(--subtle)">Full Strategy</a> · <a href="index.html" style="color:var(--subtle)">Public Site</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>

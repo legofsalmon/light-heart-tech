@@ -13,6 +13,7 @@ import { getSectionRange } from '@/data/sectionMap';
 import type { DocSection } from '@/data/types';
 import DocSectionRenderer from '@/components/ui/DocSectionRenderer';
 import { AccordionItem } from '@/components/ui/Accordion';
+import TSMContextWidget from '@/components/TSM/TSMContextWidget';
 import styles from './page.module.scss';
 
 /** Map slugs to top-level summary data fields */
@@ -249,6 +250,11 @@ export default function SectionPage() {
             <h1 className={styles.title}>{range.title}</h1>
           </div>
           {description && <p className={styles.description}>{description}</p>}
+        </div>
+
+        {/* TSM Context — shows which TSM nodes relate to this tech spec */}
+        <div style={{ marginBottom: '1rem' }}>
+          <TSMContextWidget />
         </div>
 
         {/* Summary stats bar */}

@@ -1,0 +1,336 @@
+@use '../../styles/variables' as *;
+
+// ─── Overlay ────────────────────────────────────────────
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: $z-overlay;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// ─── Panel ──────────────────────────────────────────────
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 90vw);
+  z-index: $z-modal;
+  background: #0c0c10;
+  border-left: 1px solid $dark-border;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s $ease-out-expo;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+}
+
+.lightPanel {
+  background: #fff;
+  border-left-color: $light-border;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+// ─── Stack accent bar ───────────────────────────────────
+
+.stackAccent {
+  height: 3px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+// ─── Header ─────────────────────────────────────────────
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: $space-lg;
+  border-bottom: 1px solid $dark-border;
+}
+
+.lightPanel .header {
+  border-bottom-color: $light-border;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.planeName {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $dark-text;
+  letter-spacing: 0.02em;
+}
+
+.lightPanel .planeName {
+  color: $light-text;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  flex-wrap: wrap;
+}
+
+.stackBadge {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+  border: 1px solid;
+}
+
+.statusBadge {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+}
+
+.closeBtn {
+  background: none;
+  border: 1px solid $dark-border;
+  border-radius: $radius-sm;
+  padding: 6px;
+  cursor: pointer;
+  color: #888;
+  transition: color $transition-fast, border-color $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    color: #e0e0e0;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.lightPanel .closeBtn {
+  border-color: $light-border;
+  color: #999;
+
+  &:hover {
+    color: #333;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+// ─── Body sections ──────────────────────────────────────
+
+.body {
+  flex: 1;
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.sectionLabel {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+.lightPanel .sectionLabel {
+  color: #999;
+}
+
+// ─── Description ────────────────────────────────────────
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #bbb;
+}
+
+.lightPanel .description {
+  color: #555;
+}
+
+// ─── Acceptance criteria ────────────────────────────────
+
+.criteria {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: $neon-cyan;
+  padding: $space-sm $space-md;
+  background: $cyan-subtle;
+  border-left: 2px solid $cyan-border;
+  border-radius: 0 $radius-sm $radius-sm 0;
+  font-style: italic;
+}
+
+.lightPanel .criteria {
+  color: #006080;
+  background: rgba(0, 180, 220, 0.06);
+  border-left-color: rgba(0, 140, 180, 0.4);
+}
+
+// ─── Deliverables ───────────────────────────────────────
+
+.deliverables {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deliverable {
+  font-size: 0.8rem;
+  color: #ccc;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-sm;
+  line-height: 1.4;
+
+  &::before {
+    content: '\2022';
+    color: var(--stack-color, $neon-cyan);
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+}
+
+.lightPanel .deliverable {
+  color: #444;
+}
+
+// ─── Dependency pills ───────────────────────────────────
+
+.depRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.depPill {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid $dark-border;
+  background: rgba(255, 255, 255, 0.03);
+  color: #ccc;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: var(--stack-color, $cyan-border);
+    color: var(--stack-color, $neon-cyan);
+    background: rgba(0, 240, 255, 0.06);
+  }
+}
+
+.lightPanel .depPill {
+  border-color: $light-border;
+  background: rgba(0, 0, 0, 0.02);
+  color: #555;
+
+  &:hover {
+    border-color: var(--stack-color, rgba(0, 140, 180, 0.4));
+    color: var(--stack-color, #006080);
+    background: rgba(0, 180, 220, 0.06);
+  }
+}
+
+// ─── Page links ─────────────────────────────────────────
+
+.pageLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pageLink {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  font-size: 0.8rem;
+  color: $neon-cyan;
+  text-decoration: none;
+  padding: 6px $space-md;
+  border-radius: $radius-sm;
+  border: 1px solid $dark-border;
+  background: rgba(0, 240, 255, 0.03);
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(0, 240, 255, 0.08);
+    border-color: $cyan-border;
+    transform: translateX(2px);
+  }
+}
+
+.lightPanel .pageLink {
+  color: #006080;
+  border-color: $light-border;
+  background: rgba(0, 180, 220, 0.04);
+
+  &:hover {
+    background: rgba(0, 180, 220, 0.1);
+    border-color: rgba(0, 140, 180, 0.3);
+  }
+}
+
+.pageLinkIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.pageLinkLabel {
+  flex: 1;
+}
+
+.pageLinkArrow {
+  width: 12px;
+  height: 12px;
+  opacity: 0.4;
+  transition: opacity $transition-fast;
+}
+
+.pageLink:hover .pageLinkArrow {
+  opacity: 0.8;
+}

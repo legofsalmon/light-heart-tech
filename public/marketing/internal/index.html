@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lightheart — Internal Marketing Documents</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f5f5f0;
+      --gold: #c4a265;
+      --gold-dim: rgba(196,162,101,0.15);
+      --surface: #141414;
+      --border: #2a2a2a;
+      --muted: #888;
+      --red: #c0392b;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+    h1,h2,h3{font-family:'Playfair Display',serif}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{color:#d4b275}
+    
+    .warning{background:var(--red);color:#fff;padding:1rem;text-align:center;font-size:.9rem;font-weight:500}
+    
+    .container{max-width:1000px;margin:0 auto;padding:3rem 1.5rem}
+    
+    header{text-align:center;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+    header h1{font-size:2.5rem;margin-bottom:.5rem}
+    header p{color:var(--muted)}
+    
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin:2rem 0}
+    
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:all .2s}
+    .card:hover{border-color:var(--gold)}
+    .card h3{color:var(--gold);margin-bottom:.5rem;font-size:1.1rem}
+    .card p{color:var(--muted);font-size:.9rem;margin-bottom:1rem}
+    .card .meta{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+    
+    .btn{display:inline-block;padding:.75rem 1.5rem;background:var(--gold);color:var(--bg);border-radius:6px;font-weight:500;transition:all .2s}
+    .btn:hover{background:#d4b275;transform:translateY(-1px)}
+    
+    .section{margin:3rem 0}
+    .section h2{font-size:1.5rem;margin-bottom:1rem;color:var(--gold)}
+    
+    footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:.85rem}
+  </style>
+</head>
+<body>
+  <div class="warning">
+    ⚠️ CONFIDENTIAL — Internal Use Only — Not for Public Distribution
+  </div>
+  
+  <div class="container">
+    <header>
+      <h1>Lightheart Marketing</h1>
+      <p>Internal document suite for brand developers, marketeers, and managing director</p>
+    </header>
+    
+    <div class="grid">
+      <div class="card">
+        <div class="meta">Interactive Plan</div>
+        <h3>📋 Marketing Master Plan</h3>
+        <p>Complete 21-section strategy with phases, deliverables, audiences, and frameworks. The strategic backbone for all marketing activity.</p>
+        <a href="plan.html" class="btn">View Plan →</a>
+      </div>
+      
+      <div class="card">
+        <div class="meta">Source Documents</div>
+        <h3>📄 Markdown Files</h3>
+        <p>All strategy documents in raw markdown format for editing, version control, and detailed reference.</p>
+        <a href="../../" class="btn" style="background:var(--surface);color:var(--gold);border:1px solid var(--gold);">Browse Files →</a>
+      </div>
+      
+      <div class="card">
+        <div class="meta">Public Site</div>
+        <h3>🌐 Campaign Website</h3>
+        <p>Customer-facing website with newsletter capture, Founding Circle recruitment, and press resources.</p>
+        <a href="../index.html" class="btn" style="background:var(--surface);color:var(--gold);border:1px solid var(--gold);">View Public Site →</a>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>Document Index</h2>
+      <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>PR & Marketing Master Plan</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">21-section strategy document</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../LIGHTHEART-PR-MARKETING-MASTER.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>150 Deliverables Timeline</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">March-September checklist</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../DELIVERABLES-TIMELINE-SEPT2026.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>90-Day Editorial Calendar</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">Content production schedule</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../EDITORIAL-CALENDAR-90DAY.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>Founding Member Programme</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">3 tiers, pricing, launch strategy</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../FOUNDING-MEMBER-PROGRAMME.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>Press Kit</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">Release, angles, embargo protocol</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../PRESS-KIT-DRAFT.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>Website Copy v1</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">7 pages, SEO, ready for design</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../WEBSITE-COPY-V1.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>Message to RAD</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">Brand agency briefing</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../MESSAGE-TO-RAD.md">View →</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.75rem 0"><strong>Applied Frameworks Playbook</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">Tactical weekly calendar</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../APPLIED-FRAMEWORKS-PLAYBOOK.md">View →</a></td>
+        </tr>
+        <tr>
+          <td style="padding:.75rem 0"><strong>Content Brief Template</strong></td>
+          <td style="padding:.75rem 0;color:var(--muted)">Reusable template with checks</td>
+          <td style="padding:.75rem 0;text-align:right"><a href="../CONTENT-BRIEF-TEMPLATE.md">View →</a></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="section">
+      <h2>Quick Stats</h2>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);text-align:center">
+        <div>
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)">21</div>
+          <div style="font-size:.85rem;color:var(--muted)">Strategy Sections</div>
+        </div>
+        <div>
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)">150</div>
+          <div style="font-size:.85rem;color:var(--muted)">Deliverables</div>
+        </div>
+        <div>
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)">90</div>
+          <div style="font-size:.85rem;color:var(--muted)">Day Calendar</div>
+        </div>
+        <div>
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)">200</div>
+          <div style="font-size:.85rem;color:var(--muted)">Founding Members</div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Lightheart PR & Marketing Plan | Week 2 of 12 | Last updated: March 10, 2026</p>
+      <p style="margin-top:.5rem">For questions: <a href="mailto:kev@lightheart.ie">kev@lightheart.ie</a></p>
+    </footer>
+  </div>
+</body>
+</html>

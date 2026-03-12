@@ -5,6 +5,7 @@ import { RefreshCw, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { useLiveDoc } from '@/data/LiveDocProvider';
 import CopyEmail from '@/components/CopyEmail/CopyEmail';
+import { TEAM, SPECS } from '@/data/constants';
 import styles from './Footer.module.scss';
 
 const DOC_URL =
@@ -100,18 +101,18 @@ export default function Footer() {
         <div className={styles.topRow}>
           <div>
             <div className={styles.small} style={{ color: muted }}>
-              <span style={{ color: accent }}>LIGHTHEART</span> — IMMERSIVE EXPERIENCE
+              <span style={{ color: accent }}>LIGHTHEART</span> — IMMERSIVE GALLERY
             </div>
             <div className={styles.tiny} style={{ color: muted }}>
-              Dublin, Ireland · Target Opening September 2026
+              Dublin, Ireland · Opening {SPECS.opening}
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
             <div className={styles.tiny} style={{ color: muted }}>
-              TECHNICAL SPECIFICATION BY <span style={{ color: accent }}>IDIRNET</span>
+              {TEAM.brendan.name} · {TEAM.kev.name} · {TEAM.kris.name}
             </div>
             <div className={styles.tiny} style={{ color: muted }}>
-              Document Date: 4 March 2026
+              Technical Specification by <span style={{ color: accent }}>IDIRNET</span>
             </div>
           </div>
         </div>

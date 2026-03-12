@@ -1,18 +1,29 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Lock, Eye, EyeOff } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Lock, Eye, EyeOff, Shield, User } from 'lucide-react';
 import gsap from 'gsap';
 import { useAuth } from '@/components/AuthProvider';
 import { useTheme } from '@/components/ThemeProvider';
+import { PASSWORD_MAP, ROLE_LANDING } from '@/data/accessConfig';
 import styles from './PasswordGate.module.scss';
 
-export default function PasswordGate() {
+interface PasswordGateProps {
+  /** When true, user is authenticated but lacks access to this zone */
+  restricted?: boolean;
+  /** Zone label to display when restricted */
+  zoneLabel?: string;
+}
+
+export default function PasswordGate({ restricted, zoneLabel }: PasswordGateProps) {
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
-  const { authenticate } = useAuth();
+  const { authenticate, roleLabel, logout } = useAuth();
   const { isDarkMode } = useTheme();
+  const router = useRouter();
   const cardRef = useRef<HTMLDivElement>(null);
   const lockRef = useRef<HTMLDivElement>(null);
 
@@ -33,8 +44,13 @@ export default function PasswordGate() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const success = authenticate(password);
-    if (!success) {
+    const success = authenticate(password, name);
+    if (success) {
+      const matchedRole = PASSWORD_MAP[password.trim().toLowerCase()];
+      if (matchedRole) {
+        router.push(ROLE_LANDING[matchedRole]);
+      }
+    } else {
       setError(true);
       const card = cardRef.current;
       if (card) {
@@ -49,6 +65,12 @@ export default function PasswordGate() {
   const border = isDarkMode ? '#1a1a22' : '#ddd';
   const text = isDarkMode ? '#e0e0e0' : '#1a1a1a';
 
+  const subtitle = restricted
+    ? `${zoneLabel || 'This area'} requires elevated access`
+    : 'Immersive Experience Portal';
+
+  const buttonLabel = restricted ? 'Authenticate' : 'Access Portal';
+
   return (
     <div
       className={`${styles.wrapper} ${isDarkMode ? 'grid-bg' : ''}`}
@@ -61,7 +83,9 @@ export default function PasswordGate() {
         <div
           className={styles.glow}
           style={{
-            background: 'radial-gradient(ellipse at 50% 40%, rgba(0, 240, 255, 0.06) 0%, transparent 60%)',
+            background: restricted
+              ? 'radial-gradient(ellipse at 50% 40%, rgba(255, 160, 50, 0.06) 0%, transparent 60%)'
+              : 'radial-gradient(ellipse at 50% 40%, rgba(0, 240, 255, 0.06) 0%, transparent 60%)',
           }}
         />
       )}
@@ -82,24 +106,67 @@ export default function PasswordGate() {
             ref={lockRef}
             className={styles.lockIcon}
             style={isDarkMode ? {
-              background: 'rgba(0, 240, 255, 0.08)',
-              borderColor: 'rgba(0, 240, 255, 0.2)',
-              boxShadow: '0 0 20px rgba(0, 240, 255, 0.1)',
+              background: restricted ? 'rgba(255, 160, 50, 0.08)' : 'rgba(0, 240, 255, 0.08)',
+              borderColor: restricted ? 'rgba(255, 160, 50, 0.2)' : 'rgba(0, 240, 255, 0.2)',
+              boxShadow: restricted ? '0 0 20px rgba(255, 160, 50, 0.1)' : '0 0 20px rgba(0, 240, 255, 0.1)',
               borderRadius: '8px',
             } : { borderColor: border }}
           >
-            <Lock style={{ width: 32, height: 32, color: accent }} />
+            {restricted
+              ? <Shield style={{ width: 32, height: 32, color: isDarkMode ? '#ffa032' : accent }} />
+              : <Lock style={{ width: 32, height: 32, color: accent }} />
+            }
           </div>
           <h1 className={styles.title}>LIGHTHEART</h1>
           <p className={styles.subtitle} style={{ color: muted }}>
-            Technical Specification Portal
+            {subtitle}
           </p>
         </div>
 
+        {restricted && roleLabel && (
+          <div className={styles.roleTag} style={{ color: muted, borderColor: border }}>
+            Signed in as <span style={{ color: accent }}>{roleLabel}</span>
+            <button
+              type="button"
+              onClick={logout}
+              className={styles.logoutBtn}
+              style={{ color: isDarkMode ? '#666' : '#999' }}
+            >
+              Switch account
+            </button>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className={styles.form}>
+          {!restricted && (
+            <div>
+              <label className={styles.label} style={{ color: muted }}>
+                Your Name
+              </label>
+              <div className={styles.inputWrap}>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={styles.input}
+                  style={{
+                    backgroundColor: isDarkMode ? '#08080c' : '#f5f5f0',
+                    borderColor: border,
+                    color: text,
+                  }}
+                  placeholder="e.g. Brendan"
+                  autoFocus
+                />
+                <span className={styles.eyeBtn} style={{ color: isDarkMode ? '#666' : '#999', pointerEvents: 'none' }}>
+                  <User size={18} />
+                </span>
+              </div>
+            </div>
+          )}
+
           <div>
             <label className={styles.label} style={{ color: muted }}>
-              Enter Access Code
+              {restricted ? 'Enter Access Code for This Area' : 'Access Code'}
             </label>
             <div className={styles.inputWrap}>
               <input
@@ -113,7 +180,7 @@ export default function PasswordGate() {
                   color: text,
                 }}
                 placeholder="password"
-                autoFocus
+                autoFocus={!!restricted}
               />
               <button
                 type="button"
@@ -140,7 +207,7 @@ export default function PasswordGate() {
               : { borderColor: border, color: text }
             }
           >
-            Access Documentation
+            {buttonLabel}
           </button>
         </form>
 
@@ -149,7 +216,7 @@ export default function PasswordGate() {
             <div className="gradient-line" style={{ position: 'absolute', left: '3rem', right: '3rem', marginTop: '-1px' }} />
           )}
           <p style={{ color: isDarkMode ? '#666' : '#999' }}>
-            Technical Spec by <span style={{ color: accent }}>idirnet</span>
+            By <span style={{ color: accent }}>idirnet</span>
           </p>
         </div>
       </div>
