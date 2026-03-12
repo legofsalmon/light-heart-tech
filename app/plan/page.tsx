@@ -158,7 +158,7 @@ export default function PlanPage() {
     <div style={{ display: 'flex', minHeight: 'calc(100vh - 4rem)' }}>
       {/* Sidebar */}
       <aside style={{
-        position: 'fixed', top: '4rem', left: 0, width: '320px', height: 'calc(100vh - 4rem)',
+        position: 'fixed', top: '110px', left: 0, width: '320px', height: 'calc(100vh - 110px)',
         background: surface, borderRight: `1px solid ${border}`, overflowY: 'auto', zIndex: 50,
         transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
         transition: 'transform 0.3s ease',
@@ -207,7 +207,7 @@ export default function PlanPage() {
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
-          style={{ position: 'fixed', inset: 0, top: '4rem', background: 'rgba(0,0,0,0.5)', zIndex: 40 }}
+          style={{ position: 'fixed', inset: 0, top: '110px', background: 'rgba(0,0,0,0.5)', zIndex: 40 }}
         />
       )}
 
@@ -215,7 +215,7 @@ export default function PlanPage() {
       <div style={{ flex: 1, minHeight: '100vh' }}>
         {/* Top bar */}
         <div style={{
-          position: 'sticky', top: '4rem', zIndex: 30,
+          position: 'sticky', top: '110px', zIndex: 30,
           background: isDarkMode ? 'rgba(10,10,10,0.95)' : 'rgba(255,255,255,0.95)',
           backdropFilter: 'blur(12px)', borderBottom: `1px solid ${border}`,
           padding: '0.75rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem',
