@@ -33,6 +33,7 @@ export const NAV_ITEMS: SectionMeta[] = [
 
   // ── Operations zone ──
   { slug: 'ops', navLabel: 'OPS HUB', zone: 'ops' },
+  { slug: 'ops/tsm', navLabel: 'TSM FULL VIEW', zone: 'ops' },
   { slug: 'plan', navLabel: 'MASTER PLAN', zone: 'ops' },
   { slug: 'technology', navLabel: 'TECHNOLOGY', zone: 'ops' },
 

@@ -1,0 +1,74 @@
+@use '../../styles/variables' as *;
+
+// ─── Context widget strip ───────────────────────────────
+
+.widget {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-md;
+  border: 1px solid $dark-border;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.3);
+  font-family: $font-mono;
+  flex-wrap: wrap;
+}
+
+.lightWidget {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: $light-border;
+}
+
+// ─── TSM label ──────────────────────────────────────────
+
+.tsmLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+  padding-right: $space-sm;
+  border-right: 1px solid $dark-border;
+  white-space: nowrap;
+}
+
+.lightWidget .tsmLabel {
+  color: #999;
+  border-right-color: $light-border;
+}
+
+// ─── Stack group ────────────────────────────────────────
+
+.stackGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// ─── Node pill ──────────────────────────────────────────
+
+.nodePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

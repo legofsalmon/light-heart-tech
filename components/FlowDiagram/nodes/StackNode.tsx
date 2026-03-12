@@ -1,45 +1,149 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Handle, Position, type NodeProps } from '@xyflow/react';
+import { ExternalLink } from 'lucide-react';
+import styles from './StackNode.module.scss';
+
+// ─── Types ──────────────────────────────────────────────────────────────────
 
 interface StackNodeData {
   label: string;
   detail?: string;
   stack: string;
-  status: 'wip' | 'pending' | 'done';
+  nodeId: string;
+  status: 'active' | 'planned' | 'complete' | 'blocked';
   color?: string;
+  linkCount?: number;
+  /** Injected from parent: is this node in the highlighted chain? */
+  isHighlighted?: boolean;
+  /** Injected: should this node be dimmed? */
+  isDimmed?: boolean;
+  /** Injected: is this node selected? */
+  isSelected?: boolean;
+  /** Injected: callback when node is clicked */
+  onSelect?: (nodeId: string) => void;
+  /** Injected: callback when node is hovered */
+  onHover?: (nodeId: string | null) => void;
   [key: string]: unknown;
 }
 
-const STATUS_MAP: Record<string, { bg: string; label: string }> = {
-  wip: { bg: 'rgba(0, 212, 255, 0.15)', label: 'WIP' },
-  pending: { bg: 'rgba(255, 140, 0, 0.1)', label: '\u2022' },
-  done: { bg: 'rgba(0, 255, 102, 0.1)', label: '\u2713' },
+const STATUS_CONFIG: Record<string, { bg: string; label: string; color: string }> = {
+  active: {
+    bg: 'rgba(0, 212, 255, 0.12)',
+    label: 'ACTIVE',
+    color: '#00d4ff',
+  },
+  planned: {
+    bg: 'rgba(255, 140, 0, 0.08)',
+    label: 'PLANNED',
+    color: '#ff8c00',
+  },
+  complete: {
+    bg: 'rgba(0, 255, 102, 0.1)',
+    label: 'DONE',
+    color: '#00ff66',
+  },
+  blocked: {
+    bg: 'rgba(255, 51, 51, 0.1)',
+    label: 'BLOCKED',
+    color: '#ff3333',
+  },
 };
 
+// ─── Component ──────────────────────────────────────────────────────────────
+
 export const StackNode = memo(({ data }: NodeProps) => {
-  const { label, detail, color = '#c4a265', status = 'pending' } = data as StackNodeData;
-  const st = STATUS_MAP[status] || STATUS_MAP.pending;
+  const {
+    label,
+    detail,
+    nodeId,
+    color = '#c4a265',
+    status = 'planned',
+    linkCount = 0,
+    isHighlighted = false,
+    isDimmed = false,
+    isSelected = false,
+    onSelect,
+    onHover,
+  } = data as StackNodeData;
+
+  const st = STATUS_CONFIG[status] || STATUS_CONFIG.planned;
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onSelect?.(nodeId);
+    },
+    [onSelect, nodeId],
+  );
+
+  const handleMouseEnter = useCallback(() => {
+    onHover?.(nodeId);
+  }, [onHover, nodeId]);
+
+  const handleMouseLeave = useCallback(() => {
+    onHover?.(null);
+  }, [onHover]);
+
+  // Build class list
+  const classNames = [
+    styles.node,
+    isHighlighted ? styles.highlighted : '',
+    isDimmed ? styles.dimmed : '',
+    isSelected ? styles.selected : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <div style={{
-      background: st.bg,
-      border: `1px solid ${color}40`,
-      borderLeft: `3px solid ${color}`,
-      borderRadius: 6,
-      padding: '8px 12px',
-      minWidth: 120,
-    }}>
-      <Handle type="target" position={Position.Top} style={{ background: color, width: 5, height: 5 }} />
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-        <span style={{ fontSize: 11, fontWeight: 600, color: '#e0e0e0' }}>{label}</span>
-        <span style={{ fontSize: 9, color, fontWeight: 700 }}>{st.label}</span>
+    <div
+      className={classNames}
+      style={{
+        background: st.bg,
+        border: `1px solid ${color}40`,
+        borderLeft: `3px solid ${color}`,
+        // CSS custom props for dynamic theming in SCSS
+        '--stack-color': color,
+        '--stack-glow': `${color}25`,
+        '--stack-color-dim': `${color}30`,
+      } as React.CSSProperties}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Handle
+        type="target"
+        position={Position.Top}
+        className={styles.handle}
+        style={{ background: color }}
+      />
+
+      <div className={styles.header}>
+        <span className={styles.label}>{label}</span>
+        <span
+          className={styles.statusBadge}
+          style={{ color: st.color, background: `${st.color}15` }}
+        >
+          {st.label}
+        </span>
       </div>
-      {detail && (
-        <div style={{ fontSize: 9, color: '#777', marginTop: 2 }}>{detail}</div>
+
+      {detail && <div className={styles.detail}>{detail}</div>}
+
+      {linkCount > 0 && (
+        <div className={styles.linkBadge}>
+          <ExternalLink className={styles.linkIcon} />
+          {linkCount} {linkCount === 1 ? 'page' : 'pages'}
+        </div>
       )}
-      <Handle type="source" position={Position.Bottom} style={{ background: color, width: 5, height: 5 }} />
+
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        className={styles.handle}
+        style={{ background: color }}
+      />
     </div>
   );
 });

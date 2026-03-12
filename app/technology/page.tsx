@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@/components/ThemeProvider';
 import { DataTable } from '@/components/DataTable';
 import { GpgpuCanvas } from '@/components/GpgpuCanvas';
+import TSMContextWidget from '@/components/TSM/TSMContextWidget';
 
 /* ── DATA ─────────────────────────────────────────────── */
 
@@ -214,6 +215,11 @@ export default function TechnologyPage() {
           The first purpose-built immersive gallery in Ireland. Every technical decision was made to serve one goal: creating art that surrounds you completely.
         </p>
         </div>
+      </div>
+
+      {/* TSM Context — Ground + Runtime nodes */}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <TSMContextWidget slugOverride="technology" />
       </div>
 
       {/* ── STATS GRID ─────────────────────────── */}

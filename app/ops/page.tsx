@@ -1,16 +1,22 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import gsap from 'gsap';
 import {
   Activity, Calendar, CheckCircle, Clock, AlertTriangle,
   Users, FileText, Target, Layers, ChevronDown, ChevronRight,
   Shield, Zap, Wifi, Server, Speaker, Monitor, Eye,
-  GitBranch, MessageSquare, ExternalLink,
+  GitBranch, MessageSquare, ExternalLink, Maximize2, Filter,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { DataTable } from '@/components/DataTable';
 import { Comments } from '@/components/Comments';
+import { TSMProvider, useTSM } from '@/data/TSMProvider';
+import TSMDetailPanel from '@/components/TSM/TSMDetailPanel';
+import { tsmNodes, tsmEdges, type TSMStack, type TSMStatus } from '@/data/diagramTsm';
+import { TSM_STACK_COLORS, TSM_STACK_SHORT, TSM_STACK_LABELS, getStackStats } from '@/data/tsmPageMap';
 import dynamic from 'next/dynamic';
 import { SPECS } from '@/data/constants';
 
@@ -176,40 +182,59 @@ const MEETINGS = [
   { meeting: 'RAD Sync', when: 'Tuesdays', duration: 'Varies', who: 'Kev + RAD', purpose: 'Brand progress, deliverable handoffs' },
 ];
 
-const TSM_NODES = [
-  // Global Stack (blue) - column 1
-  ...TSM_STACKS[0].planes.map((p, i) => ({
-    id: `g-${i}`, type: 'stack' as const,
-    position: { x: 0, y: i * 70 },
-    data: { label: p.name, detail: p.detail, stack: 'Global', status: p.status, color: '#4a8abf' },
-  })),
-  // Internal Stack (gold) - column 2
-  ...TSM_STACKS[1].planes.map((p, i) => ({
-    id: `i-${i}`, type: 'stack' as const,
-    position: { x: 220, y: i * 70 },
-    data: { label: p.name, detail: p.detail, stack: 'Internal', status: p.status, color: '#c4a265' },
-  })),
-  // External Stack (green) - column 3
-  ...TSM_STACKS[2].planes.map((p, i) => ({
-    id: `e-${i}`, type: 'stack' as const,
-    position: { x: 440, y: i * 70 },
-    data: { label: p.name, detail: p.detail, stack: 'External', status: p.status, color: '#27ae60' },
-  })),
-];
+// ─── Build interactive TSM nodes from real data ─────────
 
-const TSM_EDGES = [
-  // Vertical connections within each stack
-  ...Array.from({ length: 6 }, (_, i) => ({ id: `g-v-${i}`, source: `g-${i}`, target: `g-${i+1}`, type: 'animated' as const, data: { edgeType: 'data' } })),
-  ...Array.from({ length: 6 }, (_, i) => ({ id: `i-v-${i}`, source: `i-${i}`, target: `i-${i+1}`, type: 'animated' as const, data: { edgeType: 'signal' } })),
-  ...Array.from({ length: 6 }, (_, i) => ({ id: `e-v-${i}`, source: `e-${i}`, target: `e-${i+1}`, type: 'animated' as const, data: { edgeType: 'network' } })),
-  // Cross-stack connections at key planes
-  { id: 'gi-0', source: 'g-0', target: 'i-0', type: 'animated' as const, data: { edgeType: 'data' } },
-  { id: 'ie-0', source: 'i-0', target: 'e-0', type: 'animated' as const, data: { edgeType: 'data' } },
-  { id: 'gi-3', source: 'g-3', target: 'i-3', type: 'animated' as const, data: { edgeType: 'signal' } },
-  { id: 'ie-3', source: 'i-3', target: 'e-3', type: 'animated' as const, data: { edgeType: 'signal' } },
-  { id: 'gi-6', source: 'g-6', target: 'i-6', type: 'animated' as const, data: { edgeType: 'critical' } },
-  { id: 'ie-6', source: 'i-6', target: 'e-6', type: 'animated' as const, data: { edgeType: 'critical' } },
-];
+const STACK_ORDER: TSMStack[] = ['global', 'internal', 'external'];
+const STACK_X: Record<TSMStack, number> = { global: 0, internal: 240, external: 480 };
+
+function buildTSMFlowNodes(
+  onSelect?: (id: string) => void,
+  onHover?: (id: string | null) => void,
+  highlightedIds?: Set<string>,
+  selectedNodeId?: string | null,
+  hoveredNodeId?: string | null,
+) {
+  // Group by stack, preserving order within each stack
+  const byStack: Record<TSMStack, typeof tsmNodes> = { global: [], internal: [], external: [] };
+  for (const node of tsmNodes) byStack[node.stack].push(node);
+
+  return STACK_ORDER.flatMap((stack) =>
+    byStack[stack].map((node, i) => ({
+      id: node.id,
+      type: 'stack' as const,
+      position: { x: STACK_X[stack], y: i * 78 },
+      data: {
+        label: node.plane,
+        detail: node.detail,
+        stack,
+        nodeId: node.id,
+        status: node.status,
+        color: TSM_STACK_COLORS[stack],
+        linkCount: node.pageLinks.length,
+        isHighlighted: hoveredNodeId ? highlightedIds?.has(node.id) ?? false : false,
+        isDimmed: hoveredNodeId ? !(highlightedIds?.has(node.id) ?? false) : false,
+        isSelected: selectedNodeId === node.id,
+        onSelect,
+        onHover,
+      },
+    })),
+  );
+}
+
+const EDGE_TYPE_MAP: Record<string, string> = {
+  dependency: 'data',
+  unlocks: 'signal',
+  'cross-stack': 'network',
+};
+
+const TSM_FLOW_EDGES = tsmEdges.map((edge) => ({
+  id: edge.id,
+  source: edge.source,
+  target: edge.target,
+  type: 'animated' as const,
+  data: { edgeType: EDGE_TYPE_MAP[edge.type] || 'data' },
+  animated: edge.animated ?? false,
+}));
 
 /* ── HELPERS ──────────────────────────────────────────── */
 
@@ -237,7 +262,202 @@ const Tag = ({ status, children }: { status: string; children: React.ReactNode }
   </span>
 );
 
+/* ── TSM SECTION (uses TSMProvider context) ──────────── */
+
+function TSMSection({ isDarkMode, isOpen, onToggle, accent, gold, muted, text, border, cardBg }: {
+  isDarkMode: boolean; isOpen: boolean; onToggle: () => void;
+  accent: string; gold: string; muted: string; text: string; border: string; cardBg: string;
+}) {
+  const { selectNode, hoverNode, highlightedIds, selectedNodeId, hoveredNodeId,
+    filterStack, setFilterStack, filterStatus, setFilterStatus } = useTSM();
+  const stats = getStackStats();
+
+  const flowNodes = useMemo(
+    () => buildTSMFlowNodes(selectNode, hoverNode, highlightedIds, selectedNodeId, hoveredNodeId),
+    [selectNode, hoverNode, highlightedIds, selectedNodeId, hoveredNodeId],
+  );
+
+  const stacks: TSMStack[] = ['global', 'internal', 'external'];
+  const statuses: TSMStatus[] = ['active', 'planned', 'complete', 'blocked'];
+  const statusFilterColors: Record<TSMStatus, string> = { active: '#00d4ff', planned: '#ff8c00', complete: '#00ff66', blocked: '#ff3333' };
+
+  return (
+    <div style={{ padding: '1.5rem', background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', marginBottom: '2rem', position: 'relative' }}>
+      {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
+
+      <button
+        onClick={onToggle}
+        style={{
+          display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: isOpen ? '1rem' : '0',
+          background: 'none', border: 'none', cursor: 'pointer', padding: 0, width: '100%',
+        }}
+      >
+        <Layers size={16} style={{ color: gold, flexShrink: 0 }} />
+        <span style={{ fontFamily: 'var(--font-mono, monospace)', fontSize: '0.75rem', color: gold, letterSpacing: '0.1em', textTransform: 'uppercase', flex: 1, textAlign: 'left' }}>
+          Triple Stack Model — Interactive
+        </span>
+        {isOpen ? <ChevronDown size={14} style={{ color: muted }} /> : <ChevronRight size={14} style={{ color: muted }} />}
+      </button>
+
+      {isOpen && (
+        <>
+          <p style={{ color: muted, fontSize: '0.8rem', marginBottom: '1rem', lineHeight: 1.6 }}>
+            The TSM audits readiness across three layers. Click any node to see deliverables, dependencies, and linked pages. Hover to see the dependency chain.
+          </p>
+
+          {/* Stack progress bars */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '1.25rem' }}>
+            {stacks.map((stack) => {
+              const s = stats[stack];
+              const color = TSM_STACK_COLORS[stack];
+              const activePct = s.total > 0 ? Math.round(((s.complete + s.active) / s.total) * 100) : 0;
+              return (
+                <div key={stack} style={{ padding: '0.6rem 0.75rem', background: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.4)', border: `1px solid ${border}`, borderRadius: '6px', borderTop: `2px solid ${color}` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      {TSM_STACK_SHORT[stack]}
+                    </span>
+                    <span style={{ fontSize: '0.65rem', color: muted, fontFamily: 'var(--font-mono, monospace)' }}>
+                      {s.complete}/{s.total} done · {s.active} active
+                    </span>
+                  </div>
+                  <div style={{ height: 4, background: `${color}15`, borderRadius: 2, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: `${activePct}%`, background: color, borderRadius: 2, transition: 'width 0.3s ease' }} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Filter toolbar */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+            <Filter size={12} style={{ color: muted }} />
+            <span style={{ fontSize: '0.65rem', color: muted, fontFamily: 'var(--font-mono, monospace)', letterSpacing: '0.05em' }}>STACK:</span>
+            {stacks.map((stack) => (
+              <button
+                key={stack}
+                onClick={() => setFilterStack(filterStack === stack ? null : stack)}
+                style={{
+                  fontSize: '0.65rem', padding: '2px 8px', borderRadius: '12px', cursor: 'pointer',
+                  border: `1px solid ${filterStack === stack ? TSM_STACK_COLORS[stack] : border}`,
+                  background: filterStack === stack ? `${TSM_STACK_COLORS[stack]}20` : 'transparent',
+                  color: filterStack === stack ? TSM_STACK_COLORS[stack] : muted,
+                  fontWeight: filterStack === stack ? 600 : 400,
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {TSM_STACK_SHORT[stack]}
+              </button>
+            ))}
+            <span style={{ fontSize: '0.65rem', color: muted, fontFamily: 'var(--font-mono, monospace)', letterSpacing: '0.05em', marginLeft: '0.5rem' }}>STATUS:</span>
+            {statuses.map((status) => (
+              <button
+                key={status}
+                onClick={() => setFilterStatus(filterStatus === status ? null : status)}
+                style={{
+                  fontSize: '0.65rem', padding: '2px 8px', borderRadius: '12px', cursor: 'pointer',
+                  border: `1px solid ${filterStatus === status ? statusFilterColors[status] : border}`,
+                  background: filterStatus === status ? `${statusFilterColors[status]}20` : 'transparent',
+                  color: filterStatus === status ? statusFilterColors[status] : muted,
+                  fontWeight: filterStatus === status ? 600 : 400,
+                  textTransform: 'capitalize',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {status}
+              </button>
+            ))}
+          </div>
+
+          {/* Stack cards (3-column grid) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+            {TSM_STACKS.map((stack, si) => {
+              const stackKey = stacks[si];
+              if (filterStack && filterStack !== stackKey) return null;
+              return (
+                <div key={stack.name} style={{ padding: '1rem', background: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.4)', border: `1px solid ${border}`, borderRadius: '8px', borderTop: `3px solid ${stack.color}` }}>
+                  <h3 style={{ fontSize: '0.875rem', fontWeight: 700, color: stack.color, marginBottom: '0.25rem', letterSpacing: '0.05em' }}>
+                    {stack.name.toUpperCase()}
+                  </h3>
+                  <p style={{ fontSize: '0.7rem', color: muted, marginBottom: '0.75rem', fontStyle: 'italic' }}>{stack.subtitle}</p>
+                  {stack.planes.map((plane, j) => {
+                    // Find the corresponding real node to get its true status
+                    const realNode = tsmNodes.find(n => n.stack === stackKey && n.plane === plane.name);
+                    if (filterStatus && realNode && realNode.status !== filterStatus) return null;
+                    return (
+                      <div
+                        key={j}
+                        onClick={() => realNode && selectNode(realNode.id)}
+                        style={{
+                          display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem',
+                          padding: '0.35rem 0.25rem', borderBottom: j < stack.planes.length - 1 ? `1px solid ${border}` : 'none',
+                          cursor: realNode ? 'pointer' : 'default', borderRadius: '3px',
+                          transition: 'background 0.15s ease',
+                        }}
+                        onMouseEnter={(e) => { if (isDarkMode) (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.04)'; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = 'transparent'; }}
+                      >
+                        <span style={{ fontSize: '0.8rem', color: text }}>{plane.name}</span>
+                        <span style={{ fontSize: '0.7rem', color: statusColor(plane.status), whiteSpace: 'nowrap' }}>
+                          {statusIcon(plane.status)} {plane.detail}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Interactive ReactFlow diagram */}
+          <div style={{ marginTop: '1.5rem', borderRadius: 8, overflow: 'hidden', border: `1px solid ${border}`, position: 'relative' }}>
+            <FlowDiagram
+              initialNodes={flowNodes}
+              initialEdges={TSM_FLOW_EDGES}
+              height={600}
+              onNodeClick={(nodeId: string) => selectNode(nodeId)}
+            />
+            <Link
+              href="/ops/tsm"
+              style={{
+                position: 'absolute', top: 10, right: 10,
+                display: 'flex', alignItems: 'center', gap: '4px',
+                padding: '4px 10px', borderRadius: '6px', fontSize: '0.65rem',
+                background: isDarkMode ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)',
+                border: `1px solid ${border}`, color: accent,
+                textDecoration: 'none', zIndex: 10, transition: 'all 0.2s ease',
+              }}
+            >
+              <Maximize2 size={12} /> Full Screen
+            </Link>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.8rem', color: muted }}>
+            <strong style={{ color: gold }}>Concrescence</strong> &mdash; The moment all three stacks align. Opening night is the first.
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 /* ── COMPONENT ────────────────────────────────────────── */
+
+/** Reads ?node= query param inside a Suspense boundary */
+function TSMWithSearchParams({ children, ...props }: {
+  children?: React.ReactNode;
+  isDarkMode: boolean; isOpen: boolean; onToggle: () => void;
+  accent: string; gold: string; muted: string; text: string; border: string; cardBg: string;
+}) {
+  const searchParams = useSearchParams();
+  const initialNodeId = searchParams.get('node');
+  return (
+    <TSMProvider initialNodeId={initialNodeId}>
+      <TSMSection {...props} />
+      <TSMDetailPanel />
+    </TSMProvider>
+  );
+}
 
 export default function OpsHubPage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -342,49 +562,20 @@ export default function OpsHubPage() {
         )}
       </div>
 
-      {/* TSM */}
-      <div style={{ padding: '1.5rem', background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', marginBottom: '2rem', position: 'relative' }}>
-        {isDarkMode && <div className="hud-corners-extra" style={{ position: 'absolute', inset: 0, borderRadius: '8px', pointerEvents: 'none' }} />}
-        <SectionHeader id="tsm" title={`Triple Stack Model \u2014 Operational Checklists`} icon={Layers} iconColor={gold} />
-        {openSections.tsm && (
-          <>
-            <p style={{ color: muted, fontSize: '0.8rem', marginBottom: '1rem', lineHeight: 1.6 }}>
-              The TSM audits readiness across three layers. Every exhibition, every event, every visitor experience is checked against these stacks. Phase 1 focuses on the Global Stack (infrastructure).
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
-              {TSM_STACKS.map((stack) => (
-                <div key={stack.name} style={{ padding: '1rem', background: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.4)', border: `1px solid ${border}`, borderRadius: '8px', borderTop: `3px solid ${stack.color}` }}>
-                  <h3 style={{ fontSize: '0.875rem', fontWeight: 700, color: stack.color, marginBottom: '0.25rem', letterSpacing: '0.05em' }}>
-                    {stack.name.toUpperCase()}
-                  </h3>
-                  <p style={{ fontSize: '0.7rem', color: muted, marginBottom: '0.75rem', fontStyle: 'italic' }}>{stack.subtitle}</p>
-                  {stack.planes.map((plane, j) => (
-                    <div key={j} style={{
-                      display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem',
-                      padding: '0.35rem 0', borderBottom: j < stack.planes.length - 1 ? `1px solid ${border}` : 'none',
-                    }}>
-                      <span style={{ fontSize: '0.8rem', color: text }}>{plane.name}</span>
-                      <span style={{ fontSize: '0.7rem', color: statusColor(plane.status), whiteSpace: 'nowrap' }}>
-                        {statusIcon(plane.status)} {plane.detail}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: '1.5rem', borderRadius: 8, overflow: 'hidden', border: `1px solid ${border}` }}>
-              <FlowDiagram
-                initialNodes={TSM_NODES}
-                initialEdges={TSM_EDGES}
-                height={550}
-              />
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.8rem', color: muted }}>
-              <strong style={{ color: gold }}>Concrescence</strong> &mdash; The moment all three stacks align. Opening night is the first.
-            </div>
-          </>
-        )}
-      </div>
+      {/* TSM — Interactive Triple Stack Model */}
+      <Suspense fallback={null}>
+        <TSMWithSearchParams
+          isDarkMode={isDarkMode}
+          isOpen={openSections.tsm}
+          onToggle={() => toggle('tsm')}
+          accent={accent}
+          gold={gold}
+          muted={muted}
+          text={text}
+          border={border}
+          cardBg={cardBg}
+        />
+      </Suspense>
 
       {/* SIX TOOLS */}
       <div style={{ padding: '1.5rem', background: cardBg, border: `1px solid ${border}`, borderRadius: '8px', marginBottom: '2rem', position: 'relative' }}>

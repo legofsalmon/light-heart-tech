@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@/components/ThemeProvider';
 import { DataTable } from '@/components/DataTable';
 import { Comments } from '@/components/Comments';
+import TSMContextWidget from '@/components/TSM/TSMContextWidget';
 import dynamic from 'next/dynamic';
 
 const FlowDiagram = dynamic(
@@ -237,6 +238,11 @@ export default function ExecutivePage() {
         <p style={{ color: isDarkMode ? '#888' : '#999', fontSize: '0.75rem', marginTop: '0.25rem' }}>
           Last updated: March 11, 2026 | Week 2 of 25
         </p>
+      </div>
+
+      {/* TSM Context — Horizons + Roles nodes */}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <TSMContextWidget slugOverride="executive" />
       </div>
 
       {/* Status stripe */}

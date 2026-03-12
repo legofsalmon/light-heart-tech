@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { Comments } from '@/components/Comments';
+import TSMContextWidget from '@/components/TSM/TSMContextWidget';
 import { PLAN_SECTIONS, PLAN_NAV_GROUPS, type SectionContent } from '@/data/planData';
 
 export default function PlanPage() {
@@ -255,6 +256,11 @@ export default function PlanPage() {
               Status: <span style={{ color: '#f39c12' }}>ACTIVE</span> — Week 2 of 12-week pre-launch plan<br />
               Target Opening: <strong style={{ color: text }}>September 2026</strong>
             </div>
+          </div>
+
+          {/* TSM Context — plan touches many stacks */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <TSMContextWidget slugOverride="plan" />
           </div>
 
           {/* Confidential banner */}

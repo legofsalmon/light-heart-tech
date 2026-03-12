@@ -52,6 +52,15 @@ export default function FlowDiagram({
   const containerRef = useRef<HTMLDivElement>(null);
   const { isDarkMode } = useTheme();
 
+  // Sync nodes when initialNodes change (for interactive highlight/dim states)
+  useEffect(() => {
+    setNodes(initialNodes);
+  }, [initialNodes, setNodes]);
+
+  useEffect(() => {
+    setEdges(initialEdges);
+  }, [initialEdges, setEdges]);
+
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {

@@ -10,6 +10,13 @@
 export type TSMStack = 'global' | 'internal' | 'external';
 export type TSMStatus = 'planned' | 'active' | 'complete' | 'blocked';
 
+/** A link from a TSM node to a page within the site */
+export interface TSMPageLink {
+  slug: string;        // Route slug: 'projection', 'server', 'technology', 'executive'
+  label: string;       // Display label: 'Projectors', 'Media Servers'
+  section?: string;    // Optional anchor: '#audio-system', '#projectors'
+}
+
 export interface TSMNode {
   id: string;
   stack: TSMStack;
@@ -21,6 +28,7 @@ export interface TSMNode {
   unlocks: string[];   // IDs of nodes this unlocks
   deliverables: string[];
   acceptanceCriteria?: string;
+  pageLinks: TSMPageLink[];
 }
 
 export const tsmNodes: TSMNode[] = [
@@ -44,7 +52,13 @@ export const tsmNodes: TSMNode[] = [
       '3.06 Projector installation',
       '3.08 L-ISA audio system installation'
     ],
-    acceptanceCriteria: 'Room can hold comfortable silence at operating temperature'
+    acceptanceCriteria: 'Room can hold comfortable silence at operating temperature',
+    pageLinks: [
+      { slug: 'projection', label: 'Projectors' },
+      { slug: 'hvac', label: 'HVAC' },
+      { slug: 'surface', label: 'Surface Treatment' },
+      { slug: 'technology', label: 'Technology', section: '#projectors' },
+    ],
   },
   {
     id: 'global-runtime',
@@ -61,7 +75,13 @@ export const tsmNodes: TSMNode[] = [
       'Sync generator (Meinberg Microsync)',
       'Real-time playback systems'
     ],
-    acceptanceCriteria: 'Steady playback without visible artefacts, heat and fan noise within comfort band'
+    acceptanceCriteria: 'Steady playback without visible artefacts, heat and fan noise within comfort band',
+    pageLinks: [
+      { slug: 'server', label: 'Media Servers' },
+      { slug: 'latency', label: 'Latency Budget' },
+      { slug: 'signal', label: 'Signal Transport' },
+      { slug: 'technology', label: 'Technology', section: '#servers' },
+    ],
   },
   {
     id: 'global-circulation',
@@ -77,7 +97,11 @@ export const tsmNodes: TSMNode[] = [
       '3.19 Circulation plan',
       'Entry/exit sequencing',
       'Dwell zone design'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'visit', label: 'Visitor Experience' },
+      { slug: 'plan', label: 'Master Plan', section: '#circulation' },
+    ],
   },
   {
     id: 'global-channels',
@@ -93,7 +117,11 @@ export const tsmNodes: TSMNode[] = [
       'GDPR compliance documentation',
       'Photography policy',
       'Recording disclosure system'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'ops', label: 'Operations Hub', section: '#consent' },
+      { slug: 'plan', label: 'Master Plan', section: '#gdpr' },
+    ],
   },
   {
     id: 'global-frames',
@@ -110,7 +138,12 @@ export const tsmNodes: TSMNode[] = [
       'Caption/subtitle readability test',
       'Response timing calibration'
     ],
-    acceptanceCriteria: 'One comfortable out-breath can cover a subtitle line'
+    acceptanceCriteria: 'One comfortable out-breath can cover a subtitle line',
+    pageLinks: [
+      { slug: 'projection', label: 'Projectors', section: '#sightlines' },
+      { slug: 'audio', label: 'Audio System', section: '#spl' },
+      { slug: 'sensors', label: 'Sensors', section: '#response' },
+    ],
   },
   {
     id: 'global-roles',
@@ -126,7 +159,11 @@ export const tsmNodes: TSMNode[] = [
       'Visitor role definitions',
       'Steward scripts and positioning',
       'Participation protocols'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'ops', label: 'Operations Hub', section: '#team' },
+      { slug: 'plan', label: 'Master Plan', section: '#staffing' },
+    ],
   },
   {
     id: 'global-horizons',
@@ -142,7 +179,12 @@ export const tsmNodes: TSMNode[] = [
       'Quarterly review protocol',
       'Horizon card system',
       'Metric definitions and KPIs'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'plan', label: 'Master Plan' },
+      { slug: 'executive', label: 'Executive Hub', section: '#governance' },
+      { slug: 'brief', label: 'TSM Brief' },
+    ],
   },
 
   // ============================================
@@ -162,7 +204,11 @@ export const tsmNodes: TSMNode[] = [
       'Seating specification',
       'Temperature band definition',
       'Physical grounding protocols'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'surface', label: 'Surface Treatment' },
+      { slug: 'hvac', label: 'HVAC', section: '#temperature' },
+    ],
   },
   {
     id: 'internal-sacral',
@@ -179,7 +225,11 @@ export const tsmNodes: TSMNode[] = [
       'Emotional arc design',
       'Transition timing specification'
     ],
-    acceptanceCriteria: 'At least one "quiet pocket" within the 50-minute journey'
+    acceptanceCriteria: 'At least one "quiet pocket" within the 50-minute journey',
+    pageLinks: [
+      { slug: 'exhibitions', label: 'Exhibitions' },
+      { slug: 'brief', label: 'Original Brief' },
+    ],
   },
   {
     id: 'internal-solar',
@@ -195,7 +245,11 @@ export const tsmNodes: TSMNode[] = [
       'Opt-in/opt-out design',
       'Intensity zone specification',
       'Reversible participation protocols'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'visit', label: 'Visitor Experience' },
+      { slug: 'exhibitions', label: 'Exhibitions', section: '#participation' },
+    ],
   },
   {
     id: 'internal-heart',
@@ -212,7 +266,10 @@ export const tsmNodes: TSMNode[] = [
       'Shared perception moments',
       'Collective breath protocols'
     ],
-    acceptanceCriteria: 'At least one moment where the room breathes together'
+    acceptanceCriteria: 'At least one moment where the room breathes together',
+    pageLinks: [
+      { slug: 'audio', label: 'Audio System' },
+    ],
   },
   {
     id: 'internal-throat',
@@ -228,7 +285,10 @@ export const tsmNodes: TSMNode[] = [
       'Visitor communication scripts',
       'Signage tone specification',
       'Verbal threshold protocols'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'marketing', label: 'Marketing Hub' },
+    ],
   },
   {
     id: 'internal-third-eye',
@@ -244,7 +304,11 @@ export const tsmNodes: TSMNode[] = [
       'Gaze direction mapping',
       'Flicker safety protocols',
       'Visual comfort testing'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'projection', label: 'Projectors', section: '#flicker' },
+      { slug: 'sensors', label: 'Sensors' },
+    ],
   },
   {
     id: 'internal-crown',
@@ -260,7 +324,11 @@ export const tsmNodes: TSMNode[] = [
       'Reflection space specification',
       'Post-visit integration materials',
       'Horizon card distribution'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'plan', label: 'Master Plan', section: '#integration' },
+      { slug: 'executive', label: 'Executive Hub', section: '#post-visit' },
+    ],
   },
 
   // ============================================
@@ -281,7 +349,12 @@ export const tsmNodes: TSMNode[] = [
       'Route mapping',
       'Spatial data for projection mapping'
     ],
-    acceptanceCriteria: 'Scan verified against tape in at least two spots'
+    acceptanceCriteria: 'Scan verified against tape in at least two spots',
+    pageLinks: [
+      { slug: 'projection', label: 'Projectors', section: '#mapping' },
+      { slug: 'sensors', label: 'Sensors', section: '#point-cloud' },
+      { slug: 'visualization', label: '3D Visualization' },
+    ],
   },
   {
     id: 'external-portal',
@@ -297,7 +370,11 @@ export const tsmNodes: TSMNode[] = [
       'Entry count-in system',
       'Consent line protocols',
       'Exit cue visibility design'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'visit', label: 'Visitor Experience', section: '#threshold' },
+      { slug: 'brief', label: 'Original Brief', section: '#entry' },
+    ],
   },
   {
     id: 'external-gesture',
@@ -313,7 +390,10 @@ export const tsmNodes: TSMNode[] = [
       'Accessible pacing protocols',
       'Abort/reverse procedures',
       'Gesture vocabulary'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'sensors', label: 'Sensors', section: '#tracking' },
+    ],
   },
   {
     id: 'external-mirror',
@@ -329,7 +409,11 @@ export const tsmNodes: TSMNode[] = [
       'Echo/reverb protocols',
       'Visitor state indicators',
       'Reflection mechanisms'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'sensors', label: 'Sensors', section: '#feedback' },
+      { slug: 'audio', label: 'Audio System', section: '#reverb' },
+    ],
   },
   {
     id: 'external-narrative',
@@ -345,7 +429,11 @@ export const tsmNodes: TSMNode[] = [
       'Change log documentation',
       'Visitor journey narrative',
       'Offboarding experience'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'about', label: 'About Lightheart' },
+      { slug: 'marketing', label: 'Marketing Hub' },
+    ],
   },
   {
     id: 'external-atmosphere',
@@ -362,7 +450,12 @@ export const tsmNodes: TSMNode[] = [
       'SPL caps per room',
       'Temperature ranges',
       'Quiet pocket location'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'audio', label: 'Audio System', section: '#spl-caps' },
+      { slug: 'hvac', label: 'HVAC' },
+      { slug: 'projection', label: 'Projectors', section: '#luminance' },
+    ],
   },
   {
     id: 'external-feedback',
@@ -378,7 +471,11 @@ export const tsmNodes: TSMNode[] = [
       'Posted change process',
       'Learning cycle documentation',
       'Continuous improvement system'
-    ]
+    ],
+    pageLinks: [
+      { slug: 'executive', label: 'Executive Hub', section: '#kpis' },
+      { slug: 'plan', label: 'Master Plan', section: '#review' },
+    ],
   }
 ];
 
